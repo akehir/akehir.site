@@ -1,0 +1,11 @@
+<app-project
+  class="unit"
+  *ngIf="coordinate.project"
+  [project]="coordinate.project">
+</app-project>
+
+<app-background
+  class="land"
+  *ngIf="coordinate.project.environment"
+  [type]="coordinate.project.environment">
+</app-background>

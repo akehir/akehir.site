@@ -1,0 +1,32 @@
+# Documentation
+# https://docs.gitlab.com/ee/ci/yaml/
+
+stages:
+- test
+- deploy
+
+test:
+  stage: test
+  before_script:
+   # - git submodule sync --recursive
+   # - git submodule update --init --recursive
+   - cd ui
+   - nvm i
+   - npm i # using npm until https://github.com/yarnpkg/yarn/issues/760
+  script:
+   - npm run lint
+   - npm run test -- --no-watch --progress=false --code-coverage --browsers ChromeHeadless
+   - npm run build
+
+  artifacts:
+    paths:
+    - dist/
+    expire_in: 1337 mins
+
+deploy_production:
+  stage: deploy
+  before_script:
+  script:
+    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/ akehir@192.168.7.111:/app/web/akehir/ # syncronize from build server to local via rsync
+  only:
+  - master

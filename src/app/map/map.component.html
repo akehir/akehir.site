@@ -1,0 +1,14 @@
+<ul class="grid">
+  <li class="hex"
+    *ngFor="let coordinate of map.coordinates; trackBy: trackCoordinate"
+  >
+    <div class="hexIn">
+      <app-hex
+        class="hexLink"
+        (click)="log(coordinate)"
+        [coordinate]="coordinate"
+      ></app-hex>
+    </div>
+
+  </li>
+</ul>

@@ -1,0 +1,15 @@
+img {
+  //opacity: 0.8;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 60%;
+  margin: 0 auto;
+  -webkit-transform: rotate3d(0,0,0,0deg);
+  -ms-transform: rotate3d(0,0,0,0deg);
+  transform: rotate3d(0,0,0,0deg);
+  // background: greenyellow; // todo: by player
+  z-index: 1;
+}
