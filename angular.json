@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "emoji-wars": {
+    "akehir": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/emoji-wars",
+            "outputPath": "dist/akehir",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "emoji-wars:build"
+            "browserTarget": "akehir:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "emoji-wars:build:production"
+              "browserTarget": "akehir:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "emoji-wars:build"
+            "browserTarget": "akehir:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "emoji-wars-e2e": {
+    "akehir-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "emoji-wars:serve"
+            "devServerTarget": "akehir:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "emoji-wars:serve:production"
+              "devServerTarget": "akehir:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "emoji-wars"
+  "defaultProject": "akehir"
 }

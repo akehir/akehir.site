@@ -20,13 +20,19 @@ test:
 
   artifacts:
     paths:
-    - dist/
+    - dist/akehir/
     expire_in: 1337 mins
 
 deploy_production:
   stage: deploy
-  before_script:
   script:
-    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/ akehir@192.168.7.111:/app/web/akehir/ # syncronize from build server to local via rsync
+    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/akehir/ akehir@192.168.7.111:/app/web/akehir/master/ # syncronize from build server to local via rsync
   only:
   - master
+
+deploy_develop:
+  stage: deploy
+  script:
+    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/akehir/ akehir@192.168.7.111:/app/web/akehir/develop/ # syncronize from build server to local via rsync
+  only:
+    - develop
