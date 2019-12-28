@@ -10,23 +10,12 @@ import {
 
 import { DOCUMENT } from '@angular/common';
 
-import { ActivatedRoute, Params } from '@angular/router';
-
-interface Position {
-  x: number;
-  y: number;
-}
-
-interface Colour {
-  hex: string;
-  rgba: Uint8ClampedArray;
-}
-
-import { Context } from './context';
-import { getWebGLContext } from './get-web-gl-context';
-import { PointerPrototype } from './pointer-prototype';
-import { Program } from './program';
 import {
+  Context,
+  Material,
+  Program,
+  getWebGLContext,
+  PointerPrototype,
   advectionShader,
   baseVertexShader,
   bloomBlurShader,
@@ -45,39 +34,63 @@ import {
   splatShader,
   sunraysMaskShader,
   sunraysShader,
-  vorticityShader
-} from './predefined-shaders';
-import {Material} from './material';
-import {createFBO} from './create-fbo';
-import {createDoubleFBO} from './create-double-fbo';
-import {resizeDoubleFBO} from './resize-double-fbo';
-import {createTextureAsync} from './create-texture-async';
-import {blit} from './blit';
-import {correctRadius} from './correct-radius';
-import {getResolution} from './resolution';
-import {framebufferToTexture} from './framebuffer-to-texture';
-import {normalizeTexture} from './normalize-texture';
-import {textureToCanvas} from './texture-to-canvas';
-import {downloadURI} from './download-uri';
-import {generateColor} from './generate-color';
-import {getTextureScale} from './get-texture-scale';
-import {normalizeColor} from './normalize-color';
-import {wrap} from './wrap';
-import {scaleByPixelRatio} from './scale-by-pixel-ratio';
-import {updatePointerUpData} from './update-pointer-up-data';
-import {updatePointerMoveData} from './update-pointer-move-data';
-import {updatePointerDownData} from './update-pointer-down-data';
-import {isMobile} from './is-mobile';
+  vorticityShader,
+  createFBO,
+  createDoubleFBO,
+  resizeDoubleFBO,
+  createTextureAsync,
+  blit,
+  correctRadius,
+  getResolution,
+  framebufferToTexture,
+  normalizeTexture,
+  textureToCanvas,
+  downloadURI,
+  generateColor,
+  getTextureScale,
+  normalizeColor,
+  wrap,
+  scaleByPixelRatio,
+  updatePointerUpData,
+  updatePointerMoveData,
+  updatePointerDownData,
+  isMobile,
+} from '../common';
+
+/*
+MIT License
+
+Copyright (c) 2017 Pavel Dobryakov (Original WebGL Fluid Simulation Program)
+Copyright (c) 2020 Raphael Ochsenbein (Angular / Typescript adaptation)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 @Component({
   // tslint:disable
-  selector: 'app-canvas',
+  selector: 'webgl-fluid-simulation',
   // tslint:enable
-  templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss'],
+  templateUrl: './fluid-simulation.component.html',
+  styleUrls: ['./fluid-simulation.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class CanvasComponent implements OnInit, AfterViewInit {
+export class FluidSimulationComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') canvasRef: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -157,9 +170,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
     private zone: NgZone,
     @Inject(DOCUMENT) private document: Document,
+    // todo: inject config
     ) { }
 
   ngOnInit() {

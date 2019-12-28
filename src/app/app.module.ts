@@ -7,14 +7,14 @@ import { MapComponent } from './map/map.component';
 import { HexComponent } from './hex/hex.component';
 import { BackgroundComponent } from './background/background.component';
 import { ProjectComponent } from './project/project.component';
-import { CanvasComponent } from './canvas';
+import { FluidSimulationComponent } from './fluid-simulation';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HexComponent,
-    CanvasComponent,
+    FluidSimulationComponent,
     BackgroundComponent,
     ProjectComponent,
   ],

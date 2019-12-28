@@ -1,5 +1,5 @@
 import {Project, ProjectContribution, ProjectStatus, ProjectType} from '../types/project';
-import {IceEnvironment, LandEnvironment, MountainEnvironment, ForestEnvironment} from '../types/environment';
+import {IceEnvironment, LandEnvironment, MountainEnvironment, ForestEnvironment, WhiteEnvironment} from '../types/environment';
 
 export const projectList: Project[] = [
   {
@@ -12,7 +12,7 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
-    environment: new IceEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'Colour Picker',
@@ -24,7 +24,7 @@ export const projectList: Project[] = [
     status: ProjectStatus['on-hold'],
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
-    environment: new LandEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'Travel for Change',
@@ -36,7 +36,7 @@ export const projectList: Project[] = [
     status: ProjectStatus['in-progress'],
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new MountainEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'Wedding Website',
@@ -48,7 +48,7 @@ export const projectList: Project[] = [
     status: ProjectStatus.completed,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new MountainEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'EVZH',
@@ -60,7 +60,7 @@ export const projectList: Project[] = [
     status: ProjectStatus.maintaining,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new ForestEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'Angular Terminal Component',
@@ -72,7 +72,7 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new ForestEnvironment(),
+    environment: new WhiteEnvironment(),
   },
   {
     name: 'Angular Colour Picker',
@@ -84,6 +84,6 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new ForestEnvironment(),
+    environment: new WhiteEnvironment(),
   },
 ];

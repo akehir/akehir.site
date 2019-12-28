@@ -1,12 +1,13 @@
-img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: auto;
-  height: 100%;
-  margin: 0 auto;
-  -webkit-transform: rotate3d(0,0,0,0deg);
-  -ms-transform: rotate3d(0,0,0,0deg);
-  transform: rotate3d(0,0,0,0deg);
-  //opacity: 0.5;
+app-background {
+  img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+    transform: rotate3d(0,0,0,0deg);
+    opacity: 0.45;
+    filter: drop-shadow(16px 16px 20px white);
+  }
 }

@@ -1,17 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 
-import { CanvasComponent } from './canvas.component';
+import { FluidSimulationComponent } from './fluid-simulation.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ColourComponent', () => {
-  let component: CanvasComponent;
-  let fixture: ComponentFixture<CanvasComponent>;
+  let component: FluidSimulationComponent;
+  let fixture: ComponentFixture<FluidSimulationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CanvasComponent ],
+      declarations: [ FluidSimulationComponent ],
       imports: [
         RouterTestingModule,
       ],
@@ -22,7 +22,7 @@ describe('ColourComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CanvasComponent);
+    fixture = TestBed.createComponent(FluidSimulationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
