@@ -12,18 +12,6 @@ import { DOCUMENT } from '@angular/common';
 
 import { ActivatedRoute, Params } from '@angular/router';
 
-import {
-  fromEvent,
-} from 'rxjs';
-
-import {
-  switchMap,
-  takeUntil,
-  pairwise,
-  delay,
-  repeat,
-} from 'rxjs/operators';
-
 interface Position {
   x: number;
   y: number;
@@ -34,6 +22,52 @@ interface Colour {
   rgba: Uint8ClampedArray;
 }
 
+import { Context } from './context';
+import { getWebGLContext } from './get-web-gl-context';
+import { PointerPrototype } from './pointer-prototype';
+import { Program } from './program';
+import {
+  advectionShader,
+  baseVertexShader,
+  bloomBlurShader,
+  bloomFinalShader,
+  bloomPrefilterShader,
+  blurShader,
+  blurVertexShader,
+  checkerboardShader,
+  clearShader,
+  colorShader,
+  copyShader,
+  curlShader,
+  divergenceShader,
+  gradientSubtractShader,
+  pressureShader,
+  splatShader,
+  sunraysMaskShader,
+  sunraysShader,
+  vorticityShader
+} from './predefined-shaders';
+import {Material} from './material';
+import {createFBO} from './create-fbo';
+import {createDoubleFBO} from './create-double-fbo';
+import {resizeDoubleFBO} from './resize-double-fbo';
+import {createTextureAsync} from './create-texture-async';
+import {blit} from './blit';
+import {correctRadius} from './correct-radius';
+import {getResolution} from './resolution';
+import {framebufferToTexture} from './framebuffer-to-texture';
+import {normalizeTexture} from './normalize-texture';
+import {textureToCanvas} from './texture-to-canvas';
+import {downloadURI} from './download-uri';
+import {generateColor} from './generate-color';
+import {getTextureScale} from './get-texture-scale';
+import {normalizeColor} from './normalize-color';
+import {wrap} from './wrap';
+import {scaleByPixelRatio} from './scale-by-pixel-ratio';
+import {updatePointerUpData} from './update-pointer-up-data';
+import {updatePointerMoveData} from './update-pointer-move-data';
+import {updatePointerDownData} from './update-pointer-down-data';
+import {isMobile} from './is-mobile';
 
 @Component({
   // tslint:disable
@@ -44,36 +78,83 @@ interface Colour {
   encapsulation: ViewEncapsulation.None,
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
-  @ViewChild('canvas', { static: false }) canvas: ElementRef;
+  @ViewChild('canvas') canvasRef: ElementRef;
 
-  private context: CanvasRenderingContext2D;
+  private canvas: HTMLCanvasElement;
 
-  private colourMax = 255;
+  // WebGL Fluid Animation
+  private pointers = [];
+  private splatStack = [];
 
-  private drawWidth = 1;
-  private drawHeight = 1;
+  private lastUpdateTime = Date.now();
+  private colorUpdateTimer = 0.0;
 
-  private redValueComponent: number;
-  private greenValueComponent: number;
-  private blueValueComponent: number;
+  // context
+  private gl: Context | null;
+  private ext;
 
-  public width: number;
-  public height: number;
+  // blit
+  private blit;
 
-  private red: (...any) => number;
-  private green: (...any) => number;
-  private blue: (...any) => number;
+  private dye;
+  private velocity;
+  private divergence;
+  private curl;
+  private pressure;
+  private bloom;
+  private bloomFramebuffers = [];
+  private sunrays;
+  private sunraysTemp;
 
-  private redValue = 255;
-  private greenValue = 255;
-  private blueValue = 255;
+  private ditheringTexture;
 
-  private redOffsetX = 127.5;
-  private redOffsetY = 0;
-  private greenOffsetX = 0;
-  private greenOffsetY = 221;
-  private blueOffsetX = 255;
-  private blueOffsetY = 221;
+  private blurProgram            : Program;
+  private copyProgram            : Program;
+  private clearProgram           : Program;
+  private colorProgram           : Program;
+  private checkerboardProgram    : Program;
+  private bloomPrefilterProgram  : Program;
+  private bloomBlurProgram       : Program;
+  private bloomFinalProgram      : Program;
+  private sunraysMaskProgram     : Program;
+  private sunraysProgram         : Program;
+  private splatProgram           : Program;
+  private advectionProgram       : Program;
+  private divergenceProgram      : Program;
+  private curlProgram            : Program;
+  private vorticityProgram       : Program;
+  private pressureProgram        : Program;
+  private gradienSubtractProgram : Program;
+
+  private displayMaterial        : Material;
+
+  config = {
+    SIM_RESOLUTION: 128,
+    DYE_RESOLUTION: 1024,
+    CAPTURE_RESOLUTION: 512,
+    DENSITY_DISSIPATION: 1,
+    VELOCITY_DISSIPATION: 0.2,
+    PRESSURE: 0.8,
+    PRESSURE_ITERATIONS: 20,
+    CURL: 30,
+    SPLAT_RADIUS: 0.25,
+    SPLAT_FORCE: 6000,
+    SHADING: true,
+    COLORFUL: true,
+    COLOR_UPDATE_SPEED: 10,
+    PAUSED: false,
+    BACK_COLOR: { r: 0, g: 0, b: 0 },
+    TRANSPARENT: false,
+    BLOOM: true,
+    BLOOM_ITERATIONS: 8,
+    BLOOM_RESOLUTION: 256,
+    BLOOM_INTENSITY: 0.8,
+    BLOOM_THRESHOLD: 0.6,
+    BLOOM_SOFT_KNEE: 0.7,
+    SUNRAYS: true,
+    SUNRAYS_RESOLUTION: 196,
+    SUNRAYS_WEIGHT: 1.0,
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -84,202 +165,526 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  getColour(position: Position): Colour {
-    // Get the color data of the canvas version of our element at that location
-    const rgba = this.context.getImageData(position.x, position.y, 1, 1).data;
-
-    let r = rgba[0].toString(16);
-    let g = rgba[1].toString(16);
-    let b = rgba[2].toString(16);
-    let a = rgba[3].toString(16);
-
-    // todo: dry
-    if (r.length === 1) {
-      r = '0' + r;
-    }
-    // todo: dry
-    if (g.length === 1) {
-      g = '0' + g;
-    }
-    // todo: dry
-    if (b.length === 1) {
-      b = '0' + b;
-    }
-    // todo: dry
-    if (a.length === 1) {
-      a = '0' + a;
-    }
-
-    const hex = '#' + r + g + b;
-
-    this.copyToClipboard(hex);
-
-    return {
-      rgba: rgba,
-      hex: hex,
-    };
-  }
-
-  clickColour($event) {
-    this.getColour({x: $event.offsetX, y: $event.offsetY});
-  }
-
   ngAfterViewInit() {
-    this.context = this.canvas.nativeElement.getContext('2d');
+    // WebGL Fluid Animation
+    this.canvas = this.canvasRef.nativeElement;
+    this.resizeCanvas(this.canvas);
 
-    this.height = window ? Math.floor(window.innerHeight / 10) * 10 : this.canvas.nativeElement.height;
-    this.width =  window ? Math.floor(window.innerWidth / 10) * 10 : this.canvas.nativeElement.width;
-    this.canvas.nativeElement.height = this.height;
-    this.canvas.nativeElement.width = this.width;
+    if(!(this.canvas instanceof HTMLCanvasElement)) {
+      // in case the canvas is not what's expected, we have a problem
+      throw new Error();
+    }
 
-    // set some default properties about the line
-    this.context.lineWidth = 3;
-    this.context.lineCap = 'round';
-    this.context.strokeStyle = '#fff';
+    let ctx = getWebGLContext(this.canvas);
+    this.gl = ctx.gl;
+    this.ext = ctx.ext;
 
-    this.route.params.subscribe((params: Params) => {
-      const drawing = params['drawing'] ? params['drawing'] : 'random';
-      this.zone.runOutsideAngular(() => {
-        this.draw(drawing);
-      });
-    });
+    if (isMobile()) {
+      this.config.DYE_RESOLUTION = 512;
+    }
+
+    if (!ctx.ext.supportLinearFiltering) {
+      this.config.DYE_RESOLUTION = 512;
+      this.config.SHADING = false;
+      this.config.BLOOM = false;
+      this.config.SUNRAYS = false;
+    }
+
+    this.blit = blit(ctx.gl);
+
+    this.pointers.push(new PointerPrototype());
+    this.ditheringTexture = createTextureAsync(ctx.gl,'assets/LDR_LLL1_0.png');
+
+    this.blurProgram            = new Program(ctx.gl, blurVertexShader, blurShader);
+    this.copyProgram            = new Program(ctx.gl, baseVertexShader, copyShader);
+    this.clearProgram           = new Program(ctx.gl, baseVertexShader, clearShader);
+    this.colorProgram           = new Program(ctx.gl, baseVertexShader, colorShader);
+    this.checkerboardProgram    = new Program(ctx.gl, baseVertexShader, checkerboardShader);
+    this.bloomPrefilterProgram  = new Program(ctx.gl, baseVertexShader, bloomPrefilterShader);
+    this.bloomBlurProgram       = new Program(ctx.gl, baseVertexShader, bloomBlurShader);
+    this.bloomFinalProgram      = new Program(ctx.gl, baseVertexShader, bloomFinalShader);
+    this.sunraysMaskProgram     = new Program(ctx.gl, baseVertexShader, sunraysMaskShader);
+    this.sunraysProgram         = new Program(ctx.gl, baseVertexShader, sunraysShader);
+    this.splatProgram           = new Program(ctx.gl, baseVertexShader, splatShader);
+    this.advectionProgram       = new Program(ctx.gl, baseVertexShader, advectionShader, this.ext);
+    this.divergenceProgram      = new Program(ctx.gl, baseVertexShader, divergenceShader);
+    this.curlProgram            = new Program(ctx.gl, baseVertexShader, curlShader);
+    this.vorticityProgram       = new Program(ctx.gl, baseVertexShader, vorticityShader);
+    this.pressureProgram        = new Program(ctx.gl, baseVertexShader, pressureShader);
+    this.gradienSubtractProgram = new Program(ctx.gl, baseVertexShader, gradientSubtractShader);
+
+    this.displayMaterial = new Material(ctx.gl, baseVertexShader);
 
     // todo: draw or do things by drawing.
     this.zone.runOutsideAngular(() => {
-      this.captureEvents();
+      this.updateKeywords();
+      this.initFramebuffers();
+      this.multipleSplats(Math.floor(Math.random() * 20) + 5);
+
+      this.lastUpdateTime = Date.now();
+      this.colorUpdateTimer = 0.0;
+      this.update();
+
+      this.canvas.addEventListener('mousedown', e => {
+        let posX = scaleByPixelRatio(e.offsetX);
+        let posY = scaleByPixelRatio(e.offsetY);
+        let pointer = this.pointers.find(p => p.id == -1);
+        if (pointer == null)
+          pointer = new PointerPrototype();
+        updatePointerDownData(this.canvas, pointer, -1, posX, posY);
+      });
+
+      this.canvas.addEventListener('mousemove', e => {
+        let pointer = this.pointers[0];
+        if (!pointer.down) return;
+        let posX = scaleByPixelRatio(e.offsetX);
+        let posY = scaleByPixelRatio(e.offsetY);
+        updatePointerMoveData(this.canvas, pointer, posX, posY);
+      });
+
+      window.addEventListener('mouseup', () => {
+        updatePointerUpData(this.pointers[0]);
+      });
+
+      this.canvas.addEventListener('touchstart', e => {
+        e.preventDefault();
+        const touches = e.targetTouches;
+        while (touches.length >= this.pointers.length)
+          this.pointers.push(new PointerPrototype());
+        for (let i = 0; i < touches.length; i++) {
+          let posX = scaleByPixelRatio(touches[i].pageX);
+          let posY = scaleByPixelRatio(touches[i].pageY);
+          updatePointerDownData(this.canvas, this.pointers[i + 1], touches[i].identifier, posX, posY);
+        }
+      });
+
+      this.canvas.addEventListener('touchmove', e => {
+        e.preventDefault();
+        const touches = e.targetTouches;
+        for (let i = 0; i < touches.length; i++) {
+          let pointer = this.pointers[i + 1];
+          if (!pointer.down) continue;
+          let posX = scaleByPixelRatio(touches[i].pageX);
+          let posY = scaleByPixelRatio(touches[i].pageY);
+          updatePointerMoveData(this.canvas, pointer, posX, posY);
+        }
+      }, false);
+
+      window.addEventListener('touchend', e => {
+        const touches = e.changedTouches;
+        for (let i = 0; i < touches.length; i++)
+        {
+          let pointer = this.pointers.find(p => p.id == touches[i].identifier);
+          if (pointer == null) continue;
+          updatePointerUpData(pointer);
+        }
+      });
+
+      window.addEventListener('keydown', e => {
+        if (e.code === 'KeyP')
+          this.config.PAUSED = !this.config.PAUSED;
+        if (e.key === ' ')
+          this.splatStack.push(Math.floor(Math.random() * 20) + 5);
+      });
+
+      this.addRandomPoints();
+
     });
   }
 
-  draw(algorithm: string) {
-    this.setup(algorithm);
-    this.pixelLoop(this.redValueComponent, this.greenValueComponent, this.blueValueComponent);
+  initFramebuffers () {
+    let simRes = getResolution(this.gl, this.config.SIM_RESOLUTION);
+    let dyeRes = getResolution(this.gl, this.config.DYE_RESOLUTION);
+
+    const texType = this.ext.halfFloatTexType;
+    const rgba    = this.ext.formatRGBA;
+    const rg      = this.ext.formatRG;
+    const r       = this.ext.formatR;
+    const filtering = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
+
+    if (this.dye == null) {
+      this.dye = createDoubleFBO(this.gl, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+    } else {
+      this.dye = resizeDoubleFBO(this.gl, this.blit, this.copyProgram, this.dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+    }
+
+    if (this.velocity == null) {
+      this.velocity = createDoubleFBO(this.gl, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
+    } else {
+      this.velocity = resizeDoubleFBO(this.gl, this.blit, this.copyProgram, this.velocity, simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
+    }
+
+    this.divergence = createFBO      (this.gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, this.gl.NEAREST);
+    this.curl       = createFBO      (this.gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, this.gl.NEAREST);
+    this.pressure   = createDoubleFBO(this.gl, simRes.width, simRes.height, r.internalFormat, r.format, texType, this.gl.NEAREST);
+
+    this.initBloomFramebuffers();
+    this.initSunraysFramebuffers();
   }
 
-  clear(): void {
-    this.context.fillStyle = 'white';
-    this.context.fillRect(0, 0, this.width, this.height);
+  initBloomFramebuffers () {
+    let res = getResolution(this.gl, this.config.BLOOM_RESOLUTION);
+
+    const texType = this.ext.halfFloatTexType;
+    const rgba = this.ext.formatRGBA;
+    const filtering = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
+
+    this.bloom = createFBO(this.gl, res.width, res.height, rgba.internalFormat, rgba.format, texType, filtering);
+
+    this.bloomFramebuffers.length = 0;
+    for (let i = 0; i < this.config.BLOOM_ITERATIONS; i++)
+    {
+      let width = res.width >> (i + 1);
+      let height = res.height >> (i + 1);
+
+      if (width < 2 || height < 2) break;
+
+      let fbo = createFBO(this.gl, width, height, rgba.internalFormat, rgba.format, texType, filtering);
+      this.bloomFramebuffers.push(fbo);
+    }
   }
 
-  setup(algorithm: string) {
-    const rox = Number(this.redOffsetX || 0);
-    const roy = Number(this.redOffsetY || 0);
-    const gox = Number(this.greenOffsetX || 0);
-    const goy = Number(this.greenOffsetY || 0);
-    const box = Number(this.blueOffsetX || 0);
-    const boy = Number(this.blueOffsetY || 0);
+  initSunraysFramebuffers() {
+    let res = getResolution(this.gl, this.config.SUNRAYS_RESOLUTION);
 
-    this.redValueComponent = Number(this.redValue || this.colourMax);
-    this.greenValueComponent = Number(this.greenValue || this.colourMax);
-    this.blueValueComponent = Number(this.blueValue || this.colourMax);
+    const texType = this.ext.halfFloatTexType;
+    const r = this.ext.formatR;
+    const filtering = this.ext.supportLinearFiltering ? this.gl.LINEAR : this.gl.NEAREST;
 
-    this.red = () => 0;
-    this.green = () => 0;
-    this.blue = () => 0;
+    this.sunrays     = createFBO(this.gl, res.width, res.height, r.internalFormat, r.format, texType, filtering);
+    this.sunraysTemp = createFBO(this.gl, res.width, res.height, r.internalFormat, r.format, texType, filtering);
   }
 
-  putSquare(x: number, y: number, r: number, g: number, b: number, w: number, h: number, a: number= 1): void {
-    this.context.fillStyle = `rgba(${r},${g},${b},${a})`;
-    this.context.fillRect( x, y, w, h );
+  updateKeywords() {
+    let displayKeywords = [];
+    if (this.config.SHADING) displayKeywords.push("SHADING");
+    if (this.config.BLOOM) displayKeywords.push("BLOOM");
+    if (this.config.SUNRAYS) displayKeywords.push("SUNRAYS");
+    this.displayMaterial.setKeywords(displayKeywords);
   }
 
-  private pixelLoop(rr: number = this.colourMax, gg: number= this.colourMax, bb: number= this.colourMax): void {
-    // console.log(this.width, this.height);
-    const w: number = this.drawWidth;
-    const h: number = this.drawHeight;
-    let p = 0;
-    let q = 0;
-    let ops = 0;
+  update() {
+    const dt = this.calcDeltaTime();
+    if (this.resizeCanvas(this.canvas)) {
+      this.initFramebuffers();
+    }
 
-    for (let i = 0; i <= this.height; i += h) {
-      for (let j = 0; j <= this.width; j += w) {
-        ops += 1;
+    this.updateColors(dt);
+    this.applyInputs();
+    if (!this.config.PAUSED) {
+      this.step(dt);
+    }
 
-        const R: number = this.red(p, q, rr);
-        const G: number = this.green(p, q, gg);
-        const B: number = this.blue(p, q, bb);
+    this.render(null);
+    requestAnimationFrame(() => {
+      this.update();
+    });
+  }
 
-        this.putSquare(p, q, R, G, B, w, h);
+  addRandomPoints() {
+    this.splatStack.push(Math.floor(Math.random() * 20) + 5);
 
-        p = p + w;
+    const waitTime = Math.floor(Math.random() * 5000);
+    setTimeout(() => {
+      this.addRandomPoints();
+    }, waitTime);
+  }
+
+  calcDeltaTime() {
+    let now = Date.now();
+    let dt = (now - this.lastUpdateTime) / 1000;
+    dt = Math.min(dt, 0.016666);
+    this.lastUpdateTime = now;
+    return dt;
+  }
+
+  resizeCanvas(canvas: HTMLCanvasElement) {
+    // todo: this seems to increase infinitely the canvas size,
+    // wheras it shouldnt.
+    let width = scaleByPixelRatio(window.innerWidth);
+    let height = scaleByPixelRatio(window.innerHeight);
+    if (canvas.width != width || canvas.height != height) {
+      canvas.width = width;
+      canvas.height = height;
+      return true;
+    }
+    return false;
+  }
+
+  updateColors(dt) {
+    if (!this.config.COLORFUL) return;
+
+    this.colorUpdateTimer += dt * this.config.COLOR_UPDATE_SPEED;
+    if (this.colorUpdateTimer >= 1) {
+      this.colorUpdateTimer = wrap(this.colorUpdateTimer, 0, 1);
+      this.pointers.forEach(p => {
+        p.color = generateColor();
+      });
+    }
+  }
+
+  applyInputs () {
+    if (this.splatStack.length > 0)
+      this.multipleSplats(this.splatStack.pop());
+
+    this.pointers.forEach(p => {
+      if (p.moved) {
+        p.moved = false;
+        this.splatPointer(p);
       }
-
-      q = q + h;
-      p = 0;
-    }
-
-  }
-
-  // to draw etc...
-  private captureEvents() {
-    fromEvent(this.canvas.nativeElement, 'mousedown').pipe(
-      delay(32),
-      takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
-      repeat(),
-      switchMap(() => {
-        // after a mouse down, we'll record all mouse moves
-        return fromEvent(this.canvas.nativeElement, 'mousemove').pipe(
-          // we'll stop (and unsubscribe) once the user releases the mouse
-          // this will trigger a 'mouseup' event
-          takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
-          // we'll also stop (and unsubscribe) once the mouse leaves the canvas (mouseleave event)
-          takeUntil(fromEvent(this.canvas.nativeElement, 'mouseleave')),
-          // pairwise lets us get the previous value to draw a line from
-          // the previous point to the current point
-          pairwise(),
-        );
-      }),
-    )
-    .subscribe((res: [MouseEvent, MouseEvent]) => {
-      const rect = this.canvas.nativeElement.getBoundingClientRect();
-
-      // previous and current position with the offset
-      const prevPos = {
-        x: res[0].clientX - rect.left,
-        y: res[0].clientY - rect.top
-      };
-
-      const currentPos = {
-        x: res[1].clientX - rect.left,
-        y: res[1].clientY - rect.top
-      };
-
-      // this method we'll implement soon to do the actual drawing
-      this.drawOnCanvas(prevPos, currentPos);
     });
   }
 
-  copyToClipboard(str) {
-    const el = this.document.createElement('textarea');
-    el.value = str;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    this.document.body.appendChild(el);
-    el.select();
-    this.document.execCommand('copy');
-    this.document.body.removeChild(el);
+  step(dt) {
+    this.gl.disable(this.gl.BLEND);
+    this.gl.viewport(0, 0, this.velocity.width, this.velocity.height);
+
+    this.curlProgram.bind();
+    this.gl.uniform2f(this.curlProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.curlProgram.uniforms.uVelocity, this.velocity.read.attach(0));
+    this.blit(this.curl.fbo);
+
+    this.vorticityProgram.bind();
+    this.gl.uniform2f(this.vorticityProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.vorticityProgram.uniforms.uVelocity, this.velocity.read.attach(0));
+    this.gl.uniform1i(this.vorticityProgram.uniforms.uCurl, this.curl.attach(1));
+    this.gl.uniform1f(this.vorticityProgram.uniforms.curl, this.config.CURL);
+    this.gl.uniform1f(this.vorticityProgram.uniforms.dt, dt);
+    this.blit(this.velocity.write.fbo);
+    this.velocity.swap();
+
+    this.divergenceProgram.bind();
+    this.gl.uniform2f(this.divergenceProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.divergenceProgram.uniforms.uVelocity, this.velocity.read.attach(0));
+    this.blit(this.divergence.fbo);
+
+    this.clearProgram.bind();
+    this.gl.uniform1i(this.clearProgram.uniforms.uTexture, this.pressure.read.attach(0));
+    this.gl.uniform1f(this.clearProgram.uniforms.value, this.config.PRESSURE);
+    this.blit(this.pressure.write.fbo);
+    this.pressure.swap();
+
+    this.pressureProgram.bind();
+    this.gl.uniform2f(this.pressureProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.pressureProgram.uniforms.uDivergence, this.divergence.attach(0));
+    for (let i = 0; i < this.config.PRESSURE_ITERATIONS; i++) {
+      this.gl.uniform1i(this.pressureProgram.uniforms.uPressure, this.pressure.read.attach(1));
+      this.blit(this.pressure.write.fbo);
+      this.pressure.swap();
+    }
+
+    this.gradienSubtractProgram.bind();
+    this.gl.uniform2f(this.gradienSubtractProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.gradienSubtractProgram.uniforms.uPressure, this.pressure.read.attach(0));
+    this.gl.uniform1i(this.gradienSubtractProgram.uniforms.uVelocity, this.velocity.read.attach(1));
+    this.blit(this.velocity.write.fbo);
+    this.velocity.swap();
+
+    this.advectionProgram.bind();
+    this.gl.uniform2f(this.advectionProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    if (!this.ext.supportLinearFiltering)
+      this.gl.uniform2f(this.advectionProgram.uniforms.dyeTexelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    let velocityId = this.velocity.read.attach(0);
+    this.gl.uniform1i(this.advectionProgram.uniforms.uVelocity, velocityId);
+    this.gl.uniform1i(this.advectionProgram.uniforms.uSource, velocityId);
+    this.gl.uniform1f(this.advectionProgram.uniforms.dt, dt);
+    this.gl.uniform1f(this.advectionProgram.uniforms.dissipation, this.config.VELOCITY_DISSIPATION);
+    this.blit(this.velocity.write.fbo);
+    this.velocity.swap();
+
+    this.gl.viewport(0, 0, this.dye.width, this.dye.height);
+
+    if (!this.ext.supportLinearFiltering)
+      this.gl.uniform2f(this.advectionProgram.uniforms.dyeTexelSize, this.dye.texelSizeX, this.dye.texelSizeY);
+    this.gl.uniform1i(this.advectionProgram.uniforms.uVelocity, this.velocity.read.attach(0));
+    this.gl.uniform1i(this.advectionProgram.uniforms.uSource, this.dye.read.attach(1));
+    this.gl.uniform1f(this.advectionProgram.uniforms.dissipation, this.config.DENSITY_DISSIPATION);
+    this.blit(this.dye.write.fbo);
+    this.dye.swap();
   }
 
+  render (target) {
+    if (this.config.BLOOM)
+      this.applyBloom(this.dye.read, this.bloom);
+    if (this.config.SUNRAYS) {
+      this.applySunrays(this.dye.read, this.dye.write, this.sunrays);
+      this.blur(this.sunrays, this.sunraysTemp, 1);
+    }
 
-  private drawOnCanvas(
-    prevPos: Position,
-    currentPos: Position,
-  ) {
-    // incase the context is not set
-    if (!this.context) { return; }
+    if (target == null || !this.config.TRANSPARENT) {
+      this.gl.blendFunc(this.gl.ONE, this.gl.ONE_MINUS_SRC_ALPHA);
+      this.gl.enable(this.gl.BLEND);
+    }
+    else {
+      this.gl.disable(this.gl.BLEND);
+    }
 
-    // start our drawing path
-    this.context.beginPath();
+    let width = target == null ? this.gl.drawingBufferWidth : target.width;
+    let height = target == null ? this.gl.drawingBufferHeight : target.height;
+    this.gl.viewport(0, 0, width, height);
 
-    // we're drawing lines so we need a previous position
-    if (prevPos) {
-      // sets the start point
-      this.context.moveTo(prevPos.x, prevPos.y); // from
-      // draws a line from the start pos until the current position
-      this.context.lineTo(currentPos.x, currentPos.y);
+    let fbo = target == null ? null : target.fbo;
+    if (!this.config.TRANSPARENT)
+      this.drawColor(fbo, normalizeColor(this.config.BACK_COLOR));
+    if (target == null && this.config.TRANSPARENT)
+      this.drawCheckerboard(fbo);
+    this.drawDisplay(fbo, width, height);
+  }
 
-      // strokes the current path with the styles we set earlier
-      this.context.stroke();
+  drawColor (fbo, color) {
+    this.colorProgram.bind();
+    this.gl.uniform4f(this.colorProgram.uniforms.color, color.r, color.g, color.b, 1);
+    this.blit(fbo);
+  }
+
+  drawCheckerboard (fbo) {
+    this.checkerboardProgram.bind();
+    this.gl.uniform1f(this.checkerboardProgram.uniforms.aspectRatio, this.canvas.width / this.canvas.height);
+    this.blit(fbo);
+  }
+
+  drawDisplay (fbo, width, height) {
+    this.displayMaterial.bind();
+    if (this.config.SHADING)
+      this.gl.uniform2f(this.displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height);
+    this.gl.uniform1i(this.displayMaterial.uniforms.uTexture, this.dye.read.attach(0));
+    if (this.config.BLOOM) {
+      this.gl.uniform1i(this.displayMaterial.uniforms.uBloom, this.bloom.attach(1));
+      this.gl.uniform1i(this.displayMaterial.uniforms.uDithering, this.ditheringTexture.attach(2));
+      let scale = getTextureScale(this.ditheringTexture, width, height);
+      this.gl.uniform2f(this.displayMaterial.uniforms.ditherScale, scale.x, scale.y);
+    }
+    if (this.config.SUNRAYS)
+      this.gl.uniform1i(this.displayMaterial.uniforms.uSunrays, this.sunrays.attach(3));
+    this.blit(fbo);
+  }
+
+  applyBloom (source, destination) {
+    if (this.bloomFramebuffers.length < 2)
+      return;
+
+    let last = destination;
+
+    this.gl.disable(this.gl.BLEND);
+    this.bloomPrefilterProgram.bind();
+    let knee = this.config.BLOOM_THRESHOLD * this.config.BLOOM_SOFT_KNEE + 0.0001;
+    let curve0 = this.config.BLOOM_THRESHOLD - knee;
+    let curve1 = knee * 2;
+    let curve2 = 0.25 / knee;
+    this.gl.uniform3f(this.bloomPrefilterProgram.uniforms.curve, curve0, curve1, curve2);
+    this.gl.uniform1f(this.bloomPrefilterProgram.uniforms.threshold, this.config.BLOOM_THRESHOLD);
+    this.gl.uniform1i(this.bloomPrefilterProgram.uniforms.uTexture, source.attach(0));
+    this.gl.viewport(0, 0, last.width, last.height);
+    this.blit(last.fbo);
+
+    this.bloomBlurProgram.bind();
+    for (let i = 0; i < this.bloomFramebuffers.length; i++) {
+      let dest = this.bloomFramebuffers[i];
+      this.gl.uniform2f(this.bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
+      this.gl.uniform1i(this.bloomBlurProgram.uniforms.uTexture, last.attach(0));
+      this.gl.viewport(0, 0, dest.width, dest.height);
+      this.blit(dest.fbo);
+      last = dest;
+    }
+
+    this.gl.blendFunc(this.gl.ONE, this.gl.ONE);
+    this.gl.enable(this.gl.BLEND);
+
+    for (let i = this.bloomFramebuffers.length - 2; i >= 0; i--) {
+      let baseTex = this.bloomFramebuffers[i];
+      this.gl.uniform2f(this.bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
+      this.gl.uniform1i(this.bloomBlurProgram.uniforms.uTexture, last.attach(0));
+      this.gl.viewport(0, 0, baseTex.width, baseTex.height);
+      this.blit(baseTex.fbo);
+      last = baseTex;
+    }
+
+    this.gl.disable(this.gl.BLEND);
+    this.bloomFinalProgram.bind();
+    this.gl.uniform2f(this.bloomFinalProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
+    this.gl.uniform1i(this.bloomFinalProgram.uniforms.uTexture, last.attach(0));
+    this.gl.uniform1f(this.bloomFinalProgram.uniforms.intensity, this.config.BLOOM_INTENSITY);
+    this.gl.viewport(0, 0, destination.width, destination.height);
+    this.blit(destination.fbo);
+  }
+
+  applySunrays (source, mask, destination) {
+    this.gl.disable(this.gl.BLEND);
+    this.sunraysMaskProgram.bind();
+    this.gl.uniform1i(this.sunraysMaskProgram.uniforms.uTexture, source.attach(0));
+    this.gl.viewport(0, 0, mask.width, mask.height);
+    this.blit(mask.fbo);
+
+    this.sunraysProgram.bind();
+    this.gl.uniform1f(this.sunraysProgram.uniforms.weight, this.config.SUNRAYS_WEIGHT);
+    this.gl.uniform1i(this.sunraysProgram.uniforms.uTexture, mask.attach(0));
+    this.gl.viewport(0, 0, destination.width, destination.height);
+    this.blit(destination.fbo);
+  }
+
+  blur (target, temp, iterations) {
+    this.blurProgram.bind();
+    for (let i = 0; i < iterations; i++) {
+      this.gl.uniform2f(this.blurProgram.uniforms.texelSize, target.texelSizeX, 0.0);
+      this.gl.uniform1i(this.blurProgram.uniforms.uTexture, target.attach(0));
+      this.blit(temp.fbo);
+
+      this.gl.uniform2f(this.blurProgram.uniforms.texelSize, 0.0, target.texelSizeY);
+      this.gl.uniform1i(this.blurProgram.uniforms.uTexture, temp.attach(0));
+      this.blit(target.fbo);
     }
   }
+
+  splatPointer (pointer) {
+    let dx = pointer.deltaX * this.config.SPLAT_FORCE;
+    let dy = pointer.deltaY * this.config.SPLAT_FORCE;
+    this.splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
+  }
+
+  multipleSplats (amount) {
+    for (let i = 0; i < amount; i++) {
+      const color = generateColor();
+      color.r *= 10.0;
+      color.g *= 10.0;
+      color.b *= 10.0;
+      const x = Math.random();
+      const y = Math.random();
+      const dx = 1000 * (Math.random() - 0.5);
+      const dy = 1000 * (Math.random() - 0.5);
+      this.splat(x, y, dx, dy, color);
+    }
+  }
+
+  splat (x, y, dx, dy, color) {
+    this.gl.viewport(0, 0, this.velocity.width, this.velocity.height);
+    this.splatProgram.bind();
+    this.gl.uniform1i(this.splatProgram.uniforms.uTarget, this.velocity.read.attach(0));
+    this.gl.uniform1f(this.splatProgram.uniforms.aspectRatio, this.canvas.width / this.canvas.height);
+    this.gl.uniform2f(this.splatProgram.uniforms.point, x, y);
+    this.gl.uniform3f(this.splatProgram.uniforms.color, dx, dy, 0.0);
+    this.gl.uniform1f(this.splatProgram.uniforms.radius, correctRadius(this.canvas, this.config.SPLAT_RADIUS / 100.0));
+    this.blit(this.velocity.write.fbo);
+    this.velocity.swap();
+
+    this.gl.viewport(0, 0, this.dye.width, this.dye.height);
+    this.gl.uniform1i(this.splatProgram.uniforms.uTarget, this.dye.read.attach(0));
+    this.gl.uniform3f(this.splatProgram.uniforms.color, color.r, color.g, color.b);
+    this.blit(this.dye.write.fbo);
+    this.dye.swap();
+  }
+
+  captureScreenshot() {
+    let res = getResolution(this.gl, this.config.CAPTURE_RESOLUTION);
+    let target = createFBO(this.gl, res.width, res.height, this.ext.formatRGBA.internalFormat, this.ext.formatRGBA.format, this.ext.halfFloatTexType, this.gl.NEAREST);
+    this.render(target);
+
+    let texture: Float32Array | Uint8Array = framebufferToTexture(target, this.gl);
+    texture = normalizeTexture(texture, target.width, target.height);
+
+    let captureCanvas = textureToCanvas(texture, target.width, target.height);
+    let datauri = captureCanvas.toDataURL();
+    downloadURI('fluid.png', datauri);
+    URL.revokeObjectURL(datauri);
+  }
+
 }
