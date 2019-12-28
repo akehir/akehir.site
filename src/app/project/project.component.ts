@@ -2,9 +2,10 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Project} from '../core/types/project';
 
 @Component({
-  selector: 'app-project',
+  selector: 'ake-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss'],
+  styleUrls: [],
+  // styleUrls: ['./project.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {

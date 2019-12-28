@@ -3,11 +3,11 @@
     *ngFor="let coordinate of map.coordinates; trackBy: trackCoordinate"
   >
     <div class="hexIn">
-      <app-hex
+      <ake-hex
         class="hexLink"
         (click)="log(coordinate)"
         [coordinate]="coordinate"
-      ></app-hex>
+      ></ake-hex>
     </div>
 
   </li>

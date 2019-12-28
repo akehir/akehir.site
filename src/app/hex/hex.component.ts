@@ -2,9 +2,10 @@ import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 import { Coordinate } from '../core/types/coordinate';
 
 @Component({
-  selector: 'app-hex',
+  selector: 'ake-hex',
   templateUrl: './hex.component.html',
-  styleUrls: ['./hex.component.scss'],
+  styleUrls: [],
+  // styleUrls: ['./hex.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class HexComponent implements OnInit {

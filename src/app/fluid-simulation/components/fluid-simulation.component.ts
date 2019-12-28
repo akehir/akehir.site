@@ -93,7 +93,8 @@ SOFTWARE.
   selector: 'webgl-fluid-simulation',
   // tslint:enable
   templateUrl: './fluid-simulation.component.html',
-  styleUrls: ['./fluid-simulation.component.scss'],
+  styleUrls: [],
+  // styleUrls: ['./fluid-simulation.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class FluidSimulationComponent implements OnInit, AfterViewInit {

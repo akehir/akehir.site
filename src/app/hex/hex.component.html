@@ -1,11 +1,11 @@
-<app-project
+<ake-project
   class="unit"
   *ngIf="coordinate.project"
   [project]="coordinate.project">
-</app-project>
+</ake-project>
 
-<app-background
+<ake-background
   class="land"
-  *ngIf="coordinate.project.environment"
-  [type]="coordinate.project.environment">
-</app-background>
+  *ngIf="coordinate.project.icon"
+  [icon]="coordinate.project.icon">
+</ake-background>

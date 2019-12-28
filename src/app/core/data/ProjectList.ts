@@ -1,10 +1,10 @@
-import {Project, ProjectContribution, ProjectStatus, ProjectType} from '../types/project';
-import {IceEnvironment, LandEnvironment, MountainEnvironment, ForestEnvironment, WhiteEnvironment} from '../types/environment';
+import {Icons, Project, ProjectContribution, ProjectStatus, ProjectType} from '../types/project';
 
 export const projectList: Project[] = [
   {
+    id: 'emoji-wars',
     name: 'Emoji Wars',
-    symbol: '',
+    icon: Icons.grass,
     path: 'https://emojiwars.akehir.com',
     git: '',
     description: '',
@@ -12,11 +12,11 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'colour-picker',
     name: 'Colour Picker',
-    symbol: '',
+    icon: Icons.leaf,
     path: '',
     git: '',
     description: '',
@@ -24,11 +24,11 @@ export const projectList: Project[] = [
     status: ProjectStatus['on-hold'],
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'tfc',
     name: 'Travel for Change',
-    symbol: '',
+    icon: Icons.droplet,
     path: 'https://travelforchange.ch',
     git: '',
     description: '',
@@ -36,11 +36,11 @@ export const projectList: Project[] = [
     status: ProjectStatus['in-progress'],
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'wedding-website',
     name: 'Wedding Website',
-    symbol: '',
+    icon: Icons.frost,
     path: 'https://fufi.io',
     git: '',
     description: '',
@@ -48,11 +48,11 @@ export const projectList: Project[] = [
     status: ProjectStatus.completed,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'evzh',
     name: 'EVZH',
-    symbol: '',
+    icon: Icons.grass,
     path: 'https://evzh.ch',
     git: '',
     description: '',
@@ -60,11 +60,11 @@ export const projectList: Project[] = [
     status: ProjectStatus.maintaining,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'atc',
     name: 'Angular Terminal Component',
-    symbol: '',
+    icon: Icons.mountain,
     path: '',
     git: '',
     description: '',
@@ -72,11 +72,11 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
   {
+    id: 'acp',
     name: 'Angular Colour Picker',
-    symbol: '',
+    icon: Icons.wolfji,
     path: '',
     git: '',
     description: '',
@@ -84,6 +84,5 @@ export const projectList: Project[] = [
     status: ProjectStatus.planned,
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
-    environment: new WhiteEnvironment(),
   },
 ];

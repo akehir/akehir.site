@@ -1,16 +1,17 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Environment} from '../core/types/environment';
+import {Icons} from '@core/types';
 
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-background',
+  selector: 'ake-background',
   templateUrl: './background.component.html',
-  styleUrls: ['./background.component.scss'],
+  styleUrls: [],
+  // styleUrls: ['./background.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class BackgroundComponent implements OnInit {
-  @Input() type: Environment;
+  @Input() icon: Icons;
 
   constructor() { }
 

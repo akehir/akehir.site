@@ -1,43 +1,37 @@
-.project {
-
-}
-
-.background {
-}
-
-
 // https://github.com/web-tiki/responsive-grid-of-hexagons
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/index.html
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/hexagons.css
+ake-hex {
+  h1, p {
+    width: 100%;
+    padding: 5%;
+    box-sizing:border-box;
+    background-color: rgba(0, 128, 128, 0.8);
+    font-weight: 300;
+    transition: transform .2s ease-out, opacity .3s ease-out;
+  }
 
-h1, p {
-  width: 100%;
-  padding: 5%;
-  box-sizing:border-box;
-  background-color: rgba(0, 128, 128, 0.8);
-  font-weight: 300;
-  transition: transform .2s ease-out, opacity .3s ease-out;
-}
+  h1 {
+    bottom: 50%;
+    padding-top:50%;
+    font-size: 1.5em;
+    z-index: 1;
+    transform:translate3d(0,-100%,0);
+  }
 
-h1 {
-  bottom: 50%;
-  padding-top:50%;
-  font-size: 1.5em;
-  z-index: 1;
-  transform:translate3d(0,-100%,0);
-}
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    width: 10%;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+  }
 
-h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 45%;
-  width: 10%;
-  text-align: center;
-  border-bottom: 1px solid #fff;
-}
-p {
-  top: 50%;
-  padding-bottom: 50%;
-  transform: translate3d(0,100%,0);
+  p {
+    top: 50%;
+    padding-bottom: 50%;
+    transform: translate3d(0,100%,0);
+  }
 }

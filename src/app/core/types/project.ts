@@ -1,5 +1,3 @@
-import {Environment} from './environment';
-
 export enum ProjectType {
   'none',
   'idea',
@@ -39,15 +37,23 @@ export enum ProjectStatus {
   'planned',
 }
 
+export enum Icons {
+  droplet = 'droplet',
+  grass = 'grass',
+  leaf = 'leaf',
+  mountain = 'mountain',
+  frost = 'frost-emblem',
+  wolfji = 'emoji/emoji_u1f43a'
+}
 
 export interface Project {
-  symbol: string;
+  id: string;
+  icon: Icons;
   path: string;
   git: string;
   description: string;
   status: ProjectStatus;
   name: string;
-  environment: Environment;
   type: ProjectType;
   contribution: ProjectContribution;
   year: number;
