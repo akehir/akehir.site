@@ -9,7 +9,7 @@ import { Coordinate } from '../core/types/coordinate';
 })
 export class HexComponent implements OnInit {
   // https://www.redblobgames.com/grids/hexagons/
-  @Input('coordinate') coordinate: Coordinate;
+  @Input() coordinate: Coordinate;
 
   constructor() {
   }

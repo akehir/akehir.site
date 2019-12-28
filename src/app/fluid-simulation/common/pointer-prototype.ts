@@ -9,4 +9,4 @@ export function PointerPrototype () {
   this.down = false;
   this.moved = false;
   this.color = [30, 0, 300];
-};
+}

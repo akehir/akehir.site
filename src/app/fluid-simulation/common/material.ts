@@ -24,18 +24,18 @@ export class Material {
 
   setKeywords(keywords) {
     let hash = 0;
-    for (let i = 0; i < keywords.length; i++)
+    for (let i = 0; i < keywords.length; i++) {
       hash += hashCode(keywords[i]);
+    }
 
     let program = this.programs[hash];
-    if (program == null)
-    {
-      let fragmentShader = (gl, ext?) => compileShader(gl, gl.FRAGMENT_SHADER, displayShaderSource, keywords);
+    if (program == null) {
+      const fragmentShader = (gl, ext?) => compileShader(gl, gl.FRAGMENT_SHADER, displayShaderSource, keywords);
       program = createProgram(this.gl, this.vertexShader, fragmentShader);
       this.programs[hash] = program; // converting from WebGLProgram to custom Program
     }
 
-    if (program == this.activeProgram) return;
+    if (program === this.activeProgram) { return; }
 
     this.uniforms = getUniforms(this.gl, program);
     this.activeProgram = program;

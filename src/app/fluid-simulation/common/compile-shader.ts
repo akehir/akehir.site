@@ -8,8 +8,9 @@ export function compileShader(gl: Context, type, source, keywords?) {
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
 
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS))
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     throw gl.getShaderInfoLog(shader);
+  }
 
   return shader;
 }

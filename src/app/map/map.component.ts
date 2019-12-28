@@ -9,10 +9,12 @@ import { Coordinate } from '../core/types/coordinate';
   encapsulation: ViewEncapsulation.None,
 })
 export class MapComponent implements OnInit {
+
+  constructor() { }
   // https://www.redblobgames.com/grids/hexagons/
   public map = new FirstMap();
 
-  constructor() { }
+  log = console.log;
 
   ngOnInit() {
     console.log(this.map);
@@ -21,6 +23,4 @@ export class MapComponent implements OnInit {
   trackCoordinate(index, item: Coordinate) {
     return `${item.x}-${item.y}`;
   }
-
-  log = console.log;
 }

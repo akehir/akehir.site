@@ -7,6 +7,7 @@
     "build": "ng build --prod --progress=false",
     "test": "ng test --source-map=false --no-watch",
     "lint": "ng lint && npm run lint:sass",
+    "lint:fix": "ng lint akehir --fix",
     "lint:sass": "sass-lint -c .sass-lint.yml -v -q",
     "e2e": "ng e2e"
   },

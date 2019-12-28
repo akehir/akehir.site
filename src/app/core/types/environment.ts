@@ -4,6 +4,11 @@ export type Environment = LandEnvironment |
   IceEnvironment |
   MountainEnvironment;
 
+export interface BaseEnvironment {
+  img: string;
+  background: string;
+}
+
 export class LandEnvironment implements BaseEnvironment {
   img = 'assets/grass.svg';
   background = 'rgba(55, 155, 55, 0.5)';
@@ -32,10 +37,4 @@ export class IceEnvironment implements BaseEnvironment {
 export class WhiteEnvironment implements BaseEnvironment {
   img = 'assets/frost-emblem.svg';
   background = 'rgba(255, 255, 255, 0.2)';
-}
-
-
-export interface BaseEnvironment {
-  img: string;
-  background: string;
 }

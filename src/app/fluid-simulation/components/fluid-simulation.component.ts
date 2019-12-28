@@ -127,25 +127,25 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
   private ditheringTexture;
 
-  private blurProgram            : Program;
-  private copyProgram            : Program;
-  private clearProgram           : Program;
-  private colorProgram           : Program;
-  private checkerboardProgram    : Program;
-  private bloomPrefilterProgram  : Program;
-  private bloomBlurProgram       : Program;
-  private bloomFinalProgram      : Program;
-  private sunraysMaskProgram     : Program;
-  private sunraysProgram         : Program;
-  private splatProgram           : Program;
-  private advectionProgram       : Program;
-  private divergenceProgram      : Program;
-  private curlProgram            : Program;
-  private vorticityProgram       : Program;
-  private pressureProgram        : Program;
-  private gradienSubtractProgram : Program;
+  private blurProgram: Program;
+  private copyProgram: Program;
+  private clearProgram: Program;
+  private colorProgram: Program;
+  private checkerboardProgram: Program;
+  private bloomPrefilterProgram: Program;
+  private bloomBlurProgram: Program;
+  private bloomFinalProgram: Program;
+  private sunraysMaskProgram: Program;
+  private sunraysProgram: Program;
+  private splatProgram: Program;
+  private advectionProgram: Program;
+  private divergenceProgram: Program;
+  private curlProgram: Program;
+  private vorticityProgram: Program;
+  private pressureProgram: Program;
+  private gradienSubtractProgram: Program;
 
-  private displayMaterial        : Material;
+  private displayMaterial: Material;
 
   private config = environment.production ? defaultConfig : devConfig;
 
@@ -163,12 +163,12 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     this.canvas = this.canvasRef.nativeElement;
     this.resizeCanvas(this.canvas);
 
-    if(!(this.canvas instanceof HTMLCanvasElement)) {
+    if (!(this.canvas instanceof HTMLCanvasElement)) {
       // in case the canvas is not what's expected, we have a problem
       throw new Error();
     }
 
-    let ctx = getWebGLContext(this.canvas);
+    const ctx = getWebGLContext(this.canvas);
     this.gl = ctx.gl;
     this.ext = ctx.ext;
 
@@ -186,7 +186,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     this.blit = blit(ctx.gl);
 
     this.pointers.push(new PointerPrototype());
-    this.ditheringTexture = createTextureAsync(ctx.gl,'assets/LDR_LLL1_0.png');
+    this.ditheringTexture = createTextureAsync(ctx.gl, 'assets/LDR_LLL1_0.png');
 
     this.blurProgram            = new Program(ctx.gl, blurVertexShader, blurShader);
     this.copyProgram            = new Program(ctx.gl, baseVertexShader, copyShader);
@@ -219,19 +219,20 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       this.update();
 
       this.canvas.addEventListener('mousedown', e => {
-        let posX = scaleByPixelRatio(e.offsetX);
-        let posY = scaleByPixelRatio(e.offsetY);
-        let pointer = this.pointers.find(p => p.id == -1);
-        if (pointer == null)
+        const posX = scaleByPixelRatio(e.offsetX);
+        const posY = scaleByPixelRatio(e.offsetY);
+        let pointer = this.pointers.find(p => p.id === -1);
+        if (pointer === null) {
           pointer = new PointerPrototype();
+        }
         updatePointerDownData(this.canvas, pointer, -1, posX, posY);
       });
 
       this.canvas.addEventListener('mousemove', e => {
-        let pointer = this.pointers[0];
-        if (!pointer.down) return;
-        let posX = scaleByPixelRatio(e.offsetX);
-        let posY = scaleByPixelRatio(e.offsetY);
+        const pointer = this.pointers[0];
+        if (!pointer.down) { return; }
+        const posX = scaleByPixelRatio(e.offsetX);
+        const posY = scaleByPixelRatio(e.offsetY);
         updatePointerMoveData(this.canvas, pointer, posX, posY);
       });
 
@@ -242,11 +243,12 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       this.canvas.addEventListener('touchstart', e => {
         e.preventDefault();
         const touches = e.targetTouches;
-        while (touches.length >= this.pointers.length)
+        while (touches.length >= this.pointers.length) {
           this.pointers.push(new PointerPrototype());
+        }
         for (let i = 0; i < touches.length; i++) {
-          let posX = scaleByPixelRatio(touches[i].pageX);
-          let posY = scaleByPixelRatio(touches[i].pageY);
+          const posX = scaleByPixelRatio(touches[i].pageX);
+          const posY = scaleByPixelRatio(touches[i].pageY);
           updatePointerDownData(this.canvas, this.pointers[i + 1], touches[i].identifier, posX, posY);
         }
       });
@@ -255,29 +257,30 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
         e.preventDefault();
         const touches = e.targetTouches;
         for (let i = 0; i < touches.length; i++) {
-          let pointer = this.pointers[i + 1];
-          if (!pointer.down) continue;
-          let posX = scaleByPixelRatio(touches[i].pageX);
-          let posY = scaleByPixelRatio(touches[i].pageY);
+          const pointer = this.pointers[i + 1];
+          if (!pointer.down) { continue; }
+          const posX = scaleByPixelRatio(touches[i].pageX);
+          const posY = scaleByPixelRatio(touches[i].pageY);
           updatePointerMoveData(this.canvas, pointer, posX, posY);
         }
       }, false);
 
       window.addEventListener('touchend', e => {
         const touches = e.changedTouches;
-        for (let i = 0; i < touches.length; i++)
-        {
-          let pointer = this.pointers.find(p => p.id == touches[i].identifier);
-          if (pointer == null) continue;
+        for (let i = 0; i < touches.length; i++) {
+          const pointer = this.pointers.find(p => p.id === touches[i].identifier);
+          if (pointer === null) { continue; }
           updatePointerUpData(pointer);
         }
       });
 
       window.addEventListener('keydown', e => {
-        if (e.code === 'KeyP')
+        if (e.code === 'KeyP') {
           this.config.PAUSED = !this.config.PAUSED;
-        if (e.key === ' ')
+        }
+        if (e.key === ' ') {
           this.splatStack.push(Math.floor(Math.random() * 20) + 5);
+        }
       });
 
       this.addRandomPoints();
@@ -286,8 +289,8 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   initFramebuffers () {
-    let simRes = getResolution(this.gl, this.config.SIM_RESOLUTION);
-    let dyeRes = getResolution(this.gl, this.config.DYE_RESOLUTION);
+    const simRes = getResolution(this.gl, this.config.SIM_RESOLUTION);
+    const dyeRes = getResolution(this.gl, this.config.DYE_RESOLUTION);
 
     const texType = this.ext.halfFloatTexType;
     const rgba    = this.ext.formatRGBA;
@@ -316,7 +319,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   initBloomFramebuffers () {
-    let res = getResolution(this.gl, this.config.BLOOM_RESOLUTION);
+    const res = getResolution(this.gl, this.config.BLOOM_RESOLUTION);
 
     const texType = this.ext.halfFloatTexType;
     const rgba = this.ext.formatRGBA;
@@ -325,20 +328,19 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     this.bloom = createFBO(this.gl, res.width, res.height, rgba.internalFormat, rgba.format, texType, filtering);
 
     this.bloomFramebuffers.length = 0;
-    for (let i = 0; i < this.config.BLOOM_ITERATIONS; i++)
-    {
-      let width = res.width >> (i + 1);
-      let height = res.height >> (i + 1);
+    for (let i = 0; i < this.config.BLOOM_ITERATIONS; i++) {
+      const width = res.width >> (i + 1); // tslint:disable-line:no-bitwise
+      const height = res.height >> (i + 1); // tslint:disable-line:no-bitwise
 
-      if (width < 2 || height < 2) break;
+      if (width < 2 || height < 2) { break; }
 
-      let fbo = createFBO(this.gl, width, height, rgba.internalFormat, rgba.format, texType, filtering);
+      const fbo = createFBO(this.gl, width, height, rgba.internalFormat, rgba.format, texType, filtering);
       this.bloomFramebuffers.push(fbo);
     }
   }
 
   initSunraysFramebuffers() {
-    let res = getResolution(this.gl, this.config.SUNRAYS_RESOLUTION);
+    const res = getResolution(this.gl, this.config.SUNRAYS_RESOLUTION);
 
     const texType = this.ext.halfFloatTexType;
     const r = this.ext.formatR;
@@ -349,10 +351,10 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   updateKeywords() {
-    let displayKeywords = [];
-    if (this.config.SHADING) displayKeywords.push("SHADING");
-    if (this.config.BLOOM) displayKeywords.push("BLOOM");
-    if (this.config.SUNRAYS) displayKeywords.push("SUNRAYS");
+    const displayKeywords = [];
+    if (this.config.SHADING) { displayKeywords.push('SHADING'); }
+    if (this.config.BLOOM) { displayKeywords.push('BLOOM'); }
+    if (this.config.SUNRAYS) { displayKeywords.push('SUNRAYS'); }
     this.displayMaterial.setKeywords(displayKeywords);
   }
 
@@ -375,7 +377,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   addRandomPoints() {
-    if(!this.config.PAUSED) {
+    if (!this.config.PAUSED) {
       this.splatStack.push(Math.floor(Math.random() * 20) + 5);
     }
 
@@ -386,7 +388,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   calcDeltaTime() {
-    let now = Date.now();
+    const now = Date.now();
     let dt = (now - this.lastUpdateTime) / 1000;
     dt = Math.min(dt, 0.016666);
     this.lastUpdateTime = now;
@@ -396,9 +398,9 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   resizeCanvas(canvas: HTMLCanvasElement) {
     // todo: this seems to increase infinitely the canvas size,
     // wheras it shouldnt.
-    let width = scaleByPixelRatio(window.innerWidth);
-    let height = scaleByPixelRatio(window.innerHeight);
-    if (canvas.width != width || canvas.height != height) {
+    const width = scaleByPixelRatio(window.innerWidth);
+    const height = scaleByPixelRatio(window.innerHeight);
+    if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
       canvas.height = height;
       return true;
@@ -407,7 +409,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   updateColors(dt) {
-    if (!this.config.COLORFUL) return;
+    if (!this.config.COLORFUL) { return; }
 
     this.colorUpdateTimer += dt * this.config.COLOR_UPDATE_SPEED;
     if (this.colorUpdateTimer >= 1) {
@@ -419,8 +421,9 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   applyInputs () {
-    if (this.splatStack.length > 0)
+    if (this.splatStack.length > 0) {
       this.multipleSplats(this.splatStack.pop());
+    }
 
     this.pointers.forEach(p => {
       if (p.moved) {
@@ -477,9 +480,10 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
     this.advectionProgram.bind();
     this.gl.uniform2f(this.advectionProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
-    if (!this.ext.supportLinearFiltering)
+    if (!this.ext.supportLinearFiltering) {
       this.gl.uniform2f(this.advectionProgram.uniforms.dyeTexelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
-    let velocityId = this.velocity.read.attach(0);
+    }
+    const velocityId = this.velocity.read.attach(0);
     this.gl.uniform1i(this.advectionProgram.uniforms.uVelocity, velocityId);
     this.gl.uniform1i(this.advectionProgram.uniforms.uSource, velocityId);
     this.gl.uniform1f(this.advectionProgram.uniforms.dt, dt);
@@ -489,8 +493,9 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
     this.gl.viewport(0, 0, this.dye.width, this.dye.height);
 
-    if (!this.ext.supportLinearFiltering)
+    if (!this.ext.supportLinearFiltering) {
       this.gl.uniform2f(this.advectionProgram.uniforms.dyeTexelSize, this.dye.texelSizeX, this.dye.texelSizeY);
+    }
     this.gl.uniform1i(this.advectionProgram.uniforms.uVelocity, this.velocity.read.attach(0));
     this.gl.uniform1i(this.advectionProgram.uniforms.uSource, this.dye.read.attach(1));
     this.gl.uniform1f(this.advectionProgram.uniforms.dissipation, this.config.DENSITY_DISSIPATION);
@@ -499,8 +504,9 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   render (target) {
-    if (this.config.BLOOM)
+    if (this.config.BLOOM) {
       this.applyBloom(this.dye.read, this.bloom);
+    }
     if (this.config.SUNRAYS) {
       this.applySunrays(this.dye.read, this.dye.write, this.sunrays);
       this.blur(this.sunrays, this.sunraysTemp, 1);
@@ -509,20 +515,21 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     if (target == null || !this.config.TRANSPARENT) {
       this.gl.blendFunc(this.gl.ONE, this.gl.ONE_MINUS_SRC_ALPHA);
       this.gl.enable(this.gl.BLEND);
-    }
-    else {
+    } else {
       this.gl.disable(this.gl.BLEND);
     }
 
-    let width = target == null ? this.gl.drawingBufferWidth : target.width;
-    let height = target == null ? this.gl.drawingBufferHeight : target.height;
+    const width = target == null ? this.gl.drawingBufferWidth : target.width;
+    const height = target == null ? this.gl.drawingBufferHeight : target.height;
     this.gl.viewport(0, 0, width, height);
 
-    let fbo = target == null ? null : target.fbo;
-    if (!this.config.TRANSPARENT)
+    const fbo = target == null ? null : target.fbo;
+    if (!this.config.TRANSPARENT) {
       this.drawColor(fbo, normalizeColor(this.config.BACK_COLOR));
-    if (target == null && this.config.TRANSPARENT)
+    }
+    if (target == null && this.config.TRANSPARENT) {
       this.drawCheckerboard(fbo);
+    }
     this.drawDisplay(fbo, width, height);
   }
 
@@ -540,32 +547,35 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
   drawDisplay (fbo, width, height) {
     this.displayMaterial.bind();
-    if (this.config.SHADING)
+    if (this.config.SHADING) {
       this.gl.uniform2f(this.displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height);
+    }
     this.gl.uniform1i(this.displayMaterial.uniforms.uTexture, this.dye.read.attach(0));
     if (this.config.BLOOM) {
       this.gl.uniform1i(this.displayMaterial.uniforms.uBloom, this.bloom.attach(1));
       this.gl.uniform1i(this.displayMaterial.uniforms.uDithering, this.ditheringTexture.attach(2));
-      let scale = getTextureScale(this.ditheringTexture, width, height);
+      const scale = getTextureScale(this.ditheringTexture, width, height);
       this.gl.uniform2f(this.displayMaterial.uniforms.ditherScale, scale.x, scale.y);
     }
-    if (this.config.SUNRAYS)
+    if (this.config.SUNRAYS) {
       this.gl.uniform1i(this.displayMaterial.uniforms.uSunrays, this.sunrays.attach(3));
+    }
     this.blit(fbo);
   }
 
   applyBloom (source, destination) {
-    if (this.bloomFramebuffers.length < 2)
+    if (this.bloomFramebuffers.length < 2) {
       return;
+    }
 
     let last = destination;
 
     this.gl.disable(this.gl.BLEND);
     this.bloomPrefilterProgram.bind();
-    let knee = this.config.BLOOM_THRESHOLD * this.config.BLOOM_SOFT_KNEE + 0.0001;
-    let curve0 = this.config.BLOOM_THRESHOLD - knee;
-    let curve1 = knee * 2;
-    let curve2 = 0.25 / knee;
+    const knee = this.config.BLOOM_THRESHOLD * this.config.BLOOM_SOFT_KNEE + 0.0001;
+    const curve0 = this.config.BLOOM_THRESHOLD - knee;
+    const curve1 = knee * 2;
+    const curve2 = 0.25 / knee;
     this.gl.uniform3f(this.bloomPrefilterProgram.uniforms.curve, curve0, curve1, curve2);
     this.gl.uniform1f(this.bloomPrefilterProgram.uniforms.threshold, this.config.BLOOM_THRESHOLD);
     this.gl.uniform1i(this.bloomPrefilterProgram.uniforms.uTexture, source.attach(0));
@@ -574,7 +584,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
     this.bloomBlurProgram.bind();
     for (let i = 0; i < this.bloomFramebuffers.length; i++) {
-      let dest = this.bloomFramebuffers[i];
+      const dest = this.bloomFramebuffers[i];
       this.gl.uniform2f(this.bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
       this.gl.uniform1i(this.bloomBlurProgram.uniforms.uTexture, last.attach(0));
       this.gl.viewport(0, 0, dest.width, dest.height);
@@ -586,7 +596,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     this.gl.enable(this.gl.BLEND);
 
     for (let i = this.bloomFramebuffers.length - 2; i >= 0; i--) {
-      let baseTex = this.bloomFramebuffers[i];
+      const baseTex = this.bloomFramebuffers[i];
       this.gl.uniform2f(this.bloomBlurProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY);
       this.gl.uniform1i(this.bloomBlurProgram.uniforms.uTexture, last.attach(0));
       this.gl.viewport(0, 0, baseTex.width, baseTex.height);
@@ -631,8 +641,8 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   splatPointer (pointer) {
-    let dx = pointer.deltaX * this.config.SPLAT_FORCE;
-    let dy = pointer.deltaY * this.config.SPLAT_FORCE;
+    const dx = pointer.deltaX * this.config.SPLAT_FORCE;
+    const dy = pointer.deltaY * this.config.SPLAT_FORCE;
     this.splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
   }
 
@@ -669,15 +679,15 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   captureScreenshot() {
-    let res = getResolution(this.gl, this.config.CAPTURE_RESOLUTION);
-    let target = createFBO(this.gl, res.width, res.height, this.ext.formatRGBA.internalFormat, this.ext.formatRGBA.format, this.ext.halfFloatTexType, this.gl.NEAREST);
+    const res = getResolution(this.gl, this.config.CAPTURE_RESOLUTION);
+    const target = createFBO(this.gl, res.width, res.height, this.ext.formatRGBA.internalFormat, this.ext.formatRGBA.format, this.ext.halfFloatTexType, this.gl.NEAREST);
     this.render(target);
 
     let texture: Float32Array | Uint8Array = framebufferToTexture(target, this.gl);
     texture = normalizeTexture(texture, target.width, target.height);
 
-    let captureCanvas = textureToCanvas(texture, target.width, target.height);
-    let datauri = captureCanvas.toDataURL();
+    const captureCanvas = textureToCanvas(texture, target.width, target.height);
+    const datauri = captureCanvas.toDataURL();
     downloadURI('fluid.png', datauri);
     URL.revokeObjectURL(datauri);
   }

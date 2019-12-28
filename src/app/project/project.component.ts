@@ -8,7 +8,7 @@ import {Project} from '../core/types/project';
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
-  @Input('project') project: Project;
+  @Input() project: Project;
 
   constructor() { }
 

@@ -1,11 +1,8 @@
 import { supportRenderTextureFormat } from './support-render-texture-format';
 
-export function getSupportedFormat (gl: WebGL2RenderingContext, internalFormat, format, type)
-{
-  if (!supportRenderTextureFormat(gl, internalFormat, format, type))
-  {
-    switch (internalFormat)
-    {
+export function getSupportedFormat (gl: WebGL2RenderingContext, internalFormat, format, type) {
+  if (!supportRenderTextureFormat(gl, internalFormat, format, type)) {
+    switch (internalFormat) {
       case gl.R16F:
         return getSupportedFormat(gl, gl.RG16F, gl.RG, type);
       case gl.RG16F:
@@ -18,5 +15,5 @@ export function getSupportedFormat (gl: WebGL2RenderingContext, internalFormat, 
   return {
     internalFormat,
     format
-  }
+  };
 }

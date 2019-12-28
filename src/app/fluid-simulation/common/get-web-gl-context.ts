@@ -5,8 +5,10 @@ export function getWebGLContext (canvas: HTMLCanvasElement) {
 
   let gl: WebGL2RenderingContext = canvas.getContext('webgl2', params) as WebGL2RenderingContext;
   const isWebGL2 = !!gl;
-  if (!isWebGL2) // todo: this typecast is not true, but we're tricking typescript here
-    gl = canvas.getContext('webgl', params) as WebGL2RenderingContext || canvas.getContext('experimental-webgl', params) as WebGL2RenderingContext;
+  if (!isWebGL2) { // todo: this typecast is not true, but we're tricking typescript here
+    gl = canvas.getContext('webgl', params) as WebGL2RenderingContext
+      || canvas.getContext('experimental-webgl', params) as WebGL2RenderingContext;
+  }
 
   let halfFloat;
   let supportLinearFiltering;
@@ -25,14 +27,11 @@ export function getWebGLContext (canvas: HTMLCanvasElement) {
   let formatRG;
   let formatR;
 
-  if (isWebGL2)
-  {
+  if (isWebGL2) {
     formatRGBA = getSupportedFormat(gl, gl.RGBA16F, gl.RGBA, halfFloatTexType);
     formatRG = getSupportedFormat(gl, gl.RG16F, gl.RG, halfFloatTexType);
     formatR = getSupportedFormat(gl, gl.R16F, gl.RED, halfFloatTexType);
-  }
-  else
-  {
+  } else {
     formatRGBA = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
     formatRG = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
     formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);

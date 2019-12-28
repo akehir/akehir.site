@@ -10,7 +10,7 @@ import {Environment} from '../core/types/environment';
   encapsulation: ViewEncapsulation.None,
 })
 export class BackgroundComponent implements OnInit {
-  @Input('type') type: Environment;
+  @Input() type: Environment;
 
   constructor() { }
 

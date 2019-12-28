@@ -23,9 +23,9 @@ export function createDoubleFBO (gl: Context, w, h, internalFormat, format, type
       fbo2 = value;
     },
     swap () {
-      let temp = fbo1;
+      const temp = fbo1;
       fbo1 = fbo2;
       fbo2 = temp;
     }
-  }
+  };
 }
