@@ -1,4 +1,6 @@
-export const initialConfig = {
+import {FluidSimulationConfig} from './fluid-simulation-config';
+
+export const initialConfig: FluidSimulationConfig = {
   SIM_RESOLUTION: 128,
   DYE_RESOLUTION: 1024,
   CAPTURE_RESOLUTION: 512,
@@ -24,4 +26,11 @@ export const initialConfig = {
   SUNRAYS: true,
   SUNRAYS_RESOLUTION: 196,
   SUNRAYS_WEIGHT: 1.0,
+  // Added
+  ADD_SPLASHES_IN_RANDOM_INTERVALS: true,
+  MOUSE_INTERACTION_LISTENERS: true,
+  PAUSE_KEY_CODE: 'KeyP',
+  SCREENSHOT_KEY_CODE: 'KeyS',
+  SPLASH_KEY: ' ',
+  SCREENSHOT_FILE_NAME: 'fluid',
 };

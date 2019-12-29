@@ -7,20 +7,24 @@ import { MapComponent } from './map/map.component';
 import { HexComponent } from './hex/hex.component';
 import { BackgroundComponent } from './background/background.component';
 import { ProjectComponent } from './project/project.component';
-import { FluidSimulationComponent } from './fluid-simulation';
+import { FluidSimulationModule } from './fluid-simulation';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HexComponent,
-    FluidSimulationComponent,
     BackgroundComponent,
     ProjectComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FluidSimulationModule.forRoot({
+      SCREENSHOT_KEY_CODE: 'KeyS',
+      PAUSE_KEY_CODE: 'KeyP',
+      SPLASH_KEY: ' ',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

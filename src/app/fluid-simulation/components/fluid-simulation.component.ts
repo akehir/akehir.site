@@ -59,9 +59,10 @@ import {
 
 import {
   defaultConfig,
-  devConfig,
+  devConfig, FluidSimulationConfig, FluidSimulationConfigValue,
 } from '../config';
 import {environment} from '../../../environments/environment';
+import {FluidSimulationService} from '../services';
 
 /*
 MIT License
@@ -144,16 +145,14 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   private curlProgram: Program;
   private vorticityProgram: Program;
   private pressureProgram: Program;
-  private gradienSubtractProgram: Program;
+  private gradientSubtractProgram: Program;
 
   private displayMaterial: Material;
 
-  private config = environment.production ? defaultConfig : devConfig;
-
   constructor(
     private zone: NgZone,
+    private config: FluidSimulationService,
     @Inject(DOCUMENT) private document: Document,
-    // todo: inject config
     ) { }
 
   ngOnInit() {
@@ -205,7 +204,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
     this.curlProgram            = new Program(ctx.gl, baseVertexShader, curlShader);
     this.vorticityProgram       = new Program(ctx.gl, baseVertexShader, vorticityShader);
     this.pressureProgram        = new Program(ctx.gl, baseVertexShader, pressureShader);
-    this.gradienSubtractProgram = new Program(ctx.gl, baseVertexShader, gradientSubtractShader);
+    this.gradientSubtractProgram = new Program(ctx.gl, baseVertexShader, gradientSubtractShader);
 
     this.displayMaterial = new Material(ctx.gl, baseVertexShader);
 
@@ -219,73 +218,83 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       this.colorUpdateTimer = 0.0;
       this.update();
 
-      this.canvas.addEventListener('mousedown', e => {
-        const posX = scaleByPixelRatio(e.offsetX);
-        const posY = scaleByPixelRatio(e.offsetY);
-        let pointer = this.pointers.find(p => p.id === -1);
-        if (pointer === null) {
-          pointer = new PointerPrototype();
-        }
-        updatePointerDownData(this.canvas, pointer, -1, posX, posY);
-      });
+      if(this.config.MOUSE_INTERACTION_LISTENERS) {
+        this.canvas.addEventListener('mousedown', e => {
+          const posX = scaleByPixelRatio(e.offsetX);
+          const posY = scaleByPixelRatio(e.offsetY);
+          let pointer = this.pointers.find(p => p.id === -1);
+          if (pointer === null) {
+            pointer = new PointerPrototype();
+          }
+          updatePointerDownData(this.canvas, pointer, -1, posX, posY);
+        });
 
-      this.canvas.addEventListener('mousemove', e => {
-        const pointer = this.pointers[0];
-        if (!pointer.down) { return; }
-        const posX = scaleByPixelRatio(e.offsetX);
-        const posY = scaleByPixelRatio(e.offsetY);
-        updatePointerMoveData(this.canvas, pointer, posX, posY);
-      });
-
-      window.addEventListener('mouseup', () => {
-        updatePointerUpData(this.pointers[0]);
-      });
-
-      this.canvas.addEventListener('touchstart', e => {
-        e.preventDefault();
-        const touches = e.targetTouches;
-        while (touches.length >= this.pointers.length) {
-          this.pointers.push(new PointerPrototype());
-        }
-        for (let i = 0; i < touches.length; i++) {
-          const posX = scaleByPixelRatio(touches[i].pageX);
-          const posY = scaleByPixelRatio(touches[i].pageY);
-          updatePointerDownData(this.canvas, this.pointers[i + 1], touches[i].identifier, posX, posY);
-        }
-      });
-
-      this.canvas.addEventListener('touchmove', e => {
-        e.preventDefault();
-        const touches = e.targetTouches;
-        for (let i = 0; i < touches.length; i++) {
-          const pointer = this.pointers[i + 1];
-          if (!pointer.down) { continue; }
-          const posX = scaleByPixelRatio(touches[i].pageX);
-          const posY = scaleByPixelRatio(touches[i].pageY);
+        this.canvas.addEventListener('mousemove', e => {
+          const pointer = this.pointers[0];
+          if (!pointer.down) { return; }
+          const posX = scaleByPixelRatio(e.offsetX);
+          const posY = scaleByPixelRatio(e.offsetY);
           updatePointerMoveData(this.canvas, pointer, posX, posY);
-        }
-      }, false);
+        });
 
-      window.addEventListener('touchend', e => {
-        const touches = e.changedTouches;
-        for (let i = 0; i < touches.length; i++) {
-          const pointer = this.pointers.find(p => p.id === touches[i].identifier);
-          if (pointer === null) { continue; }
-          updatePointerUpData(pointer);
-        }
-      });
+        window.addEventListener('mouseup', () => {
+          updatePointerUpData(this.pointers[0]);
+        });
 
-      window.addEventListener('keydown', e => {
-        if (e.code === 'KeyP') {
-          this.config.PAUSED = !this.config.PAUSED;
-        }
-        if (e.key === ' ') {
-          this.splatStack.push(Math.floor(Math.random() * 20) + 5);
-        }
-      });
+        this.canvas.addEventListener('touchstart', e => {
+          e.preventDefault();
+          const touches = e.targetTouches;
+          while (touches.length >= this.pointers.length) {
+            this.pointers.push(new PointerPrototype());
+          }
+          for (let i = 0; i < touches.length; i++) {
+            const posX = scaleByPixelRatio(touches[i].pageX);
+            const posY = scaleByPixelRatio(touches[i].pageY);
+            updatePointerDownData(this.canvas, this.pointers[i + 1], touches[i].identifier, posX, posY);
+          }
+        });
+
+        this.canvas.addEventListener('touchmove', e => {
+          e.preventDefault();
+          const touches = e.targetTouches;
+          for (let i = 0; i < touches.length; i++) {
+            const pointer = this.pointers[i + 1];
+            if (!pointer.down) { continue; }
+            const posX = scaleByPixelRatio(touches[i].pageX);
+            const posY = scaleByPixelRatio(touches[i].pageY);
+            updatePointerMoveData(this.canvas, pointer, posX, posY);
+          }
+        }, false);
+
+        window.addEventListener('touchend', e => {
+          const touches = e.changedTouches;
+          for (let i = 0; i < touches.length; i++) {
+            const pointer = this.pointers.find(p => p.id === touches[i].identifier);
+            if (pointer === null) { continue; }
+            updatePointerUpData(pointer);
+          }
+        });
+      }
+
+      if(
+        !!this.config.PAUSE_KEY_CODE ||
+        !!this.config.SPLASH_KEY ||
+        !!this.config.SCREENSHOT_KEY_CODE
+      ) {
+        window.addEventListener('keydown', e => {
+          if (e.code === this.config.PAUSE_KEY_CODE) {
+            this.config.PAUSED = !this.config.PAUSED;
+          }
+          if (e.key === this.config.SPLASH_KEY) {
+            this.splatStack.push(Math.floor(Math.random() * 20) + 5);
+          }
+          if (e.code === this.config.SCREENSHOT_KEY_CODE) {
+            this.captureScreenshot();
+          }
+        });
+      }
 
       this.addRandomPoints();
-
     });
   }
 
@@ -378,7 +387,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
   }
 
   addRandomPoints() {
-    if (!this.config.PAUSED) {
+    if (!this.config.PAUSED && this.config.ADD_SPLASHES_IN_RANDOM_INTERVALS) {
       this.splatStack.push(Math.floor(Math.random() * 20) + 5);
     }
 
@@ -472,10 +481,10 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
       this.pressure.swap();
     }
 
-    this.gradienSubtractProgram.bind();
-    this.gl.uniform2f(this.gradienSubtractProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
-    this.gl.uniform1i(this.gradienSubtractProgram.uniforms.uPressure, this.pressure.read.attach(0));
-    this.gl.uniform1i(this.gradienSubtractProgram.uniforms.uVelocity, this.velocity.read.attach(1));
+    this.gradientSubtractProgram.bind();
+    this.gl.uniform2f(this.gradientSubtractProgram.uniforms.texelSize, this.velocity.texelSizeX, this.velocity.texelSizeY);
+    this.gl.uniform1i(this.gradientSubtractProgram.uniforms.uPressure, this.pressure.read.attach(0));
+    this.gl.uniform1i(this.gradientSubtractProgram.uniforms.uVelocity, this.velocity.read.attach(1));
     this.blit(this.velocity.write.fbo);
     this.velocity.swap();
 
@@ -689,7 +698,7 @@ export class FluidSimulationComponent implements OnInit, AfterViewInit {
 
     const captureCanvas = textureToCanvas(texture, target.width, target.height);
     const datauri = captureCanvas.toDataURL();
-    downloadURI('fluid.png', datauri);
+    downloadURI(`${this.config.SCREENSHOT_FILE_NAME}.png`, datauri);
     URL.revokeObjectURL(datauri);
   }
 

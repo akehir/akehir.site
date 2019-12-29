@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FirstMap } from '../core/data/FirstMap';
 import { Coordinate } from '../core/types/coordinate';
+import { FluidSimulationService } from '../fluid-simulation/services';
+import {Project} from '@core/types';
 
 @Component({
   selector: 'ake-map',
@@ -18,7 +20,6 @@ export class MapComponent implements OnInit {
   log = console.log;
 
   ngOnInit() {
-    console.log(this.map);
   }
 
   trackCoordinate(index, item: Coordinate) {
