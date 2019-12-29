@@ -8,5 +8,5 @@ import {Component, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  title = 'akehir.com';
+  title = 'akehir.com | CyberShaman by the Graces of Electron';
 }

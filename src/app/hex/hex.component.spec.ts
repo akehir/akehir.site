@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HexComponent } from './hex.component';
+import {BackgroundComponent} from '../background/background.component';
+import {ProjectComponent} from '../project/project.component';
 
 describe('HexComponent', () => {
   let component: HexComponent;
@@ -8,7 +10,11 @@ describe('HexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HexComponent ]
+      declarations: [
+        HexComponent,
+        BackgroundComponent,
+        ProjectComponent,
+      ]
     })
     .compileComponents();
   }));

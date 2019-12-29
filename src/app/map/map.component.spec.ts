@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
+import {HexComponent} from '../hex/hex.component';
+import {BackgroundComponent} from '../background/background.component';
+import {ProjectComponent} from '../project/project.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -8,7 +11,12 @@ describe('MapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapComponent ]
+      declarations: [
+        MapComponent,
+        HexComponent,
+        BackgroundComponent,
+        ProjectComponent,
+      ]
     })
     .compileComponents();
   }));
