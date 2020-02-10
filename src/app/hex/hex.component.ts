@@ -1,5 +1,6 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import { Coordinate } from '../core/types/coordinate';
+import { FluidSimulationService } from '@triangular/fluid-simulation';
 
 @Component({
   selector: 'ake-hex',
@@ -8,15 +9,14 @@ import { Coordinate } from '../core/types/coordinate';
   // styleUrls: ['./hex.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class HexComponent implements OnInit {
+export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/
   @Input() coordinate: Coordinate;
 
-  constructor() {
-  }
+  constructor(private fluidSimulation: FluidSimulationService) { }
 
-  ngOnInit() {
+  onClick() {
+    this.fluidSimulation.PAUSED = !this.fluidSimulation.PAUSED;
   }
 }
-
 

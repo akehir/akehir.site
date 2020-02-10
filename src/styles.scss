@@ -4,5 +4,11 @@
 @import './app/map/map.component';
 @import './app/hex/hex.component';
 @import './app/background/background.component';
-@import './app/fluid-simulation/components/fluid-simulation.component';
 
+webgl-fluid-simulation {
+  canvas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+  }
+}

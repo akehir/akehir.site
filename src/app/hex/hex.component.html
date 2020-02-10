@@ -6,6 +6,7 @@
 
 <ake-background
   class="land"
+  (click)="onClick()"
   *ngIf="coordinate?.project?.icon"
   [icon]="coordinate?.project?.icon">
 </ake-background>
