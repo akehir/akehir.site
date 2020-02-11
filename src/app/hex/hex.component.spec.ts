@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HexComponent } from './hex.component';
 import {BackgroundComponent} from '../background/background.component';
 import {ProjectComponent} from '../project/project.component';
+import {FluidSimulationModule} from '@triangular/fluid-simulation';
 
 describe('HexComponent', () => {
   let component: HexComponent;
@@ -10,6 +11,9 @@ describe('HexComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FluidSimulationModule.forRoot(),
+      ],
       declarations: [
         HexComponent,
         BackgroundComponent,

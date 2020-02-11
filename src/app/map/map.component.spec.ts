@@ -4,6 +4,7 @@ import { MapComponent } from './map.component';
 import {HexComponent} from '../hex/hex.component';
 import {BackgroundComponent} from '../background/background.component';
 import {ProjectComponent} from '../project/project.component';
+import {FluidSimulationModule} from '@triangular/fluid-simulation';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -11,6 +12,9 @@ describe('MapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FluidSimulationModule.forRoot(),
+      ],
       declarations: [
         MapComponent,
         HexComponent,

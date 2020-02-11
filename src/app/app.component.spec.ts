@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { AppComponent } from './app.component';
-import {FluidSimulationModule} from './fluid-simulation';
-import {MapComponent} from './map/map.component';
-import {ProjectComponent} from './project/project.component';
-import {HexComponent} from './hex/hex.component';
-import {BackgroundComponent} from './background/background.component';
+import { MapComponent } from './map/map.component';
+import { ProjectComponent } from './project/project.component';
+import { HexComponent } from './hex/hex.component';
+import { BackgroundComponent } from './background/background.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
