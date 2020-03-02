@@ -2,8 +2,18 @@
 @import './app/app.component';
 @import './app/project/project.component';
 @import './app/map/map.component';
+@import './app/navigation/navigation.component';
 @import './app/hex/hex.component';
 @import './app/background/background.component';
+
+html,
+body {
+  margin: 0;
+}
+
+main {
+  margin-left: 10%;
+}
 
 webgl-fluid-simulation {
   canvas {

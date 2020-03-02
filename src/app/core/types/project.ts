@@ -52,6 +52,7 @@ export interface Project {
   path: string;
   git: string;
   description: string;
+  featured: boolean;
   status: ProjectStatus;
   name: string;
   type: ProjectType;

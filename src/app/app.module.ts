@@ -8,6 +8,7 @@ import { HexComponent } from './hex/hex.component';
 import { BackgroundComponent } from './background/background.component';
 import { ProjectComponent } from './project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FluidSimulationModule } from '@triangular/fluid-simulation';
     HexComponent,
     BackgroundComponent,
     ProjectComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
