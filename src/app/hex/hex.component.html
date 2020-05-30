@@ -1,12 +1,8 @@
-<ake-project
-  class="unit"
-  *ngIf="coordinate?.project"
-  [project]="coordinate?.project">
-</ake-project>
-
 <ake-background
   class="land"
-  (click)="onClick()"
-  *ngIf="coordinate?.project?.icon"
-  [icon]="coordinate?.project?.icon">
+  [routerLink]="['./', project.id]"
+  *ngIf="project?.icon"
+  [icon]="project?.icon"
+  [iconType]="project?.iconType"
+>
 </ake-background>

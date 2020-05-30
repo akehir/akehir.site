@@ -2,10 +2,26 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // components
-import {MapComponent} from './map/map.component';
+import { MapComponent } from './map/map.component';
+import { ProjectComponent } from './project/project.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: MapComponent },
+  { path: 'index', component: HomeComponent, },
+  { path: 'projects', component: MapComponent, },
+  { path: 'projects/:id', component: ProjectComponent },
+  { path: 'error', component: MapComponent,
+    children: [
+      { path: '403', component: MapComponent, },
+      { path: '404', component: MapComponent, },
+      { path: '500', component: MapComponent, },
+    ], },
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  {
+    path: '**',
+    redirectTo: 'error/404',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

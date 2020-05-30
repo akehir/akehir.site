@@ -1,3 +1,6 @@
 [submodule "src/ui/src/assets/rpg-awesome-raw"]
 	path = src/ui/src/assets/rpg-awesome-raw
 	url = git@github.com:nagoshiashumari/rpg-awesome-raw.git
+[submodule "lib/screenshotframes"]
+	path = lib/screenshotframes
+	url = git@github.com:olets/ScreenshotFrames.git

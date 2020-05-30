@@ -1,4 +1,25 @@
 ake-project {
+  color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+
+  & .hex {
+    // pos absolute?
+    width: 50%;
+    pointer-events: none;
+  }
+
+  & .project {
+    &__showcase-image {
+
+    }
+
+    &__showcase-frame {
+
+    }
+  }
+
   img {
     opacity: 0.8;
     position: absolute;

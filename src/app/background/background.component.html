@@ -1,5 +1,4 @@
 <!-- here: put an image / svg of the land -->
-<img
-  [src]="'assets/' + icon + '.svg'"
-  alt=""
->
+<noto-emoji *ngIf="iconType === 'noto'" [name]="icon"></noto-emoji>
+<rpg-awesome-icon *ngIf="iconType === 'rpgAwesome'" [name]="icon"></rpg-awesome-icon>
+<font-awesome-icon *ngIf="iconType === 'fontAwesome'" [name]="icon"></font-awesome-icon>

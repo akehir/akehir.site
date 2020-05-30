@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { FirstMap } from '../core/data/FirstMap';
+
 import { Coordinate } from '../core/types/coordinate';
+import { ProjectsService } from '@core/services/projects.service';
 
 @Component({
   selector: 'ake-map',
@@ -11,9 +12,9 @@ import { Coordinate } from '../core/types/coordinate';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private projects: ProjectsService) { }
   // https://www.redblobgames.com/grids/hexagons/
-  public map = new FirstMap();
+  map$ = this.projects.all(); // mocking async
 
   log = console.log;
 

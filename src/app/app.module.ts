@@ -9,6 +9,11 @@ import { BackgroundComponent } from './background/background.component';
 import { ProjectComponent } from './project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { NavigationComponent } from './navigation/navigation.component';
+import { ProjectsService } from '@core/services/projects.service';
+import { HomeComponent } from './home/home.component';
+import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
+import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     BackgroundComponent,
     ProjectComponent,
     NavigationComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,8 +33,13 @@ import { NavigationComponent } from './navigation/navigation.component';
       PAUSE_KEY_CODE: 'KeyP',
       SPLASH_KEY: ' ',
     }),
+    NotoEmojiIconsModule,
+    RpgAwesomeIconsModule,
+    FontAwesomeIconsModule,
   ],
-  providers: [],
+  providers: [
+    ProjectsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

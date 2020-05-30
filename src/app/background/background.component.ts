@@ -1,5 +1,11 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Icons} from '@core/types';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Icons, IconType } from '@core/types';
+import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
+import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
+import { FontAwesomeIconsRegistry } from '@triangular/font-awesome-icons';
+import { notoEmojiU0023, notoEmojiU1F43A } from '@triangular/noto-emoji-icons/icons';
+import { rpgAwesomeIconDroplet, rpgAwesomeIconFrostEmblem, rpgAwesomeIconGrass, rpgAwesomeIconLeaf, rpgAwesomeIconMontains } from '@triangular/rpg-awesome-icons/icons';
+import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@triangular/font-awesome-icons/icons';
 
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -7,13 +13,35 @@ import {Icons} from '@core/types';
   selector: 'ake-background',
   templateUrl: './background.component.html',
   styleUrls: [],
-  // styleUrls: ['./background.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class BackgroundComponent implements OnInit {
   @Input() icon: Icons;
+  @Input() iconType: IconType;
 
-  constructor() { }
+  constructor(
+    private notoEmojiIconsRegistry: NotoEmojiIconsRegistry,
+    private rpgAwesomeIconsRegistry: RpgAwesomeIconsRegistry,
+    private fontAwesomeIconsRegistry: FontAwesomeIconsRegistry,
+    ) {
+    notoEmojiIconsRegistry.registerIcons([
+      notoEmojiU0023,
+      notoEmojiU1F43A,
+      // add more icons here
+    ]);
+
+    rpgAwesomeIconsRegistry.registerIcons([
+      rpgAwesomeIconDroplet,
+      rpgAwesomeIconGrass,
+      rpgAwesomeIconLeaf,
+      rpgAwesomeIconMontains,
+      rpgAwesomeIconFrostEmblem,
+    ]);
+
+    fontAwesomeIconsRegistry.registerIcons([
+      fontAwesomeIconHandHoldingHeart,
+    ]);
+  }
 
   ngOnInit() {
   }

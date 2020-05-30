@@ -1,22 +1,17 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
-import { Coordinate } from '../core/types/coordinate';
-import { FluidSimulationService } from '@triangular/fluid-simulation';
+import { Project } from '@core/types';
 
 @Component({
   selector: 'ake-hex',
   templateUrl: './hex.component.html',
   styleUrls: [],
-  // styleUrls: ['./hex.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/
-  @Input() coordinate: Coordinate;
+  @Input() project: Project;
 
-  constructor(private fluidSimulation: FluidSimulationService) { }
+  constructor() { }
 
-  onClick() {
-    this.fluidSimulation.PAUSED = !this.fluidSimulation.PAUSED;
-  }
 }
 

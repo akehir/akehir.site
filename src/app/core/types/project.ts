@@ -1,3 +1,8 @@
+
+import { rpgAwesomeIcon } from '@triangular/rpg-awesome-icons/icons/build/my-icons.model';
+import { fontAwesomeIcon } from '@triangular/font-awesome-icons/icons/build/my-icons.model';
+import { noto } from '@triangular/noto-emoji-icons/lib/icons/build/my-icons.model';
+
 export enum ProjectType {
   'none',
   'idea',
@@ -37,18 +42,28 @@ export enum ProjectStatus {
   'planned',
 }
 
-export enum Icons {
-  droplet = 'droplet',
-  grass = 'grass',
-  leaf = 'leaf',
-  mountain = 'mountain',
-  frost = 'frost-emblem',
-  wolfji = 'emoji/emoji_u1f43a'
+export type Icons = noto | rpgAwesomeIcon | fontAwesomeIcon;
+
+// {
+//   droplet = 'droplet',
+//   grass = 'grass',
+//   leaf = 'leaf',
+//   mountain = 'mountain',
+//   frost = 'frost-emblem',
+//   wolfji = 'emoji/emoji_u1f43a'
+// }
+
+export enum IconType {
+  noto = 'noto',
+  rpgAwesome = 'rpgAwesome',
+  fontAwesome = 'fontAwesome',
 }
+
 
 export interface Project {
   id: string;
   icon: Icons;
+  iconType: IconType,
   path: string;
   git: string;
   description: string;

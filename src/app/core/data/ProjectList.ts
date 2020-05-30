@@ -1,10 +1,11 @@
-import {Icons, Project, ProjectContribution, ProjectStatus, ProjectType} from '../types/project';
+import { IconType, Project, ProjectContribution, ProjectStatus, ProjectType } from '../types/project';
 
 export const projectList: Project[] = [
   {
     id: 'emoji-wars',
     name: 'Emoji Wars',
-    icon: Icons.grass,
+    icon: 'grass',
+    iconType: IconType.rpgAwesome,
     path: 'https://emojiwars.akehir.com',
     git: '',
     description: '',
@@ -17,7 +18,8 @@ export const projectList: Project[] = [
   {
     id: 'colour-picker',
     name: 'Colour Picker',
-    icon: Icons.leaf,
+    icon: 'leaf',
+    iconType: IconType.rpgAwesome,
     path: '',
     git: '',
     description: '',
@@ -30,7 +32,8 @@ export const projectList: Project[] = [
   {
     id: 'tfc',
     name: 'Travel for Change',
-    icon: Icons.droplet,
+    icon: 'droplet',
+    iconType: IconType.rpgAwesome,
     path: 'https://travelforchange.ch',
     git: '',
     description: '',
@@ -43,7 +46,8 @@ export const projectList: Project[] = [
   {
     id: 'wedding-website',
     name: 'Wedding Website',
-    icon: Icons.frost,
+    icon: 'frost_emblem',
+    iconType: IconType.rpgAwesome,
     path: 'https://fufi.io',
     git: '',
     description: '',
@@ -56,7 +60,8 @@ export const projectList: Project[] = [
   {
     id: 'evzh',
     name: 'EVZH',
-    icon: Icons.grass,
+    icon: 'grass',
+    iconType: IconType.rpgAwesome,
     path: 'https://evzh.ch',
     git: '',
     description: '',
@@ -69,7 +74,8 @@ export const projectList: Project[] = [
   {
     id: 'atc',
     name: 'Angular Terminal Component',
-    icon: Icons.mountain,
+    icon: 'montains',
+    iconType: IconType.rpgAwesome,
     path: '',
     git: '',
     description: '',
@@ -82,7 +88,8 @@ export const projectList: Project[] = [
   {
     id: 'acp',
     name: 'Angular Colour Picker',
-    icon: Icons.wolfji,
+    icon: 'emoji_u_1_f_43_a',
+    iconType: IconType.noto,
     path: '',
     git: '',
     description: '',
