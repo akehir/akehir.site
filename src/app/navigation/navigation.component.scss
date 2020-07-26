@@ -15,11 +15,23 @@
     position: relative;
     border-radius: 0 0.3em 0.3em 0;
     cursor: pointer;
+    outline: 0;
+    transition: background 1s ease-out, box-shadow 1s ease-out;
 
+    &:focus,
     &:hover {
+      outline: 0;
+
       &:before {
-        right: -8em;
+        right: -4em;
       }
+
+      &,
+      &:before {
+        background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        box-shadow: 0.1em 0.1em 1em #182848;
+      }
+
     }
 
     &:before {
@@ -34,7 +46,7 @@
       width: 5em;
       border-radius: 50% 0 50% 50%;
       z-index: -1;
-      transition: right 1s ease-out;
+      transition: right 1s ease-out, background 1s ease-out;
       box-shadow: 0.1em 0.1em 1em white;
     }
   }
