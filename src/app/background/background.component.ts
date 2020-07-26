@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { Icons, IconType } from '@core/types';
+import { IconType } from '@core/types';
 import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsRegistry } from '@triangular/font-awesome-icons';
@@ -16,7 +16,7 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
   encapsulation: ViewEncapsulation.None,
 })
 export class BackgroundComponent implements OnInit {
-  @Input() icon: Icons;
+  @Input() icon: string;
   @Input() iconType: IconType;
 
   constructor(
