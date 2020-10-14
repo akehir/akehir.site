@@ -26,7 +26,7 @@
     "@triangular/noto-emoji-icons": "^2.0.0",
     "@triangular/rpg-awesome-icons": "^2.0.0",
     "core-js": "^2.5.4",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
