@@ -6,17 +6,26 @@
   font-size: 1rem;
 
   &__item {
-    display: block;
-    background: white;
-    margin-left: 0;
-    margin-top: 1em;
-    padding: 2em 3em 2em 3em;
-    box-shadow: 0.1em 0.1em 1em white;
     position: relative;
-    border-radius: 0 0.3em 0.3em 0;
+    display: block;
+    background: #fff;
+    margin-left: 0;
+    margin-top: 2rem;
+    padding: .5rem 3rem;
+    box-shadow: 0.1rem 0.1rem 1rem white;
+    border-radius: 0 0.3rem 0.3rem 0;
     cursor: pointer;
     outline: 0;
     transition: background 1s ease-out, box-shadow 1s ease-out;
+    font-family: SourceSansPro, sans-serif;
+    font-size: 2rem;
+    font-weight: 100;
+
+    &::first-letter {
+      font-size: 4rem;
+      font-family: SourceSerifPro, serif;
+      font-weight: 100;
+    }
 
     &:focus,
     &:hover {
@@ -28,8 +37,8 @@
 
       &,
       &:before {
-        background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-        box-shadow: 0.1em 0.1em 1em #182848;
+        //background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        box-shadow: 0.1rem 0.1rem 1rem #182848;
       }
 
     }
@@ -37,17 +46,17 @@
     &:before {
       display: block;
       position: absolute;
-      right: -2.3em;
+      right: -2.3rem;
       transform: rotate(45deg);
       top: 0;
       content: '';
-      background: white;
+      background: #fff;
       height: 100%;
-      width: 5em;
+      width: 5.5rem;
       border-radius: 50% 0 50% 50%;
       z-index: -1;
-      transition: right 1s ease-out, background 1s ease-out;
-      box-shadow: 0.1em 0.1em 1em white;
+      transition: right 1s ease-out, background 1s ease-out, box-shadow 1s ease-out;
+      box-shadow: 0.1rem 0.1rem 1rem white;
     }
   }
 }

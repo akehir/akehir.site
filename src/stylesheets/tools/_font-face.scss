@@ -1,0 +1,14 @@
+
+
+// Based on http://codepen.io/javasteve99/pen/hDxpn
+@mixin font-face($font-family, $file-path, $font-weight: normal, $font-style: normal) {
+  @font-face {
+    // sass-lint:disable-block no-duplicate-properties
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    src: url('#{$file-path}.eot');
+    src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.ttf') format('truetype');
+    font-display: swap;
+  }
+}

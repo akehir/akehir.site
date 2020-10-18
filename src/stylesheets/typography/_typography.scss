@@ -1,0 +1,179 @@
+@mixin typography($style: default) {
+  @include webfontsenabled {
+    font-family: $content-font, $content-font-fallback;
+  }
+
+  @if $style == h1 {
+    font-size: 3.6rem;
+    line-height: 1.16;
+    letter-spacing: -.09rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 4.8rem;
+      line-height: 1.1;
+      letter-spacing: -.12rem;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 5.4rem;
+      letter-spacing: -.14rem;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 6.4rem;
+      letter-spacing: -.16rem;
+
+      @include webfontsdisabled {
+        letter-spacing: .1rem;
+        font-size: 5.8rem;
+        line-height: 1.1;
+      }
+    }
+
+  } @else if $style == h2 {
+    font-size: 2.8rem;
+    line-height: 1.07;
+    letter-spacing: -.07rem;
+
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 3.2rem;
+      line-height: 1;
+      letter-spacing: -.08rem;
+  }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 3.6rem;
+      letter-spacing: -.09rem;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 4rem;
+      letter-spacing: -.1rem;
+    }
+
+  } @else if $style == h3 {
+    font-size: 2.4rem; // todo: mobile
+    letter-spacing: -.01rem; // todo: mobile
+    line-height: 1.125; // todo: mobile
+
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 3.2rem;
+      letter-spacing: -.01rem;
+      line-height: 1.125;
+    }
+  } @else if $style == h4 {
+    font-size: 2rem; // todo: mobile
+    letter-spacing: -.06rem; // todo: mobile
+    line-height: 1.22;// todo: mobile
+
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 2.4rem;
+      letter-spacing: -.06rem;
+      line-height: 1.22;
+    }
+
+  } @else if $style == h5 {
+    font-size: 1.8rem; // todo: confirm mobile = desktop
+    line-height: 1.22; // todo: confirm mobile = desktop
+
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.8rem;
+      letter-spacing: normal;
+      line-height: 1.22;
+    }
+
+  } @else if $style == h6 {
+    font-size: 1.6rem; // todo: confirm mobile = desktop
+    line-height: 1; // todo: confirm mobile = desktop
+
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.6rem;
+      letter-spacing: normal;
+      line-height: 1;
+    }
+
+  } @else if $style == lead {
+    font-size: 2rem; // todo: confirm mobile = desktop
+    letter-spacing: -.04rem; // todo: confirm mobile = desktop
+    line-height: 1.5; // todo: confirm mobile = desktop
+
+    font-weight: 500;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 2rem;
+      letter-spacing: -.04rem;
+      line-height: 1.5;
+    }
+
+  } @else if $style == link {
+    font-size: 1.6rem;
+    letter-spacing: normal;
+    color: $color-blue-brand-color;
+    text-decoration: none;
+    font-weight: 700;
+    font-style: normal;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.6rem;
+      letter-spacing: normal;
+      line-height: 1;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      color: $color-blue-brand-color;
+      text-decoration: none;
+    }
+
+  } @else if $style == lead {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.04rem;
+    line-height: 3rem;
+  } @else { // default style, reset
+    font-size: 1.6rem;
+    letter-spacing: -.02rem;
+    line-height: 1.375;
+    font-weight: 400;
+    text-transform: none;
+    font-style: normal;
+    color: inherit;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.8rem;
+      line-height: 1.44;
+    }
+  }
+}

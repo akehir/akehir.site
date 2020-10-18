@@ -1,3 +1,9 @@
 ake-home {
+  color: #ffffff;
+  font-size: 5rem;
 
+  & div {
+    padding-top: 21rem;
+    max-width: 40ch;
+  }
 }

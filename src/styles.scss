@@ -1,3 +1,13 @@
+// Settings
+
+
+// Tools
+@import './stylesheets/tools/index';
+
+// Typography
+@import './stylesheets/typography/index';
+
+
 /* You can add global styles to this file, and also import other style files */
 @import './app/app.component';
 @import './app/project/project.component';
@@ -5,14 +15,20 @@
 @import './app/navigation/navigation.component';
 @import './app/hex/hex.component';
 @import './app/background/background.component';
+@import './app/home/home.component';
+
+
 
 html,
 body {
   margin: 0;
+  font-family: SourceSerifPro, serif;
+  font-weight: 100;
+  font-size: 62.5%;
 }
 
 main {
-  margin-left: 10%;
+  margin-left: 21rem;
 }
 
 webgl-fluid-simulation {
@@ -20,5 +36,6 @@ webgl-fluid-simulation {
     width: 100%;
     height: 100%;
     position: fixed;
+    z-index: -1;
   }
 }
