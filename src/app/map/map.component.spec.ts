@@ -5,6 +5,7 @@ import {HexComponent} from '../hex/hex.component';
 import {BackgroundComponent} from '../background/background.component';
 import {ProjectComponent} from '../project/project.component';
 import {FluidSimulationModule} from '@triangular/fluid-simulation';
+import { ProjectsService } from '@core/services/projects.service';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -20,7 +21,10 @@ describe('MapComponent', () => {
         HexComponent,
         BackgroundComponent,
         ProjectComponent,
-      ]
+      ],
+      providers: [
+        ProjectsService,
+      ],
     })
     .compileComponents();
   }));
