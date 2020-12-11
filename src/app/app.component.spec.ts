@@ -6,12 +6,19 @@ import { MapComponent } from './map/map.component';
 import { ProjectComponent } from './project/project.component';
 import { HexComponent } from './hex/hex.component';
 import { BackgroundComponent } from './background/background.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
+import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        NotoEmojiIconsModule,
+        RpgAwesomeIconsModule,
+        FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
       ],
       declarations: [
@@ -20,6 +27,7 @@ describe('AppComponent', () => {
         ProjectComponent,
         HexComponent,
         BackgroundComponent,
+        NavigationComponent,
       ],
     }).compileComponents();
   }));

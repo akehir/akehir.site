@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProjectComponent } from './project.component';
 import { ProjectsService } from '@core/services/projects.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
+import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 
 describe('UnitComponent', () => {
   let component: ProjectComponent;
@@ -9,7 +13,13 @@ describe('UnitComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectComponent ],
+      imports: [
+        RouterTestingModule,
+        NotoEmojiIconsModule,
+        RpgAwesomeIconsModule,
+        FontAwesomeIconsModule,
+      ],
+      declarations: [ ProjectComponent, ],
       providers: [
         ProjectsService,
       ],

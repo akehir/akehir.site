@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BackgroundComponent } from './background.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BackgroundComponent', () => {
   let component: BackgroundComponent;
@@ -8,6 +9,9 @@ describe('BackgroundComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+      ],
       declarations: [ BackgroundComponent ]
     })
     .compileComponents();

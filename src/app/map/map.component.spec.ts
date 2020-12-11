@@ -6,6 +6,10 @@ import {BackgroundComponent} from '../background/background.component';
 import {ProjectComponent} from '../project/project.component';
 import {FluidSimulationModule} from '@triangular/fluid-simulation';
 import { ProjectsService } from '@core/services/projects.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
+import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -14,6 +18,10 @@ describe('MapComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
+        NotoEmojiIconsModule,
+        RpgAwesomeIconsModule,
+        FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
       ],
       declarations: [
