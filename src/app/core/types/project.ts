@@ -15,6 +15,7 @@ export enum ProjectType {
   'ux',
   'book',
   'blog',
+  'prototyping',
   'article',
   'paper',
   'whitepaper',
@@ -27,6 +28,9 @@ export enum ProjectContribution {
   'frontend',
   'backend',
   'programming',
+  '3d-design',
+  'design',
+  'everything',
   'minor',
 }
 
