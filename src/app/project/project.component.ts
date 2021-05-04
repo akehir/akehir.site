@@ -14,7 +14,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
-  @Input() project: Project;
 
   project$: Observable<Project>;
 
@@ -24,10 +23,9 @@ export class ProjectComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     ) {
     this.project$ = this.route.params.pipe(
-      mergeMap(params => {
-        console.log(params);
-        return this.projects.get(params['id']);
-      })
+      mergeMap(params =>
+        this.projects.get(params['id'])
+      )
     );
   }
 

@@ -9,7 +9,6 @@
 
 
 /* You can add global styles to this file, and also import other style files */
-@import './app/app.component';
 @import './app/project/project.component';
 @import './app/map/map.component';
 @import './app/navigation/navigation.component';
@@ -17,7 +16,9 @@
 @import './app/background/background.component';
 @import './app/home/home.component';
 
-
+html {
+  background: #131313;
+}
 
 html,
 body {

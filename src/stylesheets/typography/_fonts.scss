@@ -21,3 +21,12 @@
 @include font-face(SourceSerifPro, '../../assets/fonts/SourceSerif/SourceSerifPro-Semibold', 500);
 @include font-face(SourceSerifPro, '../../assets/fonts/SourceSerif/SourceSerifPro-Bold', 700);
 @include font-face(SourceSerifPro, '../../assets/fonts/SourceSerif/SourceSerifPro-Black', 800);
+
+
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-ExtraLight', 100);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Light', 200);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Regular', normal);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Regular', 400);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Semibold', 500);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Bold', 700);
+@include font-face(SourceCodePro, '../../assets/fonts/SourceCode/SourceCodePro-Black', 800);

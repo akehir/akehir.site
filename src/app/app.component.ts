@@ -4,7 +4,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
   selector: 'ake-root',
   templateUrl: './app.component.html',
   styleUrls: [],
-  // styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
