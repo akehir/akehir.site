@@ -14,11 +14,10 @@ export class ProjectsService {
 
   get(id: string): Observable<Project> {
     return this.all().pipe(
-      map(_map => {
-        return _map.coordinates
+      map(_map => _map.coordinates
           .map((coordinate) => coordinate.project)
-          .find((project) => project.id === id);
-      })
+          .find((project) => project.id === id)
+      )
     );
   }
 }
