@@ -4,7 +4,6 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   selector: 'ake-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: [],
-  // styleUrls: ['./map.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class NavigationComponent implements OnInit {

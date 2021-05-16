@@ -7,7 +7,6 @@ import { ProjectsService } from '@core/services/projects.service';
   selector: 'ake-map',
   templateUrl: './map.component.html',
   styleUrls: [],
-  // styleUrls: ['./map.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class MapComponent implements OnInit {
