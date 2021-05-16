@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 5555 --host 0.0.0.0",
-    "build": "ng build --prod --progress=false",
+    "build": "ng build --configuration production --progress=false",
     "test": "ng test --source-map=false --no-watch",
     "lint": "ng lint && npm run lint:sass",
     "lint:fix": "ng lint akehir --fix",
