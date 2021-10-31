@@ -1,10 +1,24 @@
 import { IconType, Project, ProjectContribution, ProjectStatus, ProjectType } from '../types/project';
 
-export const projectList: Project[] = [
-  {
+export const projectList: Record<string, Project> = {
+  'pfch': {
+    id: 'pfch',
+    name: 'PostFinance Online Banking',
+    icon: 'emerald',
+    iconType: IconType.rpgAwesome,
+    path: 'https://www.postfinance.ch/ap/ga/ob/html/finance/home',
+    git: '',
+    description: '',
+    year: 2021,
+    featured: true,
+    status: ProjectStatus['in-progress'],
+    type: ProjectType.website,
+    contribution: ProjectContribution.frontend,
+  },
+  'web-marble-marcher': {
     id: 'web-marble-marcher',
-    name: 'Emoji Wars',
-    icon: 'grass',
+    name: 'Web Marble Marcher',
+    icon: 'hole_ladder',
     iconType: IconType.rpgAwesome,
     path: 'https://wmm.akehir.com',
     git: '',
@@ -15,10 +29,10 @@ export const projectList: Project[] = [
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
   },
-  {
+  'paxw':{
     id: 'paxw',
     name: 'Pax Website',
-    icon: 'grass',
+    icon: 'arson',
     iconType: IconType.rpgAwesome,
     path: 'https://pax-frontend.viu.ch',
     git: '',
@@ -29,10 +43,10 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  {
+  'ig-rw': {
     id: 'ig-rw',
     name: 'IG Roggwil',
-    icon: 'grass',
+    icon: 'arson',
     iconType: IconType.rpgAwesome,
     path: 'https://ig-roggwil.ch',
     git: '',
@@ -43,10 +57,10 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  {
+  'efa': {
     id: 'efa',
     name: 'Essen für Alle',
-    icon: 'grass',
+    icon: 'arson',
     iconType: IconType.rpgAwesome,
     path: 'https://essen-für-alle.ch',
     git: '',
@@ -57,21 +71,7 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  {
-    id: 'evzh',
-    name: 'Ethnologischer Verein Zürich',
-    icon: 'grass',
-    iconType: IconType.rpgAwesome,
-    path: 'https://evzh.ch',
-    git: '',
-    description: '',
-    year: 2020,
-    featured: false,
-    status: ProjectStatus['in-progress'],
-    type: ProjectType.website,
-    contribution: ProjectContribution.frontend,
-  },
-  {
+  'alpcarver':{
     id: 'alpcarver',
     name: 'Alpcarver',
     icon: 'grass',
@@ -85,7 +85,7 @@ export const projectList: Project[] = [
     type: ProjectType.prototyping,
     contribution: ProjectContribution['3d-design'],
   },
-  {
+  'raspi-entertainment-system': {
     id: 'raspi-entertainment-system',
     name: 'Raspberry Pi Entertainment System',
     icon: 'grass',
@@ -99,7 +99,7 @@ export const projectList: Project[] = [
     type: ProjectType.prototyping,
     contribution: ProjectContribution.everything,
   },
-  {
+  'raspi-computer':{
     id: 'raspi-computer',
     name: 'Raspberry Computer',
     icon: 'grass',
@@ -113,7 +113,7 @@ export const projectList: Project[] = [
     type: ProjectType.prototyping,
     contribution: ProjectContribution.everything,
   },
-  {
+  'triangular-font-awesome-icons':{
     id: 'triangular-font-awesome-icons',
     name: '@triangular/font-awesome-icons',
     icon: 'grass',
@@ -127,7 +127,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+    'triangular-bootstrap-icons':{
     id: 'triangular-bootstrap-icons',
     name: '@triangular/bootstrap-icons',
     icon: 'grass',
@@ -141,7 +141,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'triangular-fluid-simulation':{
     id: 'triangular-fluid-simulation',
     name: '@triangular/fluid-simulation',
     icon: 'grass',
@@ -155,7 +155,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'triangular-material-icons':{
     id: 'triangular-material-icons',
     name: '@triangular/material-icons',
     icon: 'grass',
@@ -169,7 +169,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'triangular-noto-emoji':{
     id: 'triangular-noto-emoji',
     name: '@triangular/noto-emoji',
     icon: 'grass',
@@ -183,7 +183,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+    'triangular-password-checker':{
     id: 'triangular-password-checker',
     name: '@triangular/password-checker',
     icon: 'grass',
@@ -197,7 +197,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'triangular-rpg-awesome-icons':{
     id: 'triangular-rpg-awesome-icons',
     name: '@triangular/rpg-awesome-icons',
     icon: 'grass',
@@ -211,7 +211,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'triangular-shader':{
     id: 'triangular-shader',
     name: '@triangular/shaders',
     icon: 'grass',
@@ -230,10 +230,10 @@ export const projectList: Project[] = [
   // openid
   // fluid sim
   // shader
-  {
+  'emoji-wars':{
     id: 'emoji-wars',
     name: 'Emoji Wars',
-    icon: 'grass',
+    icon: 'hole_ladder',
     iconType: IconType.rpgAwesome,
     path: 'https://emojiwars.akehir.com',
     git: '',
@@ -244,7 +244,7 @@ export const projectList: Project[] = [
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
   },
-  {
+  'colour-picker':{
     id: 'colour-picker',
     name: 'Colour Picker',
     icon: 'leaf',
@@ -258,7 +258,7 @@ export const projectList: Project[] = [
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  {
+  'elipsoloft':{
     id: 'elipsoloft',
     name: 'Elipsoloft',
     icon: 'droplet',
@@ -272,7 +272,7 @@ export const projectList: Project[] = [
     type: ProjectType['3d-printing'],
     contribution: ProjectContribution.everything,
   },
-  {
+  'tfc':{
     id: 'tfc',
     name: 'Travel for Change',
     icon: 'droplet',
@@ -286,7 +286,7 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  {
+  'wedding-website':{
     id: 'wedding-website',
     name: 'Wedding Website',
     icon: 'frost_emblem',
@@ -300,7 +300,7 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  {
+  'evzh':{
     id: 'evzh',
     name: 'EVZH',
     icon: 'grass',
@@ -314,7 +314,7 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  {
+  'atc': {
     id: 'atc',
     name: 'Angular Terminal Component',
     icon: 'montains',
@@ -328,7 +328,7 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  {
+  'acp':{
     id: 'acp',
     name: 'Angular Colour Picker',
     icon: 'emoji_u_1_f_43_a',
@@ -342,4 +342,4 @@ export const projectList: Project[] = [
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-];
+};

@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { FirstMap } from '@core/data/FirstMap';
 import { Map, Project } from '@core/types';
-import { map } from 'rxjs/operators';
+import { projectList } from '@core/data';
 
 
 @Injectable()
 export class ProjectsService {
 
   all(): Observable<Map> {
-    return of(new FirstMap());
+    return of({coordinates: Object.values(projectList).map(project => ({ x: 0, y: 0, project}))});
   }
 
   get(id: string): Observable<Project> {
-    return this.all().pipe(
-      map(_map => _map.coordinates
-          .map((coordinate) => coordinate.project)
-          .find((project) => project.id === id)
-      )
-    );
+    return of(projectList[id]);
   }
 }

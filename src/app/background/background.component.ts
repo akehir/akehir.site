@@ -4,7 +4,15 @@ import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsRegistry } from '@triangular/font-awesome-icons';
 import { notoEmojiU0023, notoEmojiU1F43A } from '@triangular/noto-emoji-icons/icons';
-import { rpgAwesomeIconDroplet, rpgAwesomeIconFrostEmblem, rpgAwesomeIconGrass, rpgAwesomeIconLeaf, rpgAwesomeIconMontains } from '@triangular/rpg-awesome-icons/icons';
+import {
+  rpgAwesomeIconArson,
+  rpgAwesomeIconDroplet,
+  rpgAwesomeIconEmerald,
+  rpgAwesomeIconFrostEmblem,
+  rpgAwesomeIconGrass, rpgAwesomeIconHoleLadder,
+  rpgAwesomeIconLeaf,
+  rpgAwesomeIconMontains
+} from '@triangular/rpg-awesome-icons/icons';
 import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@triangular/font-awesome-icons/icons';
 
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -36,6 +44,9 @@ export class BackgroundComponent implements OnInit {
       rpgAwesomeIconLeaf,
       rpgAwesomeIconMontains,
       rpgAwesomeIconFrostEmblem,
+      rpgAwesomeIconEmerald,
+      rpgAwesomeIconHoleLadder,
+      rpgAwesomeIconArson
     ]);
 
     fontAwesomeIconsRegistry.registerIcons([
