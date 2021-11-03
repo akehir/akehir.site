@@ -1,7 +1,7 @@
 import { IconType, Project, ProjectContribution, ProjectStatus, ProjectType } from '../types/project';
 
 export const projectList: Record<string, Project> = {
-  'pfch': {
+  pfch: {
     id: 'pfch',
     name: 'PostFinance Online Banking',
     icon: 'emerald',
@@ -29,7 +29,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
   },
-  'paxw':{
+  paxw:{
     id: 'paxw',
     name: 'Pax Website',
     icon: 'arson',
@@ -57,7 +57,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  'efa': {
+  efa: {
     id: 'efa',
     name: 'Essen für Alle',
     icon: 'arson',
@@ -71,7 +71,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  'alpcarver':{
+  alpcarver:{
     id: 'alpcarver',
     name: 'Alpcarver',
     icon: 'grass',
@@ -258,7 +258,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'elipsoloft':{
+  elipsoloft:{
     id: 'elipsoloft',
     name: 'Elipsoloft',
     icon: 'droplet',
@@ -272,7 +272,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType['3d-printing'],
     contribution: ProjectContribution.everything,
   },
-  'tfc':{
+  tfc:{
     id: 'tfc',
     name: 'Travel for Change',
     icon: 'droplet',
@@ -300,7 +300,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  'evzh':{
+  evzh:{
     id: 'evzh',
     name: 'EVZH',
     icon: 'grass',
@@ -314,7 +314,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  'atc': {
+  atc: {
     id: 'atc',
     name: 'Angular Terminal Component',
     icon: 'montains',
@@ -328,7 +328,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  'acp':{
+  acp:{
     id: 'acp',
     name: 'Angular Colour Picker',
     icon: 'emoji_u_1_f_43_a',
