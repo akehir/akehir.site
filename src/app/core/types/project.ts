@@ -84,11 +84,11 @@ export interface Project {
   type: ProjectType;
   contribution: ProjectContribution;
   year: number;
-  duration: {
+  duration?: {
     start: string;
     end?: string;
   }
-  tech: Technologies[];
-  roles: string[];
-  activities: string[];
+  tech?: Technologies[];
+  roles?: string[];
+  activities?: string[];
 }

@@ -9,7 +9,8 @@ import {
   rpgAwesomeIconDroplet,
   rpgAwesomeIconEmerald,
   rpgAwesomeIconFrostEmblem,
-  rpgAwesomeIconGrass, rpgAwesomeIconHoleLadder,
+  rpgAwesomeIconGrass,
+  rpgAwesomeIconHoleLadder,
   rpgAwesomeIconLeaf,
   rpgAwesomeIconMontains
 } from '@triangular/rpg-awesome-icons/icons';
@@ -51,6 +52,7 @@ export class BackgroundComponent implements OnInit {
 
     fontAwesomeIconsRegistry.registerIcons([
       fontAwesomeIconHandHoldingHeart,
+      fontAwesomeIconMountain,
     ]);
   }
 
