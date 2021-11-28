@@ -11,6 +11,9 @@ export const projectList: Record<string, Project> = {
     description: '',
     year: 2021,
     featured: true,
+    duration: {
+      start: '2021-04-01',
+    },
     status: ProjectStatus['in-progress'],
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,

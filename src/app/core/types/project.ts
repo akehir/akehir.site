@@ -46,6 +46,13 @@ export enum ProjectStatus {
   'planned',
 }
 
+export enum Technologies {
+  'Angular'= 'https://angular.io',
+  'NGRX' = 'https://ngrx.io',
+  'NX' = 'https://nx.dev',
+  'Cypress' = 'https://www.cypress.io'
+}
+
 // export type Icons = noto | rpgAwesomeIcon | fontAwesomeIcon;
 
 // {
@@ -77,4 +84,11 @@ export interface Project {
   type: ProjectType;
   contribution: ProjectContribution;
   year: number;
+  duration: {
+    start: string;
+    end?: string;
+  }
+  tech: Technologies[];
+  roles: string[];
+  activities: string[];
 }
