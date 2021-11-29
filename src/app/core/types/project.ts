@@ -87,7 +87,7 @@ export interface Project {
   duration?: {
     start: string;
     end?: string;
-  }
+  };
   tech?: Technologies[];
   roles?: string[];
   activities?: string[];

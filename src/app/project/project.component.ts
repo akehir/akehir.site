@@ -3,7 +3,7 @@ import {Project} from '../core/types/project';
 import { ProjectsService } from '@core/services/projects.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
