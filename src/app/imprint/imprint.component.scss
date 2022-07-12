@@ -1,0 +1,18 @@
+ake-imprint {
+  h1 {
+    padding-top: 2.4rem;
+    color: #ffffff;
+    font-size: 5rem;
+    max-width: 40ch;
+    background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h1, p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 5rem;
+    max-width: 40ch;
+  }
+}

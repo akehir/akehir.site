@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import { IconType } from '@core/types';
 import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
@@ -23,6 +23,7 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
   templateUrl: './background.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BackgroundComponent implements OnInit {
   @Input() icon: string;

@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import { Project } from '@core/types';
 
 @Component({
@@ -6,6 +6,7 @@ import { Project } from '@core/types';
   templateUrl: './hex.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/

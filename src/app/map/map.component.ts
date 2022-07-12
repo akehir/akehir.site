@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import { Coordinate } from '../core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
@@ -8,6 +8,7 @@ import { ProjectsService } from '@core/services/projects.service';
   templateUrl: './map.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnInit {
 
