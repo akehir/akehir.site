@@ -32,6 +32,6 @@ deploy_production:
 deploy_develop:
   stage: deploy
   script:
-    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/akehir/ akehir@192.168.7.111:/app/web/akehir/develop/ # syncronize from build server to local via rsync
+    - rsync --delete -rlvvzhe ssh $CI_PROJECT_DIR/dist/akehir/ akehir@192.168.77.111:/app/web/akehir/develop/ # syncronize from build server to local via rsync
   only:
     - develop
