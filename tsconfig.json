@@ -10,17 +10,22 @@
     "module": "es2020",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "target": "es2020",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
     "paths": {
-      "@util": ["src/app/core/utilities/index.ts"],
-      "@core/*": ["src/app/core/*"]
+      "@util": [
+        "src/app/core/utilities/index.ts"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ]
     },
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   }
 }
