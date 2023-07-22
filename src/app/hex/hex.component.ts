@@ -12,7 +12,5 @@ export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/
   @Input() project: Project;
 
-  constructor() { }
-
 }
 

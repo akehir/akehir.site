@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
 import { Coordinate } from '../core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
@@ -10,17 +10,13 @@ import { ProjectsService } from '@core/services/projects.service';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
 
   constructor(private projects: ProjectsService) { }
   // https://www.redblobgames.com/grids/hexagons/
   map$ = this.projects.all(); // mocking async
 
   log = console.log;
-
-  ngOnInit() {
-  }
-
   trackCoordinate(index, item: Coordinate) {
     return `${item.x}-${item.y}`;
   }

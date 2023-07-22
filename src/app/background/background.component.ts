@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import { IconType } from '@core/types';
 import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
@@ -25,7 +25,7 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BackgroundComponent implements OnInit {
+export class BackgroundComponent {
   @Input() icon: string;
   @Input() iconType: IconType;
 
@@ -56,8 +56,4 @@ export class BackgroundComponent implements OnInit {
       fontAwesomeIconMountain,
     ]);
   }
-
-  ngOnInit() {
-  }
-
 }

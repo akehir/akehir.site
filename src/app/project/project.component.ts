@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {Project} from '../core/types/project';
 import { ProjectsService } from '@core/services/projects.service';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent {
 
   project$: Observable<Project>;
 
@@ -28,9 +28,6 @@ export class ProjectComponent implements OnInit {
         this.projects.get(params['id'])
       )
     );
-  }
-
-  ngOnInit() {
   }
 
   getIframeSrc(str: string): SafeUrl {
