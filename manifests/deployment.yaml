@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akehir-site
+  namespace: akehir
+spec:
+  selector:
+    matchLabels:
+      app: akehir-site
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: akehir-site
+    spec:
+      containers:
+      - name: akehir-site
+        image: registry.akehir.com:5050/akehir/akehir.site/akehir-site:master
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8811
+      imagePullSecrets:
+      - name: deploy-akehir-site

@@ -78,18 +78,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "akehir:build"
+            "buildTarget": "akehir:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "akehir:build:production"
+              "buildTarget": "akehir:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "akehir:build"
+            "buildTarget": "akehir:build"
           }
         },
         "test": {
