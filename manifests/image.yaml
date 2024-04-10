@@ -37,14 +37,14 @@ spec:
   git:
     checkout:
       ref:
-        branch: develop
+        branch: master
     commit:
       author:
         email: mr.robot@akehir.com
         name: mr.robot
       messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
     push:
-      branch: develop
+      branch: master
   update:
     path: ./manifests
     strategy: Setters
@@ -57,7 +57,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: develop
+    branch: master
   url: https://git.akehir.com/akehir/akehir.site.git
   secretRef:
     name: akehir-mr-robot
