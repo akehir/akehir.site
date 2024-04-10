@@ -1,0 +1,64 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: akehir-www-image-repository
+  namespace: akehir
+spec:
+  image: registry.akehir.com:5050/akehir/akehir.site/akehir-site
+  interval: 5m
+  secretRef:
+    name: registry-akehir
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: akehir-www-image-policy
+  namespace: akehir
+spec:
+  imageRepositoryRef:
+    name: akehir-www-image-repository
+  filterTags:
+    pattern: '^master-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: akehir-image-update-automation
+  namespace: akehir
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: akehir-git
+  git:
+    checkout:
+      ref:
+        branch: develop
+    commit:
+      author:
+        email: mr.robot@akehir.com
+        name: mr.robot
+      messageTemplate: '{{range .Updated.Images}}{{println .}}{{end}}'
+    push:
+      branch: develop
+  update:
+    path: ./manifests
+    strategy: Setters
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: akehir-git
+  namespace: akehir
+spec:
+  interval: 1m0s
+  ref:
+    branch: develop
+  url: https://git.akehir.com/akehir/akehir.site.git
+  secretRef:
+    name: akehir-mr-robot
+---
