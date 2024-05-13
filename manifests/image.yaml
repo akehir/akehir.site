@@ -4,7 +4,7 @@ metadata:
   name: akehir-www-image-repository
   namespace: akehir
 spec:
-  image: registry.akehir.com:5050/akehir/akehir.site/akehir-site
+  image: registry.akehir.com:443/akehir/akehir.site/akehir-site
   interval: 5m
   secretRef:
     name: registry-akehir
