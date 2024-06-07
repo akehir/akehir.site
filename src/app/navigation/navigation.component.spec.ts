@@ -5,13 +5,14 @@ import { HexComponent } from '../hex/hex.component';
 import { BackgroundComponent } from '../background/background.component';
 import { ProjectComponent } from '../project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
+import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FluidSimulationModule.forRoot(),
       ],
@@ -20,10 +21,10 @@ describe('NavigationComponent', () => {
         BackgroundComponent,
         ProjectComponent,
         HexComponent,
-      ]
+      ], providers: [provideExperimentalZonelessChangeDetection()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationComponent);

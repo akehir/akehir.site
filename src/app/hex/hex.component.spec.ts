@@ -8,12 +8,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
+import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
 describe('HexComponent', () => {
   let component: HexComponent;
   let fixture: ComponentFixture<HexComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -26,13 +27,14 @@ describe('HexComponent', () => {
         HexComponent,
         BackgroundComponent,
         ProjectComponent,
-      ]
+      ], providers: [provideExperimentalZonelessChangeDetection()]
     })
     .compileComponents();
-  }));
+  });
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(HexComponent);
+    await fixture.whenStable();
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,13 +10,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
+import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
 describe('MapComponent', () => {
   let component: MapComponent;
   let fixture: ComponentFixture<MapComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         NotoEmojiIconsModule,
@@ -32,10 +33,11 @@ describe('MapComponent', () => {
       ],
       providers: [
         ProjectsService,
+        provideExperimentalZonelessChangeDetection()
       ],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MapComponent);

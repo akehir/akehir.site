@@ -1,5 +1,4 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed } from '@angular/core/testing';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -10,16 +9,18 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
+import { AppRoutingModule } from "./app-routing.module";
+import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
+        AppRoutingModule
       ],
       declarations: [
         AppComponent,
@@ -29,17 +30,22 @@ describe('AppComponent', () => {
         BackgroundComponent,
         NavigationComponent,
       ],
+      providers: [provideExperimentalZonelessChangeDetection()]
     }).compileComponents();
-  }));
+  });
 
-  it('should create the app', () => {
+  it('should create the app', async () => {
     const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
+
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'akehir.com | CyberShaman by the Graces of Electron'`, () => {
+  it(`should have as title 'akehir.com | CyberShaman by the Graces of Electron'`, async () => {
     const fixture = TestBed.createComponent(AppComponent);
+    await fixture.whenStable();
+
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('akehir.com | CyberShaman by the Graces of Electron');
   });
