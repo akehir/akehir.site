@@ -12,7 +12,7 @@
   <pre>{{ project | json }}</pre>
 
   <div *ngIf="project?.path" class="project__showcase">
-    <img class="project__showcase-image" src="assets/iphone.svg" alt="An iphone as a frame"/>
+    <img class="project__showcase-image" src="../../../assets/iphone.svg" alt="An iphone as a frame"/>
     <iframe class="project__showcase-frame" [src]="getIframeSrc(project.path)"></iframe>
   </div>
 </ng-container>

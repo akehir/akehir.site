@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {Project} from '../core/types/project';
+import {Project} from '@core/types/project';
 import { ProjectsService } from '@core/services/projects.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';

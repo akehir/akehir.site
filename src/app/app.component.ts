@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from '@angular/core';
+import {BackgroundService} from "@core/services/background.service";
 
 @Component({
   selector: 'ake-root',
@@ -9,4 +10,5 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 })
 export class AppComponent {
   title = 'akehir.com | CyberShaman by the Graces of Electron';
+  background = inject(BackgroundService);
 }

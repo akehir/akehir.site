@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 
-import { Coordinate } from '../core/types/coordinate';
+import { Coordinate } from '@core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
 
 @Component({

@@ -9,14 +9,16 @@
 
 
 // You can add global styles to this file, and also import other style files
-@import './app/project/project.component';
-@import './app/map/map.component';
-@import './app/navigation/navigation.component';
-@import './app/hex/hex.component';
-@import './app/background/background.component';
-@import './app/home/home.component';
-@import './app/imprint/imprint.component';
-@import './app/privacy/privacy.component';
+@import 'app/pages/project/project.component';
+@import 'app/layout/map/map.component';
+@import 'app/layout/navigation/navigation.component';
+@import 'app/layout/hex/hex.component';
+@import 'app/layout/background/background.component';
+@import 'app/layout/console/console.component';
+@import 'app/pages/home/home.component';
+@import 'app/pages/imprint/imprint.component';
+@import 'app/pages/privacy/privacy.component';
+@import 'app/pages/colour/colour.component';
 
 html {
   background: #131313;
@@ -31,7 +33,10 @@ body {
 }
 
 main {
-  margin-left: 21rem;
+  margin-left: 4.2rem;
+  @media (min-width: 768px) {
+    margin-left: 24rem;
+  }
 }
 
 webgl-fluid-simulation {
@@ -41,4 +46,8 @@ webgl-fluid-simulation {
     position: fixed;
     z-index: -1;
   }
+}
+
+svg {
+  fill: currentColor;
 }

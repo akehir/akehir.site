@@ -3,17 +3,22 @@ import {NgModule, provideExperimentalZonelessChangeDetection} from '@angular/cor
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
-import { HexComponent } from './hex/hex.component';
-import { BackgroundComponent } from './background/background.component';
-import { ProjectComponent } from './project/project.component';
+import { MapComponent } from './layout/map/map.component';
+import { HexComponent } from './layout/hex/hex.component';
+import { BackgroundComponent } from './layout/background/background.component';
+import { ProjectComponent } from './pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './layout/navigation/navigation.component';
 import { ProjectsService } from '@core/services/projects.service';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
+import {BackgroundService} from "@core/services/background.service";
+import {ConsoleComponent} from "./layout/console";
+import {ColourComponent} from "./pages/colour";
+import {ConsoleService} from "@core/services/console.service";
+import {ColourService} from "@core/services/colour.service";
 
 @NgModule({
   declarations: [
@@ -29,8 +34,10 @@ import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
     BrowserModule,
     AppRoutingModule,
     FluidSimulationModule.forRoot({
-      SCREENSHOT_KEY_CODE: 'KeyS',
-      PAUSE_KEY_CODE: 'KeyP',
+      SCREENSHOT_KEY_CODE: '',
+      // SCREENSHOT_KEY_CODE: 'KeyS',
+      PAUSE_KEY_CODE: '',
+      // PAUSE_KEY_CODE: 'KeyP',
       SPLASH_KEY: ' ',
       BLOOM_INTENSITY: 0,
       SPLAT_FORCE: 0,
@@ -42,10 +49,15 @@ import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
     NotoEmojiIconsModule,
     RpgAwesomeIconsModule,
     FontAwesomeIconsModule,
+    ConsoleComponent,
+    ColourComponent,
   ],
   providers: [
     provideExperimentalZonelessChangeDetection(),
     ProjectsService,
+    BackgroundService,
+    ConsoleService,
+    ColourService,
   ],
   bootstrap: [AppComponent]
 })
