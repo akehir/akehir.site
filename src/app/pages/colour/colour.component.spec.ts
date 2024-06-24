@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColourService, ConsoleService } from '../../services';
+import { ColourService } from '@core/services/colour.service';
+import { ConsoleService } from '@core/services/console.service';
 
 import { ColourComponent } from './colour.component';
 
-import { SharedModule } from '../../../shared';
 import {provideRouter} from "@angular/router";
 import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
@@ -16,7 +16,6 @@ describe('ColourComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ColourComponent ],
       imports: [
-        SharedModule,
       ],
       providers: [
         provideExperimentalZonelessChangeDetection(),

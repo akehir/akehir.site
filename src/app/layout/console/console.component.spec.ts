@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConsoleComponent } from './console.component';
 
-import { ConsoleService } from '../../services';
+import { ConsoleService } from '@core/services/console.aervice';
 
-import { SharedModule } from '../../../shared';
 import {provideRouter} from "@angular/router";
 import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 
@@ -16,7 +15,6 @@ describe('ConsoleComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ConsoleComponent ],
       imports: [
-        SharedModule,
       ],
       providers: [
         provideExperimentalZonelessChangeDetection(),
