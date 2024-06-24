@@ -14,8 +14,9 @@ describe('ColourComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ColourComponent ],
+      declarations: [],
       imports: [
+        ColourComponent
       ],
       providers: [
         provideExperimentalZonelessChangeDetection(),

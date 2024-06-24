@@ -13,8 +13,9 @@ describe('ConsoleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConsoleComponent ],
+      declarations: [ ],
       imports: [
+        ConsoleComponent
       ],
       providers: [
         provideExperimentalZonelessChangeDetection(),
