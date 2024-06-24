@@ -11,6 +11,7 @@ import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { AppRoutingModule } from "./app-routing.module";
 import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { BackgroundService } from '@core/services/background.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -30,7 +31,10 @@ describe('AppComponent', () => {
         BackgroundComponent,
         NavigationComponent,
       ],
-      providers: [provideExperimentalZonelessChangeDetection()]
+      providers: [
+        provideExperimentalZonelessChangeDetection(),
+        BackgroundService,
+      ]
     }).compileComponents();
   });
 
