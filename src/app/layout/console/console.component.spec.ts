@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConsoleComponent } from './console.component';
 
-import { ConsoleService } from '@core/services/console.aervice';
+import { ConsoleService } from '@core/services/console.service';
 
 import {provideRouter} from "@angular/router";
 import {provideExperimentalZonelessChangeDetection} from "@angular/core";
