@@ -1,7 +1,8 @@
 <nav class="navigation" [ngClass]="{'navigation--expanded': expanded}">
   <button class="navigation__toggle" (click)="toggleNav()"><rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon></button>
   <ul class="navigation__list" role="menu">
-    <!-- eslint-disable @angular-eslint/template/click-events-have-key-events @angular-eslint/template/interactive-supports-focus -->
+    <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+    <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
     <li class="navigation__item">About</li>
     <li class="navigation__item">Blog</li>
     <!--  <li class="navigation__item">Console</li>-->
@@ -17,7 +18,8 @@
     <!--  <li class="navigation__item">Services</li>-->
     <li class="navigation__item">Software Stack</li>
     <li class="navigation__item">Testimonials</li>
-    <!-- eslint-enable @angular-eslint/template/click-events-have-key-events @angular-eslint/template/interactive-supports-focus -->
+    <!-- eslint-enable @angular-eslint/template/click-events-have-key-events -->
+    <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
   </ul>
 </nav>
 <div [ngClass]="{'navigation--expanded': console}">
