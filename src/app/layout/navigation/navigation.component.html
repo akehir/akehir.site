@@ -1,6 +1,7 @@
 <nav class="navigation" [ngClass]="{'navigation--expanded': expanded}">
   <button class="navigation__toggle" (click)="toggleNav()"><rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon></button>
   <ul class="navigation__list" role="menu">
+    <!-- eslint-disable-block @angular-eslint/template/click-events-have-key-events -->
     <li class="navigation__item">About</li>
     <li class="navigation__item">Blog</li>
   <!--  <li class="navigation__item">Console</li>-->

@@ -20,6 +20,7 @@ function enableBackground() {
 const routes: Routes = [
   { path: 'index', component: HomeComponent,resolve: { background: enableBackground }  },
   { path: 'projects', component: MapComponent, },
+  { path: 'projects/:id', component: ProjectComponent },
   {
     path: 'demos/colour', component: ColourComponent,
   },

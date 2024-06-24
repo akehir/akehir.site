@@ -1,6 +1,4 @@
 import {getColourValue} from "../../../types";
-import {scaleX, } from "../scale-x";
-import {scaleY} from "../scale-y";
 import {checkFactory} from "../check/check-factory";
 
 
