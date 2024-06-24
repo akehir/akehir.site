@@ -7,7 +7,7 @@ import { ProjectComponent } from '../../pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import {provideExperimentalZonelessChangeDetection} from "@angular/core";
 import { FontAwesomeIconsModule } from '@triangular/fon-awesome-icons';
-import { RpgAyAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 
 
 describe('NavigationComponent', () => {
@@ -19,7 +19,7 @@ describe('NavigationComponent', () => {
       imports: [
         FluidSimulationModule.forRoot(),
         FontAwesomeIconsModule,
-        RpyAwesomeIconsModule,
+        RpgAwesomeIconsModule,
       ],
       declarations: [
         NavigationComponent,
