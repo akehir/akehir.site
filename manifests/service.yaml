@@ -19,11 +19,7 @@ metadata:
 spec:
   type: ExternalName
   ports:
-    - name: http
-      port: 80
-      targetPort: 80
-    - name: https
-      port: 443
-      targetPort: 443
-  externalName: dash.akehir.com
-  
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  externalName: homepage.homepage.svc.cluster.local
