@@ -1,0 +1,16 @@
+ake-machina {
+  color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+
+  & pre {
+    color: #ffffff;
+    font-size: 5rem;
+    padding-top: 21rem;
+    max-width: 40ch;
+    background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

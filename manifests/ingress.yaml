@@ -18,6 +18,13 @@ spec:
                 name: akehir-site
                 port:
                   number: 8001
+          - path: /api/widgets
+            pathType: Prefix
+            backend:
+              service:
+                name: akehir-site-dash
+                port:
+                  number: 443
   tls:
     - hosts:
       - akehir.com

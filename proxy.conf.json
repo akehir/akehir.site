@@ -1,0 +1,8 @@
+{
+  "/api/widgets": {
+    "target": "https://dash.akehir.com",
+    "logLevel": "debug",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -10,3 +10,19 @@ spec:
   - protocol: TCP
     port: 8001
     targetPort: 8811
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: akehir-site-dash
+  namespace: akehir
+spec:
+  type: ExternalName
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+  externalName: dash.akehir.com
