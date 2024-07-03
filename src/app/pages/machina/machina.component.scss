@@ -4,14 +4,23 @@ ake-machina {
   margin: 0 auto;
   display: block;
 
-  & pre {
-    margin: 0 auto;
-    color: #ffffff;
-    font-size: 5rem;
-    padding-top: 21rem;
-    max-width: 40ch;
-    background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 5rem;
+  padding-top: 21rem;
+  max-width: 40ch;
+  background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  & svg {
+    padding: .2rem .4rem;
+    margin: 1rem .5em 0 1em;
+  }
+
+  & .flex {
+    display: flex;
+  }
+
+  & .flex-wrap {
+    flex-wrap: wrap;
   }
 }
