@@ -6,14 +6,23 @@ ake-machina {
 
   font-size: 5rem;
   padding-top: 21rem;
-  max-width: 40ch;
+  //max-width: 40ch;
   background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
+  & .clusterinfo {
+    border: .4rem solid;
+    border-radius: 1rem;
+    margin-bottom: 2.4rem;
+    margin-left: -2.8rem;
+    padding: 1rem 2.4rem;
+  }
+
   & svg {
     padding: .2rem .4rem;
-    margin: 1rem .5em 0 1em;
+    margin: 1rem 1.5em 0 .5em;
+    height: 1em;
   }
 
   & .flex {
@@ -22,5 +31,12 @@ ake-machina {
 
   & .flex-wrap {
     flex-wrap: wrap;
+  }
+
+  & .bg-theme-800\/30 {
+    height: 1rem;
+    border-radius: 1rem;
+    color: $color-white;
+    opacity: .4;
   }
 }

@@ -2,6 +2,14 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 import { interval } from 'rxjs';
 import { exhaustMap, startWith } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import {FontAwesomeIconsRegistry} from "@triangular/font-awesome-icons";
+import {RpgAwesomeIconsRegistry} from "@triangular/rpg-awesome-icons";
+import {
+  rpgAwesomeIconAcid, rpgAwesomeIconBook,
+  rpgAwesomeIconBrainFreeze,
+  rpgAwesomeIconJigsawPiece, rpgAwesomeIconNodular, rpgAwesomeIconPoisonCloud
+} from "@triangular/rpg-awesome-icons/icons";
+import {fontAwesomeIconCloudSun} from "@triangular/font-awesome-icons/icons";
 
 type ClusterInfo = {
   "cluster": {
@@ -47,7 +55,12 @@ export class MachinaComponent {
 
   kubernetes$ = interval(4000).pipe(startWith(-1), exhaustMap(() => this.http.get<ClusterInfo>('/api/widgets/kubernetes?lang=en')));
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient,
+              private readonly fontAwesome: FontAwesomeIconsRegistry,
+              private readonly rpgAwesome: RpgAwesomeIconsRegistry) {
+    this.fontAwesome.registerIcons([fontAwesomeIconCloudSun]);
+    this.rpgAwesome.registerIcons([rpgAwesomeIconJigsawPiece, rpgAwesomeIconBrainFreeze, rpgAwesomeIconBook, rpgAwesomeIconNodular, rpgAwesomeIconPoisonCloud])
+  }
 
   getStyle(percent: number) {
     return `width: ${percent}%;`
