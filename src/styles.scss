@@ -7,6 +7,10 @@
 // Typography
 @import './stylesheets/typography/index';
 
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 // You can add global styles to this file, and also import other style files
 @import 'app/pages/project/project.component';

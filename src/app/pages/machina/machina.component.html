@@ -6,51 +6,51 @@
       <div class="flex flex-col max-w:full sm:basis-auto self-center grow-0 flex-wrap ml-4">
         <div class="flex flex-row self-center flex-wrap justify-between">
           <div class="flex-none flex flex-row items-center mr-3 py-1.5 clusterinfo">
-            <rpg-awesome-icon name="poison_cloud"></rpg-awesome-icon>
+            <rpg-awesome-icon class="big" name="poison_cloud"></rpg-awesome-icon>
             <div class="flex flex-col ml-3 text-left min-w-[85px]">
-              <div class="text-theme-800 dark:text-theme-200 text-xs flex flex-row justify-between">
-                <div class="pl-0.5">{{ k8s.cluster.cpu.percent | number: '1.1-1' }}%</div>
+              <div class="flex flex-row justify-between">
+                <div class="pl-0.5 pr-6">{{ k8s.cluster.cpu.percent | number: '1.1-1' }}%</div>
                 <rpg-awesome-icon name="brain_freeze"></rpg-awesome-icon>
               </div>
-              <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1 dark:bg-theme-200/20 ">
+              <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1 ">
                 <div class="bg-theme-800/70 h-1 rounded-full dark:bg-theme-200/50 transition-all duration-1000"
                      [style]="getStyle(k8s.cluster.cpu.percent)"></div>
               </div>
-              <div class="text-theme-800 dark:text-theme-200 text-xs flex flex-row justify-between">
-                <div class="pl-0.5">{{ k8s.cluster.memory.used / 1000000000 | number: '1.1-1'  }} / {{ k8s.cluster.memory.total / 1000000000 | number: '3.0-0' }} GiB</div>
+              <div class="flex flex-row justify-between">
+                <div class="pl-0.5 pr-6">{{ k8s.cluster.memory.used / 1000000000 | number: '1.1-1'  }} / {{ k8s.cluster.memory.total / 1000000000 | number: '1.0-0' }} GiB</div>
                 <rpg-awesome-icon name="book"></rpg-awesome-icon>
               </div>
-              <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1 dark:bg-theme-200/20 ">
+              <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1">
                 <div class="bg-theme-800/70 h-1 rounded-full dark:bg-theme-200/50 transition-all duration-1000"
                      [style]="getStyle(k8s.cluster.memory.percent)"></div>
               </div>
-              <div class="pt-1 text-center text-theme-800 dark:text-theme-200 text-xs">cluster</div>
+              <div class="pt-1 text-center">cluster</div>
             </div>
           </div>
         </div>
       </div>
       @for (node of k8s.nodes; track node.name) {
-        <div class="flex flex-col max-w:full sm:basis-auto self-center grow-0 flex-wrap ml-4">
+        <div class="flex flex-col max-w:full sm:basis-auto self-center grow-0 flex-wrap ml-4 mt-16">
           <div class="flex flex-row self-center flex-wrap justify-between">
             <div class="flex-none flex flex-row items-center mr-3 py-1.5">
-              <rpg-awesome-icon name="nodular"></rpg-awesome-icon>
+              <rpg-awesome-icon class="big" name="nodular"></rpg-awesome-icon>
               <div class="flex flex-col ml-3 text-left min-w-[85px]">
-                <div class="text-theme-800 dark:text-theme-200 text-xs flex flex-row justify-between">
-                  <div class="pl-0.5">{{node.cpu.percent | number: '3.0-0'}}%</div>
+                <div class="flex flex-row justify-between">
+                  <div class="pl-0.5 pr-6">{{node.cpu.percent | number: '1.0-0'}}%</div>
                   <rpg-awesome-icon name="brain_freeze"></rpg-awesome-icon>                </div>
                 <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1 dark:bg-theme-200/20 ">
                   <div class="bg-theme-800/70 h-1 rounded-full dark:bg-theme-200/50 transition-all duration-1000"
                        [style]="getStyle(node.cpu.percent)"></div>
                 </div>
-                <div class="text-theme-800 dark:text-theme-200 text-xs flex flex-row justify-between">
-                  <div class="pl-0.5">{{node.memory.used / 1000000000 | number: '2.1-1'  }} / {{node.memory.total / 1000000000 | number: '2.1-1'  }} GiB</div>
+                <div class="flex flex-row justify-between">
+                  <div class="pl-0.5 pr-6">{{node.memory.used / 1000000000 | number: '1.1-1'  }} / {{node.memory.total / 1000000000 | number: '1.1-1'  }} GiB</div>
                   <rpg-awesome-icon name="book"></rpg-awesome-icon>
                 </div>
                 <div class="mt-0.5 w-full bg-theme-800/30 rounded-full h-1 dark:bg-theme-200/20 ">
                   <div class="bg-theme-800/70 h-1 rounded-full dark:bg-theme-200/50 transition-all duration-1000"
                        [style]="getStyle(node.memory.percent)"></div>
                 </div>
-                <div class="pt-1 text-center text-theme-800 dark:text-theme-200 text-xs">{{ node.name }}</div>
+                <div class="pt-1 text-center">{{ node.name }}</div>
               </div>
             </div>
           </div>

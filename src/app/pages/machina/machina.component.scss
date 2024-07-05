@@ -20,23 +20,25 @@ ake-machina {
   }
 
   & svg {
-    padding: .2rem .4rem;
-    margin: 1rem 1.5em 0 .5em;
     height: 1em;
   }
 
-  & .flex {
-    display: flex;
+  & .big svg {
+    height: 2.4em;
   }
 
-  & .flex-wrap {
-    flex-wrap: wrap;
+  & rpg-awesome-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  & .bg-theme-800\/70 {
+        background: #fff;
+      height: 1rem;
   }
 
   & .bg-theme-800\/30 {
-    height: 1rem;
-    border-radius: 1rem;
-    color: $color-white;
-    opacity: .4;
+      background: rgba(255,255,255,0.3);
+      height: 1rem;
   }
 }
