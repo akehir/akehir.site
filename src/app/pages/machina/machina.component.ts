@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { interval } from 'rxjs';
-import { exhaustMap, startWith } from 'rxjs/operators';
+import { interval, of } from 'rxjs';
+import { exhaustMap, startWith, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { FontAwesomeIconsRegistry } from "@triangular/font-awesome-icons";
 import { RpgAwesomeIconsRegistry } from "@triangular/rpg-awesome-icons";
@@ -57,7 +57,7 @@ export class MachinaComponent {
 
   kubernetes$ = interval(4000).pipe(
     startWith(-1),
-    exhaustMap(() => this.http.get<ClusterInfo>('/api/widgets/kubernetes?lang=en')),
+    exhaustMap(() => this.http.get<ClusterInfo>('/api/widgets/kubernetes?lang=en').pipe(catchError(() => of(undefined)))),
   );
 
   constructor(private readonly http: HttpClient,
