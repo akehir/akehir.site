@@ -1,17 +1,29 @@
 .console {
   color: #777;
   //opacity: 0;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
-  margin: 0.5rem;
+  margin: 0;
   display: flex;
   flex-flow: column;
   //font-family: "Fira Code", "Noto Consolas", Consolas, monospace;
   //font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-family: SourceSerifPro, monospace;
   z-index: 1;
-  font-size: 4rem;
+  font-size: 2rem;
+  text-align: right;
+  height: 100dvh;
+  overflow: scroll;
+  background: rgba(#777, .2);
+  padding: 0 2.4rem;
+
+  // todo: solvvvvvvvvvvvvvvve this.
+  //&--bottom {
+  //  position: fixed;
+  //  right: 0;
+  //  bottom: 0;
+  //}
 
   &--row {
     display: flex;
@@ -28,8 +40,6 @@
 
   &--history {
     flex: 6 1 auto;
-    margin: 0 3rem;
-    width: 100%;
 
     p {
       margin: 0;
@@ -41,9 +51,7 @@
 
   &--input-area {
     flex: 6 1 auto;
-    margin: 0 1rem;
-    width: 100%;
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   &--input-label {

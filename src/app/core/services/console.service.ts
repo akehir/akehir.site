@@ -13,9 +13,10 @@ export class ConsoleService {
   }
 
   push(message: string, style?: Style) {
-    if (this.pastCommands.length > 10) {
-      this.clear();
-    }
+    // todo: clear oldest entries if length too big
+    // if (this.pastCommands.length > 20) {
+    //   this.clear();
+    // }
 
     this.pastCommands.push({message: message, style: style || { colour: '#777', }});
   }
