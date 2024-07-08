@@ -46,6 +46,10 @@
     padding: 0 10rem 0 0;
     height: calc(100dvh - 11.8rem);
     overflow: hidden scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { 
+        display: none;
+    }
   }
 
   &__item {
