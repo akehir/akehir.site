@@ -4,14 +4,14 @@ stages:
   - build
   - deploy
 
-lint-yaml:
+linty:
   stage: lint
   image: registry.akehir.com/infra/yamllint/yamllint
   script:
     - yamllint --list-files .
     - yamllint .
 
-lint-kubernetes:
+lintk:
   stage: lint
   image: registry.akehir.com/infra/kubernetes-validate/kubernetes-validate
   script:
@@ -39,7 +39,7 @@ deploy:
   stage: deploy
   tags:
     - metal
-  needs: ['build', 'lint']
+  needs: ['build', 'linty', 'lintk']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
