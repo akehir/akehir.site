@@ -4,12 +4,18 @@ stages:
   - build
   - deploy
 
-lint:
+lint-yaml:
   stage: lint
   image: registry.akehir.com/infra/yamllint/yamllint
   script:
     - yamllint --list-files .
     - yamllint .
+
+lint-kubernetes:
+  stage: lint
+  image: registry.akehir.com/infra/kubernetes-validate/kubernetes-validate
+  script:
+    - kubernetes-validate ./manifests/*.yaml
 
 build:
   stage: build

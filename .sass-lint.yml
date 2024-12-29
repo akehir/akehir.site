@@ -1,3 +1,4 @@
+---
 # File Options
 files:
   include:
@@ -28,7 +29,7 @@ rules:
   # those mixins do not have to be used before any other declarations
   mixins-before-declarations:
     - 1
-    - exclude: [ 'mediaquery', 'breakpoint', 'attention', 'nojsonly', 'jsonly', 'focus-onkeypress' ]
+    - exclude: ['mediaquery', 'breakpoint', 'attention', 'nojsonly', 'jsonly', 'focus-onkeypress']
 
   # allow non-leading zero values like .2rem or .4rem
   leading-zero: 0

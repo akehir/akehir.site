@@ -8,9 +8,9 @@ spec:
   selector:
     app: akehir-site
   ports:
-  - protocol: TCP
-    port: 8001
-    targetPort: 8811
+    - protocol: TCP
+      port: 8001
+      targetPort: 8811
 ---
 kind: Service
 apiVersion: v1
