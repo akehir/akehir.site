@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,19 +15,20 @@ spec:
         app: akehir-site
     spec:
       containers:
-      - name: akehir-site
-        image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-98078ba8-1731009030 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
-        ports:
-        - containerPort: 8811
+        - name: akehir-site
+          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-98078ba8-1731009030 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
+          ports:
+            - containerPort: 8811
       imagePullSecrets:
-      - name: registry-akehir
+        - name: registry-akehir
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: kubernetes.io/arch
-                operator: In
-                values:
-                - arm64
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                      - arm64
+---

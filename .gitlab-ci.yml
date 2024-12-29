@@ -1,9 +1,15 @@
-# Documentation
-# https://docs.gitlab.com/ee/ci/yaml/
-
+---
 stages:
+  - lint
   - build
   - deploy
+
+lint:
+  stage: lint
+  image: registry.akehir.com/infra/yamllint/yamllint
+  script:
+    - yamllint --list-files .
+    - yamllint .
 
 build:
   stage: build
@@ -27,7 +33,7 @@ deploy:
   stage: deploy
   tags:
     - metal
-  needs: ['build']
+  needs: ['build', 'lint']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
