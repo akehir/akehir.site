@@ -15,7 +15,7 @@ lintk:
   stage: lint
   image: registry.akehir.com/infra/kubernetes-validate/kubernetes-validate
   script:
-    - kubernetes-validate ./manifests/*.yaml
+    - kubernetes-validate ./manifests/*.yaml | grep -v "INFO" | grep -v "WARN"
 
 build:
   stage: build
