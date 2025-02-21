@@ -20,17 +20,16 @@ import {NgForOf} from "@angular/common";
 import {projectList} from "@core/data";
 
 @Component({
-  selector: 'ake-console',
-  templateUrl: './console.component.html',
-  styleUrls: ['./console.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    FormsModule,
-    FontAwesomeIconsModule,
-    NgForOf
-  ],
-  standalone: true
+    selector: 'ake-console',
+    templateUrl: './console.component.html',
+    styleUrls: ['./console.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        FormsModule,
+        FontAwesomeIconsModule,
+        NgForOf
+    ]
 })
 export class ConsoleComponent implements AfterViewInit {
   public command: string;

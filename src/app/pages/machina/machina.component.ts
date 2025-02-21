@@ -48,11 +48,12 @@ type ClusterInfo = {
 }
 
 @Component({
-  selector: 'ake-machina',
-  templateUrl: './machina.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-machina',
+    templateUrl: './machina.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MachinaComponent {
 

@@ -19,11 +19,12 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
-  selector: 'ake-background',
-  templateUrl: './background.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-background',
+    templateUrl: './background.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class BackgroundComponent {
   @Input() icon: string;

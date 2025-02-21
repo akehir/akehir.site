@@ -5,11 +5,12 @@ import {FontAwesomeIconsRegistry} from "@triangular/font-awesome-icons";
 import {fontAwesomeIconTerminal} from "@triangular/font-awesome-icons/icons";
 
 @Component({
-  selector: 'ake-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-navigation',
+    templateUrl: './navigation.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NavigationComponent {
   expanded = false;

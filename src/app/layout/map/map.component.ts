@@ -4,11 +4,12 @@ import { Coordinate } from '@core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
 
 @Component({
-  selector: 'ake-map',
-  templateUrl: './map.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-map',
+    templateUrl: './map.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MapComponent {
 

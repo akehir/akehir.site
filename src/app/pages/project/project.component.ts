@@ -8,11 +8,12 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'ake-project',
-  templateUrl: './project.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-project',
+    templateUrl: './project.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ProjectComponent {
 

@@ -2,11 +2,12 @@ import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from '@an
 import {BackgroundService} from "@core/services/background.service";
 
 @Component({
-  selector: 'ake-root',
-  templateUrl: './app.component.html',
-  styleUrls: [],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ake-root',
+    templateUrl: './app.component.html',
+    styleUrls: [],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class AppComponent {
   title = 'akehir.com | CyberShaman by the Graces of Electron';
