@@ -7,9 +7,10 @@ import { RpgAwesomeIconsRegistry } from "@triangular/rpg-awesome-icons";
 import {
   rpgAwesomeIconBook,
   rpgAwesomeIconBrainFreeze,
+  rpgAwesomeIconDeathSkull,
   rpgAwesomeIconJigsawPiece,
   rpgAwesomeIconNodular,
-  rpgAwesomeIconPoisonCloud
+  rpgAwesomeIconHoneycomb
 } from "@triangular/rpg-awesome-icons/icons";
 import { fontAwesomeIconCloudSun } from "@triangular/font-awesome-icons/icons";
 
@@ -68,8 +69,9 @@ export class MachinaComponent {
       rpgAwesomeIconJigsawPiece,
       rpgAwesomeIconBrainFreeze,
       rpgAwesomeIconBook,
+      rpgAwesomeIconDeathSkull,
       rpgAwesomeIconNodular,
-      rpgAwesomeIconPoisonCloud
+      rpgAwesomeIconHoneycomb,
     ]);
   }
 

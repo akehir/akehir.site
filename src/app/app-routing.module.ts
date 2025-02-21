@@ -20,6 +20,10 @@ function enableBackground() {
 
 const routes: Routes = [
   { path: 'index', component: HomeComponent,resolve: { background: enableBackground }  },
+  { path: 'about', loadChildren: () => import('./pages/about/about.module').then(m => m.AboutModule), resolve: { background: disableBackground } },
+  { path: 'blog', loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule), resolve: { background: disableBackground } },
+  { path: 'curriculum', loadChildren: () => import('./pages/curriculum/curriculum.module').then(m => m.CurriculumModule), resolve: { background: disableBackground } },
+
   { path: 'machina', component: MachinaComponent, },
   { path: 'projects', component: MapComponent, },
   { path: 'projects/:id', component: ProjectComponent },
