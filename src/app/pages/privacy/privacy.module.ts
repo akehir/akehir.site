@@ -9,9 +9,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    PrivacyComponent
   ],
   imports: [
+    PrivacyComponent,
     CommonModule,
     RouterModule.forChild(routes),
   ]

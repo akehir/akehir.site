@@ -7,15 +7,8 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MapComponent } from './layout/map/map.component';
-import { HexComponent } from './layout/hex/hex.component';
-import { BackgroundComponent } from './layout/background/background.component';
-import { ProjectComponent } from './pages/project/project.component';
-import { MachinaComponent } from './pages/machina/machina.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
-import { NavigationComponent } from './layout/navigation/navigation.component';
 import { ProjectsService } from '@core/services/projects.service';
-import { HomeComponent } from './pages/home/home.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
@@ -24,19 +17,14 @@ import { ConsoleComponent } from "./layout/console";
 import { ColourComponent } from "./pages/colour";
 import { ConsoleService } from "@core/services/console.service";
 import { ColourService } from "@core/services/colour.service";
+import {NavigationComponent} from "./layout/navigation/navigation.component";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MapComponent,
-    HexComponent,
-    BackgroundComponent,
-    ProjectComponent,
-    NavigationComponent,
-    HomeComponent,
-    MachinaComponent,
+    AppComponent
   ],
   imports: [
+    NavigationComponent,
     BrowserModule,
     AppRoutingModule,
     FluidSimulationModule.forRoot({

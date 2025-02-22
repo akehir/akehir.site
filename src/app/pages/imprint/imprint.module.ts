@@ -9,9 +9,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    ImprintComponent
   ],
   imports: [
+    ImprintComponent,
     CommonModule,
     RouterModule.forChild(routes),
   ]

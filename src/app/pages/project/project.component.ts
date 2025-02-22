@@ -5,15 +5,22 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import {HexComponent} from "../../layout/hex/hex.component";
+import {AsyncPipe, JsonPipe, NgIf} from "@angular/common";
 
 
 @Component({
-    selector: 'ake-project',
-    templateUrl: './project.component.html',
-    styleUrls: [],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ake-project',
+  templateUrl: './project.component.html',
+  styleUrls: [],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    HexComponent,
+    JsonPipe,
+    AsyncPipe,
+    NgIf
+  ]
 })
 export class ProjectComponent {
 

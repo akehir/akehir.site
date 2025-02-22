@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import { IconType } from '@core/types';
-import { NotoEmojiIconsRegistry } from '@triangular/noto-emoji-icons';
-import { RpgAwesomeIconsRegistry } from '@triangular/rpg-awesome-icons';
-import { FontAwesomeIconsRegistry } from '@triangular/font-awesome-icons';
+import {NotoEmojiIconComponent, NotoEmojiIconsRegistry} from '@triangular/noto-emoji-icons';
+import {RpgAwesomeIconComponent, RpgAwesomeIconsRegistry} from '@triangular/rpg-awesome-icons';
+import {FontAwesomeIconComponent, FontAwesomeIconsRegistry} from '@triangular/font-awesome-icons';
 import { notoEmojiU0023, notoEmojiU1F43A } from '@triangular/noto-emoji-icons/icons';
 import {
   rpgAwesomeIconArson,
@@ -19,12 +19,16 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
-    selector: 'ake-background',
-    templateUrl: './background.component.html',
-    styleUrls: [],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ake-background',
+  templateUrl: './background.component.html',
+  styleUrls: [],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NotoEmojiIconComponent,
+    RpgAwesomeIconComponent,
+    FontAwesomeIconComponent
+  ]
 })
 export class BackgroundComponent {
   @Input() icon: string;

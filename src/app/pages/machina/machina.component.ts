@@ -3,7 +3,7 @@ import { interval, of } from 'rxjs';
 import { exhaustMap, startWith, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { FontAwesomeIconsRegistry } from "@triangular/font-awesome-icons";
-import { RpgAwesomeIconsRegistry } from "@triangular/rpg-awesome-icons";
+import {RpgAwesomeIconComponent, RpgAwesomeIconsRegistry} from "@triangular/rpg-awesome-icons";
 import {
   rpgAwesomeIconBook,
   rpgAwesomeIconBrainFreeze,
@@ -13,6 +13,7 @@ import {
   rpgAwesomeIconHoneycomb
 } from "@triangular/rpg-awesome-icons/icons";
 import { fontAwesomeIconCloudSun } from "@triangular/font-awesome-icons/icons";
+import {AsyncPipe, DecimalPipe} from "@angular/common";
 
 type ClusterInfo = {
   "cluster": {
@@ -48,12 +49,16 @@ type ClusterInfo = {
 }
 
 @Component({
-    selector: 'ake-machina',
-    templateUrl: './machina.component.html',
-    styleUrls: [],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'ake-machina',
+  templateUrl: './machina.component.html',
+  styleUrls: [],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AsyncPipe,
+    RpgAwesomeIconComponent,
+    DecimalPipe
+  ]
 })
 export class MachinaComponent {
 

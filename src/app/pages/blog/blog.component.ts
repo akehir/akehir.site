@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
     styleUrls: [],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
 })
 export class BlogComponent {
 
