@@ -1,10 +1,15 @@
-import {getColourValue} from "../../../types";
-import {scaleX, } from "../scale-x";
-import {scaleY} from "../scale-y";
-import {checkFactory} from "../check/check-factory";
+import { getColourValue } from '../../../types';
+import { scaleX } from '../scale-x';
+import { scaleY } from '../scale-y';
+import { checkFactory } from '../check/check-factory';
 
-
-export function mandelbrot(variant: string, xoffset: number= 0, yoffset: number= 0, width: number= 0, height: number= 0): getColourValue {
+export function mandelbrot(
+  variant: string,
+  xoffset: number = 0,
+  yoffset: number = 0,
+  width: number = 0,
+  height: number = 0
+): getColourValue {
   const colour = checkFactory(variant);
   const sq = 2;
 

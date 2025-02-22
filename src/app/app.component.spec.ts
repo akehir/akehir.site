@@ -9,8 +9,8 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import { AppRoutingModule } from "./app-routing.module";
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { AppRoutingModule } from './app-routing.module';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
 
 describe('AppComponent', () => {
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
       ],
       declarations: [
         AppComponent,
@@ -34,7 +34,7 @@ describe('AppComponent', () => {
       providers: [
         provideExperimentalZonelessChangeDetection(),
         BackgroundService,
-      ]
+      ],
     }).compileComponents();
   });
 
@@ -51,6 +51,8 @@ describe('AppComponent', () => {
     await fixture.whenStable();
 
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('akehir.com | CyberShaman by the Graces of Electron');
+    expect(app.title).toEqual(
+      'akehir.com | CyberShaman by the Graces of Electron'
+    );
   });
 });

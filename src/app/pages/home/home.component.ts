@@ -1,5 +1,9 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ake-home',
@@ -7,10 +11,6 @@ import {RouterLink} from "@angular/router";
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    RouterLink
-  ]
+  imports: [RouterLink],
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

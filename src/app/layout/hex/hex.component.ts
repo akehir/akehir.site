@@ -1,6 +1,11 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Project } from '@core/types';
-import {BackgroundComponent} from "../background/background.component";
+import { BackgroundComponent } from '../background/background.component';
 
 @Component({
   selector: 'ake-hex',
@@ -8,13 +13,9 @@ import {BackgroundComponent} from "../background/background.component";
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    BackgroundComponent
-  ]
+  imports: [BackgroundComponent],
 })
 export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/
   @Input() project: Project;
-
 }
-

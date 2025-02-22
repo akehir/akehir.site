@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
 import { getColourValue } from '../types';
-import {bitwiseXorColour} from "../util/colour/bitwise-xor-colour";
-import {mandelbrot} from "../util/colour/pixel-factory/mandelbrot";
-import {legacymandelbrot} from "../util/colour/pixel-factory/legacy-mandelbrot";
-import {ochsenbrot} from "../util/colour/pixel-factory/ochsenbrot";
-import {circle} from "../util/colour/pixel-factory/circle";
-import {circle2} from "../util/colour/pixel-factory/circle-2";
-import {circle3} from "../util/colour/pixel-factory/circle-3";
-import {circle4} from "../util/colour/pixel-factory/circle-4";
-import {circle5} from "../util/colour/pixel-factory/circle-5";
-import {circle6} from "../util/colour/pixel-factory/circle-6";
-import {simplecircle} from "../util/colour/pixel-factory/circle-simple";
-import {random} from "../util/colour/pixel-factory/random";
+import { bitwiseXorColour } from '../util/colour/bitwise-xor-colour';
+import { mandelbrot } from '../util/colour/pixel-factory/mandelbrot';
+import { legacymandelbrot } from '../util/colour/pixel-factory/legacy-mandelbrot';
+import { ochsenbrot } from '../util/colour/pixel-factory/ochsenbrot';
+import { circle } from '../util/colour/pixel-factory/circle';
+import { circle2 } from '../util/colour/pixel-factory/circle-2';
+import { circle3 } from '../util/colour/pixel-factory/circle-3';
+import { circle4 } from '../util/colour/pixel-factory/circle-4';
+import { circle5 } from '../util/colour/pixel-factory/circle-5';
+import { circle6 } from '../util/colour/pixel-factory/circle-6';
+import { simplecircle } from '../util/colour/pixel-factory/circle-simple';
+import { random } from '../util/colour/pixel-factory/random';
 
 @Injectable()
 export class ColourService {
-  pixelFactory(variant: string, xoffset: number= 0, yoffset: number= 0, width: number= 0, height: number= 0): getColourValue {
+  pixelFactory(
+    variant: string,
+    xoffset: number = 0,
+    yoffset: number = 0,
+    width: number = 0,
+    height: number = 0
+  ): getColourValue {
     if (variant === 'square-square') {
       return bitwiseXorColour(variant, xoffset, yoffset);
     } else if (variant === 'generic') {

@@ -1,9 +1,9 @@
-import {checkColourValue} from "@core/types";
-import {defaultCheck, } from "./default-check";
-import {fullCheck, } from "./full-check";
-import {moduloCheck, } from "./modulo-check";
-import {nullCheck,} from "./null-check";
-import { realCheck} from "./real-check";
+import { checkColourValue } from '@core/types';
+import { defaultCheck } from './default-check';
+import { fullCheck } from './full-check';
+import { moduloCheck } from './modulo-check';
+import { nullCheck } from './null-check';
+import { realCheck } from './real-check';
 
 export function checkFactory(variant: string): checkColourValue {
   if (variant === 'square-square' || variant === 'circle') {

@@ -1,13 +1,13 @@
 ---
-version: "3.9"
+version: '3.9'
 
 services:
-    tfc:
-        container_name: akehir-site
-        image: akehir-site
-        build:
-            context: .
-            dockerfile: Dockerfile
-        restart: always
-        ports:
-            - "8080:8811"
+  tfc:
+    container_name: akehir-site
+    image: akehir-site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '8080:8811'

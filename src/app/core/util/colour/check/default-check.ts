@@ -1,4 +1,4 @@
-import {checkColourValue} from "../../../types";
+import { checkColourValue } from '../../../types';
 
 export function defaultCheck(): checkColourValue {
   return (): number => {

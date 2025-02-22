@@ -7,12 +7,18 @@ ake-machina {
   font-size: 5rem;
   padding-top: 21rem;
   //max-width: 40ch;
-  background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+  background: linear-gradient(
+    to bottom right,
+    $color-akehir-cyan,
+    $color-akehir-blue,
+    $color-akehir-red,
+    $color-akehir-yellow
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   & .clusterinfo {
-    border: .4rem solid;
+    border: 0.4rem solid;
     border-radius: 1rem;
     margin-bottom: 2.4rem;
     margin-left: -2.8rem;
@@ -33,12 +39,12 @@ ake-machina {
   }
 
   & .bg-theme-800\/70 {
-        background: #fff;
-      height: 1rem;
+    background: #fff;
+    height: 1rem;
   }
 
   & .bg-theme-800\/30 {
-      background: rgba(255,255,255,0.3);
-      height: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    height: 1rem;
   }
 }

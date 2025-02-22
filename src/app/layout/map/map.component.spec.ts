@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
-import {HexComponent} from '../hex/hex.component';
-import {BackgroundComponent} from '../background/background.component';
-import {ProjectComponent} from '../../pages/project/project.component';
-import {FluidSimulationModule} from '@triangular/fluid-simulation';
+import { HexComponent } from '../hex/hex.component';
+import { BackgroundComponent } from '../background/background.component';
+import { ProjectComponent } from '../../pages/project/project.component';
+import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { ProjectsService } from '@core/services/projects.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -33,10 +33,9 @@ describe('MapComponent', () => {
       ],
       providers: [
         ProjectsService,
-        provideExperimentalZonelessChangeDetection()
+        provideExperimentalZonelessChangeDetection(),
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,7 +1,11 @@
-import {getColourValue} from "@core/types";
-import {checkFactory} from "../check/check-factory";
+import { getColourValue } from '@core/types';
+import { checkFactory } from '../check/check-factory';
 
-export function triangle(variant: string, xoffset: number= 0, yoffset: number= 0): getColourValue {
+export function triangle(
+  variant: string,
+  xoffset: number = 0,
+  yoffset: number = 0
+): getColourValue {
   const colour = checkFactory(variant);
 
   return (p: number, q: number, offset: number): number => {

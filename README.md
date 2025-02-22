@@ -1,16 +1,19 @@
 # Akehir.com
 
 ## Abstract
+
 The new website for akehir.com
 
 ## Memorandum
 
-## Features 
+## Features
 
 ### WebGL Fluid Animation
+
 - In Background, controllable
 
 ### Console
+
 Console allows control of application, with help / typeahead (suggestions).
 Suggestions are absolutely positioned behind typed stuff.
 Console can be opened / closed by clicking on icon.
@@ -18,6 +21,7 @@ Console can ask questions
 Console log is virtual scrolling enabled
 
 #### Features
+
     - Change Language
     - Install PWA Trigger
     - Cookies, etc
@@ -29,5 +33,5 @@ Console log is virtual scrolling enabled
     - Filter / search projects
 
 ## Acknowledgements
- WebGL Fluid Simulation from: https://github.com/PavelDoGreat/WebGL-Fluid-Simulation
- 
+
+WebGL Fluid Simulation from: https://github.com/PavelDoGreat/WebGL-Fluid-Simulation

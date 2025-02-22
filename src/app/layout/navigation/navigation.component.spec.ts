@@ -5,10 +5,9 @@ import { HexComponent } from '../hex/hex.component';
 import { BackgroundComponent } from '../background/background.component';
 import { ProjectComponent } from '../../pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
-
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -26,9 +25,9 @@ describe('NavigationComponent', () => {
         BackgroundComponent,
         ProjectComponent,
         HexComponent,
-      ], providers: [provideExperimentalZonelessChangeDetection()]
-    })
-    .compileComponents();
+      ],
+      providers: [provideExperimentalZonelessChangeDetection()],
+    }).compileComponents();
   });
 
   beforeEach(() => {

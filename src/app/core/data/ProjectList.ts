@@ -1,4 +1,10 @@
-import { IconType, Project, ProjectContribution, ProjectStatus, ProjectType } from '../types/project';
+import {
+  IconType,
+  Project,
+  ProjectContribution,
+  ProjectStatus,
+  ProjectType,
+} from '../types/project';
 
 export const projectList: Record<string, Project> = {
   pfch: {
@@ -32,7 +38,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
   },
-  paxw:{
+  paxw: {
     id: 'paxw',
     name: 'Pax Website',
     icon: 'arson',
@@ -74,7 +80,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.frontend,
   },
-  alpcarver:{
+  alpcarver: {
     id: 'alpcarver',
     name: 'Alpcarver',
     icon: 'grass',
@@ -102,7 +108,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.prototyping,
     contribution: ProjectContribution.everything,
   },
-  'raspi-computer':{
+  'raspi-computer': {
     id: 'raspi-computer',
     name: 'Raspberry Computer',
     icon: 'grass',
@@ -116,7 +122,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.prototyping,
     contribution: ProjectContribution.everything,
   },
-  'triangular-font-awesome-icons':{
+  'triangular-font-awesome-icons': {
     id: 'triangular-font-awesome-icons',
     name: '@triangular/font-awesome-icons',
     icon: 'grass',
@@ -130,7 +136,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-    'triangular-bootstrap-icons':{
+  'triangular-bootstrap-icons': {
     id: 'triangular-bootstrap-icons',
     name: '@triangular/bootstrap-icons',
     icon: 'grass',
@@ -144,7 +150,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'triangular-fluid-simulation':{
+  'triangular-fluid-simulation': {
     id: 'triangular-fluid-simulation',
     name: '@triangular/fluid-simulation',
     icon: 'grass',
@@ -158,7 +164,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'triangular-material-icons':{
+  'triangular-material-icons': {
     id: 'triangular-material-icons',
     name: '@triangular/material-icons',
     icon: 'grass',
@@ -172,7 +178,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'triangular-noto-emoji':{
+  'triangular-noto-emoji': {
     id: 'triangular-noto-emoji',
     name: '@triangular/noto-emoji',
     icon: 'grass',
@@ -186,21 +192,22 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-    'triangular-password-checker':{
+  'triangular-password-checker': {
     id: 'triangular-password-checker',
     name: '@triangular/password-checker',
     icon: 'grass',
     iconType: IconType.rpgAwesome,
     path: 'https://password.akehir.com/',
     git: 'https://git.akehir.com/akehir/password-checker',
-    description: 'Angular Library for verifying that passwords entered have not been breached',
+    description:
+      'Angular Library for verifying that passwords entered have not been breached',
     year: 2020,
     featured: false,
     status: ProjectStatus['maintaining'],
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'triangular-rpg-awesome-icons':{
+  'triangular-rpg-awesome-icons': {
     id: 'triangular-rpg-awesome-icons',
     name: '@triangular/rpg-awesome-icons',
     icon: 'grass',
@@ -214,7 +221,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  'triangular-shader':{
+  'triangular-shader': {
     id: 'triangular-shader',
     name: '@triangular/shaders',
     icon: 'grass',
@@ -233,7 +240,7 @@ export const projectList: Record<string, Project> = {
   // openid
   // fluid sim
   // shader
-  'emoji-wars':{
+  'emoji-wars': {
     id: 'emoji-wars',
     name: 'Emoji Wars',
     icon: 'hole_ladder',
@@ -247,7 +254,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.game,
     contribution: ProjectContribution.programming,
   },
-  'colour-picker':{
+  'colour-picker': {
     id: 'colour-picker',
     name: 'Colour Picker',
     icon: 'leaf',
@@ -261,7 +268,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.library,
     contribution: ProjectContribution.programming,
   },
-  elipsoloft:{
+  elipsoloft: {
     id: 'elipsoloft',
     name: 'Elipsoloft',
     icon: 'droplet',
@@ -275,7 +282,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType['3d-printing'],
     contribution: ProjectContribution.everything,
   },
-  tfc:{
+  tfc: {
     id: 'tfc',
     name: 'Travel for Change',
     icon: 'droplet',
@@ -289,7 +296,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  'wedding-website':{
+  'wedding-website': {
     id: 'wedding-website',
     name: 'Wedding Website',
     icon: 'frost_emblem',
@@ -303,7 +310,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  evzh:{
+  evzh: {
     id: 'evzh',
     name: 'EVZH',
     icon: 'grass',
@@ -331,7 +338,7 @@ export const projectList: Record<string, Project> = {
     type: ProjectType.website,
     contribution: ProjectContribution.programming,
   },
-  acp:{
+  acp: {
     id: 'acp',
     name: 'Angular Colour Picker',
     icon: 'emoji_u_1_f_43_a',

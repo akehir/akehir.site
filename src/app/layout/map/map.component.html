@@ -1,14 +1,12 @@
 <ul class="grid" *ngIf="map$ | async as map">
-  <li class="hex"
-    *ngFor="let coordinate of map.coordinates; trackBy: trackCoordinate"
-  >
+  <li
+    class="hex"
+    *ngFor="let coordinate of map.coordinates; trackBy: trackCoordinate">
     <div class="hexIn">
       <ake-hex
         class="hexLink"
         (click)="log(coordinate)"
-        [project]="coordinate?.project"
-      ></ake-hex>
+        [project]="coordinate?.project"></ake-hex>
     </div>
-
   </li>
 </ul>

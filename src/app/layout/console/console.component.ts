@@ -4,32 +4,28 @@ import {
   Component,
   ElementRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import {Router} from '@angular/router';
-import {FormsModule, NgForm} from '@angular/forms';
-import {timer} from 'rxjs';
-import {ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
+import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { timer } from 'rxjs';
+import { ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
 import {
   FontAwesomeIconsModule,
-  FontAwesomeIconsRegistry
+  FontAwesomeIconsRegistry,
 } from '@triangular/font-awesome-icons';
 import { fontAwesomeIconTerminal } from '@triangular/font-awesome-icons/icons';
-import {ConsoleService} from "@core/services/console.service";
-import {NgForOf} from "@angular/common";
-import {projectList} from "@core/data";
+import { ConsoleService } from '@core/services/console.service';
+import { NgForOf } from '@angular/common';
+import { projectList } from '@core/data';
 
 @Component({
-    selector: 'ake-console',
-    templateUrl: './console.component.html',
-    styleUrls: ['./console.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        FormsModule,
-        FontAwesomeIconsModule,
-        NgForOf
-    ]
+  selector: 'ake-console',
+  templateUrl: './console.component.html',
+  styleUrls: ['./console.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FormsModule, FontAwesomeIconsModule, NgForOf],
 })
 export class ConsoleComponent implements AfterViewInit {
   public command: string;
@@ -42,11 +38,9 @@ export class ConsoleComponent implements AfterViewInit {
     private focusTrap: ConfigurableFocusTrapFactory,
     private router: Router,
     public console: ConsoleService,
-    private registry: FontAwesomeIconsRegistry,
-    ) {
-    this.registry.registerIcons([
-      fontAwesomeIconTerminal,
-    ]);
+    private registry: FontAwesomeIconsRegistry
+  ) {
+    this.registry.registerIcons([fontAwesomeIconTerminal]);
   }
 
   ngAfterViewInit() {
@@ -67,7 +61,7 @@ export class ConsoleComponent implements AfterViewInit {
     this.console.push(newOrder);
 
     if (newOrder.startsWith('ls')) {
-      if(newOrder.startsWith('ls projects')) {
+      if (newOrder.startsWith('ls projects')) {
         const projects = Object.keys(projectList);
         this.console.clear();
         this.console.push(newOrder);
@@ -102,56 +96,61 @@ export class ConsoleComponent implements AfterViewInit {
         break;
       case 'r':
       case 'random':
-        this.router.navigate(['/', 'demos', 'colour', 'random', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'random']);
         break;
       case 'm':
       case 'mandel':
       case 'mandelbrot':
-        this.router.navigate(['/', 'demos', 'colour', 'legacy-mandelbrot', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'legacy-mandelbrot']);
         break;
       case 'mm':
       case 'mandelbrot-2':
-        this.router.navigate(['/', 'demos', 'colour', 'mandelbrot', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'mandelbrot']);
         break;
       case 'c':
       case 'circle':
-        this.router.navigate(['/', 'demos', 'colour', 'circle', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle']);
         break;
       case 'c2':
       case 'circle2':
-        this.router.navigate(['/', 'demos', 'colour', 'circle2', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle2']);
         break;
       case 'c3':
       case 'circle3':
-        this.router.navigate(['/', 'demos', 'colour', 'circle3', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle3']);
         break;
       case 'c4':
       case 'circle4':
-        this.router.navigate(['/', 'demos', 'colour', 'circle4', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle4']);
         break;
       case 'c5':
       case 'circle5':
-        this.router.navigate(['/', 'demos', 'colour', 'circle5', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle5']);
         break;
       case 'c6':
       case 'circle6':
-        this.router.navigate(['/', 'demos', 'colour', 'circle6', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'circle6']);
         break;
       case 's':
       case 'simple':
-        this.router.navigate(['/', 'demos', 'colour', 'circle-simple-algorithm', ]);
+        this.router.navigate([
+          '/',
+          'demos',
+          'colour',
+          'circle-simple-algorithm',
+        ]);
         break;
       case 'o':
       case 'ochsen':
-        this.router.navigate(['/', 'demos', 'colour', 'ochsenbrot', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'ochsenbrot']);
         break;
       case 'sq':
       case 'square':
-        this.router.navigate(['/', 'demos', 'colour', 'square-square', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'square-square']);
         break;
       case 't':
       case 'triangle':
-        this.router.navigate(['/', 'demos', 'colour', 'triangle', ]);
+        this.router.navigate(['/', 'demos', 'colour', 'triangle']);
         break;
       case 'h':
       case 'man':
@@ -159,9 +158,8 @@ export class ConsoleComponent implements AfterViewInit {
         this.printHelp();
         break;
       default:
-        // this.router.navigate(['/']);
+      // this.router.navigate(['/']);
     }
-
   }
 
   printHelp() {

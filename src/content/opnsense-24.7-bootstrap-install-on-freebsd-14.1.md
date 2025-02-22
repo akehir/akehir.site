@@ -1,6 +1,6 @@
 # opnsense 24.7 bootstrap / install on freebsd 14.1
 
-error: 
+error:
 
 ```
 sudo su -

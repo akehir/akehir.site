@@ -4,11 +4,18 @@ ake-privacy {
     padding-top: 2.4rem;
   }
 
-  h1, p {
+  h1,
+  p {
     color: #ffffff;
     font-size: 5rem;
     max-width: 40ch;
-    background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+    background: linear-gradient(
+      to bottom right,
+      $color-akehir-cyan,
+      $color-akehir-blue,
+      $color-akehir-red,
+      $color-akehir-yellow
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

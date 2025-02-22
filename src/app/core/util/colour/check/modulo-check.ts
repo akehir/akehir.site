@@ -1,4 +1,4 @@
-import {checkColourValue} from "@core/types";
+import { checkColourValue } from '@core/types';
 
 export function moduloCheck(): checkColourValue {
   const colourMax = 255;

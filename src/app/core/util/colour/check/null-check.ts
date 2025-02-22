@@ -1,4 +1,4 @@
-import {checkColourValue} from "../../../types";
+import { checkColourValue } from '../../../types';
 
 export function nullCheck(): checkColourValue {
   const colourMax = 255;

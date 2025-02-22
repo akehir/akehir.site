@@ -1,10 +1,15 @@
-import {getColourValue} from "../../../types";
-import {scaleX, } from "../scale-x";
-import {scaleY} from "../scale-y";
-import {checkFactory} from "../check/check-factory";
+import { getColourValue } from '../../../types';
+import { scaleX } from '../scale-x';
+import { scaleY } from '../scale-y';
+import { checkFactory } from '../check/check-factory';
 
-
-export function circle3(variant: string, xoffset: number= 0, yoffset: number= 0, width: number= 0, height: number= 0): getColourValue {
+export function circle3(
+  variant: string,
+  xoffset: number = 0,
+  yoffset: number = 0,
+  width: number = 0,
+  height: number = 0
+): getColourValue {
   const colourMax = 255;
   const colour = checkFactory(variant);
   const sq = 2;
@@ -18,6 +23,11 @@ export function circle3(variant: string, xoffset: number= 0, yoffset: number= 0,
 
   return (p: number, q: number): number => {
     // eslint-disable-next-line max-len
-    return colour(colourMax - ((scaleY(q - xoffset, height, ys, yo) ** sq + scaleX(p - yoffset, width, xs, xo) ** sq) ** rt));
+    return colour(
+      colourMax -
+        (scaleY(q - xoffset, height, ys, yo) ** sq +
+          scaleX(p - yoffset, width, xs, xo) ** sq) **
+          rt
+    );
   };
 }

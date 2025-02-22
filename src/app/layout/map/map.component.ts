@@ -1,9 +1,13 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { Coordinate } from '@core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
-import {HexComponent} from "../hex/hex.component";
-import {AsyncPipe, NgForOf} from "@angular/common";
+import { HexComponent } from '../hex/hex.component';
+import { AsyncPipe, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'ake-map',
@@ -11,15 +15,10 @@ import {AsyncPipe, NgForOf} from "@angular/common";
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    HexComponent,
-    AsyncPipe,
-    NgForOf
-  ]
+  imports: [HexComponent, AsyncPipe, NgForOf],
 })
 export class MapComponent {
-
-  constructor(private projects: ProjectsService) { }
+  constructor(private projects: ProjectsService) {}
   // https://www.redblobgames.com/grids/hexagons/
   map$ = this.projects.all(); // mocking async
 

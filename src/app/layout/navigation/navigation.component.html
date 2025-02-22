@@ -1,19 +1,35 @@
-<nav class="navigation" [ngClass]="{'navigation--expanded': expanded}">
-  <button class="navigation__toggle" (click)="toggleNav()"><rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon></button>
+<nav class="navigation" [ngClass]="{ 'navigation--expanded': expanded }">
+  <button class="navigation__toggle" (click)="toggleNav()">
+    <rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon>
+  </button>
   <ul class="navigation__list" role="menu">
     <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
     <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-    <li class="navigation__item" >About</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/blog">Blog</li>
+    <li class="navigation__item">About</li>
+    <li class="navigation__item" (click)="hideNav()" routerLink="/blog">
+      Blog
+    </li>
     <!--  <li class="navigation__item">Console</li>-->
     <!--  <li class="navigation__item">Contact</li>-->
-    <li class="navigation__item" (click)="hideNav()" routerLink="/curriculum">Curriculum</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/demos/colour/circle">Demos</li>
+    <li class="navigation__item" (click)="hideNav()" routerLink="/curriculum">
+      Curriculum
+    </li>
+    <li
+      class="navigation__item"
+      (click)="hideNav()"
+      routerLink="/demos/colour/circle">
+      Demos
+    </li>
     <li class="navigation__item">Education</li>
     <li class="navigation__item">Food</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/machina">Gadgets</li> <!-- K8s cluster, etc/ ... names: gear / gadgets / hardware / kit / artefacts / tools -->
+    <li class="navigation__item" (click)="hideNav()" routerLink="/machina">
+      Gadgets
+    </li>
+    <!-- K8s cluster, etc/ ... names: gear / gadgets / hardware / kit / artefacts / tools -->
     <li class="navigation__item" (click)="hideNav()" routerLink="/">Home</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/projects">Projects</li>
+    <li class="navigation__item" (click)="hideNav()" routerLink="/projects">
+      Projects
+    </li>
     <!--  <li class="navigation__item">Ramblings</li>-->
     <!--  <li class="navigation__item">Search</li>-->
     <!--  <li class="navigation__item">Services</li>-->
@@ -23,8 +39,12 @@
     <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
   </ul>
 </nav>
-<div [ngClass]="{'navigation--expanded': console}">
-  <button class="navigation__toggle navigation__toggle--right" (click)="toggleConsole()"><font-awesome-icon name="terminal"></font-awesome-icon></button>
+<div [ngClass]="{ 'navigation--expanded': console }">
+  <button
+    class="navigation__toggle navigation__toggle--right"
+    (click)="toggleConsole()">
+    <font-awesome-icon name="terminal"></font-awesome-icon>
+  </button>
 </div>
 
 <ake-console *ngIf="console"></ake-console>

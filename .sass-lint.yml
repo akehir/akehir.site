@@ -29,7 +29,15 @@ rules:
   # those mixins do not have to be used before any other declarations
   mixins-before-declarations:
     - 1
-    - exclude: ['mediaquery', 'breakpoint', 'attention', 'nojsonly', 'jsonly', 'focus-onkeypress']
+    - exclude:
+        [
+          'mediaquery',
+          'breakpoint',
+          'attention',
+          'nojsonly',
+          'jsonly',
+          'focus-onkeypress',
+        ]
 
   # allow non-leading zero values like .2rem or .4rem
   leading-zero: 0
@@ -57,16 +65,14 @@ rules:
   # allow custom vendor specific properties
   no-misspelled-properties:
     - 1
-    -
-      'extra-properties':
+    - 'extra-properties':
         - 'overflow-scrolling'
         - 'font-smooting'
 
   # allow non-standard prefixes for font-smoothing etc.
   no-vendor-prefixes:
     - 1
-    -
-      'ignore-non-standard': 1
+    - 'ignore-non-standard': 1
 
   # allow nested attribute and pseudo-selectors, this makes stuff
   # more readable for humans and allow some edge-case-nesting issues,

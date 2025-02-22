@@ -4,28 +4,21 @@ import {
   ElementRef,
   ViewChild,
   ViewEncapsulation,
-  Inject, NgZone, ChangeDetectionStrategy,
+  Inject,
+  NgZone,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { DOCUMENT } from '@angular/common';
 
 import { ActivatedRoute, Params } from '@angular/router';
 
-import {
-  fromEvent,
-} from 'rxjs';
+import { fromEvent } from 'rxjs';
 
-import {
-  switchMap,
-  takeUntil,
-  pairwise,
-  delay,
-  repeat,
-} from 'rxjs/operators';
-import {ColourService} from "@core/services/colour.service";
-import {ConsoleService} from "@core/services/console.service";
-import {Colour, getColourValue, Position} from "@core/types";
-
+import { switchMap, takeUntil, pairwise, delay, repeat } from 'rxjs/operators';
+import { ColourService } from '@core/services/colour.service';
+import { ConsoleService } from '@core/services/console.service';
+import { Colour, getColourValue, Position } from '@core/types';
 
 @Component({
   selector: 'ake-colour',
@@ -33,7 +26,7 @@ import {Colour, getColourValue, Position} from "@core/types";
   styleUrls: ['./colour.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true
+  standalone: true,
 })
 export class ColourComponent implements AfterViewInit {
   @ViewChild('canvas') canvas: ElementRef;
@@ -72,8 +65,8 @@ export class ColourComponent implements AfterViewInit {
     private colours: ColourService,
     private console: ConsoleService,
     private zone: NgZone,
-    @Inject(DOCUMENT) private document: Document,
-    ) { }
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   getColour(position: Position): Colour {
     // Get the color data of the canvas version of our element at that location
@@ -105,7 +98,9 @@ export class ColourComponent implements AfterViewInit {
 
     this.copyToClipboard(hex);
 
-    this.console.push(`${hex} has been copied to the clipboard.`, { colour: hex });
+    this.console.push(`${hex} has been copied to the clipboard.`, {
+      colour: hex,
+    });
 
     return {
       rgba: rgba,
@@ -114,14 +109,18 @@ export class ColourComponent implements AfterViewInit {
   }
 
   clickColour($event) {
-    this.getColour({x: $event.offsetX, y: $event.offsetY});
+    this.getColour({ x: $event.offsetX, y: $event.offsetY });
   }
 
   ngAfterViewInit() {
     this.context = this.canvas.nativeElement.getContext('2d');
 
-    this.height = window ? Math.floor(window.innerHeight / 10) * 10 : this.canvas.nativeElement.height;
-    this.width =  window ? Math.floor(window.innerWidth / 10) * 10 : this.canvas.nativeElement.width;
+    this.height = window
+      ? Math.floor(window.innerHeight / 10) * 10
+      : this.canvas.nativeElement.height;
+    this.width = window
+      ? Math.floor(window.innerWidth / 10) * 10
+      : this.canvas.nativeElement.width;
     this.canvas.nativeElement.height = this.height;
     this.canvas.nativeElement.width = this.width;
 
@@ -145,7 +144,11 @@ export class ColourComponent implements AfterViewInit {
 
   draw(algorithm: string) {
     this.setup(algorithm);
-    this.pixelLoop(this.redValueComponent, this.greenValueComponent, this.blueValueComponent);
+    this.pixelLoop(
+      this.redValueComponent,
+      this.greenValueComponent,
+      this.blueValueComponent
+    );
   }
 
   clear(): void {
@@ -170,24 +173,67 @@ export class ColourComponent implements AfterViewInit {
     this.blue = this.getBlueValueFactory(algorithm, box, boy);
   }
 
-  putSquare(x: number, y: number, r: number, g: number, b: number, w: number, h: number, a: number= 1): void {
+  putSquare(
+    x: number,
+    y: number,
+    r: number,
+    g: number,
+    b: number,
+    w: number,
+    h: number,
+    a: number = 1
+  ): void {
     this.context.fillStyle = `rgba(${r},${g},${b},${a})`;
-    this.context.fillRect( x, y, w, h );
+    this.context.fillRect(x, y, w, h);
   }
 
-  private getRedValueFactory(variant: string, xoffset: number= 127.5, yoffset: number= 0): getColourValue {
-    return this.colours.pixelFactory(variant, xoffset, yoffset, this.width, this.height);
+  private getRedValueFactory(
+    variant: string,
+    xoffset: number = 127.5,
+    yoffset: number = 0
+  ): getColourValue {
+    return this.colours.pixelFactory(
+      variant,
+      xoffset,
+      yoffset,
+      this.width,
+      this.height
+    );
   }
 
-  private getGreenValueFactory(variant: string, xoffset: number= 0, yoffset: number= 221): getColourValue {
-    return this.colours.pixelFactory(variant, xoffset, yoffset, this.width, this.height);
+  private getGreenValueFactory(
+    variant: string,
+    xoffset: number = 0,
+    yoffset: number = 221
+  ): getColourValue {
+    return this.colours.pixelFactory(
+      variant,
+      xoffset,
+      yoffset,
+      this.width,
+      this.height
+    );
   }
 
-  private getBlueValueFactory(variant: string, xoffset: number= this.colourMax, yoffset: number= 221): getColourValue {
-    return this.colours.pixelFactory(variant, xoffset, yoffset, this.width, this.height);
+  private getBlueValueFactory(
+    variant: string,
+    xoffset: number = this.colourMax,
+    yoffset: number = 221
+  ): getColourValue {
+    return this.colours.pixelFactory(
+      variant,
+      xoffset,
+      yoffset,
+      this.width,
+      this.height
+    );
   }
 
-  private pixelLoop(rr: number = this.colourMax, gg: number= this.colourMax, bb: number= this.colourMax): void {
+  private pixelLoop(
+    rr: number = this.colourMax,
+    gg: number = this.colourMax,
+    bb: number = this.colourMax
+  ): void {
     // console.log(this.width, this.height);
     const w: number = this.drawWidth;
     const h: number = this.drawHeight;
@@ -212,46 +258,46 @@ export class ColourComponent implements AfterViewInit {
       q = q + h;
       p = 0;
     }
-
   }
 
   // to draw etc...
   private captureEvents() {
-    fromEvent(this.canvas.nativeElement, 'mousedown').pipe(
-      delay(32),
-      takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
-      repeat(),
-      switchMap(() => {
-        // after a mouse down, we'll record all mouse moves
-        return fromEvent(this.canvas.nativeElement, 'mousemove').pipe(
-          // we'll stop (and unsubscribe) once the user releases the mouse
-          // this will trigger a 'mouseup' event
-          takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
-          // we'll also stop (and unsubscribe) once the mouse leaves the canvas (mouseleave event)
-          takeUntil(fromEvent(this.canvas.nativeElement, 'mouseleave')),
-          // pairwise lets us get the previous value to draw a line from
-          // the previous point to the current point
-          pairwise(),
-        );
-      }),
-    )
-    .subscribe((res: [MouseEvent, MouseEvent]) => {
-      const rect = this.canvas.nativeElement.getBoundingClientRect();
+    fromEvent(this.canvas.nativeElement, 'mousedown')
+      .pipe(
+        delay(32),
+        takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
+        repeat(),
+        switchMap(() => {
+          // after a mouse down, we'll record all mouse moves
+          return fromEvent(this.canvas.nativeElement, 'mousemove').pipe(
+            // we'll stop (and unsubscribe) once the user releases the mouse
+            // this will trigger a 'mouseup' event
+            takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),
+            // we'll also stop (and unsubscribe) once the mouse leaves the canvas (mouseleave event)
+            takeUntil(fromEvent(this.canvas.nativeElement, 'mouseleave')),
+            // pairwise lets us get the previous value to draw a line from
+            // the previous point to the current point
+            pairwise()
+          );
+        })
+      )
+      .subscribe((res: [MouseEvent, MouseEvent]) => {
+        const rect = this.canvas.nativeElement.getBoundingClientRect();
 
-      // previous and current position with the offset
-      const prevPos = {
-        x: res[0].clientX - rect.left,
-        y: res[0].clientY - rect.top
-      };
+        // previous and current position with the offset
+        const prevPos = {
+          x: res[0].clientX - rect.left,
+          y: res[0].clientY - rect.top,
+        };
 
-      const currentPos = {
-        x: res[1].clientX - rect.left,
-        y: res[1].clientY - rect.top
-      };
+        const currentPos = {
+          x: res[1].clientX - rect.left,
+          y: res[1].clientY - rect.top,
+        };
 
-      // this method we'll implement soon to do the actual drawing
-      this.drawOnCanvas(prevPos, currentPos);
-    });
+        // this method we'll implement soon to do the actual drawing
+        this.drawOnCanvas(prevPos, currentPos);
+      });
   }
 
   copyToClipboard(str) {
@@ -266,13 +312,11 @@ export class ColourComponent implements AfterViewInit {
     this.document.body.removeChild(el);
   }
 
-
-  private drawOnCanvas(
-    prevPos: Position,
-    currentPos: Position,
-  ) {
+  private drawOnCanvas(prevPos: Position, currentPos: Position) {
     // incase the context is not set
-    if (!this.context) { return; }
+    if (!this.context) {
+      return;
+    }
 
     // start our drawing path
     this.context.beginPath();

@@ -1,7 +1,12 @@
-<form #consoleForm="ngForm" class="console console--intro" (ngSubmit)="onSubmit()">
+<form
+  #consoleForm="ngForm"
+  class="console console--intro"
+  (ngSubmit)="onSubmit()">
   <div class="console--row">
     <div class="console--history">
-      <p *ngFor="let command of console.pastCommands"><span [style.color]="command.style.colour">{{ command.message }}</span></p>
+      <p *ngFor="let command of console.pastCommands">
+        <span [style.color]="command.style.colour">{{ command.message }}</span>
+      </p>
     </div>
   </div>
   <div class="console--row console--bottom">
@@ -11,14 +16,18 @@
 
     <div class="console--input-area" #inputArea>
       <div class="console--field">
-        <label for="console--input" class="console--input-label">Enter your command</label>
+        <label for="console--input" class="console--input-label"
+          >Enter your command</label
+        >
         <input
           type="text"
           id="console--input"
           name="console--input"
           autocomplete="off"
           cdkFocusRegionStart
-          cdkFocusRegionEnd [(ngModel)]="command" class="console--input">
+          cdkFocusRegionEnd
+          [(ngModel)]="command"
+          class="console--input" />
       </div>
     </div>
   </div>

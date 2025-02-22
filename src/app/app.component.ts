@@ -1,5 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject, ViewEncapsulation} from '@angular/core';
-import {BackgroundService} from "@core/services/background.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewEncapsulation,
+} from '@angular/core';
+import { BackgroundService } from '@core/services/background.service';
 
 @Component({
   selector: 'ake-root',

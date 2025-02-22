@@ -1,9 +1,26 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { IconType } from '@core/types';
-import {NotoEmojiIconComponent, NotoEmojiIconsRegistry} from '@triangular/noto-emoji-icons';
-import {RpgAwesomeIconComponent, RpgAwesomeIconsRegistry} from '@triangular/rpg-awesome-icons';
-import {FontAwesomeIconComponent, FontAwesomeIconsRegistry} from '@triangular/font-awesome-icons';
-import { notoEmojiU0023, notoEmojiU1F43A } from '@triangular/noto-emoji-icons/icons';
+import {
+  NotoEmojiIconComponent,
+  NotoEmojiIconsRegistry,
+} from '@triangular/noto-emoji-icons';
+import {
+  RpgAwesomeIconComponent,
+  RpgAwesomeIconsRegistry,
+} from '@triangular/rpg-awesome-icons';
+import {
+  FontAwesomeIconComponent,
+  FontAwesomeIconsRegistry,
+} from '@triangular/font-awesome-icons';
+import {
+  notoEmojiU0023,
+  notoEmojiU1F43A,
+} from '@triangular/noto-emoji-icons/icons';
 import {
   rpgAwesomeIconArson,
   rpgAwesomeIconDroplet,
@@ -12,9 +29,12 @@ import {
   rpgAwesomeIconGrass,
   rpgAwesomeIconHoleLadder,
   rpgAwesomeIconLeaf,
-  rpgAwesomeIconMontains
+  rpgAwesomeIconMontains,
 } from '@triangular/rpg-awesome-icons/icons';
-import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@triangular/font-awesome-icons/icons';
+import {
+  fontAwesomeIconHandHoldingHeart,
+  fontAwesomeIconMountain,
+} from '@triangular/font-awesome-icons/icons';
 
 // import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -27,8 +47,8 @@ import { fontAwesomeIconHandHoldingHeart, fontAwesomeIconMountain } from '@trian
   imports: [
     NotoEmojiIconComponent,
     RpgAwesomeIconComponent,
-    FontAwesomeIconComponent
-  ]
+    FontAwesomeIconComponent,
+  ],
 })
 export class BackgroundComponent {
   @Input() icon: string;
@@ -37,8 +57,8 @@ export class BackgroundComponent {
   constructor(
     private notoEmojiIconsRegistry: NotoEmojiIconsRegistry,
     private rpgAwesomeIconsRegistry: RpgAwesomeIconsRegistry,
-    private fontAwesomeIconsRegistry: FontAwesomeIconsRegistry,
-    ) {
+    private fontAwesomeIconsRegistry: FontAwesomeIconsRegistry
+  ) {
     notoEmojiIconsRegistry.registerIcons([
       notoEmojiU0023,
       notoEmojiU1F43A,
@@ -53,7 +73,7 @@ export class BackgroundComponent {
       rpgAwesomeIconFrostEmblem,
       rpgAwesomeIconEmerald,
       rpgAwesomeIconHoleLadder,
-      rpgAwesomeIconArson
+      rpgAwesomeIconArson,
     ]);
 
     fontAwesomeIconsRegistry.registerIcons([

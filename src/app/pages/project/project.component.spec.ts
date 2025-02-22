@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('UnitComponent', () => {
   let component: ProjectComponent;
@@ -20,13 +20,12 @@ describe('UnitComponent', () => {
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
       ],
-      declarations: [ ProjectComponent, ],
+      declarations: [ProjectComponent],
       providers: [
         provideExperimentalZonelessChangeDetection(),
         ProjectsService,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

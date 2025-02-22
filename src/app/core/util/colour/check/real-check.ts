@@ -1,4 +1,4 @@
-import {checkColourValue} from "../../../types";
+import { checkColourValue } from '../../../types';
 
 export function realCheck(): checkColourValue {
   const colourMax = 255;

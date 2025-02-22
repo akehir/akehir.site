@@ -1,4 +1,3 @@
-
 // import { rpgAwesomeIcon } from '@triangular/rpg-awesome-icons/icons/build/rpg-awesome-icon.model';
 // import { fontAwesomeIcon } from '@triangular/font-awesome-icons/icons/build/font-awesome-icon.model';
 // import { noto } from '@triangular/noto-emoji-icons/icons/build/noto-emoji.model';
@@ -47,10 +46,10 @@ export enum ProjectStatus {
 }
 
 export enum Technologies {
-  'Angular'= 'https://angular.io',
+  'Angular' = 'https://angular.io',
   'NGRX' = 'https://ngrx.io',
   'NX' = 'https://nx.dev',
-  'Cypress' = 'https://www.cypress.io'
+  'Cypress' = 'https://www.cypress.io',
 }
 
 // export type Icons = noto | rpgAwesomeIcon | fontAwesomeIcon;
@@ -69,7 +68,6 @@ export enum IconType {
   rpgAwesome = 'rpgAwesome',
   fontAwesome = 'fontAwesome',
 }
-
 
 export interface Project {
   id: string;

@@ -5,8 +5,8 @@ import { ConsoleService } from '@core/services/console.service';
 
 import { ColourComponent } from './colour.component';
 
-import {provideRouter} from "@angular/router";
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { provideRouter } from '@angular/router';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('ColourComponent', () => {
   let component: ColourComponent;
@@ -15,17 +15,14 @@ describe('ColourComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [],
-      imports: [
-        ColourComponent
-      ],
+      imports: [ColourComponent],
       providers: [
         provideExperimentalZonelessChangeDetection(),
         provideRouter([]),
         ColourService,
         ConsoleService,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

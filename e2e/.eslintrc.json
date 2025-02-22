@@ -1,17 +1,11 @@
 {
   "extends": "../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "e2e/tsconfig.e2e.json"
-        ],
+        "project": ["e2e/tsconfig.e2e.json"],
         "createDefaultProgram": true
       },
       "rules": {
@@ -23,10 +17,7 @@
             "accessibility": "explicit"
           }
         ],
-        "brace-style": [
-          "error",
-          "1tbs"
-        ],
+        "brace-style": ["error", "1tbs"],
         "id-blacklist": "off",
         "id-match": "off",
         "max-len": [
@@ -39,9 +30,7 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]

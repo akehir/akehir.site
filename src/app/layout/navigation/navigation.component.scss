@@ -5,7 +5,6 @@
   padding: 0;
   font-size: 1rem;
 
-
   &__toggle {
     z-index: 1000;
     cursor: pointer;
@@ -17,7 +16,10 @@
     border: 0;
     padding: 1.2rem;
     margin: 1.2rem 2.4rem;
-    transition: background .4s ease-out, box-shadow .4s ease-out, color .4s ease-out;
+    transition:
+      background 0.4s ease-out,
+      box-shadow 0.4s ease-out,
+      color 0.4s ease-out;
 
     .navigation--expanded & {
       box-shadow: 0 0 10rem 1rem $color-black;
@@ -47,8 +49,8 @@
     height: calc(100dvh - 11.8rem);
     overflow: hidden scroll;
     scrollbar-width: none;
-    &::-webkit-scrollbar { 
-        display: none;
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
@@ -58,12 +60,15 @@
     background: #ffffff;
     margin-left: 0;
     margin-top: 2rem;
-    padding: .5rem 3rem;
+    padding: 0.5rem 3rem;
     box-shadow: 0.1rem 0.1rem 1rem #ffffff;
     border-radius: 0 0.3rem 0.3rem 0;
     cursor: pointer;
     outline: 0;
-    transition: background 1s ease-out, box-shadow 1s ease-out, transform .4s ease-out;
+    transition:
+      background 1s ease-out,
+      box-shadow 1s ease-out,
+      transform 0.4s ease-out;
     font-family: SourceSansPro, sans-serif;
     font-size: 2rem;
     font-weight: 100;
@@ -88,7 +93,6 @@
         //background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
         box-shadow: 0.1rem 0.1rem 1rem #182848;
       }
-
     }
 
     &::before {
@@ -103,17 +107,19 @@
       width: 6.4rem;
       border-radius: 50% 0 50% 50%;
       z-index: -1;
-      transition: right 1s ease-out, background 1s ease-out, box-shadow 1s ease-out;
+      transition:
+        right 1s ease-out,
+        background 1s ease-out,
+        box-shadow 1s ease-out;
       box-shadow: 0.1rem 0.1rem 1rem #ffffff;
     }
 
     //@media screen and (max-width: 768px) {
-      transform: translateX(-100%);
+    transform: translateX(-100%);
 
-      .navigation--expanded & {
-        transform: translateX(0%);
-      }
+    .navigation--expanded & {
+      transform: translateX(0%);
+    }
     //}
-
   }
 }

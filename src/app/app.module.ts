@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import {
+  NgModule,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -12,17 +15,15 @@ import { ProjectsService } from '@core/services/projects.service';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import { BackgroundService } from "@core/services/background.service";
-import { ConsoleComponent } from "./layout/console";
-import { ColourComponent } from "./pages/colour";
-import { ConsoleService } from "@core/services/console.service";
-import { ColourService } from "@core/services/colour.service";
-import {NavigationComponent} from "./layout/navigation/navigation.component";
+import { BackgroundService } from '@core/services/background.service';
+import { ConsoleComponent } from './layout/console';
+import { ColourComponent } from './pages/colour';
+import { ConsoleService } from '@core/services/console.service';
+import { ColourService } from '@core/services/colour.service';
+import { NavigationComponent } from './layout/navigation/navigation.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     NavigationComponent,
     BrowserModule,
@@ -54,6 +55,6 @@ import {NavigationComponent} from "./layout/navigation/navigation.component";
     ConsoleService,
     ColourService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

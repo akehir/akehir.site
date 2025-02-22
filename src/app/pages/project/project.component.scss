@@ -9,7 +9,13 @@ ake-project {
     font-size: 5rem;
     padding-top: 21rem;
     max-width: 40ch;
-    background: linear-gradient(to bottom right, $color-akehir-cyan, $color-akehir-blue, $color-akehir-red, $color-akehir-yellow);
+    background: linear-gradient(
+      to bottom right,
+      $color-akehir-cyan,
+      $color-akehir-blue,
+      $color-akehir-red,
+      $color-akehir-yellow
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -39,7 +45,6 @@ ake-project {
         margin: 0 auto;
       }
 
-
       &-image {
         position: absolute;
         opacity: 1;
@@ -61,7 +66,6 @@ ake-project {
         }
       }
     }
-
   }
 
   img {

@@ -1,11 +1,21 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {RpgAwesomeIconComponent, RpgAwesomeIconsRegistry} from "@triangular/rpg-awesome-icons";
-import {rpgAwesomeIconScrollUnfurled} from "@triangular/rpg-awesome-icons/icons";
-import {FontAwesomeIconComponent, FontAwesomeIconsRegistry} from "@triangular/font-awesome-icons";
-import {fontAwesomeIconTerminal} from "@triangular/font-awesome-icons/icons";
-import {NgClass} from "@angular/common";
-import {ConsoleComponent} from "../console";
-import {RouterLink} from "@angular/router";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
+import {
+  RpgAwesomeIconComponent,
+  RpgAwesomeIconsRegistry,
+} from '@triangular/rpg-awesome-icons';
+import { rpgAwesomeIconScrollUnfurled } from '@triangular/rpg-awesome-icons/icons';
+import {
+  FontAwesomeIconComponent,
+  FontAwesomeIconsRegistry,
+} from '@triangular/font-awesome-icons';
+import { fontAwesomeIconTerminal } from '@triangular/font-awesome-icons/icons';
+import { NgClass } from '@angular/common';
+import { ConsoleComponent } from '../console';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ake-navigation',
@@ -18,8 +28,8 @@ import {RouterLink} from "@angular/router";
     ConsoleComponent,
     RpgAwesomeIconComponent,
     RouterLink,
-    FontAwesomeIconComponent
-  ]
+    FontAwesomeIconComponent,
+  ],
 })
 export class NavigationComponent {
   expanded = false;
@@ -37,8 +47,11 @@ export class NavigationComponent {
     this.expanded = false;
   }
 
-  constructor(private readonly registry: RpgAwesomeIconsRegistry, private readonly fontAwesomeRegistry: FontAwesomeIconsRegistry) {
+  constructor(
+    private readonly registry: RpgAwesomeIconsRegistry,
+    private readonly fontAwesomeRegistry: FontAwesomeIconsRegistry
+  ) {
     this.registry.registerIcons([rpgAwesomeIconScrollUnfurled]);
-    this.fontAwesomeRegistry.registerIcons([fontAwesomeIconTerminal])
+    this.fontAwesomeRegistry.registerIcons([fontAwesomeIconTerminal]);
   }
 }

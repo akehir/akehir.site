@@ -38,7 +38,10 @@ $color-tempest-elements-orange: #ec921f;
 // ethnologischer Verein Zurich
 $color-evzh-dark-red: #580000;
 $color-evzh-red: desaturate(lighten($color-evzh-dark-red, 5%), 20%);
-$color-evzh-blue: desaturate(lighten($color-tempest-elements-blue-marine, 15%), 5%);
+$color-evzh-blue: desaturate(
+  lighten($color-tempest-elements-blue-marine, 15%),
+  5%
+);
 $color-evzh-light-red: #958888;
 $color-evzh-lighter-red: desaturate(lighten($color-evzh-light-red, 60%), 20%);
 $color-evzh-light-gray: #b2b2b2;
@@ -151,4 +154,3 @@ $colour-schema-6-foreground: $color-white;
 // Layout default colors
 $color-default: $colour-schema-3-base;
 $color-highlight: $colour-schema-5-highlight;
-

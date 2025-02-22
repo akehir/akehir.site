@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import {provideExperimentalZonelessChangeDetection} from "@angular/core";
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -9,9 +9,9 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ], providers: [provideExperimentalZonelessChangeDetection()]
-    })
-    .compileComponents();
+      declarations: [HomeComponent],
+      providers: [provideExperimentalZonelessChangeDetection()],
+    }).compileComponents();
   });
 
   beforeEach(async () => {

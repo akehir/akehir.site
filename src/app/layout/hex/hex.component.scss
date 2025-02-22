@@ -9,7 +9,9 @@ ake-hex {
     box-sizing: border-box;
     background-color: rgba(0, 128, 128, 0.8);
     font-weight: 300;
-    transition: transform .2s ease-out, opacity .3s ease-out;
+    transition:
+      transform 0.2s ease-out,
+      opacity 0.3s ease-out;
   }
 
   h1 {
@@ -17,7 +19,7 @@ ake-hex {
     padding-top: 50%;
     font-size: 1.5em;
     z-index: 1;
-    transform: translate3d(0,-100%,0);
+    transform: translate3d(0, -100%, 0);
   }
 
   h1::after {
