@@ -25,4 +25,3 @@ spec:
       targetPort: 3000
   externalName: homepage.homepage.svc.cluster.local
 ---
-
