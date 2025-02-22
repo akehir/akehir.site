@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapComponent } from './map.component';
-import { HexComponent } from '../hex/hex.component';
-import { BackgroundComponent } from '../background/background.component';
-import { ProjectComponent } from '../../pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { ProjectsService } from '@core/services/projects.service';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 describe('MapComponent', () => {
   let component: MapComponent;
@@ -19,20 +16,15 @@ describe('MapComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        MapComponent,
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
       ],
-      declarations: [
-        MapComponent,
-        HexComponent,
-        BackgroundComponent,
-        ProjectComponent,
-      ],
       providers: [
         ProjectsService,
+        provideRouter([]),
         provideExperimentalZonelessChangeDetection(),
       ],
     }).compileComponents();

@@ -1,14 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HexComponent } from './hex.component';
-import { BackgroundComponent } from '../background/background.component';
-import { ProjectComponent } from '../../pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 describe('HexComponent', () => {
   let component: HexComponent;
@@ -17,14 +15,16 @@ describe('HexComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        HexComponent,
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
       ],
-      declarations: [HexComponent, BackgroundComponent, ProjectComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
+      providers: [
+        provideRouter([]),
+        provideExperimentalZonelessChangeDetection(),
+      ],
     }).compileComponents();
   });
 

@@ -1,10 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { AppComponent } from './app.component';
-import { MapComponent } from './layout/map/map.component';
-import { ProjectComponent } from './pages/project/project.component';
-import { HexComponent } from './layout/hex/hex.component';
-import { BackgroundComponent } from './layout/background/background.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
@@ -17,20 +13,14 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        NavigationComponent,
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
         AppRoutingModule,
       ],
-      declarations: [
-        AppComponent,
-        MapComponent,
-        ProjectComponent,
-        HexComponent,
-        BackgroundComponent,
-        NavigationComponent,
-      ],
+      declarations: [AppComponent],
       providers: [
         provideExperimentalZonelessChangeDetection(),
         BackgroundService,

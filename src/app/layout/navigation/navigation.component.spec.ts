@@ -1,13 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavigationComponent } from './navigation.component';
-import { HexComponent } from '../hex/hex.component';
-import { BackgroundComponent } from '../background/background.component';
-import { ProjectComponent } from '../../pages/project/project.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
+import { provideRouter } from '@angular/router';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -16,17 +14,15 @@ describe('NavigationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        NavigationComponent,
         FluidSimulationModule.forRoot(),
         FontAwesomeIconsModule,
         RpgAwesomeIconsModule,
       ],
-      declarations: [
-        NavigationComponent,
-        BackgroundComponent,
-        ProjectComponent,
-        HexComponent,
+      providers: [
+        provideRouter([]),
+        provideExperimentalZonelessChangeDetection(),
       ],
-      providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
   });
 

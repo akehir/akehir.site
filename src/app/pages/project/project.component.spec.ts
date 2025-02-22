@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectComponent } from './project.component';
 import { ProjectsService } from '@core/services/projects.service';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
 describe('UnitComponent', () => {
   let component: ProjectComponent;
@@ -15,13 +15,13 @@ describe('UnitComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        ProjectComponent,
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
       ],
-      declarations: [ProjectComponent],
       providers: [
+        provideRouter([]),
         provideExperimentalZonelessChangeDetection(),
         ProjectsService,
       ],

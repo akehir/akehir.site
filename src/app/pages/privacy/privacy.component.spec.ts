@@ -9,7 +9,7 @@ describe('PrivacyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PrivacyComponent],
+      imports: [PrivacyComponent],
       providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 

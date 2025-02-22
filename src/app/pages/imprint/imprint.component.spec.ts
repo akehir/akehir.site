@@ -9,7 +9,7 @@ describe('ImprintComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ImprintComponent],
+      imports: [ImprintComponent],
       providers: [provideExperimentalZonelessChangeDetection()],
     }).compileComponents();
 

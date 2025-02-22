@@ -26,7 +26,6 @@ import { Colour, getColourValue, Position } from '@core/types';
   styleUrls: ['./colour.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class ColourComponent implements AfterViewInit {
   @ViewChild('canvas') canvas: ElementRef;
