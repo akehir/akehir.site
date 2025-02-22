@@ -13,7 +13,7 @@ import {
   FontAwesomeIconsRegistry,
 } from '@triangular/font-awesome-icons';
 import { fontAwesomeIconTerminal } from '@triangular/font-awesome-icons/icons';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { ConsoleComponent } from '../console';
 import { RouterLink } from '@angular/router';
 
@@ -29,6 +29,7 @@ import { RouterLink } from '@angular/router';
     RpgAwesomeIconComponent,
     RouterLink,
     FontAwesomeIconComponent,
+    NgIf,
   ],
 })
 export class NavigationComponent {
