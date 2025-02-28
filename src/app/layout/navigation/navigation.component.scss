@@ -121,5 +121,13 @@
       transform: translateX(0%);
     }
     //}
+
+    @media screen and (max-width: 768px) {
+      pointer-events: none;
+
+      .navigation--expanded & {
+        pointer-events: auto;
+      }
+    }
   }
 }

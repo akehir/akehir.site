@@ -17,6 +17,14 @@ const routes: Routes = [
             c => c.HelloWorldComponent
           ),
       },
+      {
+        path: 'hello-world',
+        loadComponent: () =>
+          import('./entries/stable-diffusion-docker-rocm.component').then(
+            c => c.StableDiffusionDockerRocmComponent
+          ),
+      },
+      
     ],
   },
 ];
