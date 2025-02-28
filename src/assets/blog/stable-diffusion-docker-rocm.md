@@ -15,11 +15,6 @@ apt install -y docker.io sudo
 The easiest is to create a new folder (I like to use a git repository)
 
 ```Dockerfile
-################################################################
-# sudo docker build . --tag sd-webui-forge
-# sudo docker run -it --network=host --device=/dev/kfd --device=/dev/dri --group-add=video --ipc=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -v ./models:/SD/stable-diffusion-webui-forge/models/ -v ./repositories:/SD/stable-diffusion-webui-forge/repositories/ -v ./extensions:/SD/stable-diffusion-webui-forge/extensions/ -v ./outputs:/SD/stable-diffusion-webui-forge/outputs/ sd-webui-forge
-################################################################
-
 FROM rocm/pytorch:rocm6.2_ubuntu22.04_py3.10_pytorch_release_2.3.0
 
 ## Container
@@ -58,7 +53,19 @@ sudo docker build . --tag sd-webui-forge
 ## Step 4: Run Docker
 After building, run the docker container
 ```bash
-sudo docker run -it --network=host --device=/dev/kfd --device=/dev/dri --group-add=video --ipc=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -v ./models:/SD/stable-diffusion-webui-forge/models/ -v ./repositories:/SD/stable-diffusion-webui-forge/repositories/ -v ./extensions:/SD/stable-diffusion-webui-forge/extensions/ -v ./outputs:/SD/stable-diffusion-webui-forge/outputs/ sd-webui-forge
+sudo docker run -it \
+	--network=host \
+	--device=/dev/kfd \
+	--device=/dev/dri \
+	--group-add=video \
+	--ipc=host \
+	--cap-add=SYS_PTRACE \
+	--security-opt seccomp=unconfined \
+	-v ./models:/SD/stable-diffusion-webui-forge/models/ \
+	-v ./repositories:/SD/stable-diffusion-webui-forge/repositories/ \
+	-v ./extensions:/SD/stable-diffusion-webui-forge/extensions/ \
+	-v ./outputs:/SD/stable-diffusion-webui-forge/outputs/ \
+	sd-webui-forge
 ```
 
 ## Step 5: Profit

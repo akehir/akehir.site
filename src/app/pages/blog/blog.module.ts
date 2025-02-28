@@ -18,13 +18,19 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'hello-world',
+        path: 'stable-diffusion-docker-rocm',
         loadComponent: () =>
           import('./entries/stable-diffusion-docker-rocm.component').then(
             c => c.StableDiffusionDockerRocmComponent
           ),
       },
-      
+       {
+        path: 'llama-cpp-docker-rocm',
+        loadComponent: () =>
+          import('./entries/llama-cpp-docker-rocm.component').then(
+            c => c.LlamaCppDockerRocmComponent
+          ),
+      },
     ],
   },
 ];

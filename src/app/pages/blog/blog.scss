@@ -19,6 +19,10 @@ ake-blog {
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    & > a {
+      display: block;
+    }
   }
 
   & markdown {
