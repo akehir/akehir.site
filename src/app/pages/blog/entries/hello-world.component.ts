@@ -6,7 +6,7 @@ import {
 import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
-  selector: 'ake-hello-world',
+  selector: 'ake-blog-hello-world',
   template: `
     <markdown [src]="'/assets/blog/hello-world.md'"></markdown>`,
   styleUrls: [],
