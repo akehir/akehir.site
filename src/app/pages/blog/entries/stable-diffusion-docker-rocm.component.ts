@@ -16,4 +16,4 @@ import { MarkdownComponent } from 'ngx-markdown';
     MarkdownComponent,
   ],
 })
-export class StableDiffusionComponent {}
+export class StableDiffusionDockerRocmComponent {}
