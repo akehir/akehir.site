@@ -24,13 +24,21 @@ const routes: Routes = [
             c => c.StableDiffusionDockerRocmComponent
           ),
       },
-       {
+      {
         path: 'llama-cpp-docker-rocm',
         loadComponent: () =>
           import('./entries/llama-cpp-docker-rocm.component').then(
             c => c.LlamaCppDockerRocmComponent
           ),
       },
+      {
+        path: 'ssh-wireguard-mobile-hotspot-issue',
+        loadComponent: () =>
+          import('./entries/ssh-wireguard-mobile-hotspot-issue.component').then(
+            c => c.SSHWireguardMobileHotspotIssueComponent
+          ),
+      },
+      
     ],
   },
 ];
