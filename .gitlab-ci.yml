@@ -21,7 +21,7 @@ lintngnx:
   stage: lint
   image: nginx:mainline-alpine-slim
   script:
-    - nginx -t -c ./nginx.conf
+    - nginx -t -c $CI_PROJECT_DIR/nginx.conf
 
 build:
   stage: build
