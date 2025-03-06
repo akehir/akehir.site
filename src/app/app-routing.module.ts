@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'index',
     component: HomeComponent,
-    resolve: { background: enableBackground },
+    resolve: { background: disableBackground },
   },
   {
     path: 'about',
@@ -44,9 +44,9 @@ const routes: Routes = [
     resolve: { background: disableBackground },
   },
 
-  { path: 'machina', component: MachinaComponent },
-  { path: 'projects', component: MapComponent },
-  { path: 'projects/:id', component: ProjectComponent },
+  { path: 'machina', component: MachinaComponent, resolve: { background: enableBackground }, },
+  { path: 'projects', component: MapComponent, resolve: { background: enableBackground }, },
+  { path: 'projects/:id', component: ProjectComponent, resolve: { background: disableBackground }, },
   {
     path: 'demos/colour',
     component: ColourComponent,
@@ -60,18 +60,20 @@ const routes: Routes = [
     path: 'error',
     component: MapComponent,
     children: [
-      { path: '403', component: MapComponent },
-      { path: '404', component: MapComponent },
-      { path: '500', component: MapComponent },
+      { path: '403', component: MapComponent, resolve: { background: enableBackground }, },
+      { path: '404', component: MapComponent, resolve: { background: enableBackground }, },
+      { path: '500', component: MapComponent, resolve: { background: enableBackground }, },
     ],
   },
   {
     path: 'privacy',
+    resolve: { background: disableBackground },
     loadChildren: () =>
       import('./pages/privacy/privacy.module').then(m => m.PrivacyModule),
   },
   {
     path: 'imprint',
+    resolve: { background: disableBackground },
     loadChildren: () =>
       import('./pages/imprint/imprint.module').then(m => m.ImprintModule),
   },

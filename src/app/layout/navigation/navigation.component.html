@@ -5,36 +5,37 @@
   <ul class="navigation__list" role="menu">
     <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
     <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
-    <li class="navigation__item">About</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/blog">
+    <li role="menuitem" class="navigation__item">About</li>
+    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/blog">
       Blog
     </li>
-    <!--  <li class="navigation__item">Console</li>-->
-    <!--  <li class="navigation__item">Contact</li>-->
-    <li class="navigation__item" (click)="hideNav()" routerLink="/curriculum">
+    <!--  <li role="menuitem" class="navigation__item">Console</li>-->
+    <!--  <li role="menuitem" class="navigation__item">Contact</li>-->
+    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/curriculum">
       Curriculum
     </li>
     <li
+      role="menuitem" 
       class="navigation__item"
       (click)="hideNav()"
       routerLink="/demos/colour/circle">
       Demos
     </li>
-    <li class="navigation__item">Education</li>
-    <li class="navigation__item">Food</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/machina">
+    <li role="menuitem" class="navigation__item">Education</li>
+    <li role="menuitem" class="navigation__item">Food</li>
+    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/machina">
       Gadgets
     </li>
     <!-- K8s cluster, etc/ ... names: gear / gadgets / hardware / kit / artefacts / tools -->
-    <li class="navigation__item" (click)="hideNav()" routerLink="/">Home</li>
-    <li class="navigation__item" (click)="hideNav()" routerLink="/projects">
+    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/">Home</li>
+    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/projects">
       Projects
     </li>
-    <!--  <li class="navigation__item">Ramblings</li>-->
-    <!--  <li class="navigation__item">Search</li>-->
-    <!--  <li class="navigation__item">Services</li>-->
-    <li class="navigation__item">Software</li>
-    <li class="navigation__item">Testimonials</li>
+    <!--  <li role="menuitem" class="navigation__item">Ramblings</li>-->
+    <!--  <li role="menuitem" class="navigation__item">Search</li>-->
+    <!--  <li role="menuitem" class="navigation__item">Services</li>-->
+    <li role="menuitem" class="navigation__item">Software</li>
+    <li role="menuitem" class="navigation__item">Testimonials</li>
     <!-- eslint-enable @angular-eslint/template/click-events-have-key-events -->
     <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
   </ul>

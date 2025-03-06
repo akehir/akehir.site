@@ -25,6 +25,7 @@ build:
       changes:
         - src/**/*
         - package.json
+        - angular.json
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
@@ -32,6 +33,7 @@ build:
       changes:
         - src/**/*
         - package.json
+        - angular.json
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
