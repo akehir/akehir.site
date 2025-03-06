@@ -17,6 +17,12 @@ lintk:
   script:
     - kubernetes-validate ./manifests/*.yaml
 
+lintngnx:
+  stage: lint
+  image: nginx:mainline-alpine-slim
+  script:
+    - nginx -t -c ./nginx.conf
+
 build:
   stage: build
   image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
