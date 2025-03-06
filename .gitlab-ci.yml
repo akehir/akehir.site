@@ -22,7 +22,19 @@ build:
   image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
     - if: '$CI_COMMIT_REF_SLUG == "develop"'
+      changes:
+        - src/**/*
+        - package.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
     - npm i
