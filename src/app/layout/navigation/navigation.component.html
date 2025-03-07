@@ -42,6 +42,7 @@
 </nav>
 <div [ngClass]="{ 'navigation--expanded': console }">
   <button
+    aria-label="Toggle Console"
     class="navigation__toggle navigation__toggle--right"
     (click)="toggleConsole()">
     <font-awesome-icon name="terminal"></font-awesome-icon>
