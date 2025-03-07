@@ -52,6 +52,7 @@ build:
     - npm run lint
     - npm run test:docker
     - npm run build
+    - gzip -9 -k -r dist/
   artifacts:
     paths:
       - dist/

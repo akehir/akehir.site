@@ -1,5 +1,5 @@
 <nav class="navigation" [ngClass]="{ 'navigation--expanded': expanded }">
-  <button class="navigation__toggle" (click)="toggleNav()">
+  <button class="navigation__toggle" (click)="toggleNav()" aria-label="Toggle Navigation">
     <rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon>
   </button>
   <ul class="navigation__list" role="menu">
