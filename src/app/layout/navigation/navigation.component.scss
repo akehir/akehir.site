@@ -5,7 +5,17 @@
   padding: 0;
   font-size: 1rem;
 
+
+    @media screen and (max-width: 768px) {
+      pointer-events: none;
+
+      &.navigation--expanded {
+        pointer-events: auto;
+      }
+    }
+
   &__toggle {
+    pointer-events: all;
     z-index: 1000;
     cursor: pointer;
     width: 7rem;
@@ -121,13 +131,5 @@
       transform: translateX(0%);
     }
     //}
-
-    @media screen and (max-width: 768px) {
-      pointer-events: none;
-
-      .navigation--expanded & {
-        pointer-events: auto;
-      }
-    }
   }
 }
