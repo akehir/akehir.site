@@ -49,3 +49,9 @@ ake-blog {
     }
   }
 }
+
+ake-blog-entries {
+  & a {
+    margin-top: 2rem;
+  }
+}

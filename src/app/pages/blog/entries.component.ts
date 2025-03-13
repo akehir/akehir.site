@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+type EntryCategory = "Linux" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
+
 @Component({
   selector: 'ake-blog-entries',
   templateUrl: './entries.component.html',
@@ -15,4 +17,28 @@ import { RouterLink } from '@angular/router';
     RouterLink,
   ],
 })
-export class EntriesComponent {}
+export class EntriesComponent {
+
+  entries: {routerLink: string; title: string; category: EntryCategory }[] = [
+    {
+      routerLink: "/blog/llama-cpp-docker-rocm",
+      title: "DeepSeek R1 with llama.cpp on ROCm via Docker",
+      category: "Machine Learning",
+    },
+    {
+      routerLink: "/blog/stable-diffusion-docker-rocm",
+      title: "Stable Diffusion on ROCm via Docker",
+      category: "Machine Learning",
+    },
+    {
+      routerLink: "/blog/ssh-wireguard-mobile-hotspot-issue",
+      title: "SSH Not Working Over Wireguard On Mobile Hotspot",
+      category: "Linux",
+    },
+    {
+      routerLink: "/blog/hello-world",
+      title: "Hello World",
+      category: "Programming",
+    },
+  ];
+}
