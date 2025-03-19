@@ -6,7 +6,7 @@ import {
 import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
-  selector: 'ake-stable-diffusion-docker-rocm',
+  selector: 'ake-blog-stable-diffusion-docker-rocm',
   template: `
     <markdown [src]="'/assets/blog/stable-diffusion-docker-rocm.md'"></markdown>`,
   styleUrls: [],

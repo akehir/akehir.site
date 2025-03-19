@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-type EntryCategory = "Linux" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
+type EntryCategory = "Linux" | "Meta" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
 
 @Component({
   selector: 'ake-blog-entries',
