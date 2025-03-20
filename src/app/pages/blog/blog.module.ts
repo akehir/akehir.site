@@ -18,10 +18,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'stable-diffusion-docker-rocm',
+        path: 'git-reset',
         loadComponent: () =>
-          import('./entries/stable-diffusion-docker-rocm.component').then(
-            c => c.StableDiffusionDockerRocmComponent
+          import('./entries/git-reset.component').then(
+            c => c.GitResetComponent
           ),
       },
       {
@@ -29,6 +29,13 @@ const routes: Routes = [
         loadComponent: () =>
           import('./entries/llama-cpp-docker-rocm.component').then(
             c => c.LlamaCppDockerRocmComponent
+          ),
+      },
+      {
+        path: 'stable-diffusion-docker-rocm',
+        loadComponent: () =>
+          import('./entries/stable-diffusion-docker-rocm.component').then(
+            c => c.StableDiffusionDockerRocmComponent
           ),
       },
       {

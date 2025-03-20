@@ -21,6 +21,11 @@ export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
     {
+      routerLink: "/blog/git-reset",
+      title: "git reset",
+      category: "Programming",
+    },
+    {
       routerLink: "/blog/llama-cpp-docker-rocm",
       title: "DeepSeek R1 with llama.cpp on ROCm via Docker",
       category: "Machine Learning",
