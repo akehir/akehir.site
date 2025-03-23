@@ -1,4 +1,4 @@
-# How to run DeepSeek R1 with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900 XTX
+# How to run DeepSeek R1 with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX
 
 *Published: 2025-02-28*
 

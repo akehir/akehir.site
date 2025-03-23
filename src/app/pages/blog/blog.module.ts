@@ -32,6 +32,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'mistral-3-1',
+        loadComponent: () =>
+          import('./entries/mistral-3-1.component').then(
+            c => c.Mistral31Component
+          ),
+      },
+      {
         path: 'stable-diffusion-docker-rocm',
         loadComponent: () =>
           import('./entries/stable-diffusion-docker-rocm.component').then(

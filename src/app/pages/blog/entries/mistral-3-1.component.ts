@@ -1,0 +1,1 @@
+mistral-3-1.component.ts

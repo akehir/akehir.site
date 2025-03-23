@@ -1,4 +1,4 @@
-# How to run Stable Diffusion WebUI or Forge on AMD Radeon RX 7900 XTX via Docker on Linux on Debian with ROCm 6.2 and GPU Acceleration
+# How to run Stable Diffusion WebUI or Forge on AMD Radeon RX 7900XTX via Docker on Linux on Debian with ROCm 6.2 and GPU Acceleration
 
 *Published: 2025-02-28*
 
