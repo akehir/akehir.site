@@ -20,6 +20,12 @@ type EntryCategory = "Linux" | "Meta" | "Machine Learning" | "Software" | "Infra
 export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
+    
+    {
+      routerLink: "/blog/rid-google-ai-overview",
+      title: "How to get rid of AI Overviews in Google search",
+      category: "Machine Learning",
+    },
     {
       routerLink: "/blog/mistral-3-1",
       title: "Mistral-Small-3.1-24B with llama.cpp on ROCm via Docker fully loaded into an RX 7900XTX",

@@ -39,6 +39,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'rid-google-ai-overview',
+        loadComponent: () =>
+          import('./entries/rid-google-ai-overview.component').then(
+            c => c.RidGoogleAIOverviewComponent
+          ),
+      },
+      {
         path: 'stable-diffusion-docker-rocm',
         loadComponent: () =>
           import('./entries/stable-diffusion-docker-rocm.component').then(
