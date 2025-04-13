@@ -18,6 +18,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'chromeos-wireguard',
+        loadComponent: () =>
+          import('./entries/chromeos-wireguard.component').then(
+            c => c.ChromeOSWireGuardComponent
+          ),
+      },
+      {
         path: 'git-reset',
         loadComponent: () =>
           import('./entries/git-reset.component').then(
@@ -59,7 +66,13 @@ const routes: Routes = [
             c => c.SSHWireguardMobileHotspotIssueComponent
           ),
       },
-      
+      {
+        path: 'traefik-ingress-logs',
+        loadComponent: () =>
+          import('./entries/traefik-ingress-logs.component').then(
+            c => c.TraefikIngressLogsComponent
+          ),
+      },
     ],
   },
 ];

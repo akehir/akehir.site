@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-type EntryCategory = "Linux" | "Meta" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
+type EntryCategory = "Android" | "ChromeOS" | "Linux" | "Meta" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
 
 @Component({
   selector: 'ake-blog-entries',
@@ -20,7 +20,17 @@ type EntryCategory = "Linux" | "Meta" | "Machine Learning" | "Software" | "Infra
 export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
-    
+  
+    {
+      routerLink: "/blog/traefik-ingress-logs",
+      title: "Debugging Kubernetes Traefik Ingress Issues by Reading the Traefik Logs",
+      category: "Infrastructure",
+    },
+    {
+      routerLink: "/blog/chromeos-wireguard",
+      title: "How to Setup the Built-In WireGuard VPN in ChromeOS",
+      category: "ChromeOS",
+    },
     {
       routerLink: "/blog/rid-google-ai-overview",
       title: "How to get rid of AI Overviews in Google search",
