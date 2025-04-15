@@ -23,7 +23,7 @@ export class EntriesComponent {
   
     {
       routerLink: "/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak",
-      title: "",
+      title: "How to do a HTTPS Redirect with Kubernetes Traefik Ingress and get automatic HTTPS Certificates with LetsEncrypt and Infomaniak with a ClusterIssuer",
       category: "Infrastructure",
     },
     {
