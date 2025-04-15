@@ -32,6 +32,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'kubernetes-dashboard-no-kong-proxy',
+        loadComponent: () =>
+          import('./entries/kubernetes-dashboard-no-kong-proxy.component').then(
+            c => c.KubernetesDashboardNoKongProxyComponent
+          ),
+      },
+      {
         path: 'llama-cpp-docker-rocm',
         loadComponent: () =>
           import('./entries/llama-cpp-docker-rocm.component').then(

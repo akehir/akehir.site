@@ -22,6 +22,11 @@ export class EntriesComponent {
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
   
     {
+      routerLink: "/blog/kubernetes-dashboard-no-kong-proxy",
+      title: "Kubernetes Dashboard without Kong Proxy (nginx bind to port 8444 failed)",
+      category: "Infrastructure",
+    },
+    {
       routerLink: "/blog/traefik-ingress-logs",
       title: "Debugging Kubernetes Traefik Ingress Issues by Reading the Traefik Logs",
       category: "Infrastructure",
