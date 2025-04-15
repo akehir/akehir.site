@@ -21,6 +21,16 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://akehir.com/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak</loc>
+		<lastmod>2025-04-014T12:00:00+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/filebeat-crashloopbackoff</loc>
+		<lastmod>2025-04-014T12:00:00+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>https://akehir.com/blog/kubernetes-dashboard-no-kong-proxy</loc>
 		<lastmod>2025-04-014T12:00:00+01:00</lastmod>
 		<priority>1.0</priority>

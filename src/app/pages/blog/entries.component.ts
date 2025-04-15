@@ -22,6 +22,16 @@ export class EntriesComponent {
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
   
     {
+      routerLink: "/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak",
+      title: "",
+      category: "Infrastructure",
+    },
+    {
+      routerLink: "/blog/filebeat-crashloopbackoff",
+      title: "How to fix filebeat CrashLoopBackoff (due to OOMKiller) by increasing resource limits",
+      category: "Infrastructure",
+    },
+    {
       routerLink: "/blog/kubernetes-dashboard-no-kong-proxy",
       title: "Kubernetes Dashboard without Kong Proxy (nginx bind to port 8444 failed)",
       category: "Infrastructure",

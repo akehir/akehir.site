@@ -32,6 +32,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'filebeat-crashloopbackoff',
+        loadComponent: () =>
+          import('./entries/filebeat-crashloopbackoff.component').then(
+            c => c.FileBeatCrashLoopBackOffComponent
+          ),
+      },
+      {
+        path: 'https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak',
+        loadComponent: () =>
+          import('./entries/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.component').then(
+            c => c.HttpsRedirectTraefikWithAutomaticCertificatesFromClusterIssuerWithInfomaniakComponent
+          ),
+      },
+      {
         path: 'kubernetes-dashboard-no-kong-proxy',
         loadComponent: () =>
           import('./entries/kubernetes-dashboard-no-kong-proxy.component').then(
