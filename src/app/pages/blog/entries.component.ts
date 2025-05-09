@@ -22,7 +22,7 @@ export class EntriesComponent {
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
     {
       routerLink: "/blog/synology-dsm-port-443",
-      title: "How to do a HTTPS Redirect with Kubernetes Traefik Ingress and get automatic HTTPS Certificates with LetsEncrypt and Infomaniak with a ClusterIssuer",
+      title: "How to Map Port 443 to DSM on Synology NAS",
       category: "Infrastructure",
     },
     {
