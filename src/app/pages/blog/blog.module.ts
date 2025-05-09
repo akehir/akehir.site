@@ -25,6 +25,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'cool-things-with-transformers-in-the-browser',
+        loadComponent: () =>
+          import('./entries/cool-things-with-transformers-in-the-browser.component').then(
+            c => c.CoolThingsWithTransfoemersInTheBrowserComponent
+          ),
+      },
+      {
         path: 'git-reset',
         loadComponent: () =>
           import('./entries/git-reset.component').then(
@@ -85,6 +92,13 @@ const routes: Routes = [
         loadComponent: () =>
           import('./entries/ssh-wireguard-mobile-hotspot-issue.component').then(
             c => c.SSHWireguardMobileHotspotIssueComponent
+          ),
+      },
+      {
+        path: 'synology-dsm-port-443',
+        loadComponent: () =>
+          import('./entries/synology-dsm-port-443.component').then(
+            c => c.SynologyDSMPort443Component
           ),
       },
       {

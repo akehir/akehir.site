@@ -20,7 +20,11 @@ type EntryCategory = "Android" | "ChromeOS" | "Linux" | "Meta" | "Machine Learni
 export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
-  
+    {
+      routerLink: "/blog/synology-dsm-port-443",
+      title: "How to do a HTTPS Redirect with Kubernetes Traefik Ingress and get automatic HTTPS Certificates with LetsEncrypt and Infomaniak with a ClusterIssuer",
+      category: "Infrastructure",
+    },
     {
       routerLink: "/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak",
       title: "How to do a HTTPS Redirect with Kubernetes Traefik Ingress and get automatic HTTPS Certificates with LetsEncrypt and Infomaniak with a ClusterIssuer",

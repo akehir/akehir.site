@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +8,12 @@ spec:
   selector:
     matchLabels:
       app: akehir-site
-  replicas: 1
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -29,3 +35,13 @@ spec:
                     operator: In
                     values:
                       - arm64
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: module
+                    operator: In
+                    values:
+                      - akehir-site
+              topologyKey: "kubernetes.io/hostname"
+---
