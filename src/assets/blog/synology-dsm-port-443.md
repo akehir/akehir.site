@@ -32,7 +32,7 @@ http {
         autoindex off;
         server_name _;
         server_tokens off;
-        client_max_body_size 100m;
+        client_max_body_size 999m;
         
         location / {
             proxy_http_version 1.1;
