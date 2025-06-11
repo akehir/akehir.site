@@ -1,5 +1,7 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 ake-blog {
-  color: #ffffff;
+  color: #fff;
   font-size: 5rem;
   // font-weight: 400;
 
@@ -11,11 +13,11 @@ ake-blog {
 
     //background: linear-gradient(to bottom right, #4389a2, #5c258d);
     background: linear-gradient(
-        to bottom right,
-        $color-akehir-cyan,
-        $color-akehir-blue,
-        $color-akehir-red,
-        $color-akehir-yellow
+      to bottom right,
+      $color-akehir-cyan,
+      $color-akehir-blue,
+      $color-akehir-red,
+      $color-akehir-yellow
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -31,7 +33,12 @@ ake-blog {
     max-width: 40ch;
     font-size: 4rem;
 
-    & h1, h2, h3, h4, h5, h6 {
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
       font-weight: 400;
       margin-top: 1rem;
     }

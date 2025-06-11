@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, inject } from '@angular/core';
 import { IconType } from '@core/types';
 import {
   NotoEmojiIconComponent,
@@ -51,14 +46,18 @@ import {
   ],
 })
 export class BackgroundComponent {
+  private notoEmojiIconsRegistry = inject(NotoEmojiIconsRegistry);
+  private rpgAwesomeIconsRegistry = inject(RpgAwesomeIconsRegistry);
+  private fontAwesomeIconsRegistry = inject(FontAwesomeIconsRegistry);
+
   @Input() icon: string;
   @Input() iconType: IconType;
 
-  constructor(
-    private notoEmojiIconsRegistry: NotoEmojiIconsRegistry,
-    private rpgAwesomeIconsRegistry: RpgAwesomeIconsRegistry,
-    private fontAwesomeIconsRegistry: FontAwesomeIconsRegistry
-  ) {
+  constructor() {
+    const notoEmojiIconsRegistry = this.notoEmojiIconsRegistry;
+    const rpgAwesomeIconsRegistry = this.rpgAwesomeIconsRegistry;
+    const fontAwesomeIconsRegistry = this.fontAwesomeIconsRegistry;
+
     notoEmojiIconsRegistry.registerIcons([
       notoEmojiU0023,
       notoEmojiU1F43A,

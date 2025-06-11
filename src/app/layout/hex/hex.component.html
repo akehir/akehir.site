@@ -1,7 +1,8 @@
-<ake-background
-  class="land"
-  [routerLink]="['./', project.id]"
-  *ngIf="project?.icon"
-  [icon]="project?.icon"
-  [iconType]="project?.iconType">
-</ake-background>
+@if (project?.icon) {
+  <ake-background
+    class="land"
+    [routerLink]="['./', project.id]"
+    [icon]="project?.icon"
+    [iconType]="project?.iconType">
+  </ake-background>
+}

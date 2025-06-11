@@ -5,7 +5,7 @@ import { ConsoleComponent } from './console.component';
 import { ConsoleService } from '@core/services/console.service';
 
 import { provideRouter } from '@angular/router';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('ConsoleComponent', () => {
   let component: ConsoleComponent;
@@ -16,7 +16,7 @@ describe('ConsoleComponent', () => {
       declarations: [],
       imports: [ConsoleComponent],
       providers: [
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         provideRouter([]),
         ConsoleService,
       ],

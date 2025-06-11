@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrivacyComponent } from './privacy.component';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('PrivacyComponent', () => {
   let component: PrivacyComponent;
@@ -10,7 +10,7 @@ describe('PrivacyComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PrivacyComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PrivacyComponent);

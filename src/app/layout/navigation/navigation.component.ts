@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import {
   RpgAwesomeIconComponent,
@@ -13,9 +14,10 @@ import {
   FontAwesomeIconsRegistry,
 } from '@triangular/font-awesome-icons';
 import { fontAwesomeIconTerminal } from '@triangular/font-awesome-icons/icons';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ConsoleComponent } from '../console';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'ake-navigation',
@@ -29,12 +31,16 @@ import { RouterLink } from '@angular/router';
     RpgAwesomeIconComponent,
     RouterLink,
     FontAwesomeIconComponent,
-    NgIf,
   ],
 })
 export class NavigationComponent {
+  private readonly registry = inject(RpgAwesomeIconsRegistry);
+  private readonly fontAwesomeRegistry = inject(FontAwesomeIconsRegistry);
+
   expanded = false;
   console = false;
+
+  env = environment;
 
   toggleNav() {
     this.expanded = !this.expanded;
@@ -48,10 +54,7 @@ export class NavigationComponent {
     this.expanded = false;
   }
 
-  constructor(
-    private readonly registry: RpgAwesomeIconsRegistry,
-    private readonly fontAwesomeRegistry: FontAwesomeIconsRegistry
-  ) {
+  constructor() {
     this.registry.registerIcons([rpgAwesomeIconScrollUnfurled]);
     this.fontAwesomeRegistry.registerIcons([fontAwesomeIconTerminal]);
   }

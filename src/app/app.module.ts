@@ -1,8 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  NgModule,
-  provideExperimentalZonelessChangeDetection,
-} from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -48,7 +45,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     ColourComponent,
   ],
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     ProjectsService,
     BackgroundService,

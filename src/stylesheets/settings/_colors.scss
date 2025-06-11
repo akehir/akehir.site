@@ -1,4 +1,5 @@
 // color names mostly based on http://chir.ag/projects/name-that-color/
+@use 'sass:color';
 
 // base
 $color-white: #fff;
@@ -37,13 +38,13 @@ $color-tempest-elements-orange: #ec921f;
 
 // ethnologischer Verein Zurich
 $color-evzh-dark-red: #580000;
-$color-evzh-red: desaturate(lighten($color-evzh-dark-red, 5%), 20%);
-$color-evzh-blue: desaturate(
-  lighten($color-tempest-elements-blue-marine, 15%),
-  5%
+$color-evzh-red: color.scale(color.scale($color-evzh-dark-red, $lightness: 5%), $saturation: 20%);
+$color-evzh-blue: color.scale(
+  color.scale($color-tempest-elements-blue-marine, $lightness: 15%),
+  $saturation: 5%
 );
 $color-evzh-light-red: #958888;
-$color-evzh-lighter-red: desaturate(lighten($color-evzh-light-red, 60%), 20%);
+$color-evzh-lighter-red: color.scale(color.scale($color-evzh-light-red, $lightness: 60%), $saturation: 20%);
 $color-evzh-light-gray: #b2b2b2;
 $color-evzh-dark-gray: #3f3f3f;
 $color-evzh-black: #0e0e0e;

@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { timer } from 'rxjs';
@@ -16,7 +9,7 @@ import {
 } from '@triangular/font-awesome-icons';
 import { fontAwesomeIconTerminal } from '@triangular/font-awesome-icons/icons';
 import { ConsoleService } from '@core/services/console.service';
-import { NgForOf } from '@angular/common';
+
 import { projectList } from '@core/data';
 
 @Component({
@@ -25,21 +18,21 @@ import { projectList } from '@core/data';
   styleUrls: ['./console.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, FontAwesomeIconsModule, NgForOf],
+  imports: [FormsModule, FontAwesomeIconsModule],
 })
 export class ConsoleComponent implements AfterViewInit {
+  private focusTrap = inject(ConfigurableFocusTrapFactory);
+  private router = inject(Router);
+  console = inject(ConsoleService);
+  private registry = inject(FontAwesomeIconsRegistry);
+
   public command: string;
   private helpUsed = false;
 
   @ViewChild('consoleForm') consoleForm: NgForm;
   @ViewChild('inputArea') inputArea: ElementRef;
 
-  constructor(
-    private focusTrap: ConfigurableFocusTrapFactory,
-    private router: Router,
-    public console: ConsoleService,
-    private registry: FontAwesomeIconsRegistry
-  ) {
+  constructor() {
     this.registry.registerIcons([fontAwesomeIconTerminal]);
   }
 

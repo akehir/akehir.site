@@ -1,6 +1,7 @@
 // https://github.com/web-tiki/responsive-grid-of-hexagons
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/index.html
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/hexagons.css
+@use '../../../stylesheets/settings/colors' as *;
 
 .grid {
   display: flex;
@@ -60,9 +61,11 @@
   .grid {
     padding-bottom: 4.4%;
   }
+
   .hex {
     width: 20%; // = 100 / 10
   }
+
   .hex:nth-child(9n + 6) {
     // first hexagon of even rows
     margin-left: 10%; // = width of .hex / 2  to indent even rows
@@ -74,9 +77,11 @@
   .grid {
     padding-bottom: 5.5%;
   }
+
   .hex {
     width: 25%; // = 100 / 4
   }
+
   .hex:nth-child(7n + 5) {
     // first hexagon of even rows
     margin-left: 12.5%; // = width of .hex / 2  to indent even rows
@@ -88,9 +93,11 @@
   .grid {
     padding-bottom: 7.4%;
   }
+
   .hex {
     width: 33.333%; // = 100 / 3
   }
+
   .hex:nth-child(5n + 4) {
     // first hexagon of even rows
     margin-left: 16.666%; // = width of .hex / 2  to indent even rows
@@ -102,9 +109,11 @@
   .grid {
     padding-bottom: 11.2%;
   }
+
   .hex {
     width: 50%; // = 100 / 3
   }
+
   .hex:nth-child(3n + 3) {
     // first hexagon of even rows
     margin-left: 25%; // = width of .hex / 2  to indent even rows

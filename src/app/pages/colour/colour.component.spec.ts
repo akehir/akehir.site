@@ -6,7 +6,7 @@ import { ConsoleService } from '@core/services/console.service';
 import { ColourComponent } from './colour.component';
 
 import { provideRouter } from '@angular/router';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('ColourComponent', () => {
   let component: ColourComponent;
@@ -17,7 +17,7 @@ describe('ColourComponent', () => {
       declarations: [],
       imports: [ColourComponent],
       providers: [
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         provideRouter([]),
         ColourService,
         ConsoleService,

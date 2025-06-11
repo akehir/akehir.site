@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavigationComponent } from './navigation.component';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { provideRouter } from '@angular/router';
@@ -19,10 +19,7 @@ describe('NavigationComponent', () => {
         FontAwesomeIconsModule,
         RpgAwesomeIconsModule,
       ],
-      providers: [
-        provideRouter([]),
-        provideExperimentalZonelessChangeDetection(),
-      ],
+      providers: [provideRouter([]), provideZonelessChangeDetection()],
     }).compileComponents();
   });
 

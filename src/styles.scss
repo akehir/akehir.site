@@ -1,30 +1,30 @@
 // Settings
-@import './stylesheets/settings/index';
+@use './stylesheets/settings/index' as *;
 
 // Tools
-@import './stylesheets/tools/index';
+@use './stylesheets/tools/index' as *;
 
 // Typography
-@import './stylesheets/typography/index';
+@use './stylesheets/typography/index' as *;
+
+// You can add global styles to this file, and also import other style files
+@use 'app/pages/project/project.component';
+@use 'app/layout/map/map.component';
+@use 'app/layout/navigation/navigation.component';
+@use 'app/layout/hex/hex.component';
+@use 'app/layout/background/background.component';
+@use 'app/layout/console/console.component';
+@use 'app/pages/home/home.component';
+@use 'app/pages/imprint/imprint.component';
+@use 'app/pages/privacy/privacy.component';
+@use 'app/pages/colour/colour.component';
+@use 'app/pages/blog/blog';
+@use 'app/pages/machina/machina.component';
 
 // Tailwind
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-// You can add global styles to this file, and also import other style files
-@import 'app/pages/project/project.component';
-@import 'app/layout/map/map.component';
-@import 'app/layout/navigation/navigation.component';
-@import 'app/layout/hex/hex.component';
-@import 'app/layout/background/background.component';
-@import 'app/layout/console/console.component';
-@import 'app/pages/home/home.component';
-@import 'app/pages/imprint/imprint.component';
-@import 'app/pages/privacy/privacy.component';
-@import 'app/pages/colour/colour.component';
-@import 'app/pages/blog/blog';
-@import 'app/pages/machina/machina.component';
 
 html {
   background: #131313;

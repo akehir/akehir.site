@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImprintComponent } from './imprint.component';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('ImprintComponent', () => {
   let component: ImprintComponent;
@@ -10,7 +10,7 @@ describe('ImprintComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ImprintComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ImprintComponent);

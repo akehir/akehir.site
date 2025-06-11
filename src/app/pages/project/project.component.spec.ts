@@ -5,7 +5,7 @@ import { ProjectsService } from '@core/services/projects.service';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 describe('UnitComponent', () => {
@@ -22,7 +22,7 @@ describe('UnitComponent', () => {
       ],
       providers: [
         provideRouter([]),
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         ProjectsService,
       ],
     }).compileComponents();

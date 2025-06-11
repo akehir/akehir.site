@@ -1,3 +1,11 @@
+// Settings
+@use '../settings/index' as settings;
+
+// Tools
+@use '../tools/index' as *;
+@use '../tools/font-face' as *;
+
+
 @include font-face(
   SourceSansPro,
   '../../assets/fonts/SourceSans/SourceSansPro-ExtraLight',

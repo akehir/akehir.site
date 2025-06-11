@@ -1,12 +1,16 @@
-<ul class="grid" *ngIf="map$ | async as map">
-  <li
-    class="hex"
-    *ngFor="let coordinate of map.coordinates; trackBy: trackCoordinate">
-    <div class="hexIn">
-      <ake-hex
-        class="hexLink"
-        (click)="log(coordinate)"
-        [project]="coordinate?.project"></ake-hex>
-    </div>
-  </li>
-</ul>
+@if (map$ | async; as map) {
+  <ul class="grid">
+    @for (coordinate of map.coordinates; track trackCoordinate($index, coordinate)) {
+      <li
+        class="hex"
+        >
+        <div class="hexIn">
+          <ake-hex
+            class="hexLink"
+            (click)="log(coordinate)"
+          [project]="coordinate?.project"></ake-hex>
+        </div>
+      </li>
+    }
+  </ul>
+}

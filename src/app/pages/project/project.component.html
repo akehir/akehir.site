@@ -1,19 +1,19 @@
-<ng-container *ngIf="project$ | async as project">
+@if (project$ | async; as project) {
   <li class="hex">
     <div class="hexIn">
       <ake-hex class="hexLink" [project]="project"></ake-hex>
     </div>
   </li>
-
   <pre>{{ project | json }}</pre>
-
-  <div *ngIf="project?.path" class="project__showcase">
-    <img
-      class="project__showcase-image"
-      src="../../../assets/iphone.svg"
-      alt="An iphone as a frame" />
-    <iframe
-      class="project__showcase-frame"
+  @if (project?.path) {
+    <div class="project__showcase">
+      <img
+        class="project__showcase-image"
+        src="../../../assets/iphone.svg"
+        alt="An iphone as a frame" />
+      <iframe
+        class="project__showcase-frame"
       [src]="getIframeSrc(project.path)"></iframe>
-  </div>
-</ng-container>
+    </div>
+  }
+}

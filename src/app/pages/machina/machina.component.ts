@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { interval, of } from 'rxjs';
 import { exhaustMap, startWith, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -64,6 +60,10 @@ type ClusterInfo = {
   imports: [AsyncPipe, RpgAwesomeIconComponent, DecimalPipe],
 })
 export class MachinaComponent {
+  private readonly http = inject(HttpClient);
+  private readonly fontAwesome = inject(FontAwesomeIconsRegistry);
+  private readonly rpgAwesome = inject(RpgAwesomeIconsRegistry);
+
   kubernetes$ = interval(4000).pipe(
     startWith(-1),
     exhaustMap(() =>
@@ -73,11 +73,7 @@ export class MachinaComponent {
     )
   );
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly fontAwesome: FontAwesomeIconsRegistry,
-    private readonly rpgAwesome: RpgAwesomeIconsRegistry
-  ) {
+  constructor() {
     this.fontAwesome.registerIcons([fontAwesomeIconCloudSun]);
     this.rpgAwesome.registerIcons([
       rpgAwesomeIconJigsawPiece,

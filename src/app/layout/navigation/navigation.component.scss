@@ -1,3 +1,5 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 .navigation {
   display: inline-block;
   position: fixed;
@@ -5,14 +7,13 @@
   padding: 0;
   font-size: 1rem;
 
+  @media screen and (max-width: 768px) {
+    pointer-events: none;
 
-    @media screen and (max-width: 768px) {
-      pointer-events: none;
-
-      &.navigation--expanded {
-        pointer-events: auto;
-      }
+    &.navigation--expanded {
+      pointer-events: auto;
     }
+  }
 
   &__toggle {
     pointer-events: all;
@@ -27,9 +28,9 @@
     padding: 1.2rem;
     margin: 1.2rem 2.4rem;
     transition:
-      background 0.4s ease-out,
-      box-shadow 0.4s ease-out,
-      color 0.4s ease-out;
+    background 0.4s ease-out,
+    box-shadow 0.4s ease-out,
+    color 0.4s ease-out;
 
     .navigation--expanded & {
       box-shadow: 0 0 10rem 1rem $color-black;
@@ -67,18 +68,18 @@
   &__item {
     position: relative;
     display: block;
-    background: #ffffff;
+    background: #fff;
     margin-left: 0;
     margin-top: 2rem;
     padding: 0.5rem 3rem;
-    box-shadow: 0.1rem 0.1rem 1rem #ffffff;
+    box-shadow: 0.1rem 0.1rem 1rem #fff;
     border-radius: 0 0.3rem 0.3rem 0;
     cursor: pointer;
     outline: 0;
     transition:
-      background 1s ease-out,
-      box-shadow 1s ease-out,
-      transform 0.4s ease-out;
+    background 1s ease-out,
+    box-shadow 1s ease-out,
+    transform 0.4s ease-out;
     font-family: SourceSansPro, sans-serif;
     font-size: 2rem;
     font-weight: 100;
@@ -112,16 +113,16 @@
       transform: rotate(45deg);
       top: 0;
       content: '';
-      background: #ffffff;
+      background: #fff;
       height: 6.4rem;
       width: 6.4rem;
       border-radius: 50% 0 50% 50%;
       z-index: -1;
       transition:
-        right 1s ease-out,
-        background 1s ease-out,
-        box-shadow 1s ease-out;
-      box-shadow: 0.1rem 0.1rem 1rem #ffffff;
+      right 1s ease-out,
+      background 1s ease-out,
+      box-shadow 1s ease-out;
+      box-shadow: 0.1rem 0.1rem 1rem #fff;
     }
 
     //@media screen and (max-width: 768px) {

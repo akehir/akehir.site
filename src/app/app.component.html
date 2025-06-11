@@ -1,4 +1,6 @@
-<webgl-fluid-simulation *ngIf="background.active"></webgl-fluid-simulation>
+@if (background.active) {
+  <webgl-fluid-simulation></webgl-fluid-simulation>
+}
 
 <div>
   <ake-navigation></ake-navigation>

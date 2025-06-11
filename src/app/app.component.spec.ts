@@ -6,7 +6,7 @@ import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { AppRoutingModule } from './app-routing.module';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
 
 describe('AppComponent', () => {
@@ -21,10 +21,7 @@ describe('AppComponent', () => {
         AppRoutingModule,
       ],
       declarations: [AppComponent],
-      providers: [
-        provideExperimentalZonelessChangeDetection(),
-        BackgroundService,
-      ],
+      providers: [provideZonelessChangeDetection(), BackgroundService],
     }).compileComponents();
   });
 

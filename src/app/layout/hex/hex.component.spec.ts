@@ -5,7 +5,7 @@ import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
 import { RpgAwesomeIconsModule } from '@triangular/rpg-awesome-icons';
 import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 describe('HexComponent', () => {
@@ -21,10 +21,7 @@ describe('HexComponent', () => {
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
       ],
-      providers: [
-        provideRouter([]),
-        provideExperimentalZonelessChangeDetection(),
-      ],
+      providers: [provideRouter([]), provideZonelessChangeDetection()],
     }).compileComponents();
   });
 

@@ -1,11 +1,13 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 ake-project {
-  color: #ffffff;
+  color: #fff;
   width: 90%;
   margin: 0 auto;
   display: block;
 
   & pre {
-    color: #ffffff;
+    color: #fff;
     font-size: 5rem;
     padding-top: 21rem;
     max-width: 40ch;

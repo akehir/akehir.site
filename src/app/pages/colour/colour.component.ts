@@ -1,15 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-  ViewEncapsulation,
-  Inject,
-  NgZone,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, NgZone, ChangeDetectionStrategy, DOCUMENT, inject } from '@angular/core';
 
-import { DOCUMENT } from '@angular/common';
+
 
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -28,6 +19,12 @@ import { Colour, getColourValue, Position } from '@core/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColourComponent implements AfterViewInit {
+  private route = inject(ActivatedRoute);
+  private colours = inject(ColourService);
+  private console = inject(ConsoleService);
+  private zone = inject(NgZone);
+  private document = inject<Document>(DOCUMENT);
+
   @ViewChild('canvas') canvas: ElementRef;
 
   private context: CanvasRenderingContext2D;
@@ -58,14 +55,6 @@ export class ColourComponent implements AfterViewInit {
   private greenOffsetY = 221;
   private blueOffsetX = 255;
   private blueOffsetY = 221;
-
-  constructor(
-    private route: ActivatedRoute,
-    private colours: ColourService,
-    private console: ConsoleService,
-    private zone: NgZone,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
 
   getColour(position: Position): Colour {
     // Get the color data of the canvas version of our element at that location

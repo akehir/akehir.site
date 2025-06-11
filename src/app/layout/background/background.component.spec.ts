@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BackgroundComponent } from './background.component';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 describe('BackgroundComponent', () => {
@@ -12,10 +12,7 @@ describe('BackgroundComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BackgroundComponent],
       declarations: [],
-      providers: [
-        provideRouter([]),
-        provideExperimentalZonelessChangeDetection(),
-      ],
+      providers: [provideRouter([]), provideZonelessChangeDetection()],
     }).compileComponents();
   });
 
