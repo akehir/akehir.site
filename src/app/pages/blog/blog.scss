@@ -54,6 +54,19 @@ ake-blog {
       background-color: $colour-schema-4-accent;
       font-size: 3rem;
     }
+
+    & ul {
+      & > li {
+        list-style: '🎯';
+        margin-left: 4rem;
+        margin-top: 2rem;
+        padding-left: 2rem;
+
+        &:last-child {
+          margin-bottom: 4rem;
+        }
+      }
+    }
   }
 }
 
