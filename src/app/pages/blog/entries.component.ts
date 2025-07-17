@@ -21,6 +21,11 @@ export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
     {
+      routerLink: "/blog/how-to-make-your-homelab-accessible-via-pangolin",
+      title: "How to make your Homelab Accessible via Pangolin",
+      category: "Infrastructure",
+    },
+    {
       routerLink: "/blog/synology-dsm-port-443",
       title: "How to Map Port 443 to DSM on Synology NAS",
       category: "Infrastructure",
