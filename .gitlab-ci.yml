@@ -62,7 +62,7 @@ deploy:
   stage: deploy
   tags:
     - metal
-  needs: ['build', 'linty', 'lintk']
+  needs: ['build', 'linty', 'lintk', 'lintngnx']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
@@ -70,6 +70,7 @@ deploy:
       changes:
         - src/**/*
         - package.json
+        - angular.json
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
@@ -78,6 +79,7 @@ deploy:
       changes:
         - src/**/*
         - package.json
+        - angular.json
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml

@@ -74,6 +74,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'how-to-make-your-homelab-accessible-via-pangolin',
+        loadComponent: () =>
+          import('./entries/pangolin-basics.component').then(
+            c => c.PangolinBasicsComponent
+          ),
+      },
+      {
         path: 'rid-google-ai-overview',
         loadComponent: () =>
           import('./entries/rid-google-ai-overview.component').then(
