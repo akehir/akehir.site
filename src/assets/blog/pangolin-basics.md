@@ -179,7 +179,7 @@ services:
         - -f
         - http://localhost:3001/api/v1/
       timeout: 3s
-    image: fosrl/pangolin:1.6.2
+    image: fosrl/pangolin:1.7.0
     restart: unless-stopped
     volumes:
       - ./config:/app/config
@@ -190,7 +190,7 @@ services:
     depends_on:
       pangolin:
         condition: service_healthy
-    image: traefik:v3.3.6
+    image: traefik:v3.4.4
     network_mode: service:gerbil
     restart: unless-stopped
     volumes:
@@ -200,7 +200,7 @@ services:
     environment:
       INFOMANIAK_ACCESS_TOKEN: "___VALUE___"
   newt:
-    image: fosrl/newt:1.3.2
+    image: fosrl/newt:1.3.3
     container_name: newt
     restart: unless-stopped
     environment:
