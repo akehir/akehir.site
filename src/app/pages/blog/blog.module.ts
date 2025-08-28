@@ -67,6 +67,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'llama-cpp-docker-rocm-gpt-oss',
+        loadComponent: () =>
+          import('./entries/llama-cpp-docker-rocm-gpt-oss.component').then(
+            c => c.LlamaCppDockerRocmGptOssComponent
+          ),
+      },
+    
+      {
         path: 'mistral-3-1',
         loadComponent: () =>
           import('./entries/mistral-3-1.component').then(

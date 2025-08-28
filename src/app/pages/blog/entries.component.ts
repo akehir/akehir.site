@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-type EntryCategory = "Android" | "ChromeOS" | "Linux" | "Meta" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming";
+type EntryCategory = "Android" | "ChromeOS" | "Linux" | "Meta" | "Machine Learning" | "Software" | "Infrastructure" | "Gaming" | "Fonduest Memories" | "Travel" | "Raphael's Random Rumblings" | "Programming" | "Reading" | "Self-Hosting";
 
 @Component({
   selector: 'ake-blog-entries',
@@ -20,6 +20,11 @@ type EntryCategory = "Android" | "ChromeOS" | "Linux" | "Meta" | "Machine Learni
 export class EntriesComponent {
 
   entries: {routerLink: string; title: string; category: EntryCategory }[] = [
+    {
+      routerLink: "/blog/llama-cpp-docker-rocm-gpt-oss",
+      title: "How to run GPT-OSS (20B and 120B) with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900 XTX and AMD Ryzen 9 7950X",
+      category: "Machine Learning",
+    },
     {
       routerLink: "/blog/how-to-make-your-homelab-accessible-via-pangolin",
       title: "How to make your Homelab Accessible via Pangolin",

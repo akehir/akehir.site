@@ -212,3 +212,280 @@ services:
 
 ```
 
+
+### Pangolin config.yaml
+```yaml
+app:
+  dashboard_url: https://pangolin.example.com
+  log_level: info
+  save_logs: false
+domains:
+  domain1:
+    base_domain: example.com
+    cert_resolver: letsencrypt
+  domain2:
+    base_domain: foo.ai
+    cert_resolver: letsencrypt
+  domain3:
+    base_domain: bar.in
+    cert_resolver: letsencrypt
+server:
+  external_port: 3000
+  internal_port: 3001
+  next_port: 3002
+  internal_hostname: pangolin
+  session_cookie_name: p_session_token
+  resource_access_token_param: p_token
+  resource_access_token_headers:
+    id: P-Access-Token-Id
+    token: P-Access-Token
+  resource_session_request_param: p_session_request
+  cors:
+    origins:
+      - https://pangolin.example.com
+    methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - PATCH
+    headers:
+      - X-CSRF-Token
+      - Content-Type
+    credentials: false
+  secret: foo123
+traefik:
+  cert_resolver: letsencrypt
+  http_entrypoint: web
+  https_entrypoint: websecure
+gerbil:
+  start_port: 51820
+  base_endpoint: pangolin.example.com
+  use_subdomain: false
+  block_size: 24
+  site_block_size: 30
+  subnet_group: 100.89.137.0/20
+rate_limits:
+  global:
+    window_minutes: 1
+    max_requests: 500
+email:
+  smtp_host: smtp.example.com
+  smtp_port: 587
+  smtp_user: foo
+  smtp_pass: password123456
+  no_reply: foo@example.com
+flags:
+  require_email_verification: true
+  disable_signup_without_invite: true
+  disable_user_create_org: false
+  allow_raw_resources: true
+  allow_base_domain_resources: true
+
+```
+
+
+### Traefik traefik_config.yaml
+
+```yaml
+accessLog:
+  bufferingSize: 100
+  fields:
+    defaultMode: drop
+    headers:
+      defaultMode: drop
+      names:
+        Authorization: redact
+        Content-Type: keep
+        Cookie: redact
+        User-Agent: keep
+        X-Forwarded-For: keep
+        X-Forwarded-Proto: keep
+        X-Real-Ip: keep
+    names:
+      ClientAddr: keep
+      ClientHost: keep
+      DownstreamContentSize: keep
+      DownstreamStatus: keep
+      Duration: keep
+      RequestMethod: keep
+      RequestPath: keep
+      RequestProtocol: keep
+      RetryAttempts: keep
+      ServiceName: keep
+      StartUTC: keep
+      TLSCipher: keep
+      TLSVersion: keep
+  filePath: /var/log/traefik/access.log
+  filters:
+    minDuration: 100ms
+    retryAttempts: true
+    statusCodes:
+      - 200-299
+      - 400-499
+      - 500-599
+  format: json
+api:
+  dashboard: true
+  insecure: true
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      email: foo@example.com
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: "infomaniak"
+entryPoints:
+  tcp-22:
+    address: :22/tcp
+  tcp-25:
+    address: :25/tcp
+  tcp-110:
+    address: :110/tcp
+  tcp-143:
+    address: :143/tcp
+  tcp-465:
+    address: :465/tcp
+  tcp-587:
+    address: :587/tcp
+  tcp-993:
+    address: :993/tcp
+  tcp-995:
+    address: :995/tcp
+  web:
+    address: :80
+  websecure:
+    address: :443
+    http:
+      middlewares:
+        - crowdsec@file
+      tls:
+        certResolver: letsencrypt
+    transport:
+      respondingTimeouts:
+        readTimeout: 30m
+experimental:
+  plugins:
+    badger:
+      moduleName: github.com/fosrl/badger
+      version: v1.2.0
+    crowdsec:
+      moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+      version: v1.4.4
+log:
+  format: json
+  level: INFO
+providers:
+  file:
+    filename: /etc/traefik/dynamic_config.yml
+  http:
+    endpoint: http://pangolin:3001/api/v1/traefik-config
+    pollInterval: 5s
+serversTransport:
+  insecureSkipVerify: true
+
+```
+
+
+### Traefik dynamic_config.yaml
+
+```yaml
+http:
+  middlewares:
+    crowdsec:
+      plugin:
+        crowdsec:
+          clientTrustedIPs:
+            - 10.0.0.0/8
+            - 172.16.0.0/12
+            - 192.168.0.0/16
+            - 100.89.137.0/20
+          crowdsecAppsecEnabled: true
+          crowdsecAppsecFailureBlock: true
+          crowdsecAppsecHost: crowdsec:7422
+          crowdsecAppsecUnreachableBlock: true
+          crowdsecLapiHost: crowdsec:8080
+          crowdsecLapiKey: "foo123"
+          crowdsecLapiScheme: http
+          crowdsecMode: live
+          defaultDecisionSeconds: 15
+          enabled: true
+          forwardedHeadersTrustedIPs:
+            - 0.0.0.0/0
+          httpTimeoutSeconds: 10
+          logLevel: INFO
+          updateIntervalSeconds: 15
+          updateMaxFailure: 0
+    default-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - 10.0.0.0/8
+          - 192.168.0.0/16
+          - 172.16.0.0/12
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+    security-headers:
+      headers:
+        contentTypeNosniff: true
+        customFrameOptionsValue: SAMEORIGIN
+        customResponseHeaders:
+          Server: ""
+          X-Forwarded-Proto: https
+          X-Powered-By: ""
+        forceSTSHeader: true
+        hostsProxyHeaders:
+          - X-Forwarded-Host
+        referrerPolicy: strict-origin-when-cross-origin
+        sslProxyHeaders:
+          X-Forwarded-Proto: https
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 63072000
+  routers:
+    api-router:
+      entryPoints:
+        - websecure
+      middlewares:
+        - security-headers
+      rule: Host(`pangolin.example.com`) && PathPrefix(`/api/v1`)
+      service: api-service
+      tls:
+        certResolver: letsencrypt
+    main-app-router-redirect:
+      entryPoints:
+        - web
+      middlewares:
+        - redirect-to-https
+      rule: Host(`pangolin.example.com`)
+      service: next-service
+    next-router:
+      entryPoints:
+        - websecure
+      middlewares:
+        - security-headers
+      rule: Host(`pangolin.example.com`) && !PathPrefix(`/api/v1`)
+      service: next-service
+      tls:
+        certResolver: letsencrypt
+    ws-router:
+      entryPoints:
+        - websecure
+      middlewares:
+        - security-headers
+      rule: Host(`pangolin.example.com`)
+      service: api-service
+      tls:
+        certResolver: letsencrypt
+  services:
+    api-service:
+      loadBalancer:
+        servers:
+          - url: http://pangolin:3000
+    next-service:
+      loadBalancer:
+        servers:
+          - url: http://pangolin:3002
+```
+
