@@ -94,12 +94,7 @@ Then you can run the bigger model as follows:
 ```
 
 This gives the following speeds:
-> llama_perf_sampler_print: sampling time = 49.46 ms / 763 runs ( 0.06 ms per token, 15426.61 tokens per second)
-> llama_perf_context_print: load time = 21390.35 ms
-> llama_perf_context_print: prompt eval time = 2225.93 ms / 44 tokens ( 50.59 ms per token, 19.77 tokens per second)
 > llama_perf_context_print: eval time = 131869.31 ms / 718 runs ( 183.66 ms per token, 5.44 tokens per second)
-> llama_perf_context_print: total time = 146719.76 ms / 762 tokens
-> llama_perf_context_print: graphs reused = 695
 
 The smaller model completely fits into 24GB of VRAM, I was able to increase the context size to 70k-80k tokens. If you have less VRAM, you will need to reduce the context size.
 
@@ -115,23 +110,7 @@ The smaller model completely fits into 24GB of VRAM, I was able to increase the 
 ```
 
 Which gives us the following (blazing fast) speeds:
-llama_perf_sampler_print: sampling time = 49.46 ms / 763 runs ( 0.06 ms per token, 15426.61 tokens per second)
-
-llama_perf_context_print: load time = 21390.35 ms
-
-llama_perf_context_print: prompt eval time = 2225.93 ms / 44 tokens ( 50.59 ms per token, 19.77 tokens per second)
-
-llama_perf_context_print: eval time = 131869.31 ms / 718 runs ( 183.66 ms per token, 5.44 tokens per second)
-
-llama_perf_context_print: total time = 146719.76 ms / 762 tokens
-
-llama_perf_context_print: graphs reused = 695
-> llama_perf_sampler_print: sampling time = 118.94 ms / 1997 runs ( 0.06 ms per token, 16789.41 tokens per second)
-> llama_perf_context_print: load time = 2705.01 ms
-> llama_perf_context_print: prompt eval time = 157.61 ms / 24 tokens ( 6.57 ms per token, 152.27 tokens per second)
 > llama_perf_context_print: eval time = 17789.35 ms / 1972 runs ( 9.02 ms per token, 110.85 tokens per second)
-> llama_perf_context_print: total time = 26950.18 ms / 1996 tokens
-> llama_perf_context_print: graphs reused = 1909
 
 Overall, this makes the small model very usable for quick queries, and the bigger model remains suitable for more complex tasks - although requiring much more time.
 
