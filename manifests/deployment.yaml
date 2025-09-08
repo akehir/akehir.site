@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: akehir-site
-          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-1eec3e15-1757344688 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
+          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-9531c448-1757360421 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
           ports:
             - containerPort: 8811
       imagePullSecrets:
