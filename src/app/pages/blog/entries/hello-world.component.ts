@@ -3,17 +3,15 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { MarkdownComponent } from 'ngx-markdown';
+import { BlogEntryComponent } from './entry.component';
 
 @Component({
   selector: 'ake-blog-hello-world',
-  template: `
-    <markdown [src]="'/assets/blog/hello-world.md'"></markdown>`,
+  template: ` <ake-blog-entry
+    [src]="'/assets/blog/hello-world.md'"></ake-blog-entry>`,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MarkdownComponent,
-  ],
+  imports: [BlogEntryComponent],
 })
 export class HelloWorldComponent {}

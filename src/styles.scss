@@ -7,18 +7,26 @@
 // Typography
 @use './stylesheets/typography/index' as *;
 
-// You can add global styles to this file, and also import other style files
-@use 'app/pages/project/project.component';
+// global styles
+@use "./stylesheets/global" as *;
+
+// Components
+//@use 'app/components/clipboard-button.component';
+
+// Layout by importance
 @use 'app/layout/map/map.component';
 @use 'app/layout/navigation/navigation.component';
 @use 'app/layout/hex/hex.component';
 @use 'app/layout/background/background.component';
 @use 'app/layout/console/console.component';
+
+// Pages by importance
 @use 'app/pages/home/home.component';
+@use 'app/pages/blog/blog';
+@use 'app/pages/project/project.component';
 @use 'app/pages/imprint/imprint.component';
 @use 'app/pages/privacy/privacy.component';
 @use 'app/pages/colour/colour.component';
-@use 'app/pages/blog/blog';
 @use 'app/pages/machina/machina.component';
 
 // Tailwind
@@ -26,34 +34,3 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background: #131313;
-}
-
-html,
-body {
-  margin: 0;
-  font-family: SourceSerifPro, serif;
-  font-weight: 100;
-  font-size: 62.5%;
-}
-
-main {
-  margin-left: 4.2rem;
-  @media (min-width: 768px) {
-    margin-left: 24rem;
-  }
-}
-
-webgl-fluid-simulation {
-  canvas {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-  }
-}
-
-svg {
-  fill: currentColor;
-}

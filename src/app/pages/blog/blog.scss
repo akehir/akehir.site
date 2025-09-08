@@ -30,8 +30,13 @@ ake-blog {
   & markdown {
     display: block;
     padding-top: 21rem;
-    max-width: 40ch;
-    font-size: 4rem;
+    max-width: 55ch;
+    font-size: 3rem;
+
+    //@media screen and (max-width: 768px) {
+    //  font-size: 3rem;
+    //  max-width: 42ch;
+    //}
 
     & h1,
     & h2,
@@ -43,16 +48,70 @@ ake-blog {
       margin-top: 1rem;
     }
 
+    & p {
+      margin-top: 1rem;
+    }
+
     & h1 {
       font-size: 5rem;
     }
 
+    // code ...
     & pre {
       margin-top: 4rem;
       margin-bottom: 3rem;
       padding: 2rem 4rem;
       background-color: $colour-schema-4-accent;
-      font-size: 3rem;
+      font-size: 1.8rem;
+      font-family: SourceCodePro, monospace;
+      position: relative;
+      pointer-events: none;
+
+      & code {
+        pointer-events: all;
+      }
+
+      &:before {
+        content: '📋';
+        display: block;
+        position: absolute;
+        font-size: 5rem;
+        top: 0;
+        right: 0;
+        margin-top: 1rem;
+        margin-right: 2rem;
+        cursor: pointer;
+        pointer-events: all;
+      }
+    }
+
+    & blockquote {
+      padding-left: 4rem;
+      position: relative;
+      font-style: italic;
+
+      &:before, &:after {
+        display: block;
+        position: absolute;
+        font-size: 14rem;
+        line-height: 1;
+        opacity: 0.2;
+        height: 100%;
+      }
+
+      &:before {
+        content: '“';
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+      }
+
+      &:after {
+        content: '”';
+        bottom: 0;
+        right: 0;
+        transform: translateX(100%);
+      }
     }
 
     & ul {

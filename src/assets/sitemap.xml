@@ -20,6 +20,10 @@
 		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
+	<url>
+		<loc>https://akehir.com/blog/open-webui-llama-server</loc>
+		<lastmod>2025-09-09T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/llama-cpp-docker-rocm-gpt-oss</loc>
@@ -91,7 +95,7 @@
 		<loc>https://akehir.com/blog/ssh-wireguard-mobile-hotspot-issue</loc>
 		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
-	</url>     
+	</url>
 	<url>
 		<loc>https://akehir.com/curriculum</loc>
 		<lastmod>2025-03-06T23:19:32+01:00</lastmod>

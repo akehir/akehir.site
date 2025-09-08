@@ -3,17 +3,15 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { MarkdownComponent } from 'ngx-markdown';
+import { BlogEntryComponent } from './entry.component';
 
 @Component({
   selector: 'ake-blog-chromeos-wireguard',
-  template: `
-    <markdown [src]="'/assets/blog/chromeos-wireguard.md'"></markdown>`,
+  template: ` <ake-blog-entry
+    [src]="'/assets/blog/chromeos-wireguard.md'"></ake-blog-entry>`,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MarkdownComponent,
-  ],
+  imports: [BlogEntryComponent],
 })
 export class ChromeOSWireGuardComponent {}

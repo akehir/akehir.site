@@ -1,6 +1,14 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, NgZone, ChangeDetectionStrategy, DOCUMENT, inject } from '@angular/core';
-
-
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild,
+  ViewEncapsulation,
+  NgZone,
+  ChangeDetectionStrategy,
+  DOCUMENT,
+  inject,
+} from '@angular/core';
 
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -10,6 +18,7 @@ import { switchMap, takeUntil, pairwise, delay, repeat } from 'rxjs/operators';
 import { ColourService } from '@core/services/colour.service';
 import { ConsoleService } from '@core/services/console.service';
 import { Colour, getColourValue, Position } from '@core/types';
+import { copyToClipboard } from '@core/util';
 
 @Component({
   selector: 'ake-colour',
@@ -84,7 +93,7 @@ export class ColourComponent implements AfterViewInit {
 
     const hex = '#' + r + g + b;
 
-    this.copyToClipboard(hex);
+    copyToClipboard(hex);
 
     this.console.push(`${hex} has been copied to the clipboard.`, {
       colour: hex,
@@ -286,18 +295,6 @@ export class ColourComponent implements AfterViewInit {
         // this method we'll implement soon to do the actual drawing
         this.drawOnCanvas(prevPos, currentPos);
       });
-  }
-
-  copyToClipboard(str) {
-    const el = this.document.createElement('textarea');
-    el.value = str;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
-    this.document.body.appendChild(el);
-    el.select();
-    this.document.execCommand('copy');
-    this.document.body.removeChild(el);
   }
 
   private drawOnCanvas(prevPos: Position, currentPos: Position) {

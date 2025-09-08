@@ -3,17 +3,17 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { MarkdownComponent } from 'ngx-markdown';
+import { BlogEntryComponent } from './entry.component';
 
 @Component({
   selector: 'ake-blog-ssh-wireguard-mobile-hotspot-issue',
-  template: `
-    <markdown [src]="'/assets/blog/ssh-wireguard-mobile-hotspot-issue.md'"></markdown>`,
+  template: ` <ake-blog-entry
+    [src]="
+      '/assets/blog/ssh-wireguard-mobile-hotspot-issue.md'
+    "></ake-blog-entry>`,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    MarkdownComponent,
-  ],
+  imports: [BlogEntryComponent],
 })
 export class SSHWireguardMobileHotspotIssueComponent {}

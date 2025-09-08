@@ -27,9 +27,9 @@ const routes: Routes = [
       {
         path: 'cool-things-with-transformers-in-the-browser',
         loadComponent: () =>
-          import('./entries/cool-things-with-transformers-in-the-browser.component').then(
-            c => c.CoolThingsWithTransfoemersInTheBrowserComponent
-          ),
+          import(
+            './entries/cool-things-with-transformers-in-the-browser.component'
+          ).then(c => c.CoolThingsWithTransformersInTheBrowserComponent),
       },
       {
         path: 'git-reset',
@@ -46,10 +46,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'how-to-make-your-homelab-accessible-via-pangolin',
+        loadComponent: () =>
+          import('./entries/pangolin-basics.component').then(
+            c => c.PangolinBasicsComponent
+          ),
+      },
+      {
         path: 'https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak',
         loadComponent: () =>
-          import('./entries/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.component').then(
-            c => c.HttpsRedirectTraefikWithAutomaticCertificatesFromClusterIssuerWithInfomaniakComponent
+          import(
+            './entries/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.component'
+          ).then(
+            c =>
+              c.HttpsRedirectTraefikWithAutomaticCertificatesFromClusterIssuerWithInfomaniakComponent
           ),
       },
       {
@@ -73,7 +83,6 @@ const routes: Routes = [
             c => c.LlamaCppDockerRocmGptOssComponent
           ),
       },
-    
       {
         path: 'mistral-3-1',
         loadComponent: () =>
@@ -82,10 +91,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'how-to-make-your-homelab-accessible-via-pangolin',
+        path: 'open-webui-llama-server',
         loadComponent: () =>
-          import('./entries/pangolin-basics.component').then(
-            c => c.PangolinBasicsComponent
+          import('./entries/open-webui-llama-server.component').then(
+            c => c.OpenWebuiLlamaServerComponent
           ),
       },
       {
