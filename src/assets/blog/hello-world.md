@@ -11,7 +11,12 @@ But for every action here I have to plead to you that you do not lose confidence
 
 However, it is now all said upon your welcome, enjoy and rejoy.
 
+
+
+
 ---
+
+
 
 In Javascript it could look as follows:
 
@@ -39,3 +44,6 @@ And some languages designed to be unreadable such as *brainfuck* might have such
 +.------------.>++++++[<+++++++++>-]<+.<.+++.------.--------.>>>++++[<++++++++>-
 ]<+.
 ```
+
+---
+

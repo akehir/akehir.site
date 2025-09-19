@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
+import { ChromeosRemoteDebuggingFirefox } from './entries/chromeos-remote-debugging-firefox';
 
 export type EntryCategory =
   | 'Android'
@@ -39,6 +40,28 @@ export type BlogData = {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'chromeos-remote-debugging-firefox',
+    title:
+      'ChromeOS - Remote Debugging with Firefox on an Android Phone via Crostini on ChromeOS',
+    data: {
+      title:
+        'ChromeOS - Remote Debugging with Firefox on an Android Phone via Crostini on ChromeOS',
+      author: 'Raphael Ochsenbein',
+      categories: ['ChromeOS', 'Programming'],
+      mainCategory: 'ChromeOS',
+      publishedDate: '2025-09-19',
+      modifiedDate: '2025-09-19',
+      routerLink: '/blog/chromeos-remote-debugging-firefox',
+      content: '/assets/blog/chromeos-remote-debugging-firefox.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/chromeos-remote-debugging-firefox.md',
+    },
+    loadComponent: () =>
+      import('./entries/chromeos-remote-debugging-firefox').then(
+        c => c.ChromeosRemoteDebuggingFirefox
+      ),
+  },
   {
     path: 'hello-world',
     title: 'Hello World!',

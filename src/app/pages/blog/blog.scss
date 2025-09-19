@@ -6,10 +6,8 @@ ake-blog {
 
   & div,
   & markdown {
-    padding-top: 21rem;
-    padding-bottom: 21rem;
     max-width: 55ch;
-    margin: auto;
+    margin: 21rem auto;
 
     & h1,
     & h2,
@@ -59,6 +57,10 @@ ake-blog {
   & markdown {
     display: block;
 
+    & hr {
+      margin: 5rem 0;
+    }
+
     // code ...
     & pre {
       margin-top: 4rem;
@@ -97,7 +99,7 @@ ake-blog {
       padding-left: 4rem;
       position: relative;
       font-style: italic;
-      margin: 3rem auto;
+      margin: 5rem 0;
 
       &:before, &:after {
         display: block;
