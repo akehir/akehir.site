@@ -1,7 +1,6 @@
 # Algovernmentality
 *Published: Nov 25, 2014*
 
-
 For a while now it has been quite a conundrum: How might I breach the subject of algovernmentality without becoming overly arcane and artificial?
 
 Finally, Facebook has deigned to step in and solve the problem for me by providing a wonderful example:
@@ -27,11 +26,11 @@ Algorithm is just a fancy way of saying ‘computer program’.
 
 ### Sources & Further Reading
 
-Kramer, A. D., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. Proceedings of the National Academy of Sciences, 201320040. [http://www.pnas.org/content/111/24/8788.full.pd](https://www.blogger.com/blog/post/edit/2294386622911074612/2458012368609325939#)[f](https://www.blogger.com/blog/post/edit/2294386622911074612/2458012368609325939#) .
+Kramer, A. D., Guillory, J. E., & Hancock, J. T. (2014). Experimental evidence of massive-scale emotional contagion through social networks. Proceedings of the National Academy of Sciences, 201320040. [http://www.pnas.org/content/111/24/8788.full.pdf](http://www.pnas.org/content/111/24/8788.full.pd) .
 
-Gallagher, S. (2014). Air force research: How to use social media to control people like drones. Ars Technica. [http://arstechnica.com/information-technology/2014/07/air-force-research-how-to-use-social-media-to-control-people-like-drones/](https://www.blogger.com/blog/post/edit/2294386622911074612/2458012368609325939#) .
+Gallagher, S. (2014). Air force research: How to use social media to control people like drones. Ars Technica. [http://arstechnica.com/information-technology/2014/07/air-force-research-how-to-use-social-media-to-control-people-like-drones/](http://arstechnica.com/information-technology/2014/07/air-force-research-how-to-use-social-media-to-control-people-like-drones/) .
 
-Slavin, K. (2011). How Algorithms Shape Our World. TED Talk.[http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world](https://www.blogger.com/blog/post/edit/2294386622911074612/2458012368609325939#) .
+Slavin, K. (2011). How Algorithms Shape Our World. TED Talk.[http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world](http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world) .
 
 Sornette, D., & Von der Becke, S. (2011). Crashes and high frequency trading.Swiss Finance Institute Research Paper, (11-63).
 
@@ -39,4 +38,4 @@ Katz, D. M., Bommarito, M. J., & Blackman, J. (2014). Predicting the Behavior of
 
 Morozov, E. (2013). To save everything, click here: Technology, solutionism, and the urge to fix problems that don’t exist. Penguin UK.
 
-But the subject is not new, it has famously been thematised by Kevin Slavin in 2011, in his TED talk “How algorithms shape our world”.  [http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world](https://www.blogger.com/blog/post/edit/2294386622911074612/2458012368609325939#)
+But the subject is not new, it has famously been thematised by Kevin Slavin in 2011, in his TED talk “How algorithms shape our world”.  [http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world](http://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world)
