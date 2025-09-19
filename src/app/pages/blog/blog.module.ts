@@ -62,6 +62,26 @@ export const blogEntries: BlogRoute[] = [
       ),
   },
   {
+    path: 'algovernmentality',
+    title: 'Algovernmentality',
+    data: {
+      title: 'Algovernmentality',
+      author: 'Raphael Ochsenbein',
+      categories: ["Raphael's Random Rumblings", 'Programming'],
+      mainCategory: "Raphael's Random Rumblings",
+      publishedDate: '2014-11-25',
+      modifiedDate: '2014-11-25',
+      routerLink: '/blog/algovernmentality',
+      content: '/assets/blog/algovernmentality.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/algovernmentality.md',
+    },
+    loadComponent: () =>
+      import('./entries/algovernmentality.component').then(
+        c => c.AlgovernmentalityComponent
+      ),
+  },
+  {
     path: 'hello-world',
     title: 'Hello World!',
     data: {

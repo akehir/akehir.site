@@ -9,6 +9,11 @@ ake-blog {
     max-width: 55ch;
     margin: 21rem auto;
 
+    &:first-child{
+      margin-top: 0;
+      padding-top: 21rem;
+    }
+
     & h1,
     & h2,
     & h3,
