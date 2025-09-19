@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
-import { ChromeosRemoteDebuggingFirefox } from './entries/chromeos-remote-debugging-firefox';
 
 export type EntryCategory =
   | 'Android'
