@@ -2,50 +2,14 @@
 
 ake-blog {
   color: #fff;
-  font-size: 5rem;
-  // font-weight: 400;
+  font-size: 3rem;
 
-  & div {
-    padding-top: 21rem;
-    max-width: 40ch;
-    margin: auto;
-    // github universe example:
-    // background: linear-gradient(270.97deg, #FFE580 -21.36%, #FF7571 -2.45%, #EA5DAD 26.84%, #C2A0FD 64.15%, #3BF0E4 108.29%, #B2F4B6 159.03%);
-
-    //background: linear-gradient(to bottom right, #4389a2, #5c258d);
-    background: linear-gradient(
-      to bottom right,
-      $color-akehir-cyan,
-      $color-akehir-blue,
-      $color-akehir-red,
-      $color-akehir-yellow
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    //@media screen and (min-width: 1024px) {
-    //  font-size: 3rem;
-    //  max-width: 42ch;
-    //}
-
-
-    & > a {
-      display: block;
-      margin-top: 5rem;
-    }
-  }
-
+  & div,
   & markdown {
-    display: block;
     padding-top: 21rem;
+    padding-bottom: 21rem;
     max-width: 55ch;
-    font-size: 3rem;
     margin: auto;
-
-    //@media screen and (max-width: 768px) {
-    //  font-size: 3rem;
-    //  max-width: 42ch;
-    //}
 
     & h1,
     & h2,
@@ -73,6 +37,27 @@ ake-blog {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+  }
+
+  & div {
+    & .ake-blog-entries--item {
+      font-size: 5rem;
+      display: block;
+      margin-top: 5rem;
+      background: linear-gradient(
+          to bottom right,
+          $color-akehir-cyan,
+          $color-akehir-blue,
+          $color-akehir-red,
+          $color-akehir-yellow
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  & markdown {
+    display: block;
 
     // code ...
     & pre {
@@ -86,6 +71,11 @@ ake-blog {
       pointer-events: none;
 
       & code {
+        // in order to style the "before" element
+        // of the containing <pre>
+        // and trigger a click only on the copy button
+        // but still being able to select
+        // code inside the <pre>
         pointer-events: all;
       }
 
@@ -107,6 +97,7 @@ ake-blog {
       padding-left: 4rem;
       position: relative;
       font-style: italic;
+      margin: 3rem auto;
 
       &:before, &:after {
         display: block;
@@ -144,11 +135,5 @@ ake-blog {
         }
       }
     }
-  }
-}
-
-ake-blog-entries {
-  & a {
-    margin-top: 2rem;
   }
 }

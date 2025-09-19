@@ -13,7 +13,21 @@ import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'ake-blog-entry',
-  template: ` <markdown (ready)="onMarkdownReady()" [src]="src()"> </markdown>`,
+  template: `
+    <markdown (ready)="onMarkdownReady()" [src]="src()">
+      <h1>{{ title() }}</h1>
+      @let _publishedDate = publishedDate();
+      @if (_publishedDate) {
+        <p>
+          <em>Published: {{ _publishedDate }}</em>
+        </p>
+      }
+    </markdown>
+    <div>
+      <h2>Source</h2>
+      <p><a [href]="sourceLink()" target="_blank">Open Gitlab</a></p>
+    </div>
+  `,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,6 +35,9 @@ import { environment } from '../../../../environments/environment';
 })
 export class BlogEntryComponent {
   src = input.required<string>();
+  title = input.required<string>();
+  sourceLink = input.required<string>();
+  publishedDate = input<string>();
   markdown = viewChild(MarkdownComponent);
   document = inject(DOCUMENT);
 
