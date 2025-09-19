@@ -6,22 +6,6 @@ import {
 import { RouterLink } from '@angular/router';
 import { BlogData, blogEntries } from './blog.module';
 
-type EntryCategory =
-  | 'Android'
-  | 'ChromeOS'
-  | 'Linux'
-  | 'Meta'
-  | 'Machine Learning'
-  | 'Software'
-  | 'Infrastructure'
-  | 'Gaming'
-  | 'Fonduest Memories'
-  | 'Travel'
-  | "Raphael's Random Rumblings"
-  | 'Programming'
-  | 'Reading'
-  | 'Self-Hosting';
-
 @Component({
   selector: 'ake-blog-entries',
   templateUrl: './entries.component.html',
@@ -35,10 +19,11 @@ export class EntriesComponent {
     .map(({ data }) => ({
       ...data,
     }))
+    .filter(({ hidden }) => !hidden)
     .sort(
       // newest entries first.
       (a, b) =>
-        new Date(a.publishedDate).getTime() -
-        new Date(b.publishedDate).getTime()
+        new Date(b.publishedDate).getTime() -
+        new Date(a.publishedDate).getTime()
     );
 }

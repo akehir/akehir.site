@@ -33,6 +33,7 @@ export type BlogData = {
   author: 'Raphael Ochsenbein';
   mainCategory: EntryCategory;
   categories: EntryCategory[];
+  hidden?: true;
 };
 
 type BlogRoute = Route & { data: BlogData };
@@ -43,7 +44,7 @@ export const blogEntries: BlogRoute[] = [
     title: 'Hello World!',
     data: {
       title: 'Hello World!',
-      routerLink: '/blog/open-webui-llama-server',
+      routerLink: '/blog/hello-world',
       content: '/assets/blog/hello-world.md',
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/hello-world.md',
@@ -65,6 +66,8 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to Setup the Built-In WireGuard VPN in ChromeOS',
       routerLink: '/blog/chromeos-wireguard',
       content: '/assets/blog/chromeos-wireguard.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/chromeos-wireguard.md',
       publishedDate: '2025-04-13',
       modifiedDate: '2025-04-13',
       author: 'Raphael Ochsenbein',
@@ -80,15 +83,16 @@ export const blogEntries: BlogRoute[] = [
     path: 'cool-things-with-transformers-in-the-browser',
     title: 'Cool things with Transformers in the Browser',
     data: {
-      title: '',
-      routerLink: '',
+      title: 'Cool things with Transformers in the Browser',
+      routerLink: '/blog/cool-things-with-transformers-in-the-browser',
       content: '',
       source: '',
       publishedDate: '',
       modifiedDate: '',
-      author: '',
-      mainCategory: '',
-      categories: [''],
+      author: 'Raphael Ochsenbein',
+      mainCategory: 'Machine Learning',
+      categories: ['Machine Learning'],
+      hidden: true,
     },
     loadComponent: () =>
       import(
@@ -102,6 +106,8 @@ export const blogEntries: BlogRoute[] = [
       title: 'git reset',
       routerLink: '/blog/git-reset',
       content: '/assets/blog/git-reset.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/git-reset.md',
       publishedDate: '2025-03-20',
       modifiedDate: '2025-03-20',
       author: 'Raphael Ochsenbein',
@@ -120,6 +126,8 @@ export const blogEntries: BlogRoute[] = [
         'How to fix filebeat CrashLoopBackoff (due to OOMKiller) by increasing resource limits',
       routerLink: '/blog/filebeat-crashloopbackoff',
       content: '/assets/blog/filebeat-crashloopbackoff.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/filebeat-crashloopbackoff.md',
       publishedDate: '2025-04-25',
       modifiedDate: '2025-04-25',
       author: 'Raphael Ochsenbein',
@@ -138,6 +146,8 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to make your Homelab Accessible via Pangolin',
       routerLink: '/blog/how-to-make-your-homelab-accessible-via-pangolin',
       content: '/assets/blog/pangolin-basics.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/pangolin-basics.md',
       publishedDate: '2025-07-17',
       modifiedDate: '2025-07-17',
       author: 'Raphael Ochsenbein',
@@ -160,6 +170,8 @@ export const blogEntries: BlogRoute[] = [
         '/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak',
       content:
         '/assets/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.md',
       publishedDate: '2025-04-25',
       modifiedDate: '2025-04-25',
       author: 'Raphael Ochsenbein',
@@ -183,6 +195,8 @@ export const blogEntries: BlogRoute[] = [
         'Kubernetes Dashboard without Kong Proxy (nginx bind to port 8444 failed)',
       routerLink: '/blog/kubernetes-dashboard-no-kong-proxy',
       content: '/assets/blog/kubernetes-dashboard-no-kong-proxy.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/kubernetes-dashboard-no-kong-proxy.md',
       publishedDate: '2025-04-15',
       modifiedDate: '2025-04-15',
       author: 'Raphael Ochsenbein',
@@ -203,6 +217,8 @@ export const blogEntries: BlogRoute[] = [
         'How to run DeepSeek R1 with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX',
       routerLink: '/blog/llama-cpp-docker-rocm',
       content: '/assets/blog/llama-cpp-docker-rocm.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/llama-cpp-docker-rocm.md',
       publishedDate: '2025-02-28',
       modifiedDate: '2025-02-28',
       author: 'Raphael Ochsenbein',
@@ -223,6 +239,8 @@ export const blogEntries: BlogRoute[] = [
         'How to run GPT-OSS (20B and 120B) with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900 XTX and AMD Ryzen 9 7950X',
       routerLink: '/blog/llama-cpp-docker-rocm-gpt-oss',
       content: '/assets/blog/llama-cpp-docker-rocm-gpt-oss.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/llama-cpp-docker-rocm-gpt-oss.md',
       publishedDate: '2025-08-28',
       modifiedDate: '2025-08-28',
       author: 'Raphael Ochsenbein',
@@ -243,6 +261,8 @@ export const blogEntries: BlogRoute[] = [
         'How to run Mistral-Small-3.1-24B with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX',
       routerLink: '/blog/mistral-3-1',
       content: '/assets/blog/mistral-3-1.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/mistral-3-1.md',
       publishedDate: '2025-03-23',
       modifiedDate: '2025-03-23',
       author: 'Raphael Ochsenbein',
@@ -257,9 +277,12 @@ export const blogEntries: BlogRoute[] = [
     title:
       'How to Self-Host your own private ChatGPT: Open WebUI with a GPU Accelerated llama.cpp Backend and the OpenAI GPT-20B Model',
     data: {
-      title: 'Create new scratch file from selection',
+      title:
+        'How to Self-Host your own private ChatGPT: Open WebUI with a GPU Accelerated llama.cpp Backend and the OpenAI GPT-20B Model',
       routerLink: '/blog/open-webui-llama-server',
       content: '/assets/blog/open-webui-llama-server.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/open-webui-llama-server.md',
       publishedDate: '2025-09-09',
       modifiedDate: '2025-09-09',
       author: 'Raphael Ochsenbein',
@@ -278,6 +301,8 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to get rid of AI Overviews in Google search',
       routerLink: '/blog/rid-google-ai-overview',
       content: '/assets/blog/rid-google-ai-overview.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/rid-google-ai-overview.md',
       publishedDate: '2025-03-28',
       modifiedDate: '2025-03-28',
       author: 'Raphael Ochsenbein',
@@ -298,6 +323,8 @@ export const blogEntries: BlogRoute[] = [
         'How to run Stable Diffusion WebUI or Forge on AMD Radeon RX 7900XTX via Docker on Linux on Debian with ROCm 6.2 and GPU Acceleration',
       routerLink: '/blog/stable-diffusion-docker-rocm',
       content: '/assets/blog/stable-diffusion-docker-rocm.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/stable-diffusion-docker-rocm.md',
       publishedDate: '2025-02-28',
       modifiedDate: '2025-02-28',
       author: 'Raphael Ochsenbein',
@@ -318,6 +345,8 @@ export const blogEntries: BlogRoute[] = [
         'How to Fix SSH (and git) Not Working Over Wireguard on Mobile Hotspot',
       routerLink: '/blog/ssh-wireguard-mobile-hotspot-issue',
       content: '/assets/blog/ssh-wireguard-mobile-hotspot-issue.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/ssh-wireguard-mobile-hotspot-issue.md',
       publishedDate: '2025-03-06',
       modifiedDate: '2025-03-06',
       author: 'Raphael Ochsenbein',
@@ -336,6 +365,8 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to Map Port 443 to DSM on Synology NAS',
       routerLink: '/blog/synology-dsm-port-443',
       content: '/assets/blog/synology-dsm-port-443.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/synology-dsm-port-443.md',
       publishedDate: '2025-05-09',
       modifiedDate: '2025-05-09',
       author: 'Raphael Ochsenbein',
@@ -356,6 +387,8 @@ export const blogEntries: BlogRoute[] = [
         'Debugging Kubernetes Traefik Ingress Issues by Reading the Traefik Logs',
       routerLink: '/blog/traefik-ingress-logs',
       content: '/assets/blog/traefik-ingress-logs.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/traefik-ingress-logs.md',
       publishedDate: '2025-04-13',
       modifiedDate: '2025-04-13',
       author: 'Raphael Ochsenbein',

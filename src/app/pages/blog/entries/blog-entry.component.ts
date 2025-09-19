@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'ake-blog-entry',
-  template: ` <markdown (ready)="onReady()" [src]="src()"></markdown>`,
+  template: ` <markdown (ready)="onMarkdownReady()" [src]="src()"> </markdown>`,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +24,7 @@ export class BlogEntryComponent {
   markdown = viewChild(MarkdownComponent);
   document = inject(DOCUMENT);
 
-  onReady() {
+  onMarkdownReady() {
     this.document.querySelectorAll('pre').forEach(el => {
       if (el instanceof HTMLElement) {
         el.addEventListener('click', ev => {
