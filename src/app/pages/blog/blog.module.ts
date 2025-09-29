@@ -19,6 +19,7 @@ export type EntryCategory =
   | 'Programming'
   | 'Kubernetes'
   | 'Reading'
+  | 'Hardware'
   | 'git'
   | 'Docker'
   | 'Self-Hosting';
@@ -40,6 +41,50 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'lenovo-chromebook-plus-14',
+    title:
+      'Lenovo Chromebook Plus 14 - First Impressions, and Preliminary Review',
+    data: {
+      title:
+        'Lenovo Chromebook Plus 14 - First Impressions, and Preliminary Review',
+      author: 'Raphael Ochsenbein',
+      categories: ['ChromeOS', 'Hardware'],
+      mainCategory: 'Hardware',
+      publishedDate: '2025-09-29',
+      modifiedDate: '2025-09-29',
+      routerLink: '/blog/lenovo-chromebook-plus-14',
+      content: '/assets/blog/lenovo-chromebook-plus-14.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/lenovo-chromebook-plus-14.md',
+    },
+    loadComponent: () =>
+      import('./entries/lenovo-chromebook-plus-14.component').then(
+        c => c.LenovoChromebookPlus14Component
+      ),
+  },
+  {
+    path: 'lenovo-ideapad-duet-5-chromebook.',
+    title:
+      'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
+    data: {
+      title:
+        'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
+      author: 'Raphael Ochsenbein',
+      categories: ['ChromeOS', 'Hardware'],
+      mainCategory: 'Hardware',
+      publishedDate: '2025-09-29',
+      modifiedDate: '2025-09-29',
+      routerLink: '/blog/lenovo-ideapad-duet-5-chromebook.',
+      content: '/assets/blog/lenovo-ideapad-duet-5-chromebook.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/lenovo-ideapad-duet-5-chromebook.md',
+    },
+    loadComponent: () =>
+      import('./entries/lenovo-ideapad-duet-5-chromebook.component').then(
+        c => c.LenovoIdeapadDuet5ChromebookComponent
+      ),
+  },
+  {
     path: 'chromeos-remote-debugging-firefox',
     title:
       'ChromeOS - Remote Debugging with Firefox on an Android Phone via Crostini on ChromeOS',
@@ -57,8 +102,8 @@ export const blogEntries: BlogRoute[] = [
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/chromeos-remote-debugging-firefox.md',
     },
     loadComponent: () =>
-      import('./entries/chromeos-remote-debugging-firefox').then(
-        c => c.ChromeosRemoteDebuggingFirefox
+      import('./entries/chromeos-remote-debugging-firefox.component').then(
+        c => c.ChromeosRemoteDebuggingFirefoxComponent
       ),
   },
   {

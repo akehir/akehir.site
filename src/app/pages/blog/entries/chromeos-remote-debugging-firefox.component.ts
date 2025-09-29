@@ -13,4 +13,4 @@ import { BlogEntryContainerComponent } from './blog-entry-container.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [BlogEntryContainerComponent],
 })
-export class ChromeosRemoteDebuggingFirefox {}
+export class ChromeosRemoteDebuggingFirefoxComponent {}
