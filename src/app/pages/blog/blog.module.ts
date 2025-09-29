@@ -63,7 +63,7 @@ export const blogEntries: BlogRoute[] = [
       ),
   },
   {
-    path: 'lenovo-ideapad-duet-5-chromebook.',
+    path: 'lenovo-ideapad-duet-5-chromebook',
     title:
       'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
     data: {
