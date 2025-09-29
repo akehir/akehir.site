@@ -14,10 +14,10 @@ Which is why I'm writing this short guide on how to get started with remote debu
 
 I'll assume that the Linux VM is enabled and activated - otherwise you'll have to do so by following [Google's instructions](https://support.google.com/chromebook/answer/9145439?hl=en).
 
-Then you'll have to install both `adb` and `firefox`. I also tried the adb toggle in ChromeOS itself, but that didn't lead to the desired results and didn't enable adb from within Linux. If installing `adb` in Linux is not sufficient, it might additionally be required to enable adb in ChromeOS as per [Google's instructions](https://chromeos.dev/en/android-environment/deploying-apps).
+Then you'll have to install both `adb` and `firefox` (or `firefox-esr` if `firefox` is not available). I also tried the adb toggle in ChromeOS itself, but that didn't lead to the desired results and didn't enable adb from within Linux. If installing `adb` in Linux is not sufficient, it might additionally be required to enable adb in ChromeOS as per [Google's instructions](https://chromeos.dev/en/android-environment/deploying-apps).
 
 ```
-sudo apt install adb firefox
+sudo apt install adb firefox-esr # you can choose 'firefox' or 'firefox-esr' depending on availability
 ```
 
 Once the programs are installed, open Firefox and head to the [about:debugging](about:debugging) page in Firefox. There you'll have to follow the [instructions](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html) in order to enable USB devices. Well, the "instructions" can be reduced to "click the 'Enable USB Devices"-button.
