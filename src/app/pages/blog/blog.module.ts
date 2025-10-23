@@ -41,6 +41,28 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
+    title:
+      'Using llama-swap to Self-Host an OpenAPI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+    data: {
+      title:
+        'Using llama-swap to Self-Host an OpenAPI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Self-Hosting'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2025-10-23',
+      modifiedDate: '2025-10-23',
+      routerLink: '/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
+      content: '/assets/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
+    },
+    loadComponent: () =>
+      import('./entries/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.component').then(
+        c => c.LlamaSwapAndLlamaCppForSelfHostingMultipleLlmModelsComponent
+      ),
+  },
+  {
     path: 'lenovo-chromebook-plus-14',
     title:
       'Lenovo Chromebook Plus 14 - First Impressions, and Preliminary Review',
