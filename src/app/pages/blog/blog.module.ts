@@ -43,10 +43,10 @@ export const blogEntries: BlogRoute[] = [
   {
     path: 'llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
     title:
-      'Using llama-swap to Self-Host an OpenAPI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+      'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
     data: {
       title:
-        'Using llama-swap to Self-Host an OpenAPI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+        'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', 'Self-Hosting'],
       mainCategory: 'Machine Learning',

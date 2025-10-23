@@ -1,4 +1,4 @@
-# Using llama-swap to Self-Host an OpenAPI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources
+# Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources
 
 In my [previous blog entry](https://akehir.com/blog/open-webui-llama-server) I was using llama.cpp to self-host an OpenAI compatible API with the GPT-OSS 20B model.
 
