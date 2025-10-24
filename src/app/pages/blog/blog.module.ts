@@ -96,7 +96,7 @@ export const blogEntries: BlogRoute[] = [
       mainCategory: 'Hardware',
       publishedDate: '2025-09-29',
       modifiedDate: '2025-09-29',
-      routerLink: '/blog/lenovo-ideapad-duet-5-chromebook.',
+      routerLink: '/blog/lenovo-ideapad-duet-5-chromebook',
       content: '/assets/blog/lenovo-ideapad-duet-5-chromebook.md',
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/lenovo-ideapad-duet-5-chromebook.md',
