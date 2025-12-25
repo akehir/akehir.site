@@ -258,7 +258,7 @@ export const blogEntries: BlogRoute[] = [
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/pangolin-basics.md',
       publishedDate: '2025-07-17',
-      modifiedDate: '2025-07-17',
+      modifiedDate: '2025-12-25',
       author: 'Raphael Ochsenbein',
       mainCategory: 'Infrastructure',
       categories: ['Infrastructure'],
