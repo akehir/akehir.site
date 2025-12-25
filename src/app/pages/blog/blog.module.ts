@@ -42,9 +42,11 @@ type BlogRoute = Route & { data: BlogData };
 export const blogEntries: BlogRoute[] = [
   {
     path: 'flux-kontext-docker-rocm-webui',
-    title: '',
+    title:
+      'Running Flux Kontext and Flux Krea on an AMD RX-7900XTX 24GB GPU Locally via ROCm and Stable-Diffusion-WebUI-Forge',
     data: {
-      title: '',
+      title:
+        'Running Flux Kontext and Flux Krea on an AMD RX-7900XTX 24GB GPU Locally via ROCm and Stable-Diffusion-WebUI-Forge',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', 'Docker'],
       mainCategory: 'Machine Learning',
