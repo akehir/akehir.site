@@ -21,6 +21,11 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://akehir.com/blog/flux-kontext-docker-rocm-webui.</loc>
+		<lastmod>2025-12-25T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>https://akehir.com/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models</loc>
 		<lastmod>2025-10-23T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>

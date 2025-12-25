@@ -41,24 +41,48 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'flux-kontext-docker-rocm-webui',
+    title: '',
+    data: {
+      title: '',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2025-12-25',
+      modifiedDate: '2025-12-25',
+      routerLink: '/blog/flux-kontext-docker-rocm-webui',
+      content: '/assets/blog/flux-kontext-docker-rocm-webui.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/flux-kontext-docker-rocm-webui.md',
+    },
+    loadComponent: () =>
+      import('./entries/flux-kontext-docker-rocm-webui.component').then(
+        c => c.FluxKontextDockerRocmWebuiComponent
+      ),
+  },
+  {
     path: 'llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
     title:
-      'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+      'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources',
     data: {
       title:
-        'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources\n',
+        'Using llama-swap to Self-Host an OpenAI Compatible API with llama.cpp providing Multiple LLM Models with Limited Resources',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', 'Self-Hosting'],
       mainCategory: 'Machine Learning',
       publishedDate: '2025-10-23',
       modifiedDate: '2025-10-23',
-      routerLink: '/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
-      content: '/assets/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
+      routerLink:
+        '/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
+      content:
+        '/assets/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
     },
     loadComponent: () =>
-      import('./entries/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.component').then(
+      import(
+        './entries/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.component'
+      ).then(
         c => c.LlamaSwapAndLlamaCppForSelfHostingMultipleLlmModelsComponent
       ),
   },
@@ -86,11 +110,9 @@ export const blogEntries: BlogRoute[] = [
   },
   {
     path: 'lenovo-ideapad-duet-5-chromebook',
-    title:
-      'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
+    title: 'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
     data: {
-      title:
-        'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
+      title: 'Lenovo IdeaPad Duet 5 Chromebook Gen 6 (13" QCOM) - Review',
       author: 'Raphael Ochsenbein',
       categories: ['ChromeOS', 'Hardware'],
       mainCategory: 'Hardware',
