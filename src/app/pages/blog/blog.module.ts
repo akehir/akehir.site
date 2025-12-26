@@ -41,6 +41,28 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'strix-halo-kubernetes-llm-gpt-oss',
+    title:
+      'GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes on Debian Testing on a Minisforum MS-S1',
+    data: {
+      title:
+        'GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes on Debian Testing on a Minisforum MS-S1',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker', 'Kubernetes'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2025-12-25',
+      modifiedDate: '2025-12-25',
+      routerLink: '/blog/strix-halo-kubernetes-llm-gpt-oss',
+      content: '/assets/blog/strix-halo-kubernetes-llm-gpt-oss.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/strix-halo-kubernetes-llm-gpt-oss.md',
+    },
+    loadComponent: () =>
+      import('./entries/strix-halo-kubernetes-llm-gpt-oss.component').then(
+        c => c.StrixHaloKubernetesLlmGptOssComponent
+      ),
+  },
+  {
     path: 'flux-kontext-docker-rocm-webui',
     title:
       'Running Flux Kontext and Flux Krea on an AMD RX-7900XTX 24GB GPU Locally via ROCm and Stable-Diffusion-WebUI-Forge',
