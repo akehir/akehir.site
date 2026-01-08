@@ -64,7 +64,8 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-              ]
+              ],
+              "serviceWorker": "ngsw-config.json"
             }
           }
         },

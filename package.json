@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^20.3.16",
     "@angular/platform-browser-dynamic": "^20.3.16",
     "@angular/router": "^20.3.16",
+    "@angular/service-worker": "^20.3.16",
     "@triangular/fluid-simulation": "^20.0.0",
     "@triangular/font-awesome-icons": "^20.0.0",
     "@triangular/noto-emoji-icons": "^20.0.0",
