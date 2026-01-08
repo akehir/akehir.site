@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, provideZonelessChangeDetection, isDevMode } from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -18,7 +18,6 @@ import { ColourComponent } from './pages/colour';
 import { ConsoleService } from '@core/services/console.service';
 import { ColourService } from '@core/services/colour.service';
 import { NavigationComponent } from './layout/navigation/navigation.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
