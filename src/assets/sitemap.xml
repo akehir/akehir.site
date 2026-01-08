@@ -21,8 +21,18 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss</loc>
-		<lastmod>2025-12-25T09:09:09+01:00</lastmod>
+		<loc>https://akehir.com/blog/2025-gaming</loc>
+		<lastmod>2026-01-08T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/2025-homelab</loc>
+		<lastmod>2026-01-08T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/no-ai-generated-blog-posts</loc>
+		<lastmod>2026-01-08T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>

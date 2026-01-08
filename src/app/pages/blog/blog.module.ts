@@ -41,6 +41,66 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: '2025-homelab',
+    title: 'The State of My HomeLab in 2025',
+    data: {
+      title: 'The State of My HomeLab in 2025',
+      author: 'Raphael Ochsenbein',
+      categories: ['Self-Hosting', "Meta", "Infrastructure", 'Kubernetes', "Software", "Programming"],
+      mainCategory: 'Self-Hosting',
+      publishedDate: '2026-01-08',
+      modifiedDate: '2026-01-08',
+      routerLink: '/blog/2025-homelab',
+      content: '/assets/blog/2025-homelab.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025-homelab.md',
+    },
+    loadComponent: () =>
+      import('./entries/2025-homelab.component').then(
+        c => c.TwentyTwentyFiveHomelabComponent
+      ),
+  },
+  {
+    path: '2025-gaming',
+    title: 'Gaming: 2025 in Review',
+    data: {
+      title: 'Gaming: 2025 in Review',
+      author: 'Raphael Ochsenbein',
+      categories: ['Gaming', 'Linux', 'Meta'],
+      mainCategory: 'Gaming',
+      publishedDate: '2026-01-08',
+      modifiedDate: '2026-01-08',
+      routerLink: '/blog/2025-gaming',
+      content: '/assets/blog/2025-gaming.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025-gaming.md',
+    },
+    loadComponent: () =>
+      import('./entries/2025-gaming.component').then(
+        c => c.TwentyTwentyFiveGamingComponent
+      ),
+  },
+  {
+    path: 'no-ai-generated-blog-posts',
+    title: 'No AI Generated Blog Posts',
+    data: {
+      title: 'No AI Generated Blog Posts',
+      author: 'Raphael Ochsenbein',
+      categories: ["Raphael's Random Rumblings", 'Meta', 'Machine Learning'],
+      mainCategory: "Raphael's Random Rumblings",
+      publishedDate: '2026-01-08',
+      modifiedDate: '2026-01-08',
+      routerLink: '/blog/no-ai-generated-blog-posts',
+      content: '/assets/blog/no-ai-generated-blog-posts.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/no-ai-generated-blog-posts.md',
+    },
+    loadComponent: () =>
+      import('./entries/no-ai-generated-blog-posts.component').then(
+        c => c.NoAiGeneratedBlogPostsComponent
+      ),
+  },
+  {
     path: 'strix-halo-kubernetes-llm-gpt-oss',
     title:
       'GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes on Debian Testing on a Minisforum MS-S1',
