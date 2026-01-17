@@ -8,6 +8,7 @@ import { FontAwesomeIconsModule } from '@triangular/font-awesome-icons';
 import { AppRoutingModule } from './app-routing.module';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
+import { provideRouter } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -21,7 +22,7 @@ describe('AppComponent', () => {
         AppRoutingModule,
       ],
       declarations: [AppComponent],
-      providers: [provideZonelessChangeDetection(), BackgroundService],
+      providers: [provideZonelessChangeDetection(), BackgroundService, provideRouter([])],
     }).compileComponents();
   });
 
