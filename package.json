@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 5555 --host 0.0.0.0",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build --configuration production --progress=false",
     "test": "ng test --no-watch",
     "test:docker": "ng test --no-watch --progress=false --code-coverage --browsers ChromeDocker",

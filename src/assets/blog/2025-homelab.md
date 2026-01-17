@@ -3,7 +3,7 @@ This post is summarizing the state of my homelab as of the 31st of December 2025
 
 This year, my homelab has seen quite some changes, though most of them are transparent to any inattentive observer. I've also added some hardware towards the end of the year.
 
-Overall the biggest changes to my setup has probably been [the switch to Pangolin instead of direct port forwarding on the router](https://akehir.com/blog/how-to-make-your-homelab-accessible-via-pangolin). This allows for better isolation of services instead of just opening ports; and selective sharing of applications that run on the cluster (instead of forwarding all https traffic to the cluster). It also allows me to have high availability by having multiple Newt nodes on the cluster (not implemented yet though).
+Overall the biggest changes to my setup has probably been the [switch to Pangolin](https://akehir.com/blog/how-to-make-your-homelab-accessible-via-pangolin) instead of direct port forwarding on the router. This allows for better isolation of services instead of just opening ports; and selective sharing of applications that run on the cluster (instead of forwarding all https traffic to the cluster). It also allows me to have high availability by having multiple Newt nodes on the cluster (not implemented yet though).
 
 The most valuable things I'm hosting for myself are:
 - Gitlab (with my code and notes)

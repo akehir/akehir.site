@@ -41,12 +41,42 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'brutalist',
+    title: 'Why is My Website a Brutalist Mess?',
+    data: {
+      title: 'Why is My Website a Brutalist Mess?',
+      author: 'Raphael Ochsenbein',
+      categories: [
+        "Raphael's Random Rumblings",
+        'Programming',
+      ],
+      mainCategory: "Raphael's Random Rumblings",
+      publishedDate: '2026-01-17',
+      modifiedDate: '2026-01-17',
+      routerLink: '/blog/brutalist',
+      content: '/assets/blog/brutalist.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/brutalist.md',
+    },
+    loadComponent: () =>
+      import('./entries/brutalist.component').then(
+        c => c.BrutalistComponent
+      ),
+  },
+  {
     path: '2025-homelab',
     title: 'The State of My HomeLab in 2025',
     data: {
       title: 'The State of My HomeLab in 2025',
       author: 'Raphael Ochsenbein',
-      categories: ['Self-Hosting', "Meta", "Infrastructure", 'Kubernetes', "Software", "Programming"],
+      categories: [
+        'Self-Hosting',
+        'Meta',
+        'Infrastructure',
+        'Kubernetes',
+        'Software',
+        'Programming',
+      ],
       mainCategory: 'Self-Hosting',
       publishedDate: '2026-01-08',
       modifiedDate: '2026-01-08',
