@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { FluidSimulationModule } from '@triangular/fluid-simulation';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { NotoEmojiIconsModule } from '@triangular/noto-emoji-icons';
@@ -18,7 +17,7 @@ describe('AppComponent', () => {
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
-        // FluidSimulationModule.forRoot(), // todo
+        // FluidSimulationModule.forRoot(), // todo reenable once testing is fixed...
         AppRoutingModule,
       ],
       declarations: [AppComponent],
