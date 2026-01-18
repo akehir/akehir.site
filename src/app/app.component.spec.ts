@@ -18,7 +18,7 @@ describe('AppComponent', () => {
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
-        FluidSimulationModule.forRoot(),
+        // FluidSimulationModule.forRoot(), // todo
         AppRoutingModule,
       ],
       declarations: [AppComponent],
