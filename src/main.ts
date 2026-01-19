@@ -1,4 +1,4 @@
-import { enableProdMode, ViewEncapsulation } from '@angular/core';
+import { enableProdMode, provideZonelessChangeDetection, ViewEncapsulation } from '@angular/core';
 import {
   platformBrowser,
 } from '@angular/platform-browser';
@@ -13,5 +13,6 @@ if (environment.production) {
 platformBrowser()
   .bootstrapModule(AppModule, {
     defaultEncapsulation: ViewEncapsulation.None,
+    applicationProviders: [provideZonelessChangeDetection()]
   })
   .catch(err => console.error(err));

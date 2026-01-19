@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
 import { provideRouter } from '@angular/router';
+import { FluidSimulationModule } from '@triangular/fluid-simulation';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -17,7 +18,7 @@ describe('AppComponent', () => {
         NotoEmojiIconsModule,
         RpgAwesomeIconsModule,
         FontAwesomeIconsModule,
-        // FluidSimulationModule.forRoot(), // todo reenable once testing is fixed...
+        FluidSimulationModule.forRoot(),
         AppRoutingModule,
       ],
       declarations: [AppComponent],
