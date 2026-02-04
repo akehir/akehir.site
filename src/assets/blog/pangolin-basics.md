@@ -24,6 +24,58 @@ Before Pangolin, I've just forwarded all the ports from my router directly to my
 Now I'm not forwarding any ports from my firewall anymore. My domains point to a small [Infomaniak `VPS Lite`](https://www.infomaniak.com/en/hosting/vps-lite) and from there the traffic is redirected via Pangolin to the appropriate servers. I can control who has access to which resources via Pangolin, as well as quickly enable / disable access. I've also enabled the [crowdsec traefik plugin](https://plugins.traefik.io/plugins/6335346ca4caa9ddeffda116/crowdsec-bouncer-traefik-plugin) for intrusion detection and prevention. It works so well that I've even locked myself out a couple of times ;-)
 
 So far it seems pretty stable, with more than 15GB traffic in/out since the installation and an uptime of 97-99% as measured with [Uptime Kuma](https://github.com/louislam/uptime-kuma).
+
+## Addendum
+
+### Crowdsec Banning Pangolin Users Due To Misconfiguration Issue
+In earlier versions of pangolin, the installer created a wrong health check for the crowdsec container, which was overloading crowdsec's infrastructure. See also the [pangolin discussion](https://github.com/orgs/fosrl/discussions/2119) and the [crowdsec issue](https://github.com/crowdsecurity/crowdsec/issues/4165) for more information.
+
+Crowdsec took the step to ban offending IPs, resulting in a 403 error.
+
+It is therefore imperative to update the config as follows (see further below for the full configuration) by replacing `capi` with `lapi` in the health check:
+
+```
+healthcheck:
+  test:
+    - CMD
+    - cscli
+    - lapi
+    - status
+  interval: 10s
+  timeout: 5s
+  retries: 3
+  start_period: 30s
+```
+
+### Log Size Issue
+I recently encountered an issue where the space of my VPS (20GB) was getting full. I checked, and the reason was that my traefik log size hat grown to almost 10GB.
+
+To prevent that, I've setup logrotate as follows - and the 7G log file compressed down to 423MB:
+
+```
+sudo apt install logrotate
+sudo nano /etc/logrotate.d/traefik 
+```
+
+With the following config for the traefik logs:
+
+```
+/home/debian/pangolin/config/traefik/logs/access.log {
+        compress
+        size 1G
+        rotate 7
+        prerotate
+                sudo service pangolin stop
+        endscript
+        postrotate
+                sudo service pangolin start
+        endscript
+}
+```
+
+### Updating pangolin
+I've updated pangolin to version 1.15.1. So far I haven't encountered any issues.
+
 ## Installation
 
 See also the [official install guide](https://docs.fossorial.io/Getting%20Started/quick-install). Additionally, I setup a systemd service to always start pangolin when the server boots (and to be able to easily manage the service).
@@ -180,7 +232,7 @@ services:
         - -f
         - http://localhost:3001/api/v1/
       timeout: 3s
-    image: fosrl/pangolin:1.14.1
+    image: fosrl/pangolin:1.15.1
     restart: unless-stopped
     volumes:
       - ./config:/app/config
@@ -191,7 +243,7 @@ services:
     depends_on:
       pangolin:
         condition: service_healthy
-    image: traefik:v3.6.5
+    image: traefik:v3.6.7
     network_mode: service:gerbil
     restart: unless-stopped
     volumes:
@@ -201,7 +253,7 @@ services:
     environment:
       INFOMANIAK_ACCESS_TOKEN: "___VALUE___"
   newt:
-    image: fosrl/newt:1.8.1
+    image: fosrl/newt:1.9.0
     container_name: newt
     restart: unless-stopped
     environment:
