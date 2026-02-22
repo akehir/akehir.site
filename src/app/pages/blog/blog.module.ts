@@ -42,9 +42,9 @@ type BlogRoute = Route & { data: BlogData };
 export const blogEntries: BlogRoute[] = [
   {
     path: 'sealed-secrets',
-    title: 'Why is My Website a Brutalist Mess?',
+    title: 'Using Bitnami Sealed Secrets with Flux on Kubernetes',
     data: {
-      title: 'Why is My Website a Brutalist Mess?',
+      title: 'Using Bitnami Sealed Secrets with Flux on Kubernetes',
       author: 'Raphael Ochsenbein',
       categories: [
         'Self-Hosting',
@@ -54,7 +54,7 @@ export const blogEntries: BlogRoute[] = [
         'Software',
         'Programming',
       ],
-      mainCategory: 'Self-Hosting',,
+      mainCategory: 'Infrastructure',
       publishedDate: '2026-02-22',
       modifiedDate: '2026-02-22',
       routerLink: '/blog/sealed-secrets',
