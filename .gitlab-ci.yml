@@ -3,6 +3,7 @@ stages:
   - lint
   - build
   - deploy
+  - scan
 
 linty:
   stage: lint
@@ -90,3 +91,9 @@ deploy:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA -t $IMAGE_TAG:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-$(date +%s) .
     - docker push $IMAGE_TAG -a
+
+scan-trivy:
+  stage: scan
+  image: registry.akehir.com/infra/trivy/trivy
+  script:
+    - trivy fs --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress .

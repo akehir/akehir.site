@@ -18,11 +18,35 @@ spec:
       labels:
         app: akehir-site
     spec:
+      securityContext:
+        fsGroup: 1337
+        runAsNonRoot: true
+        runAsUser: 1337
       containers:
         - name: akehir-site
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            privileged: false
           image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-14f4cb06-1770186765 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
           ports:
             - containerPort: 8811
+          volumeMounts:
+            - mountPath: /var/cache/nginx
+              name: cache
+            - mountPath: /run
+              name: run
+      volumes:
+        - name: cache
+          emptyDir:
+            sizeLimit: 500Mi
+        - name: run
+          emptyDir:
+            sizeLimit: 1Mi
       imagePullSecrets:
         - name: registry-akehir
       affinity:
@@ -43,3 +67,4 @@ spec:
                     values:
                       - akehir-site
               topologyKey: "kubernetes.io/hostname"
+---

@@ -41,6 +41,56 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'sealed-secrets',
+    title: 'Why is My Website a Brutalist Mess?',
+    data: {
+      title: 'Why is My Website a Brutalist Mess?',
+      author: 'Raphael Ochsenbein',
+      categories: [
+        'Self-Hosting',
+        'Meta',
+        'Infrastructure',
+        'Kubernetes',
+        'Software',
+        'Programming',
+      ],
+      mainCategory: 'Self-Hosting',,
+      publishedDate: '2026-02-22',
+      modifiedDate: '2026-02-22',
+      routerLink: '/blog/sealed-secrets',
+      content: '/assets/blog/sealed-secrets.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/sealed-secrets.md',
+    },
+    loadComponent: () =>
+      import('./entries/sealed-secrets.component').then(
+        c => c.SealedSecretsComponent
+      ),
+  },
+  {
+    path: '2025-review',
+    title: '2025 in Review',
+    data: {
+      title: '2025 in Review',
+      author: 'Raphael Ochsenbein',
+      categories: [
+        "Raphael's Random Rumblings",
+        'Meta',
+      ],
+      mainCategory: "Raphael's Random Rumblings",
+      publishedDate: '2026-02-22',
+      modifiedDate: '2026-02-22',
+      routerLink: '/blog/2025-review',
+      content: '/assets/blog/2025-review.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025-review.md',
+    },
+    loadComponent: () =>
+      import('./entries/2025-review.component').then(
+        c => c.TwentyTwentyFiveReviewComponent
+      ),
+  },
+  {
     path: 'brutalist',
     title: 'Why is My Website a Brutalist Mess?',
     data: {
