@@ -32,7 +32,7 @@ spec:
             readOnlyRootFilesystem: true
             runAsNonRoot: true
             privileged: false
-          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-14f4cb06-1770186765 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
+          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-b1b84242-1771745201 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
           ports:
             - containerPort: 8811
           volumeMounts:
@@ -67,4 +67,3 @@ spec:
                     values:
                       - akehir-site
               topologyKey: "kubernetes.io/hostname"
----
