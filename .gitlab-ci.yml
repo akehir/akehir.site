@@ -97,3 +97,9 @@ scan-trivy:
   image: registry.akehir.com/infra/trivy/trivy
   script:
     - trivy fs --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress .
+
+scan-npm:
+  stage: scan
+  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
+  script:
+    - npm audit
