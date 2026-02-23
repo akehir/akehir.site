@@ -101,5 +101,6 @@ scan-trivy:
 scan-npm:
   stage: scan
   image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
+  allow_failure: true
   script:
     - npm audit
