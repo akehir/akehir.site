@@ -45,7 +45,7 @@ spec:
         name: mr.robot
       messageTemplate: |
         Automated image update
-        
+
         Automation name: {{ .AutomationObject }}
 
         Files:
