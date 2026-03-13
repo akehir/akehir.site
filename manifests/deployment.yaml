@@ -32,6 +32,8 @@ spec:
             readOnlyRootFilesystem: true
             runAsNonRoot: true
             privileged: false
+            seccompProfile:
+              type: RuntimeDefault
           image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-ae5b4161-1772486941 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
           ports:
             - containerPort: 8811
