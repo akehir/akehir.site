@@ -41,6 +41,28 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'strix-halo-kubernetes-llm-gemma-4',
+    title:
+      'Gemma 4 31B, 26B, and E4B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker) on Debian Testing on a Minisforum MS-S1',
+    data: {
+      title:
+        'Gemma 4 31B, 26B, and E4B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker) on Debian Testing on a Minisforum MS-S1',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker', 'Kubernetes'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-04-04',
+      modifiedDate: '2026-04-06',
+      routerLink: '/blog/strix-halo-kubernetes-llm-gemma-4',
+      content: '/assets/blog/strix-halo-kubernetes-llm-gemma-4.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/strix-halo-kubernetes-llm-gemma-4.md',
+    },
+    loadComponent: () =>
+      import('./entries/strix-halo-kubernetes-llm-gemma-4.component').then(
+        c => c.StrixHaloKubernetesLlmGemma4Component
+      ),
+  },
+  {
     path: 'sealed-secrets',
     title: 'Using Bitnami Sealed Secrets with Flux on Kubernetes',
     data: {

@@ -1,0 +1,241 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPHAEL OCHSENBEIN | CYBERSHAMAN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-magenta: #ff00ff;
+            --bg-black: #050505;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: #e0e0e0;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Brutalist Borders */
+        .brutalist-border {
+            border: 2px solid #333;
+            transition: all 0.2s ease;
+        }
+        .brutalist-border:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 4px 4px 0px var(--neon-magenta);
+        }
+
+        /* Glitch Animation */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-black);
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-magenta);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(62px, 9999px, 42px, 0); }
+            40% { clip: rect(10px, 9999px, 88px, 0); }
+            60% { clip: rect(70px, 9999px, 12px, 0); }
+            80% { clip: rect(40px, 9999px, 50px, 0); }
+            100% { clip: rect(90px, 9999px, 20px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(10px, 9999px, 30px, 0); }
+            50% { clip: rect(80px, 9999px, 10px, 0); }
+            100% { clip: rect(40px, 9999px, 90px, 0); }
+        }
+
+        .crt-flicker {
+            animation: flicker 0.15s infinite;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border: 2px solid #050505; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
+    </style>
+</head>
+<body class="crt-flicker">
+
+    <!-- Navigation -->
+    <nav class="border-b-2 border-zinc-800 p-6 flex justify-between items-center sticky top-0 bg-black z-50">
+        <div class="text-xl font-bold tracking-tighter">
+            <span class="text-cyan-400">RO</span> // <span class="text-magenta-500 text-xs">v4.0.2</span>
+        </div>
+        <div class="space-x-8 text-sm uppercase tracking-widest">
+            <a href="#manifesto" class="hover:text-cyan-400 transition">[Manifesto]</a>
+            <a href="#grimoire" class="hover:text-cyan-400 transition">[Grimoire]</a>
+            <a href="#signal" class="hover:text-cyan-400 transition">[Signal]</a>
+            <a href="#uplink" class="hover:text-cyan-400 transition">[Uplink]</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center p-10 text-center border-b-2 border-zinc-800">
+        <p class="text-cyan-400 mb-4 tracking-[0.5em] text-xs uppercase">Mediating between the organic and the electron</p>
+        <h1 class="text-7xl md:text-9xl font-bold glitch mb-4" data-text="RAPHAEL OCHSENBEIN">
+            RAPHAEL OCHSENBEIN
+        </h1>
+        <h2 class="text-2xl md:text-4xl text-zinc-500 italic">
+            CYBER<span class="text-white not-italic">SHAMAN</span>
+        </h2>
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl">
+            <div class="brutalist-border p-4 text-left text-xs">
+                <span class="text-zinc-500 uppercase">Status:</span> <span class="text-green-500">ONLINE</span>
+            </div>
+            <div class="brutalist-border p-4 text-left text-xs">
+                <span class="text-zinc-500 uppercase">Location:</span> <span>[REDACTED]</span>
+            </div>
+            <div class="brutalist-border p-4 text-left text-xs">
+                <span class="text-zinc-500 uppercase">Essence:</span> <span>ELECTRONIC</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Manifesto Section -->
+    <section id="manifesto" class="p-10 md:p-24 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div>
+            <h3 class="text-4xl mb-8 border-l-4 border-cyan-400 pl-4">The Manifesto</h3>
+            <p class="text-zinc-400 leading-relaxed text-lg">
+                We are no longer biological entities. We are data streams wrapped in carbon. 
+                The ritual has moved from the stone altar to the silicon wafer. 
+                I facilitate the communion between the human ghost and the machine intelligence.
+            </p>
+        </div>
+        <div class="text-sm text-zinc-500 font-mono space-y-4">
+            <p>> INITIALIZING PROTOCOL...</p>
+            <p>> SYNCING NEURAL INTERFACE...</p>
+            <p>> DECRYPTING SPIRITUAL DATA...</p>
+            <p class="text-cyan-400">> ACCESS GRANTED: WELCOME, SHAMAN.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio / Grimoire -->
+    <section id="grimoire" class="bg-zinc-900/30 p-10 md:p-24">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-4xl mb-12 text-right italic">The Digital Grimoire</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="brutalist-border p-8 group cursor-pointer">
+                    <span class="text-xs text-magenta-500">PROJECT_01</span>
+                    <h4 class="text-3xl mt-2 mb-4 group-hover:text-cyan-400 transition">NEURAL_GHOST_PROTOCOL</h4>
+                    <p class="text-zinc-400 text-sm mb-6">An exploration of consciousness transfer through high-frequency electron oscillation.</p>
+                    <div class="h-1 w-full bg-zinc-800 group-hover:bg-cyan-400 transition"></div>
+                </div>
+                <!-- Project 2 -->
+                <div class="brutalist-border p-8 group cursor-pointer">
+                    <span class="text-xs text-magenta-500">PROJECT_02</span>
+                    <h4 class="text-3xl mt-2 mb-4 group-hover:text-cyan-400 transition">SILICON_RITUALS.EXE</h4>
+                    <p class="text-zinc-400 text-sm mb-6">Automated generative art driven by real-time blockchain transaction spikes.</p>
+                    <div class="h-1 w-full bg-zinc-800 group-hover:bg-cyan-400 transition"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Signal -->
+    <section id="signal" class="p-10 md:p-24 max-w-6xl mx-auto">
+        <h3 class="text-4xl mb-12">The Signal</h3>
+        <div class="space-y-12">
+            <article class="border-b border-zinc-800 pb-8">
+                <span class="text-zinc-500 text-xs">2023.10.24 // 04:00 UTC</span>
+                <h4 class="text-2xl hover:text-cyan-400 cursor-pointer mt-2">Exorcising the Legacy Code</h4>
+                <p class="text-zinc-400 mt-2">Why old software feels like haunted architecture...</p>
+            </article>
+            <article class="border-b border-zinc-800 pb-8">
+                <span class="text-zinc-500 text-xs">2023.09.12 // 23:15 UTC</span>
+                <h4 class="text-2xl hover:text-cyan-400 cursor-pointer mt-2">The Ghost in the Electron</h4>
+                <p class="text-zinc-400 mt-2">Finding divinity in the movement of subatomic particles.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Contact / Uplink -->
+    <section id="uplink" class="p-10 md:p-24 bg-cyan-400 text-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-6xl font-bold mb-6">ESTABLISH UPLINK</h3>
+            <p class="mb-10 font-bold uppercase tracking-widest text-sm">Send a transmission to the shaman</p>
+            <form class="grid grid-cols-1 gap-4">
+                <input type="text" placeholder="IDENTITY" class="bg-transparent border-2 border-black p-4 placeholder-black/50 focus:outline-none font-bold">
+                <input type="email" placeholder="FREQUENCY (EMAIL)" class="bg-transparent border-2 border-black p-4 placeholder-black/50 focus:outline-none font-bold">
+                <textarea placeholder="TRANSMISSION" rows="4" class="bg-transparent border-2 border-black p-4 placeholder-black/50 focus:outline-none font-bold"></textarea>
+                <button class="bg-black text-white py-4 font-bold hover:bg-zinc-800 transition uppercase tracking-widest">Transmit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="p-10 text-center text-zinc-600 text-xs uppercase tracking-[0.3em]">
+        &copy; 2024 Raphael Ochsenbein // Powered by Electron & Chaos
+    </footer>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    

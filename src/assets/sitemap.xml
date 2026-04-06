@@ -21,6 +21,16 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://akehir.com/blo//blog/strix-halo-kubernetes-llm-gemma-4</loc>
+		<lastmod>2026-04-04T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss</loc>
+		<lastmod>2025-12-25T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>https://akehir.com/blog/sealed-secrets</loc>
 		<lastmod>2026-02-22T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
