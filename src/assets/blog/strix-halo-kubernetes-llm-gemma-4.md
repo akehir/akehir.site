@@ -12,9 +12,7 @@ Unfortunately it seems that currently the performance of the 31B model is quite 
 
 The E4B model performs much better, but the most surprising one is the 26B model which has almost an equivalent performance to the E4B model (both generating at just under 20 tokens/s - or 40 tokens/s in Q8).
 
-**!Important:** From my evaluation so far, it does seem as if llama.cpp is not yet fully ready for the Gemma 4 models because they seem to get stuck in loops in longer context sizes / more complex problems. I have tried rebuilding my docker images with the latest llama.cpp versions over the last few days, but the problems seem to persist. Disabling thinking seems to be a plausible workaround for this behaviour currently (via `--reasoning off`).
-
-Apart from when the models get stuck, their performance is very impressive, both handling logic puzzles, coding, and especially multi-lingual tasks especially well.
+I am also positively impressed by the performance of the models. Both handling logic puzzles, coding, and especially multi-lingual tasks especially well.
 
 I also recommend referencing the announcement of Gemma 4 on huggingface [here](https://huggingface.co/blog/gemma4).
 
@@ -48,29 +46,12 @@ data:
     startPort: 14001
 
     models:
-      "gemma-4-31b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-BF16-00001-of-00002.gguf --jinja
-
       "gemma-4-31b--q8":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja
-
-      "gemma-4-26b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf --jinja
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
       "gemma-4-26b--q8":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
-	  "gemma-4-26b--q8--no-reason":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja --reasoning off 
-
-      "gemma-4-e4b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-E4B-it/gemma-4-E4B-it-BF16.gguf --jinja
 
 ```
 
@@ -444,27 +425,12 @@ healthCheckTimeout: 600
 startPort: 14001
 
 models:
-  "gpt-oss-120b":
-	cmd: |
-	  /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-120b/gpt-oss-120B-F16.gguf --jinja
-
   "gemma-4-31b--q8":
-	cmd: |
-	  /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja
-
-  "gemma-4-26b":
-	cmd: |
-	  /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf --jinja
+    cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
   "gemma-4-26b--q8":
-	cmd: |
-	  /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja
-	aliases:
-	  - "gpt-4.1-mini"
+    cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
-  "gemma-4-26b--q8--no-reason":
-	cmd: |
-	  /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja --reasoning off 
 ```
 ### docker-compose
 
@@ -726,35 +692,11 @@ data:
     startPort: 14001
 
     models:
-      "gpt-oss-120b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-120b/gpt-oss-120B-F16.gguf --jinja
-
-      "gpt-oss-120b--q8":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-120b/gpt-oss-120b-UD-Q8_K_XL-00001-of-00002.gguf --jinja
-
-      "gemma-4-31b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-BF16-00001-of-00002.gguf --jinja
-
       "gemma-4-31b--q8":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja
-
-      "gemma-4-26b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf --jinja
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
       "gemma-4-26b--q8":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja
-        aliases:
-          - "gpt-4.1-mini"
-            
-	  "gemma-4-26b--q8--no-reason":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --jinja --reasoning off 
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
     groups:
        default:
