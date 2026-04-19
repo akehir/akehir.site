@@ -1,4 +1,4 @@
-# Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker) on Debian Testing on a Minisforum MS-S1
+# Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
 
 ## Summary
 
@@ -85,7 +85,9 @@ build: 59accc886 (8837)
 ```
 
 ## Setup and Config
-As said previously, only the Dockerfile is updated with the added `spirv-headers`, otherwise everything stays the same as for Gemma 4. I'll just leave the link to the Gemma 4 setup [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4) for more details.
+As said previously, only the Dockerfile is updated with the added `spirv-headers`, otherwise everything stays the same as for Gemma 4. I'll just leave the link to the Gemma 4 setup [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4) for more details. Especially if you want to run the setup with docker-compose or on ROCm, please refer to the other blog.
+
+
 ### Dockerfile / Container for Vulkan Backend
 ```Dockerfile
 FROM debian:testing
@@ -155,7 +157,7 @@ CMD ["/bin/bash"]
 ```
 
 ### Kubernetes Manifest
-The following Kubernetes manifest sets up the whole llm magic on the kubernetes cluster.
+The following Kubernetes manifest sets up the whole llm magic on the kubernetes cluster. As a note, there are some flux specific configurations, so if you do not use flux in your cluster, remove those.
 
 
 ```yaml

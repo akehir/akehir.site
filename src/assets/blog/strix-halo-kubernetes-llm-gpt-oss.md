@@ -1,4 +1,4 @@
-# GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes on Debian Testing on a Minisforum MS-S1
+# GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
 
 In order to run bigger Machine Learning / LLM Models, I've wanted to upgrade the RAM of my computer. Unfortunately the rising DDR5 prices made that prohibitively expensive.
 
