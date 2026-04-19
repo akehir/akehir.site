@@ -43,10 +43,10 @@ export const blogEntries: BlogRoute[] = [
     {
     path: 'strix-halo-kubernetes-llm-qwen-3_6',
     title:
-      '',
+      'Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker) on Debian Testing on a Minisforum MS-S1',
     data: {
       title:
-        '',
+        'Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker) on Debian Testing on a Minisforum MS-S1',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', 'Docker', 'Kubernetes'],
       mainCategory: 'Machine Learning',
