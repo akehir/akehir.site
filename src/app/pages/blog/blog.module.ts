@@ -40,6 +40,28 @@ export type BlogData = {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+    {
+    path: 'strix-halo-kubernetes-llm-qwen-3_6',
+    title:
+      '',
+    data: {
+      title:
+        '',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker', 'Kubernetes'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-04-19',
+      modifiedDate: '2026-04-19',
+      routerLink: '/blog/strix-halo-kubernetes-llm-qwen-3.6',
+      content: '/assets/blog/strix-halo-kubernetes-llm-qwen-3.6.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/strix-halo-kubernetes-llm-qwen-3.6.md',
+    },
+    loadComponent: () =>
+      import('./entries/strix-halo-kubernetes-llm-qwen-3.6.component').then(
+        c => c.StrixHaloKubernetesLlmQwen3_6Component
+      ),
+  },
   {
     path: 'strix-halo-kubernetes-llm-gemma-4',
     title:
@@ -51,7 +73,7 @@ export const blogEntries: BlogRoute[] = [
       categories: ['Machine Learning', 'Docker', 'Kubernetes'],
       mainCategory: 'Machine Learning',
       publishedDate: '2026-04-04',
-      modifiedDate: '2026-04-06',
+      modifiedDate: '2026-04-19',
       routerLink: '/blog/strix-halo-kubernetes-llm-gemma-4',
       content: '/assets/blog/strix-halo-kubernetes-llm-gemma-4.md',
       source:
@@ -213,7 +235,7 @@ export const blogEntries: BlogRoute[] = [
       categories: ['Machine Learning', 'Docker', 'Kubernetes'],
       mainCategory: 'Machine Learning',
       publishedDate: '2025-12-25',
-      modifiedDate: '2025-12-25',
+      modifiedDate: '2026-04-19',
       routerLink: '/blog/strix-halo-kubernetes-llm-gpt-oss',
       content: '/assets/blog/strix-halo-kubernetes-llm-gpt-oss.md',
       source:

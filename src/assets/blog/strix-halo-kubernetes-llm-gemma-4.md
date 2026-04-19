@@ -301,6 +301,7 @@ RUN apt update \
         libvulkan-dev \
         vulkan-tools \
         radeontop \
+        spirv-headers \
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /tmp/* /var/tmp/* \
@@ -383,6 +384,7 @@ RUN apt update \
         libvulkan-dev \
         vulkan-tools \
         radeontop \
+        spirv-headers \
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /tmp/* /var/tmp/* \
@@ -466,6 +468,7 @@ services:
 The below 2 Kubernetes manifests are used to both host openwebui and the openapi compatible llm api via llama-swap and llama.cpp.
 
 ```yaml
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -566,7 +569,7 @@ spec:
       volumes:
         - name: llama-swap-config
           configMap:
-            name: llama-swap-config-v14
+            name: llama-swap-config-v13
             items:
               - key: config.yaml
                 path: config.yaml
@@ -684,7 +687,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: llama-swap-config-v14
+  name: llama-swap-config-v13
   namespace: llm
 data:
   config.yaml: |
@@ -692,26 +695,28 @@ data:
     startPort: 14001
 
     models:
-      "gemma-4-31b--q8":
-        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
+      gemma-4-26b:
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q8_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
-      "gemma-4-26b--q8":
-        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
+      gemma-4-31b:
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
     groups:
        default:
         swap: false
         members:
-          - "gemma-4-26b--q8"
+          - "gemma-4-26b"
 
     hooks:
       on_startup:
         preload:
-          - "gemma-4-26b--q8"
+          - "gemma-4-26b"
     ---
+---
 ```
 
 ```yaml
+---
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -876,6 +881,6 @@ spec:
   url: https://git.example.com/flux/flux.git
   secretRef:
     name: mr-robot
-
+---
 ```
 

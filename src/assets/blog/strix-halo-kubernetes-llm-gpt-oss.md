@@ -64,35 +64,53 @@ The images and the code can be seen here: https://git.akehir.com/infra/llama-swa
 
 ```Dockerfile
 FROM debian:testing
-ARG NODE_VERSION=22
+ARG NODE_VERSION=24
 
 ## Container
 RUN mkdir /models
 RUN mkdir /conf
 
 ## Install dependencies
-RUN apt update
-RUN apt upgrade -y
-RUN apt install -y git build-essential cmake wget xz-utils cmake nodejs npm
-RUN apt install -y libcurl4-openssl-dev curl libcpp-httplib-dev libminiaudio-dev
-RUN apt install -y libxcb-xinput0 libxcb-xinerama0 libxcb-cursor-dev libvulkan-dev glslc
-RUN apt install -y vulkan-tools radeontop
-RUN apt-get update \
-    && apt-get install -y \
-    build-essential \
-    git \
-    python3 \
-    python3-pip \
-    python3-wheel \
+RUN apt update \
+    && apt upgrade -y \
+    && apt install -y \
+        build-essential \
+        git \
+        python3 \
+        python3-pip \
+        python3-wheel \
+        cmake \
+        wget \
+        xz-utils \
+        npm \
+        nodejs \
+        curl \
+        libcurl4-openssl-dev \
+        libcpp-httplib-dev \
+        libminiaudio-dev \
+        glslc \
+        libxcb-xinput0 \
+        libxcb-xinerama0 \
+        libxcb-cursor-dev \
+        libvulkan-dev \
+        vulkan-tools \
+        radeontop \
+        spirv-headers \
     && apt autoremove -y \
     && apt clean -y \
     && rm -rf /tmp/* /var/tmp/* \
     && find /var/cache/apt/archives /var/lib/apt/lists -not -name lock -type f -delete \
     && find /var/cache -type f -delete
 
-## Setup llama.cpp
+RUN curl --output go-linux-amd64.tar.gz --location https://go.dev/dl/go1.26.1.linux-amd64.tar.gz \
+    && rm -rf /usr/local/go && tar -C /usr/local -xzf go-linux-amd64.tar.gz \
+    && rm go-linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
+
+## Clone repositories
 WORKDIR /app
 RUN git clone https://github.com/ggerganov/llama.cpp.git
+RUN git clone https://github.com/mostlygeek/llama-swap
 
 ## Build llama.cpp
 WORKDIR /app/llama.cpp
@@ -101,13 +119,6 @@ RUN cmake -B build -DGGML_NATIVE=OFF -DGGML_VULKAN=ON -DLLAMA_BUILD_TESTS=OFF -D
 RUN pip install --break-system-packages --upgrade setuptools
 RUN pip install --break-system-packages -r requirements.txt 
 WORKDIR /app/llama.cpp/build/bin
-
-## Setup llama-swap
-WORKDIR /app
-RUN git clone https://github.com/mostlygeek/llama-swap
-RUN curl --output go1.25.5.linux-amd64.tar.gz --location https://go.dev/dl/go1.25.5.linux-amd64.tar.gz
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.25.5.linux-amd64.tar.gz
-ENV PATH=$PATH:/usr/local/go/bin
 
 ## Build llama-swap
 WORKDIR /app/llama-swap
@@ -276,15 +287,12 @@ data:
     startPort: 14001
 
     models:
-      "gpt-oss-20b":
+      gpt-oss-20b:
         cmd: |
           /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-20b/gpt-oss-20B-F16.gguf --jinja
-        aliases:
-          - "gpt-4.1-mini"
 
-      "gpt-oss-120b":
-        cmd: |
-          /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-120b/gpt-oss-120B-F16.gguf --jinja
+      gpt-oss-120b:
+        cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gpt-oss-120b/gpt-oss-120b-UD-Q8_K_XL-00001-of-00002.gguf --jinja --temp 1.0 --top-p 1.0 --top-k 0 -c 111111
 
     groups:
        default:
