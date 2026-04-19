@@ -41,7 +41,7 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
     {
-    path: 'strix-halo-kubernetes-llm-qwen-3_6',
+    path: 'strix-halo-kubernetes-llm-qwen-3-6',
     title:
       '',
     data: {
