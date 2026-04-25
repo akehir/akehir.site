@@ -20,7 +20,7 @@ lintk:
 
 lintngnx:
   stage: lint
-  image: nginx:mainline-alpine-slim
+  image: registry.akehir.com/infra/alpine-nginx/alpine-nginx
   script:
     - rm -f /etc/nginx/nginx.conf
     - cp $CI_PROJECT_DIR/nginx.conf /etc/nginx/nginx.conf
@@ -28,7 +28,7 @@ lintngnx:
 
 build:
   stage: build
-  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
+  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome
   rules:
     - if: '$CI_COMMIT_REF_SLUG == "master"'
       changes:
@@ -100,7 +100,7 @@ scan-trivy:
 
 scan-npm:
   stage: scan
-  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome:latest
+  image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome
   allow_failure: true
   script:
     - npm audit
