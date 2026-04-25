@@ -38,11 +38,19 @@ spec:
           ports:
             - containerPort: 8811
           volumeMounts:
+            - mountPath: "/app/assets/images"
+              name: akehir-images-volume
+              readOnly: true
+              recursiveReadOnly: IfPossible
             - mountPath: /var/cache/nginx
               name: cache
             - mountPath: /run
               name: run
       volumes:
+        - name: akehir-images-volume
+          nfs:
+            server: zhrs1.akehir.com
+            path: /volume1/ake/web/akehir/images
         - name: cache
           emptyDir:
             sizeLimit: 500Mi
