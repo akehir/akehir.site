@@ -1,3 +1,5 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 ake-background {
   svg {
     position: absolute;
@@ -8,12 +10,12 @@ ake-background {
     margin: 0 auto;
     transform: rotate3d(0, 0, 0, 0deg);
     opacity: 0.45;
-    filter: drop-shadow(16px 16px 20px #fff);
-    background-color: rgba(255, 255, 255, 0);
+    filter: drop-shadow(16px 16px 20px $color-white);
+    background-color: $color-transparent;
     transition: background-color 0.3s ease-in;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 1);
+      background-color: $color-white-not-transparent;
     }
   }
 }

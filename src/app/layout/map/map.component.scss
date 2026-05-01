@@ -1,7 +1,8 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 // https://github.com/web-tiki/responsive-grid-of-hexagons
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/index.html
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/hexagons.css
-@use '../../../stylesheets/settings/colors' as *;
 
 .grid {
   display: flex;
@@ -17,15 +18,15 @@
 .hex {
   position: relative;
   visibility: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 86.602%; // =  100 / tan(60) * 1.5
+  }
 }
 
-.hex::after {
-  content: '';
-  display: block;
-  padding-bottom: 86.602%; // =  100 / tan(60) * 1.5
-}
-
-.hexIn {
+.hex-in {
   position: absolute;
   width: 96%;
   padding-bottom: 110.851%; // =  width / sin(60)
@@ -35,7 +36,7 @@
   transform: rotate3d(0, 0, 1, -60deg) skewY(30deg); // scale(0.9) // to resize
 }
 
-.hexLink {
+.hex-link {
   visibility: visible;
   position: absolute;
   display: block;
@@ -45,14 +46,15 @@
   color: $color-black;
   overflow: hidden;
   transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-}
 
-// HOVER EFFECT  *************************************************/
-.hexLink:hover h1,
-.hexLink:focus h1,
-.hexLink:hover p,
-.hexLink:focus p {
-  transform: translate3d(0, 0, 0);
+  // HOVER EFFECT  *************************************************/
+  &:hover,
+  &:focus {
+    & h1,
+    & p {
+      transform: translate3d(0, 0, 0);
+    }
+  }
 }
 
 // HEXAGON SIZING AND EVEN ROW INDENTATION ***********************/

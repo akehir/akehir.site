@@ -1,7 +1,7 @@
 @use '../../../stylesheets/settings/colors' as *;
 
 ake-home {
-  color: #fff;
+  color: $color-white;
   font-size: 5rem;
   // font-weight: 400;
 
@@ -19,7 +19,7 @@ ake-home {
       $color-akehir-red,
       $color-akehir-yellow
     );
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }

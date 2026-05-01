@@ -1,7 +1,7 @@
 @use '../../../stylesheets/settings/colors' as *;
 
 ake-blog {
-  color: #fff;
+  color: $color-white;
   font-size: 3rem;
 
   & div,
@@ -9,7 +9,7 @@ ake-blog {
     max-width: 55ch;
     margin: 21rem auto;
 
-    &:first-child{
+    &:first-child {
       margin-top: 0;
       padding-top: 21rem;
     }
@@ -31,13 +31,13 @@ ake-blog {
     & h1 {
       font-size: 5rem;
       background: linear-gradient(
-          to bottom right,
-          $color-akehir-cyan,
-          $color-akehir-blue,
-          $color-akehir-red,
-          $color-akehir-yellow
+        to bottom right,
+        $color-akehir-cyan,
+        $color-akehir-blue,
+        $color-akehir-red,
+        $color-akehir-yellow
       );
-      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
@@ -48,13 +48,13 @@ ake-blog {
       display: block;
       margin-top: 5rem;
       background: linear-gradient(
-          to bottom right,
-          $color-akehir-cyan,
-          $color-akehir-blue,
-          $color-akehir-red,
-          $color-akehir-yellow
+        to bottom right,
+        $color-akehir-cyan,
+        $color-akehir-blue,
+        $color-akehir-red,
+        $color-akehir-yellow
       );
-      -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
@@ -123,7 +123,7 @@ ake-blog {
         pointer-events: all;
       }
 
-      &:before {
+      &::before {
         content: '📋';
         display: block;
         position: absolute;
@@ -143,7 +143,8 @@ ake-blog {
       font-style: italic;
       margin: 5rem 0;
 
-      &:before, &:after {
+      &::before,
+      &::after {
         display: block;
         position: absolute;
         font-size: 14rem;
@@ -152,14 +153,14 @@ ake-blog {
         height: 100%;
       }
 
-      &:before {
+      &::before {
         content: '“';
         top: 0;
         left: 0;
         transform: translateX(-100%);
       }
 
-      &:after {
+      &::after {
         content: '”';
         bottom: 0;
         right: 0;

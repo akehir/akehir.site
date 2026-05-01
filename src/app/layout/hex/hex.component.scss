@@ -1,17 +1,18 @@
+@use '../../../stylesheets/settings/colors' as *;
+
 // https://github.com/web-tiki/responsive-grid-of-hexagons
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/index.html
 // https://github.com/web-tiki/responsive-grid-of-hexagons/blob/master/hexagons.css
+
 ake-hex {
   h1,
   p {
     width: 100%;
     padding: 5%;
     box-sizing: border-box;
-    background-color: rgba(0, 128, 128, 0.8);
+    background-color: $color-dark-turquoise;
     font-weight: 300;
-    transition:
-      transform 0.2s ease-out,
-      opacity 0.3s ease-out;
+    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
   }
 
   h1 {
@@ -29,7 +30,7 @@ ake-hex {
     left: 45%;
     width: 10%;
     text-align: center;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $color-white;
   }
 
   p {

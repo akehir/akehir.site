@@ -1,7 +1,7 @@
 @use '../../../stylesheets/settings/colors' as *;
 
 ake-machina {
-  color: #fff;
+  color: $color-white;
   width: 90%;
   margin: 0 auto;
   display: block;
@@ -16,7 +16,7 @@ ake-machina {
     $color-akehir-red,
     $color-akehir-yellow
   );
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 
   & .clusterinfo {
@@ -31,8 +31,10 @@ ake-machina {
     height: 1em;
   }
 
-  & .big svg {
-    height: 2.4em;
+  & .big {
+    & svg {
+      height: 2.4em;
+    }
   }
 
   & rpg-awesome-icon {
@@ -41,12 +43,12 @@ ake-machina {
   }
 
   & .bg-theme-800\/70 {
-    background: #fff;
+    background: $color-white;
     height: 1rem;
   }
 
   & .bg-theme-800\/30 {
-    background: rgba(255, 255, 255, 0.3);
+    background: $color-shadow-dark-gray;
     height: 1rem;
   }
 }

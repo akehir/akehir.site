@@ -1,13 +1,13 @@
 @use '../../../stylesheets/settings/colors' as *;
 
 ake-project {
-  color: #fff;
+  color: $color-white;
   width: 90%;
   margin: 0 auto;
   display: block;
 
   & pre {
-    color: #fff;
+    color: $color-white;
     font-size: 5rem;
     padding-top: 21rem;
     max-width: 40ch;
@@ -18,7 +18,7 @@ ake-project {
       $color-akehir-red,
       $color-akehir-yellow
     );
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
