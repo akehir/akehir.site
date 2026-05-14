@@ -1,37 +1,57 @@
 # Akehir.com
 
-## Abstract
-
-The new website for akehir.com
-
-## Memorandum
+The personal website for [akehir.com](https://akehir.com).
 
 ## Features
 
 ### WebGL Fluid Animation
+- Interactive fluid simulation running in the background.
+- Fully controllable via the application console.
 
-- In Background, controllable
+### Integrated Application Console
+A powerful command-line interface within the application that allows for deep control and interaction.
+- **Typeahead Support**: Provides intelligent suggestions as you type.
+- **Interactive Queries**: The console can pose questions to the user.
+- **Performance**: Virtual scrolling enabled for high-performance logging.
 
-### Console
+#### Console Capabilities:
+- **Language Management**: Change the application language.
+- **PWA Management**: Trigger PWA installation prompts.
+- **User Session**: Trigger login and logout flows.
+- **Navigation**: Navigate directly to specific project details.
+- **Project Management**: Create new projects or notes.
+- **Animation Control**: Configure, pause, or take screenshots of the WebGL animation.
+- **Project Browsing**: List, filter, and search projects in text form.
 
-Console allows control of application, with help / typeahead (suggestions).
-Suggestions are absolutely positioned behind typed stuff.
-Console can be opened / closed by clicking on icon.
-Console can ask questions
-Console log is virtual scrolling enabled
+## Quickstart
 
-#### Features
+### Prerequisites
+- [Node.js](https://nodejs.org/) (latest LTS recommended)
+- [npm](https://www.npmjs.com/)
 
-    - Change Language
-    - Install PWA Trigger
-    - Cookies, etc
-    - Trigger Login / Logout
-    - Trigger navigation (to details of project)
-    - Create new Project / Note (also have dedicated button)
-    - Change WebGL Animation (config, pause, screenshot, etc)
-    - List projects in text form, browse them
-    - Filter / search projects
+### Installation
+```bash
+npm install
+```
+
+### Development
+```bash
+# Start the development server
+npm start
+```
+
+### Testing & Quality
+```bash
+# Run unit tests
+npm test
+
+# Run linting
+npm run lint
+
+# Run end-to-end tests
+npm run e2e
+```
 
 ## Acknowledgements
 
-WebGL Fluid Simulation from: https://github.com/PavelDoGreat/WebGL-Fluid-Simulation
+- WebGL Fluid Simulation by [PavelDoGreat](https://github.com/PavelDoGreat/WebGL-Fluid-Simulation).
