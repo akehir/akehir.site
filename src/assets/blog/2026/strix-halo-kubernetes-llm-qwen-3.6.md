@@ -29,6 +29,34 @@ Prompt processing seems to be a bit slower than expected, but text generation sp
 
 On my setup I do recommend Q8 instead of BF16 in order to achieve optimal performance. With that quantization, prompt processing hovers around 600 - 800 tokens / s, and text generation lands at 44 tokens / s. So comparing it to Gemma 4 26B, it is slower on prompt processing, but faster in text generation. On BF16, the prompt processing performance drops to around 50%, which is about expected. The text generation drops even more to just 25% of the Q8 performance, which is a speed where it definitely starts to hurt - at around 10 tokens / s.
 
+As for Qwen 27B dense at Q8, the raw performance is unfortunately a bit lacking - as expected for a dense model. But it can run, and it runs well enough if necessary, and if a higher quality output is absolutely required.
+
+### Qwen 3.6 27B Q8
+
+| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        263.53 ± 1.63 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        260.32 ± 1.31 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        229.73 ± 0.57 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        141.32 ± 1.47 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |          6.25 ± 0.00 |
+
+
+```
+llama-bench -m /models/chat/qwen-3.6-27b/Qwen3.6-27B-UD-Q8_K_XL.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = Radeon 8060S Graphics (RADV STRIX_HALO) (radv) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 64 | shared memory: 65536 | int dot: 1 | matrix cores: KHR_coopmat
+load_backend: loaded Vulkan backend from /app/llama.cpp/build/bin/libggml-vulkan.so
+load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.so
+| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        263.53 ± 1.63 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        260.32 ± 1.31 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        229.73 ± 0.57 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        141.32 ± 1.47 |
+| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |          6.25 ± 0.00 |
+```
+
 ### Qwen 3.6 35B A3B Q8
 
 | model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
