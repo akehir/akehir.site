@@ -20,7 +20,7 @@ ake-blog {
     & h4,
     & h5,
     & h6 {
-      font-weight: 400;
+      font-weight: 100;
       margin-top: 3rem;
     }
 
@@ -110,7 +110,6 @@ ake-blog {
       padding: 2rem 4rem;
       background-color: $colour-schema-4-accent;
       font-size: 1.8rem;
-      font-family: SourceCodePro, monospace;
       position: relative;
       pointer-events: none;
 

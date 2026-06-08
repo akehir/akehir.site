@@ -81,14 +81,13 @@
     background 1s ease-out,
     box-shadow 1s ease-out,
     transform 0.4s ease-out;
-    font-family: SourceSansPro, sans-serif;
+    font-family: SourceSerifPro, serif;
     font-size: 2rem;
     font-weight: 100;
     transform: translateX(-100%);
 
     &::first-letter {
       font-size: 4rem;
-      font-family: SourceSerifPro, serif;
       font-weight: 100;
     }
 

@@ -20,8 +20,11 @@ function enableBackground() {
 const routes: Routes = [
   {
     path: 'index',
-    component: HomeComponent,
     resolve: { background: disableBackground },
+    loadComponent: () =>
+      import('./pages/home/home.component').then(
+        c => c.HomeComponent
+      ),
   },
   {
     path: 'about',
@@ -43,26 +46,55 @@ const routes: Routes = [
       ),
     resolve: { background: disableBackground },
   },
-
-  { path: 'machina', component: MachinaComponent, resolve: { background: enableBackground }, },
-  { path: 'projects', component: MapComponent, resolve: { background: enableBackground }, },
-  { path: 'projects/:id', component: ProjectComponent, resolve: { background: disableBackground }, },
+  { path: 'machina', resolve: { background: enableBackground }, loadComponent: () =>
+      import('./pages/machina/machina.component').then(
+        c => c.MachinaComponent
+      ),
+  },
+  { path: 'projects', resolve: { background: enableBackground }, loadComponent: () =>
+      import('./layout/map/map.component').then(
+        c => c.MapComponent
+      ),
+  },
+  { path: 'projects/:id', resolve: { background: disableBackground }, loadComponent: () =>
+      import('./pages/project/project.component').then(
+        c => c.ProjectComponent
+      ),
+  },
   {
     path: 'demos/colour',
-    component: ColourComponent,
+    loadComponent: () =>
+      import('./pages/colour/colour.component').then(
+        c => c.ColourComponent
+      ),
   },
   {
     path: 'demos/colour/:drawing',
-    component: ColourComponent,
+    loadComponent: () =>
+      import('./pages/colour/colour.component').then(
+        c => c.ColourComponent
+      ),
     resolve: { background: disableBackground },
   },
   {
     path: 'error',
-    component: MapComponent,
+    loadComponent: () =>
+      import('./pages/home/home.component').then(
+        c => c.HomeComponent
+      ),
     children: [
-      { path: '403', component: MapComponent, resolve: { background: enableBackground }, },
-      { path: '404', component: MapComponent, resolve: { background: enableBackground }, },
-      { path: '500', component: MapComponent, resolve: { background: enableBackground }, },
+      { path: '403', resolve: { background: enableBackground }, loadComponent: () =>
+      import('./pages/home/home.component').then(
+        c => c.HomeComponent
+      ), },
+      { path: '404', resolve: { background: enableBackground }, loadComponent: () =>
+      import('./pages/home/home.component').then(
+        c => c.HomeComponent
+      ),},
+      { path: '500', resolve: { background: enableBackground }, loadComponent: () =>
+      import('./pages/home/home.component').then(
+        c => c.HomeComponent
+      ),},
     ],
   },
   {
