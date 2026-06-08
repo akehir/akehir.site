@@ -1,13 +1,6 @@
 import { inject, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-// components
-import { MapComponent } from './layout/map/map.component';
-import { ProjectComponent } from './pages/project/project.component';
-import { MachinaComponent } from './pages/machina/machina.component';
-import { HomeComponent } from './pages/home/home.component';
 import { BackgroundService } from '@core/services/background.service';
-import { ColourComponent } from './pages/colour';
 
 function disableBackground() {
   inject(BackgroundService).active = false;
