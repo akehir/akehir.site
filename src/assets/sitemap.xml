@@ -21,6 +21,21 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://akehir.com/blog/gemma-4-qat</loc>
+		<lastmod>2026-06-08T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/global-cyber-skills-benchmark-ctf-2026</loc>
+		<lastmod>2026-06-08T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/init-7</loc>
+		<lastmod>2026-06-08T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-qwen-3.6</loc>
 		<lastmod>2026-04-19T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>

@@ -53,3 +53,12 @@ Agents should follow these steps when making changes:
 | `npm run lint` | Runs linting (ESLint and Sass-lint) |
 | `npm run build` | Builds the project for production |
 | `npm run e2e` | Runs end-to-end tests |
+
+## Blog Post Workflow
+
+To create a new blog post, follow these steps:
+
+1.  **Create Markdown Content**: Write the blog post in Markdown and save it to `src/assets/blog/<year>/<slug>.md`.
+2.  **Generate Component**: Create a new Angular component for the blog entry in `src/app/pages/blog/entries/<year>/<slug>.component.ts`. Use the existing pattern (e.g., importing `BlogEntryContainerComponent`).
+3.  **Register Entry**: Add a new entry to the `blogEntries` array in `src/app/pages/blog/blog.module.ts`. Ensure all required metadata (title, author, categories, mainCategory, publishedDate, modifiedDate, routerLink, content, source) is provided.
+4.  **Update Sitemap**: Add the new blog post URL to `src/assets/sitemap.xml`.

@@ -17,6 +17,7 @@ export type EntryCategory =
   | 'Travel'
   | "Raphael's Random Rumblings"
   | 'Programming'
+  | 'CyberSecurity'
   | 'Kubernetes'
   | 'Reading'
   | 'Hardware'
@@ -40,6 +41,63 @@ export type BlogData = {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'init-7',
+    title: 'Internet Service Provider Recommendation: Init7 (Fiber7)',
+     data: {
+      title: 'Internet Service Provider Recommendation: Init7 (Fiber7)',
+       author: 'Raphael Ochsenbein',
+      categories: ['Infrastructure'],
+      mainCategory: 'Infrastructure',
+      publishedDate: '2026-06-08',
+      modifiedDate: '2026-06-08',
+      routerLink: '/blog/init-7',
+      content: '/assets/blog/2026/init-7.md',
+      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/init-7.md',
+     },
+     loadComponent: () =>
+      import('./entries/2026/init-7.component').then(
+        c => c.Init7Component
+       ),
+   },
+  {
+    path: 'global-cyber-skills-benchmark-ctf-2026',
+    title: 'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
+    data: {
+      title: 'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
+      author: 'Raphael Ochsenbein',
+      categories: ['CyberSecurity'],
+      mainCategory: 'CyberSecurity',
+      publishedDate: '2026-06-08',
+      modifiedDate: '2026-06-08',
+      routerLink: '/blog/global-cyber-skills-benchmark-ctf-2026',
+      content: '/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
+      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/global-cyber-skills-benchmark-ctf-2026.component').then(
+        c => c.GlobalCyberSkillsBenchmarkCtf2026Component
+      ),
+  },
+  {
+    path: 'gemma-4-qat',
+    title: 'Quick Review of the Gemma 4 QAT Models',
+    data: {
+      title: 'Quick Review of the Gemma 4 QAT Models',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-06-08',
+      modifiedDate: '2026-06-08',
+      routerLink: '/blog/gemma-4-qat',
+      content: '/assets/blog/2026/gemma-4-qat.md',
+      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/gemma-4-qat.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/gemma-4-qat.component').then(
+        c => c.Gemma4QatComponent
+      ),
+  },
   {
     path: 'strix-halo-kubernetes-llm-qwen-3.6',
     title:
