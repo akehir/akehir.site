@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -19,7 +18,6 @@ import { BlogData } from '../blog.module';
     [publishedDate]="publishedDate()"></ake-blog-entry>`,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [BlogEntryComponent],
 })
 export class BlogEntryContainerComponent {

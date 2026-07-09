@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { interval, of } from 'rxjs';
 import { exhaustMap, startWith, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -56,7 +56,6 @@ type ClusterInfo = {
   templateUrl: './machina.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [AsyncPipe, RpgAwesomeIconComponent, DecimalPipe],
 })
 export class MachinaComponent {

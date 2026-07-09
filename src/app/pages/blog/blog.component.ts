@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from '@angular/core';
@@ -11,7 +10,6 @@ import { provideMarkdown } from 'ngx-markdown';
   templateUrl: './blog.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet],
   providers: [provideMarkdown()],
 })

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { Project } from '@core/types/project';
 import { ProjectsService } from '@core/services/projects.service';
 import { Observable } from 'rxjs';
@@ -13,7 +13,6 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
   templateUrl: './project.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [HexComponent, JsonPipe, AsyncPipe],
 })
 export class ProjectComponent {

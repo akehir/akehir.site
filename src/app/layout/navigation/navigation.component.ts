@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
   inject,
@@ -24,7 +23,6 @@ import { environment } from '../../../environments/environment';
   templateUrl: './navigation.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgClass,
     ConsoleComponent,

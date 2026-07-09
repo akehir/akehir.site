@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from '@angular/core';
@@ -11,7 +10,6 @@ import { BlogData, blogEntries } from './blog.module';
   templateUrl: './entries.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
 })
 export class EntriesComponent {

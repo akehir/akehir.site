@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from '@angular/core';
@@ -9,6 +8,5 @@ import {
   templateUrl: './privacy.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivacyComponent {}

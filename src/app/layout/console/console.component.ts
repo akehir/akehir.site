@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { timer } from 'rxjs';
@@ -17,7 +17,6 @@ import { projectList } from '@core/data';
   templateUrl: './console.component.html',
   styleUrls: ['./console.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, FontAwesomeIconsModule],
 })
 export class ConsoleComponent implements AfterViewInit {

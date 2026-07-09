@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   Input,
   ViewEncapsulation,
@@ -13,7 +12,6 @@ import { RouterLink } from '@angular/router';
   templateUrl: './hex.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [BackgroundComponent, RouterLink],
 })
 export class HexComponent {

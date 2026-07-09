@@ -5,7 +5,6 @@ import {
   ViewChild,
   ViewEncapsulation,
   NgZone,
-  ChangeDetectionStrategy,
   DOCUMENT,
   inject,
 } from '@angular/core';
@@ -25,7 +24,6 @@ import { copyToClipboard } from '@core/util';
   templateUrl: './colour.component.html',
   styleUrls: ['./colour.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColourComponent implements AfterViewInit {
   private route = inject(ActivatedRoute);

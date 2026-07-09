@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 
 import { Coordinate } from '@core/types/coordinate';
 import { ProjectsService } from '@core/services/projects.service';
@@ -10,7 +10,6 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './map.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [HexComponent, AsyncPipe],
 })
 export class MapComponent {

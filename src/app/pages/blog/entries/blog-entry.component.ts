@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   DOCUMENT,
   inject,
@@ -30,7 +29,6 @@ import { environment } from '../../../../environments/environment';
   `,
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MarkdownComponent],
 })
 export class BlogEntryComponent {

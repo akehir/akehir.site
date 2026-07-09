@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   inject,
   ViewEncapsulation,
@@ -11,7 +10,6 @@ import { BackgroundService } from '@core/services/background.service';
   templateUrl: './app.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false, // eslint-disable-line @angular-eslint/prefer-standalone
 })
 export class AppComponent {

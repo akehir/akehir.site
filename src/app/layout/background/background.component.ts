@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, inject } from '@angular/core';
+import { Component, Input, ViewEncapsulation, inject } from '@angular/core';
 import { IconType } from '@core/types';
 import {
   NotoEmojiIconComponent,
@@ -38,7 +38,6 @@ import {
   templateUrl: './background.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NotoEmojiIconComponent,
     RpgAwesomeIconComponent,
