@@ -1,14 +1,15 @@
 @if (map$ | async; as map) {
   <ul class="grid">
-    @for (coordinate of map.coordinates; track trackCoordinate($index, coordinate)) {
-      <li
-        class="hex"
-        >
+    @for (
+      coordinate of map.coordinates;
+      track trackCoordinate($index, coordinate)
+    ) {
+      <li class="hex">
         <div class="hex-in">
           <ake-hex
             class="hex-link"
             (click)="log(coordinate)"
-          [project]="coordinate?.project"></ake-hex>
+            [project]="$safeNavigationMigration(coordinate?.project)"></ake-hex>
         </div>
       </li>
     }

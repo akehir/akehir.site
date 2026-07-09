@@ -3,6 +3,7 @@ import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr,
 } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,7 +53,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
   ],
   providers: [
     provideZonelessChangeDetection(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
     ProjectsService,
     BackgroundService,
     ConsoleService,

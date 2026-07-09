@@ -2,7 +2,7 @@
   <ake-background
     class="land"
     [routerLink]="['./', project.id]"
-    [icon]="project?.icon"
-    [iconType]="project?.iconType">
+    [icon]="$safeNavigationMigration(project?.icon)"
+    [iconType]="$safeNavigationMigration(project?.iconType)">
   </ake-background>
 }
