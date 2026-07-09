@@ -20,14 +20,15 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
             "outputPath": {
               "base": "dist/akehir"
             },
             "index": "src/index.html",
             "polyfills": [],
-            "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/manifest.webmanifest",
               "src/favicon.ico",
@@ -50,7 +51,7 @@
             "scripts": [],
             "extractLicenses": false,
             "sourceMap": true,
-            "optimization": false,
+            "optimization": true,
             "namedChunks": true,
             "browser": "src/main.ts"
           },
@@ -92,7 +93,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "akehir:build",
             "proxyConfig": "proxy.conf.json"
@@ -100,17 +101,15 @@
           "configurations": {
             "production": {
               "buildTarget": "akehir:build:production"
+            },
+            "development": {
+              "buildTarget": "akehir:build:production"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "akehir:build"
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "main": "src/test.ts",
             "tsConfig": "src/tsconfig.spec.json",
@@ -124,31 +123,6 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
-          }
-        }
-      }
-    },
-    "akehir-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "akehir:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "akehir:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["e2e/**/*.ts", "e2e/**/*.html"]
           }
         }
       }
