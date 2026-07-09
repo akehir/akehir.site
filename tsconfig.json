@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "importHelpers": true,
     "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
@@ -16,10 +15,10 @@
     ],
     "paths": {
       "@util": [
-        "src/app/core/utilities/index.ts"
+        "./src/app/core/utilities/index.ts"
       ],
       "@core/*": [
-        "src/app/core/*"
+        "./src/app/core/*"
       ]
     },
     "useDefineForClassFields": false
