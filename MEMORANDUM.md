@@ -21,4 +21,3 @@ Console log is virtual scrolling enabled
     - Change WebGL Animation (config, pause, screenshot, etc)
     - List projects in text form, browse them
     - Filter / search projects
-

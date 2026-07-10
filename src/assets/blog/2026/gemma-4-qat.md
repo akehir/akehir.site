@@ -30,7 +30,6 @@ For more information on how I am running the Gemma 4 models, check out my [previ
 | gemma4 26B.A4B Q4_0 | 13.26 GiB | 25.23 B | Vulkan  |  -1 |       1 |     2048 |   1 | pp32768 | 1015.87 ± 11.14 |
 | gemma4 26B.A4B Q4_0 | 13.26 GiB | 25.23 B | Vulkan  |  -1 |       1 |     2048 |   1 |   tg128 |    74.56 ± 0.07 |
 
-
 ```
 root@llm-v64-677857cdcb-6gvxx:/app# llama-bench -m /models/chat/gemma-4-26B-A4B-qat/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
 ggml_vulkan: Found 1 Vulkan devices:
@@ -47,7 +46,7 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 
 ```
 
-### gemma4 31B Q4_0 and gemma4 26B.A4B Q4_0 
+### gemma4 31B Q4_0 and gemma4 26B.A4B Q4_0
 
 | model               |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |            t/s |
 | ------------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | -------------: |
@@ -77,4 +76,3 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 | gemma4 31B Q4_0                |  16.09 GiB |    30.70 B | Vulkan     |  -1 |       1 |     2048 |   1 |         pp16384 |        167.38 ± 0.32 |
 | gemma4 31B Q4_0                |  16.09 GiB |    30.70 B | Vulkan     |  -1 |       1 |     2048 |   1 |           tg128 |         12.17 ± 0.01 |
 ```
-

@@ -17,10 +17,10 @@ import { random } from '../util/colour/pixel-factory/random';
 export class ColourService {
   pixelFactory(
     variant: string,
-    xoffset: number = 0,
-    yoffset: number = 0,
-    width: number = 0,
-    height: number = 0
+    xoffset = 0,
+    yoffset = 0,
+    width = 0,
+    height = 0
   ): getColourValue {
     if (variant === 'square-square') {
       return bitwiseXorColour(variant, xoffset, yoffset);

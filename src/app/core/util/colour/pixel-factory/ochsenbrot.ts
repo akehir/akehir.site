@@ -5,10 +5,10 @@ import { checkFactory } from '../check/check-factory';
 
 export function ochsenbrot(
   variant: string,
-  xoffset: number = 0,
-  yoffset: number = 0,
-  width: number = 0,
-  height: number = 0
+  xoffset = 0,
+  yoffset = 0,
+  width = 0,
+  height = 0
 ): getColourValue {
   const colourMax = 255;
   const colour = checkFactory(variant);
@@ -24,14 +24,12 @@ export function ochsenbrot(
     let nn = 0; // gezeichnete Iterationen
     let zxr = 0; // Reeller Teil von z (Array für Temporär)
     let zyr = 0;
-    let zxi = 0; // Imaginärer Teil von z
-    let zyi = 0;
 
     while (nn < it && zyr < s && zxr < s) {
-      zxi = zxr * zxr - zyr * zyr + xinitial;
-      zyi = sq * zxr * zyr + yinitial;
-      zxr = zyi;
-      zyr = zxi;
+      const zxi = zxr * zxr - zyr * zyr + xinitial;
+      const zyi = sq * zxr * zyr + yinitial;
+      zxr = zxi;
+      zyr = zyi;
       nn += 1;
     }
     return colour(Math.floor(nn * (colourMax / it)));

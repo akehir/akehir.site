@@ -11,17 +11,12 @@ But for every action here I have to plead to you that you do not lose confidence
 
 However, it is now all said upon your welcome, enjoy and rejoy.
 
-
-
-
 ---
-
-
 
 In Javascript it could look as follows:
 
 ```javascript
-console.log("Hello World!");
+console.log('Hello World!');
 ```
 
 In other programming languages, it might be more involved to print "hello world" to the console.
@@ -37,7 +32,7 @@ int main() {
 }
 ```
 
-And some languages designed to be unreadable such as *brainfuck* might have such a hello world code:
+And some languages designed to be unreadable such as _brainfuck_ might have such a hello world code:
 
 ```brainfuck
 >++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<+
@@ -46,4 +41,3 @@ And some languages designed to be unreadable such as *brainfuck* might have such
 ```
 
 ---
-

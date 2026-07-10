@@ -3,8 +3,8 @@ import { checkFactory } from '../check/check-factory';
 
 export function simplecircle(
   variant: string,
-  xoffset: number = 0,
-  yoffset: number = 0
+  xoffset = 0,
+  yoffset = 0
 ): getColourValue {
   const colour = checkFactory(variant);
   const colourMax = 255;

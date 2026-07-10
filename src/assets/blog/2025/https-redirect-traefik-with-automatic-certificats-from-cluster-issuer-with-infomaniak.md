@@ -3,11 +3,12 @@
 This blog post explores an end-to-end setup of how to automatically generate https certificates on Kubernetes ingresses with the Traefik Ingress controller.
 
 ## HTTPS Redirect
+
 In order to redirect an ingress to https, first we have tho create the Traefik Middleware handling the redirect.
 
-**Important:** The apiVersion string is different for Traefik v3. The below applies to Traefik V3; if you're using Traefik V2, then the apiVersion needs to be specified as follows: `apiVersion: traefik.containo.us/v1alpha1`. 
+**Important:** The apiVersion string is different for Traefik v3. The below applies to Traefik V3; if you're using Traefik V2, then the apiVersion needs to be specified as follows: `apiVersion: traefik.containo.us/v1alpha1`.
 
-```
+````
 ```yaml
 ---
 apiVersion: traefik.io/v1alpha1
@@ -20,9 +21,10 @@ spec:
     scheme: https
     permanent: true
 ---
-```
+````
 
 ## Ingress Config
+
 With a ClusterIssuer (see below) and the redirect configured, any ingress can be configured to use https (and to redirect all traffik to https) with the following 2 annotations. To use the http challenge instead of the dns challenge, in my setup I just have to change the cluster-issuer to the following: `cert-manager.io/cluster-issuer: letsencrypt-http`.
 Overall it's a relatively simple and lean setup to automatically generate certificates via Kubernetes.
 
@@ -37,8 +39,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 ---
-
 ```
+
 ## HTTPS Certificates with ClusterIssuer and Infomaniak
 
 The setup for the ClusterIssuer is minimal, provided the required secrets are created. The below are examples for the `dns01` and the `http01` solvers; this allows for https certificates to be generated either via http or via dns challenge. The dns challenge is more powerful, but requires the dns provider to support cert-manager (or at least the cert-manager-webhook). The advantage of the http challenge is that you don't even need to have access to the DNS zone of the domain (so you don't need to be a domain owner). That simplifies the setup.
@@ -51,8 +53,8 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    email: "raphael@akehir.com"
-    server: "https://acme-v02.api.letsencrypt.org/directory"
+    email: 'raphael@akehir.com'
+    server: 'https://acme-v02.api.letsencrypt.org/directory'
     privateKeySecretRef:
       name: letsencrypt
     solvers:
@@ -71,8 +73,8 @@ metadata:
   name: letsencrypt-http
 spec:
   acme:
-    email: "raphael@akehir.com"
-    server: "https://acme-v02.api.letsencrypt.org/directory"
+    email: 'raphael@akehir.com'
+    server: 'https://acme-v02.api.letsencrypt.org/directory'
     privateKeySecretRef:
       name: letsencrypt-http
     solvers:
@@ -80,12 +82,11 @@ spec:
           ingress:
             class: traefik
 ---
-
 ```
 
 ## Infomaniak WebHook Setup
-The below yaml is basically the result of following the instructions by [Infomaniak on Github](https://github.com/Infomaniak/cert-manager-webhook-infomaniak). I created the necessary secrets and applied the below config to have an Infomaniak ClusterIssuer running. It has been solving Letsencrypt https certificates with the dns challenge just nicely.
 
+The below yaml is basically the result of following the instructions by [Infomaniak on Github](https://github.com/Infomaniak/cert-manager-webhook-infomaniak). I created the necessary secrets and applied the below config to have an Infomaniak ClusterIssuer running. It has been solving Letsencrypt https certificates with the dns challenge just nicely.
 
 ```yaml
 ---
@@ -93,7 +94,7 @@ The below yaml is basically the result of following the instructions by [Infoman
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: "cert-manager-infomaniak"
+  name: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -105,7 +106,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: infomaniak-webhook
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -148,7 +149,7 @@ roleRef:
   kind: ClusterRole
   name: system:auth-delegator
 subjects:
-  - apiGroup: ""
+  - apiGroup: ''
     kind: ServiceAccount
     name: infomaniak-webhook
     namespace: cert-manager-infomaniak
@@ -168,7 +169,7 @@ roleRef:
   kind: ClusterRole
   name: infomaniak-webhook:domain-solver
 subjects:
-  - apiGroup: ""
+  - apiGroup: ''
     kind: ServiceAccount
     name: cert-manager
     namespace: cert-manager
@@ -186,7 +187,7 @@ metadata:
     release: infomaniak-webhook
     heritage: Helm
 rules:
-  - apiGroups: [""]
+  - apiGroups: ['']
     resources:
       - 'secrets'
     resourceNames: [infomaniak-api-credentials]
@@ -215,7 +216,7 @@ roleRef:
   kind: Role
   name: extension-apiserver-authentication-reader
 subjects:
-  - apiGroup: ""
+  - apiGroup: ''
     kind: ServiceAccount
     name: infomaniak-webhook
     namespace: cert-manager-infomaniak
@@ -236,7 +237,7 @@ roleRef:
   kind: Role
   name: infomaniak-webhook:secret-reader
 subjects:
-  - apiGroup: ""
+  - apiGroup: ''
     kind: ServiceAccount
     name: infomaniak-webhook
     namespace: cert-manager-infomaniak
@@ -246,7 +247,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: infomaniak-webhook
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -268,7 +269,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: infomaniak-webhook
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -299,7 +300,7 @@ spec:
       serviceAccountName: infomaniak-webhook
       containers:
         - name: infomaniak-webhook
-          image: "ghcr.io/infomaniak/cert-manager-webhook-infomaniak:latest"
+          image: 'ghcr.io/infomaniak/cert-manager-webhook-infomaniak:latest'
           imagePullPolicy: IfNotPresent
           args:
             - --v=2
@@ -307,7 +308,7 @@ spec:
             - --tls-private-key-file=/tls/tls.key
           env:
             - name: GROUP_NAME
-              value: "acme.infomaniak.com"
+              value: 'acme.infomaniak.com'
           ports:
             - name: https
               containerPort: 443
@@ -326,8 +327,7 @@ spec:
             - name: certs
               mountPath: /tls
               readOnly: true
-          resources:
-            {}
+          resources: {}
       volumes:
         - name: certs
           secret:
@@ -344,7 +344,7 @@ metadata:
     release: infomaniak-webhook
     heritage: Helm
   annotations:
-    cert-manager.io/inject-ca-from: "cert-manager-infomaniak/infomaniak-webhook-webhook-tls"
+    cert-manager.io/inject-ca-from: 'cert-manager-infomaniak/infomaniak-webhook-webhook-tls'
 spec:
   group: acme.infomaniak.com
   groupPriorityMinimum: 1000
@@ -360,7 +360,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: infomaniak-webhook-ca
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -371,7 +371,7 @@ spec:
   duration: 43800h
   issuerRef:
     name: infomaniak-webhook-selfsign
-  commonName: "ca.infomaniak-webhook.cert-manager"
+  commonName: 'ca.infomaniak-webhook.cert-manager'
   isCA: true
 ---
 # Source: infomaniak-webhook/templates/pki.yaml
@@ -380,7 +380,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: infomaniak-webhook-webhook-tls
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -403,7 +403,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: infomaniak-webhook-selfsign
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -418,7 +418,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: infomaniak-webhook-ca
-  namespace: "cert-manager-infomaniak"
+  namespace: 'cert-manager-infomaniak'
   labels:
     app: infomaniak-webhook
     chart: infomaniak-webhook-0.2.0
@@ -428,6 +428,4 @@ spec:
   ca:
     secretName: infomaniak-webhook-ca
 ---
-
 ```
-

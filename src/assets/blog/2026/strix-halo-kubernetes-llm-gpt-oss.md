@@ -2,16 +2,18 @@
 
 In order to run bigger Machine Learning / LLM Models, I've wanted to upgrade the RAM of my computer. Unfortunately the rising DDR5 prices made that prohibitively expensive.
 
-Therefore I've pivoted to using a *Minisforum MS-S1* which I could get for a reasonable price. I have to say, I'm positively surprised of the capabilities of this device, especially seen as compared to it's power consumption.
+Therefore I've pivoted to using a _Minisforum MS-S1_ which I could get for a reasonable price. I have to say, I'm positively surprised of the capabilities of this device, especially seen as compared to it's power consumption.
 
 Here is how I've integrated it into my kubernetes cluster and how I'm running the GPT-OSS 20B and the GPT-OSS 120B models on the node, as well as the performance I'm getting on my setup.
 
 I had a few challenges to solve:
+
 - Network cards not working properly
 - How to increase shared memory size
 - How to configure kubernetes correctly to allow hardware access
 
 ## Setup and Configuration
+
 ### BIOS Config
 
 - Limited CPU temperature to 77 degrees.
@@ -22,6 +24,7 @@ The limited temperature is the easiest way to limit power consumption without tu
 The maximum VRAM allocation solved my performance issues on context sizes greater than 8k.
 
 ### Installing Debian Testing and K3S
+
 Before installing Debian on the MS-S1, I knew from reviews and Reddit discussions that the wired chips are requiring a cutting edge kernel. So instead of installing Debian stable (as I usually would), I setup a bootable Debian testing USB stick.
 
 I also replaced the NVMe SSD of the MS-S1 with a bigger SSD before installing Linux (I'm keeping the other SSD in case I want to use Windows, or another OS).
@@ -35,7 +38,6 @@ The full install command is:
 ```
 apt install sudo docker.io docker-compose htop rsync nfs-common curl open-iscsi earlyoom git git-lfs smartmontools lm-sensors imagemagick restic rear radeontop vulkan-tools
 ```
-
 
 Then I could join my existing `k3s` cluster:
 
@@ -60,7 +62,6 @@ But before I could run the workloads, I had to create the docker images I wanted
 I'm using the following `Dockerfile` to run both llama.cpp and llama.swap with a Vulkan backend on my computer. I choose Vulkan for my tests, because the ROCm docker images are very big.
 
 The images and the code can be seen here: https://git.akehir.com/infra/llama-swap-llama-cpp-vulkan .
-
 
 ```Dockerfile
 FROM debian:testing
@@ -117,7 +118,7 @@ WORKDIR /app/llama.cpp
 RUN cmake -B build -DGGML_NATIVE=OFF -DGGML_VULKAN=ON -DLLAMA_BUILD_TESTS=OFF -DGGML_BACKEND_DL=ON -DGGML_CPU_ALL_VARIANTS=ON && \
     cmake --build build --config Release -j$(nproc)
 RUN pip install --break-system-packages --upgrade setuptools
-RUN pip install --break-system-packages -r requirements.txt 
+RUN pip install --break-system-packages -r requirements.txt
 WORKDIR /app/llama.cpp/build/bin
 
 ## Build llama-swap
@@ -128,6 +129,7 @@ WORKDIR /app/llama-swap/build
 CMD ["/bin/bash"]
 
 ```
+
 ### Kubernetes Config
 
 I've deployed both `openwebui` and `llama-swap` / `llama.cpp` (in one container as seen above) to the cluster.
@@ -137,6 +139,7 @@ To re-use the config you probably want to remove the `traefik.ingress.kubernetes
 Of interest is mainly the llama config, the openwebui just provides an easy chat ui. To use my config of openwebui, you will need to install openebs, or provide a different volume (the easiest probably being hostpath).
 
 I use flux to synchronize the config to my cluster, but you can also just create the files below and run `kubectl apply -f ...`.
+
 #### llama-swap & llama.cpp
 
 ```yaml
@@ -219,7 +222,7 @@ spec:
               add:
                 - SYS_PTRACE
           image: registry.example.com/infra/llama-swap-llama-cpp-vulkan/llama-release:latest
-          command: ["/app/llama-swap/build/llama-swap-linux-amd64"]
+          command: ['/app/llama-swap/build/llama-swap-linux-amd64']
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -274,7 +277,7 @@ spec:
                     operator: In
                     values:
                       - llm
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: 'kubernetes.io/hostname'
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -308,7 +311,6 @@ data:
           - "gpt-oss-120b"
     ---
 ---
-
 ```
 
 #### OpenWebUI
@@ -397,7 +399,7 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
-            - mountPath: "/app/backend/data"
+            - mountPath: '/app/backend/data'
               name: openwebui
 ---
 ```
@@ -429,12 +431,16 @@ services:
 ```
 
 ## Conclusion & Results
+
 ### Issues
+
 #### No Network after Installing the OS
+
 While the network cards were working fine during the installation, after removing the USB drive and rebooting the computer, they didn't work anymore. Even rebooting didn't help.
 Thanks to a Google search, I figured out a solution: The computer needs to be completely shut off - and not just rebooted. So I turned it off, removed the power cable, and waited a bit before turning it on. Afterwards it worked perfectly.
 
 #### Low Performance on Bigger Context Sizes (>8k)
+
 The default allocation of 2GB VRAM didn't work out for me, because as soon as context sizes were greater than 8k and the context didn't fit into the GPU RAM, the performance was horrible.
 
 First I've increased the shared memory, but that didn't seem to help immediately.
@@ -442,6 +448,7 @@ First I've increased the shared memory, but that didn't seem to help immediately
 In the end I've just changed the VRAM to a fixed allocation of 96GB, and left the remaining 32GB as shared RAM.
 
 #### How to increase shared memory size
+
 The default shared memory for the GPU was set to ~64GB in my kernel.
 
 I've changed it by changing the defaults in, `sudo nano /etc/default/grub`, with the values below, and then enable it by running `sudo update-grub` and `sudo reboot`.
@@ -451,7 +458,9 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet amdttm.pages_limit=126000 amdttm.page_pool_siz
 ```
 
 In the end, I've chosen to allocate the GPU memory in the BIOS and not gone the route of shared memory for the moment, due to performance issues with larger context sizes; this is something I'd like to revisit in the future though.
+
 #### How to configure kubernetes correctly to allow hardware access
+
 This had me stumped for a while. You can see the working config above. But I didn't have the right approach to enabling access to the host devices inside the container.
 
 One (safer) approach would be to use device plugins for kubernetes - for instance the [AMD GPU device plugin for Kubernetes](https://github.com/ROCm/k8s-device-plugin).
@@ -469,6 +478,7 @@ I've chosen the GPT-OSS models because they're popular, performant, and provide 
 The results are with GPT-OSS-20B and GPT-OSS-120B preloaded. This takes around ~80GB of the VRAM assigned to the card.
 
 #### GPT-OSS-20B
+
 Firstly, I've checked the performance I'm getting on some requests as captured by llama-swap in real-world usage.
 
 Prompt processing: ~1000 - 1500 tokens / second.
@@ -487,22 +497,22 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-icela
 
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gpt-oss 20B F16                |  12.83 GiB |    20.91 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |       1274.95 ± 1.29 |
-| gpt-oss 20B F16                |  12.83 GiB |    20.91 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |       1055.64 ± 1.35 |
-| gpt-oss 20B F16                |  12.83 GiB |    20.91 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        828.95 ± 0.55 |
-| gpt-oss 20B F16                |  12.83 GiB |    20.91 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        546.66 ± 1.35 |
-| gpt-oss 20B F16                |  12.83 GiB |    20.91 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |         46.45 ± 0.14 |
-
+| model           |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |            t/s |
+| --------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | -------------: |
+| gpt-oss 20B F16 | 12.83 GiB | 20.91 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 1274.95 ± 1.29 |
+| gpt-oss 20B F16 | 12.83 GiB | 20.91 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 1055.64 ± 1.35 |
+| gpt-oss 20B F16 | 12.83 GiB | 20.91 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 |  828.95 ± 0.55 |
+| gpt-oss 20B F16 | 12.83 GiB | 20.91 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 |  546.66 ± 1.35 |
+| gpt-oss 20B F16 | 12.83 GiB | 20.91 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |   46.45 ± 0.14 |
 
 #### GPT-OSS-120B
+
 Again, I've run some real usage benchmarks to get a feeling for the performance of the model on my setup:
 
 Prompt processing: ~400 tokens / second.
 Generation: ~30 - 33 tokens / second.
 
-And then I've run llama-bench from within the container (via `kubectl -n llm exec -it llm-v15-76d5bf569c-jdgr9 -- /bin/bash`) to get benchmark results comparable  to those posted on the `gpt-oss` discussions on the `llama.cpp` [here](https://github.com/ggml-org/llama.cpp/discussions/15396).
+And then I've run llama-bench from within the container (via `kubectl -n llm exec -it llm-v15-76d5bf569c-jdgr9 -- /bin/bash`) to get benchmark results comparable to those posted on the `gpt-oss` discussions on the `llama.cpp` [here](https://github.com/ggml-org/llama.cpp/discussions/15396).
 
 ```
 root@llm-v15-76d5bf569c-jdgr9:/app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gpt-oss-120b/gpt-oss-120B-F16.gguf  -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
@@ -513,16 +523,16 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-icela
 
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gpt-oss 120B F16               |  60.87 GiB |   116.83 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        447.08 ± 6.63 |
-| gpt-oss 120B F16               |  60.87 GiB |   116.83 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        412.02 ± 0.79 |
-| gpt-oss 120B F16               |  60.87 GiB |   116.83 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        354.80 ± 0.55 |
-| gpt-oss 120B F16               |  60.87 GiB |   116.83 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        265.68 ± 1.11 |
-| gpt-oss 120B F16               |  60.87 GiB |   116.83 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |         34.12 ± 0.12 |
-
+| model            |      size |   params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| ---------------- | --------: | -------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| gpt-oss 120B F16 | 60.87 GiB | 116.83 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 447.08 ± 6.63 |
+| gpt-oss 120B F16 | 60.87 GiB | 116.83 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 412.02 ± 0.79 |
+| gpt-oss 120B F16 | 60.87 GiB | 116.83 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 354.80 ± 0.55 |
+| gpt-oss 120B F16 | 60.87 GiB | 116.83 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 | 265.68 ± 1.11 |
+| gpt-oss 120B F16 | 60.87 GiB | 116.83 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |  34.12 ± 0.12 |
 
 ### Final Words
+
 As you can see, prompt processing performance falls off as compared to dedicated GPUs, but the generation speed is quite solid comparatively.
 
 For power efficiency, it's a good result for ~100 Watts of sustained use (and ~10W idle).

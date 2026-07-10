@@ -12,7 +12,9 @@ ake-hex {
     box-sizing: border-box;
     background-color: $color-dark-turquoise;
     font-weight: 400;
-    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
+    transition:
+      transform 0.2s ease-out,
+      opacity 0.3s ease-out;
   }
 
   h1 {

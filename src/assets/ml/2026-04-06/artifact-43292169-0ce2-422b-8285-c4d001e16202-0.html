@@ -1,37 +1,34 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mandelbrot Zoomer</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
+      body {
+        background-color: white; /* Ensure the iframe has a white background */
+      }
+    </style>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mandelbrot Zoomer</title>
+        <style>
+          body {
             margin: 0;
             padding: 0;
             overflow: hidden;
             background: #000;
             font-family: sans-serif;
-        }
-        canvas {
+          }
+          canvas {
             display: block;
             cursor: crosshair;
-        }
-        #ui {
+          }
+          #ui {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -41,42 +38,43 @@
             border-radius: 5px;
             pointer-events: none;
             user-select: none;
-        }
-        .controls {
+          }
+          .controls {
             font-size: 0.8em;
             margin-top: 5px;
             opacity: 0.8;
-        }
-    </style>
-</head>
-<body>
+          }
+        </style>
+      </head>
+      <body>
+        <div id="ui">
+          <div id="stats">Zoom: 1x</div>
+          <div class="controls">
+            Click/Tap to Zoom In<br />Right Click to Zoom Out
+          </div>
+        </div>
 
-    <div id="ui">
-        <div id="stats">Zoom: 1x</div>
-        <div class="controls">Click/Tap to Zoom In<br>Right Click to Zoom Out</div>
-    </div>
+        <canvas id="mandelCanvas"></canvas>
 
-    <canvas id="mandelCanvas"></canvas>
+        <script>
+          const canvas = document.getElementById('mandelCanvas');
+          const ctx = canvas.getContext('2d');
+          const stats = document.getElementById('stats');
 
-    <script>
-        const canvas = document.getElementById('mandelCanvas');
-        const ctx = canvas.getContext('2d');
-        const stats = document.getElementById('stats');
-
-        // Viewport state
-        let width, height;
-        let zoomLevel = 1;
-        let view = {
+          // Viewport state
+          let width, height;
+          let zoomLevel = 1;
+          let view = {
             xMin: -2.0,
             xMax: 1.0,
             yMin: -1.2,
-            yMax: 1.2
-        };
+            yMax: 1.2,
+          };
 
-        // Mandelbrot settings
-        let maxIterations = 150;
+          // Mandelbrot settings
+          let maxIterations = 150;
 
-        function resize() {
+          function resize() {
             width = window.innerWidth;
             height = window.innerHeight;
             canvas.width = width;
@@ -87,14 +85,14 @@
             const currentYRange = view.yMax - view.yMin;
             const targetXRange = currentYRange * aspect;
             const centerX = (view.xMax + view.xMin) / 2;
-            
+
             view.xMin = centerX - targetXRange / 2;
             view.xMax = centerX + targetXRange / 2;
 
             draw();
-        }
+          }
 
-        function draw() {
+          function draw() {
             const imgData = ctx.createImageData(width, height);
             const data = imgData.data;
 
@@ -106,90 +104,97 @@
             maxIterations = Math.floor(150 + Math.log10(zoomLevel) * 150);
 
             for (let py = 0; py < height; py++) {
-                // Map pixel y to complex plane
-                const cy = view.yMin + (py / height) * yRange;
+              // Map pixel y to complex plane
+              const cy = view.yMin + (py / height) * yRange;
 
-                for (let px = 0; px < width; px++) {
-                    // Map pixel x to complex plane
-                    const cx = view.xMin + (px / width) * xRange;
+              for (let px = 0; px < width; px++) {
+                // Map pixel x to complex plane
+                const cx = view.xMin + (px / width) * xRange;
 
-                    let x = 0, y = 0, x2 = 0, y2 = 0;
-                    let iteration = 0;
+                let x = 0,
+                  y = 0,
+                  x2 = 0,
+                  y2 = 0;
+                let iteration = 0;
 
-                    // Core Mandelbrot Loop
-                    while (x2 + y2 <= 4 && iteration < maxIterations) {
-                        y = 2 * x * y + cy;
-                        x = x2 - y2 + cx;
-                        x2 = x * x;
-                        y2 = y * y;
-                        iteration++;
-                    }
-
-                    // Coloring logic
-                    const pixelIndex = (py * width + px) * 4;
-                    
-                    if (iteration === maxIterations) {
-                        // Point is inside the set (Black)
-                        data[pixelIndex] = 0;
-                        data[pixelIndex + 1] = 0;
-                        data[pixelIndex + 2] = 0;
-                        data[pixelIndex + 3] = 255;
-                    } else {
-                        // Smooth coloring algorithm
-                        // This reduces "banding" by using a fractional iteration count
-                        const log_zn = Math.log(x2 + y2) / 2;
-                        const nu = Math.log(log_zn / Math.log(2)) / Math.log(2);
-                        const smoothIter = iteration + 1 - nu;
-
-                        // Map smoothIter to a color palette (HSL style)
-                        const hue = (200 + smoothIter * 5) % 360;
-                        const rgb = hslToRgb(hue / 360, 0.7, 0.5);
-
-                        data[pixelIndex] = rgb[0];
-                        data[pixelIndex + 1] = rgb[1];
-                        data[pixelIndex + 2] = rgb[2];
-                        data[pixelIndex + 3] = 255;
-                    }
+                // Core Mandelbrot Loop
+                while (x2 + y2 <= 4 && iteration < maxIterations) {
+                  y = 2 * x * y + cy;
+                  x = x2 - y2 + cx;
+                  x2 = x * x;
+                  y2 = y * y;
+                  iteration++;
                 }
+
+                // Coloring logic
+                const pixelIndex = (py * width + px) * 4;
+
+                if (iteration === maxIterations) {
+                  // Point is inside the set (Black)
+                  data[pixelIndex] = 0;
+                  data[pixelIndex + 1] = 0;
+                  data[pixelIndex + 2] = 0;
+                  data[pixelIndex + 3] = 255;
+                } else {
+                  // Smooth coloring algorithm
+                  // This reduces "banding" by using a fractional iteration count
+                  const log_zn = Math.log(x2 + y2) / 2;
+                  const nu = Math.log(log_zn / Math.log(2)) / Math.log(2);
+                  const smoothIter = iteration + 1 - nu;
+
+                  // Map smoothIter to a color palette (HSL style)
+                  const hue = (200 + smoothIter * 5) % 360;
+                  const rgb = hslToRgb(hue / 360, 0.7, 0.5);
+
+                  data[pixelIndex] = rgb[0];
+                  data[pixelIndex + 1] = rgb[1];
+                  data[pixelIndex + 2] = rgb[2];
+                  data[pixelIndex + 3] = 255;
+                }
+              }
             }
 
             ctx.putImageData(imgData, 0, 0);
             stats.innerText = `Zoom: ${zoomLevel.toExponential(2)}x`;
-        }
+          }
 
-        // Helper: Convert HSL to RGB for pretty colors
-        function hslToRgb(h, s, l) {
+          // Helper: Convert HSL to RGB for pretty colors
+          function hslToRgb(h, s, l) {
             let r, g, b;
             if (s === 0) {
-                r = g = b = l;
+              r = g = b = l;
             } else {
-                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                const p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1/3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1/3);
+              const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+              const p = 2 * l - q;
+              r = hue2rgb(p, q, h + 1 / 3);
+              g = hue2rgb(p, q, h);
+              b = hue2rgb(p, q, h - 1 / 3);
             }
-            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-        }
+            return [
+              Math.round(r * 255),
+              Math.round(g * 255),
+              Math.round(b * 255),
+            ];
+          }
 
-        function hue2rgb(p, q, t) {
+          function hue2rgb(p, q, t) {
             if (t < 0) t += 1;
             if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/2) return q;
-            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
             return p;
-        }
+          }
 
-        // Interaction logic
-        function handleInteraction(e) {
+          // Interaction logic
+          function handleInteraction(e) {
             e.preventDefault();
-            
+
             // Get click coordinates relative to canvas
             const rect = canvas.getBoundingClientRect();
             const clientX = e.clientX || (e.touches && e.touches[0].clientX);
             const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-            
+
             const mouseX = clientX - rect.left;
             const mouseY = clientY - rect.top;
 
@@ -201,7 +206,7 @@
 
             // Determine zoom direction
             // Left click = Zoom In, Right click (or long press) = Zoom Out
-            const zoomFactor = (e.button === 2 || e.ctrlKey) ? 2.0 : 0.2;
+            const zoomFactor = e.button === 2 || e.ctrlKey ? 2.0 : 0.2;
 
             // Update view bounds
             const newXRange = xRange * zoomFactor;
@@ -218,7 +223,7 @@
             const targetXRange = currentYRange * aspect;
             const centerX = (view.xMax + view.xMin) / 2;
             const centerY = (view.yMax + view.yMin) / 2;
-            
+
             view.xMin = centerX - targetXRange / 2;
             view.xMax = centerX + targetXRange / 2;
 
@@ -226,26 +231,24 @@
             else zoomLevel /= 5;
 
             draw();
-        }
+          }
 
-        // Listeners
-        window.addEventListener('resize', resize);
-        canvas.addEventListener('mousedown', handleInteraction);
-        canvas.addEventListener('touchstart', (e) => handleInteraction(e), {passive: false});
-        
-        // Disable context menu so right-click works for zooming out
-        canvas.addEventListener('contextmenu', e => e.preventDefault());
+          // Listeners
+          window.addEventListener('resize', resize);
+          canvas.addEventListener('mousedown', handleInteraction);
+          canvas.addEventListener('touchstart', e => handleInteraction(e), {
+            passive: false,
+          });
 
-        // Initial call
-        resize();
+          // Disable context menu so right-click works for zooming out
+          canvas.addEventListener('contextmenu', e => e.preventDefault());
 
-    </script>
-</body>
+          // Initial call
+          resize();
+        </script>
+      </body>
+    </html>
+
+    <script></script>
+  </body>
 </html>
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    

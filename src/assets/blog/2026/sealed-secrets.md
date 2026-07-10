@@ -9,6 +9,7 @@ For the longest time, sealed secrets was the missing piece to achieve this.
 I have now installed them, and while the installation process is so straightforward that it takes 5 minutes and is barely worth writing about - after the installation I did encounter quite a few roadblocks which I am documenting below.
 
 Here are some initial takeaways:
+
 - Installation is much simpler than I thought
 - Usage is as easy as creating 'normal' kubernetes secrets
 - If the secrets do not get created, some digging in the logs may be required
@@ -18,13 +19,13 @@ Here are some initial takeaways:
 Suffice to say, I'm happy that I can now directly commit the sealed secrets to my flux repository to sync them with my cluster. This means I can remove any hardcoded credentials from my flux repo and directly use sealed secrets. This simplifies my config and reduces the risk that a mistake on my part can expose my secret values.
 
 ## Usage
+
 Once installed, you can create new sealed secrets as follows:
 
 ```
 kubeseal --format=yaml --cert=sealed-secrets.pem < ~/path/to/your/secret/your_secret.yaml > ./secrets/your_sealed_secret.yaml
 
 ```
-
 
 So in my case, I use the following base command (to copy paste the command and add the name):
 
@@ -77,6 +78,7 @@ spec:
 ### Reviewing the Logs
 
 First, you need to find the name of your pod with:
+
 ```
 kubectl get pods -n flux-system
 ```
@@ -106,6 +108,7 @@ kubectl get secret your_secret_name -n your_namespace -o yaml
 ```
 
 ### Cannot get Certificate
+
 Immediately after installing the sealed secrets controller, I got into a problem when executing the below command to get started:
 
 ```
@@ -123,6 +126,7 @@ error: cannot fetch certificate: error trying to reach service: proxy error from
 ```
 
 #### Solution
+
 I found the solution in the discussion on github [here](https://github.com/bitnami-labs/sealed-secrets/issues/368). Just use the following (alternative) command to get the certificate.
 
 ```
@@ -139,7 +143,7 @@ kubectl get secret \
 
 If you are trying to overwrite an existing secret with a sealed secret, it will not be possible, because the sealed-secret annotation is missing. You'll see an error in the sealed secret controller logs. The easiest solution is to first delete any existing secret you might want to overwrite.
 
-First get the secrets: 
+First get the secrets:
 
 ```
 kubectl get secret -n your_namespace

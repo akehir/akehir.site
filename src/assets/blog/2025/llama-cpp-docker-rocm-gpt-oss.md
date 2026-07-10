@@ -1,6 +1,6 @@
 # How to run GPT-OSS (20B and 120B) with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900 XTX and AMD Ryzen 9 7950X
 
-*Published: 2025-08-28*
+_Published: 2025-08-28_
 
 OpenAI has made headlines with their newly released open source models models. They are actually running great - even on less powerful hardware; and have comparatively high quality output.
 
@@ -12,13 +12,15 @@ Before following the instructions, you'll have to download the models. I suggest
 - https://huggingface.co/openai/gpt-oss-20b
 
 ## Step 1: Install Docker
+
 ```bash
 # Install docker from the debian repository.
 # Note: sudo is optional and can be removed if not desired.
 apt install -y docker.io sudo
 ```
 
-## Step 2:  Setup Dockerfile
+## Step 2: Setup Dockerfile
+
 The easiest is to create a new folder (I like to use a git repository)
 
 ```Dockerfile
@@ -43,14 +45,17 @@ CMD ["/bin/bash"]
 ```
 
 ## Step 3: Build Docker
-In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need *some* patience).
+
+In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need _some_ patience).
+
 ```bash
 sudo docker build . --tag llama.cpp
 ```
 
-
 ## Step 4: Run Docker
+
 After building, run the docker container
+
 ```bash
 sudo docker run -it \
    --network=host \
@@ -66,9 +71,11 @@ sudo docker run -it \
 ```
 
 ## Step 5: Profit
+
 Now, you'll be inside the container. Inside, the container, you can use the command line to run commands on llama.cpp.
 
 Remember that you'll need to download the models first:
+
 - https://huggingface.co/openai/gpt-oss-120b
 - https://huggingface.co/openai/gpt-oss-20b
 
@@ -79,7 +86,6 @@ pip install -r requirements.txt
 ./convert_hf_to_gguf.py /models/gpt-oss-120b/
 ./convert_hf_to_gguf.py /models/gpt-oss-20b/
 ```
-
 
 Then you can run the bigger model as follows:
 
@@ -94,6 +100,7 @@ Then you can run the bigger model as follows:
 ```
 
 This gives the following speeds:
+
 > llama_perf_context_print: eval time = 131869.31 ms / 718 runs ( 183.66 ms per token, 5.44 tokens per second)
 
 The smaller model completely fits into 24GB of VRAM, I was able to increase the context size to 70k-80k tokens. If you have less VRAM, you will need to reduce the context size.
@@ -110,6 +117,7 @@ The smaller model completely fits into 24GB of VRAM, I was able to increase the 
 ```
 
 Which gives us the following (blazing fast) speeds:
+
 > llama_perf_context_print: eval time = 17789.35 ms / 1972 runs ( 9.02 ms per token, 110.85 tokens per second)
 
 Overall, this makes the small model very usable for quick queries, and the bigger model remains suitable for more complex tasks - although requiring much more time.

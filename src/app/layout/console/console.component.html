@@ -6,7 +6,9 @@
     <div class="console--history">
       @for (command of console.pastCommands; track command) {
         <p>
-          <span [style.color]="command.style.colour">{{ command.message }}</span>
+          <span [style.color]="command.style.colour">{{
+            command.message
+          }}</span>
         </p>
       }
     </div>
@@ -20,17 +22,17 @@
       <div class="console--field">
         <label for="console--input" class="console--input-label"
           >Enter your command</label
-          >
-          <input
-            type="text"
-            id="console--input"
-            name="console--input"
-            autocomplete="off"
-            cdkFocusRegionStart
-            cdkFocusRegionEnd
-            [(ngModel)]="command"
-            class="console--input" />
-        </div>
+        >
+        <input
+          type="text"
+          id="console--input"
+          name="console--input"
+          autocomplete="off"
+          cdkFocusRegionStart
+          cdkFocusRegionEnd
+          [(ngModel)]="command"
+          class="console--input" />
       </div>
     </div>
-  </form>
+  </div>
+</form>

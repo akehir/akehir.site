@@ -49,8 +49,8 @@ export class BackgroundComponent {
   private rpgAwesomeIconsRegistry = inject(RpgAwesomeIconsRegistry);
   private fontAwesomeIconsRegistry = inject(FontAwesomeIconsRegistry);
 
-  @Input() icon: string;
-  @Input() iconType: IconType;
+  @Input() icon!: string;
+  @Input() iconType!: IconType;
 
   constructor() {
     const notoEmojiIconsRegistry = this.notoEmojiIconsRegistry;

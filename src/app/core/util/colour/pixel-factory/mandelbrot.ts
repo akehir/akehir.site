@@ -5,10 +5,10 @@ import { checkFactory } from '../check/check-factory';
 
 export function mandelbrot(
   variant: string,
-  xoffset: number = 0,
-  yoffset: number = 0,
-  width: number = 0,
-  height: number = 0
+  xoffset = 0,
+  yoffset = 0,
+  width = 0,
+  height = 0
 ): getColourValue {
   const colour = checkFactory(variant);
   const sq = 2;

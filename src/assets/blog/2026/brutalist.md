@@ -1,4 +1,3 @@
-
 # Why is My Website a Brutalist Mess?
 
 Since you're visiting my website right now, reading these words, you might have wondered, why my site is such a brutalist mess in terms of styling and layout.
@@ -23,8 +22,8 @@ The [IndieWeb](https://indieweb.org/IndieWeb) itself focuses more on UX/Design i
 
 Apart from that, this site has a lot of potential left. For instance, all the blog posts have (multiple) tags, but there's no way of filtering them. Links between posts are also lacking (aparts from the lacking link styling). I have a lot of ideas written down, and only a few posts published. Stay tuned for what's next and how the site will evolve!
 
-
 ## References
+
 - https://maggieappleton.com/garden-history
 - https://tomrenner.com/posts/ttmmt-2/
 - https://indieweb.org/POSSE

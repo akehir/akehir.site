@@ -22,7 +22,11 @@ describe('AppComponent', () => {
         AppRoutingModule,
       ],
       declarations: [AppComponent],
-      providers: [provideZonelessChangeDetection(), BackgroundService, provideRouter([])],
+      providers: [
+        provideZonelessChangeDetection(),
+        BackgroundService,
+        provideRouter([]),
+      ],
     }).compileComponents();
   });
 

@@ -12,13 +12,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@util": [
-        "./src/app/core/utilities/index.ts"
-      ],
-      "@core/*": [
-        "./src/app/core/*"
-      ]
-    },
+      "@util": ["./src/app/core/utilities/index.ts"],
+      "@core/*": ["./src/app/core/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

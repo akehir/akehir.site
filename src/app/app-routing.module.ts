@@ -15,9 +15,7 @@ const routes: Routes = [
     path: 'index',
     resolve: { background: disableBackground },
     loadComponent: () =>
-      import('./pages/home/home.component').then(
-        c => c.HomeComponent
-      ),
+      import('./pages/home/home.component').then(c => c.HomeComponent),
   },
   {
     path: 'about',
@@ -39,55 +37,58 @@ const routes: Routes = [
       ),
     resolve: { background: disableBackground },
   },
-  { path: 'machina', resolve: { background: enableBackground }, loadComponent: () =>
-      import('./pages/machina/machina.component').then(
-        c => c.MachinaComponent
-      ),
+  {
+    path: 'machina',
+    resolve: { background: enableBackground },
+    loadComponent: () =>
+      import('./pages/machina/machina.component').then(c => c.MachinaComponent),
   },
-  { path: 'projects', resolve: { background: enableBackground }, loadComponent: () =>
-      import('./layout/map/map.component').then(
-        c => c.MapComponent
-      ),
+  {
+    path: 'projects',
+    resolve: { background: enableBackground },
+    loadComponent: () =>
+      import('./layout/map/map.component').then(c => c.MapComponent),
   },
-  { path: 'projects/:id', resolve: { background: disableBackground }, loadComponent: () =>
-      import('./pages/project/project.component').then(
-        c => c.ProjectComponent
-      ),
+  {
+    path: 'projects/:id',
+    resolve: { background: disableBackground },
+    loadComponent: () =>
+      import('./pages/project/project.component').then(c => c.ProjectComponent),
   },
   {
     path: 'demos/colour',
     loadComponent: () =>
-      import('./pages/colour/colour.component').then(
-        c => c.ColourComponent
-      ),
+      import('./pages/colour/colour.component').then(c => c.ColourComponent),
   },
   {
     path: 'demos/colour/:drawing',
     loadComponent: () =>
-      import('./pages/colour/colour.component').then(
-        c => c.ColourComponent
-      ),
+      import('./pages/colour/colour.component').then(c => c.ColourComponent),
     resolve: { background: disableBackground },
   },
   {
     path: 'error',
     loadComponent: () =>
-      import('./pages/home/home.component').then(
-        c => c.HomeComponent
-      ),
+      import('./pages/home/home.component').then(c => c.HomeComponent),
     children: [
-      { path: '403', resolve: { background: enableBackground }, loadComponent: () =>
-      import('./pages/home/home.component').then(
-        c => c.HomeComponent
-      ), },
-      { path: '404', resolve: { background: enableBackground }, loadComponent: () =>
-      import('./pages/home/home.component').then(
-        c => c.HomeComponent
-      ),},
-      { path: '500', resolve: { background: enableBackground }, loadComponent: () =>
-      import('./pages/home/home.component').then(
-        c => c.HomeComponent
-      ),},
+      {
+        path: '403',
+        resolve: { background: enableBackground },
+        loadComponent: () =>
+          import('./pages/home/home.component').then(c => c.HomeComponent),
+      },
+      {
+        path: '404',
+        resolve: { background: enableBackground },
+        loadComponent: () =>
+          import('./pages/home/home.component').then(c => c.HomeComponent),
+      },
+      {
+        path: '500',
+        resolve: { background: enableBackground },
+        loadComponent: () =>
+          import('./pages/home/home.component').then(c => c.HomeComponent),
+      },
     ],
   },
   {

@@ -1,32 +1,35 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RxJS Mapping Operators Visualizer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
-        
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
-        .code { font-family: 'Fira Code', monospace; }
-        
-        .task-bar {
+      body {
+        background-color: white; /* Ensure the iframe has a white background */
+      }
+    </style>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RxJS Mapping Operators Visualizer</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+          body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+          }
+          .code {
+            font-family: 'Fira Code', monospace;
+          }
+
+          .task-bar {
             transition: all 0.3s ease;
             height: 40px;
             margin-bottom: 8px;
@@ -36,168 +39,235 @@
             padding: 0 12px;
             font-size: 0.8rem;
             font-weight: bold;
-        }
+          }
 
-        .task-running { animation: pulse 1.5s infinite; }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
+          .task-running {
+            animation: pulse 1.5s infinite;
+          }
+          @keyframes pulse {
+            0% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0.6;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
 
-        .stream-container {
+          .stream-container {
             background: rgba(30, 41, 59, 0.5);
             border: 1px solid #334155;
             min-height: 400px;
             position: relative;
-        }
+          }
 
-        .operator-btn.active {
+          .operator-btn.active {
             background-color: #3b82f6;
             border-color: #60a5fa;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-        }
-    </style>
-</head>
-<body class="p-4 md:p-8">
-
-    <header class="max-w-6xl mx-auto mb-8 text-center">
-        <h1 class="text-4xl font-extrabold mb-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          }
+        </style>
+      </head>
+      <body class="p-4 md:p-8">
+        <header class="max-w-6xl mx-auto mb-8 text-center">
+          <h1
+            class="text-4xl font-extrabold mb-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             RxJS Transformation Operators
-        </h1>
-        <p class="text-slate-400 text-lg">Visualizing how Higher-Order Observables merge asynchronous streams.</p>
-    </header>
+          </h1>
+          <p class="text-slate-400 text-lg">
+            Visualizing how Higher-Order Observables merge asynchronous streams.
+          </p>
+        </header>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Left: Controls & Explanation -->
-        <div class="lg:col-span-1 space-y-6">
-            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
-                <h2 class="text-xl font-bold mb-4 text-blue-400">1. Select Operator</h2>
-                <div class="grid grid-cols-1 gap-3" id="operator-selector">
-                    <button onclick="setOperator('mergeMap')" id="btn-mergeMap" class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
-                        <span class="block font-bold">mergeMap</span>
-                        <span class="text-xs text-slate-400">Parallel: Runs all tasks immediately.</span>
-                    </button>
-                    <button onclick="setOperator('switchMap')" id="btn-switchMap" class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
-                        <span class="block font-bold">switchMap</span>
-                        <span class="text-xs text-slate-400">Switching: Cancels the current task when a new one arrives.</span>
-                    </button>
-                    <button onclick="setOperator('concatMap')" id="btn-concatMap" class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
-                        <span class="block font-bold">concatMap</span>
-                        <span class="text-xs text-slate-400">Sequential: Queues tasks to run one after another.</span>
-                    </button>
-                    <button onclick="setOperator('exhaustMap')" id="btn-exhaustMap" class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
-                        <span class="block font-bold">exhaustMap</span>
-                        <span class="text-xs text-slate-400">Exhaustive: Ignores new tasks while one is running.</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
-                <h2 class="text-xl font-bold mb-4 text-cyan-400">2. Simulation Control</h2>
-                <button onclick="triggerEvent()" class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition transform active:scale-95 shadow-lg mb-4">
-                    CLICK TO TRIGGER EVENT
+        <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Left: Controls & Explanation -->
+          <div class="lg:col-span-1 space-y-6">
+            <div
+              class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
+              <h2 class="text-xl font-bold mb-4 text-blue-400">
+                1. Select Operator
+              </h2>
+              <div class="grid grid-cols-1 gap-3" id="operator-selector">
+                <button
+                  onclick="setOperator('mergeMap')"
+                  id="btn-mergeMap"
+                  class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
+                  <span class="block font-bold">mergeMap</span>
+                  <span class="text-xs text-slate-400"
+                    >Parallel: Runs all tasks immediately.</span
+                  >
                 </button>
-                <p class="text-xs text-slate-500 italic text-center">Each click simulates a new emission from a source stream.</p>
+                <button
+                  onclick="setOperator('switchMap')"
+                  id="btn-switchMap"
+                  class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
+                  <span class="block font-bold">switchMap</span>
+                  <span class="text-xs text-slate-400"
+                    >Switching: Cancels the current task when a new one
+                    arrives.</span
+                  >
+                </button>
+                <button
+                  onclick="setOperator('concatMap')"
+                  id="btn-concatMap"
+                  class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
+                  <span class="block font-bold">concatMap</span>
+                  <span class="text-xs text-slate-400"
+                    >Sequential: Queues tasks to run one after another.</span
+                  >
+                </button>
+                <button
+                  onclick="setOperator('exhaustMap')"
+                  id="btn-exhaustMap"
+                  class="operator-btn text-left p-3 rounded border border-slate-600 hover:bg-slate-700 transition">
+                  <span class="block font-bold">exhaustMap</span>
+                  <span class="text-xs text-slate-400"
+                    >Exhaustive: Ignores new tasks while one is running.</span
+                  >
+                </button>
+              </div>
             </div>
-        </div>
 
-        <!-- Right: Visualizer -->
-        <div class="lg:col-span-2 space-y-6">
-            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold text-emerald-400">Live Stream Output</h2>
-                    <span id="status-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-slate-700 text-slate-300">IDLE</span>
-                </div>
-                
-                <div id="visualizer" class="stream-container p-4 rounded-lg overflow-y-auto">
-                    <!-- Tasks will appear here -->
-                </div>
+            <div
+              class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
+              <h2 class="text-xl font-bold mb-4 text-cyan-400">
+                2. Simulation Control
+              </h2>
+              <button
+                onclick="triggerEvent()"
+                class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition transform active:scale-95 shadow-lg mb-4">
+                CLICK TO TRIGGER EVENT
+              </button>
+              <p class="text-xs text-slate-500 italic text-center">
+                Each click simulates a new emission from a source stream.
+              </p>
+            </div>
+          </div>
 
-                <div class="mt-6 p-4 bg-slate-900 rounded-lg border border-slate-700">
-                    <h3 class="text-sm font-bold text-slate-400 mb-2 uppercase tracking-wider">Logic Insight</h3>
-                    <p id="logic-description" class="text-slate-300 text-sm leading-relaxed">
-                        Select an operator to see how it handles incoming asynchronous tasks.
-                    </p>
-                </div>
+          <!-- Right: Visualizer -->
+          <div class="lg:col-span-2 space-y-6">
+            <div
+              class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl">
+              <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-emerald-400">
+                  Live Stream Output
+                </h2>
+                <span
+                  id="status-badge"
+                  class="px-3 py-1 rounded-full text-xs font-bold bg-slate-700 text-slate-300"
+                  >IDLE</span
+                >
+              </div>
+
+              <div
+                id="visualizer"
+                class="stream-container p-4 rounded-lg overflow-y-auto">
+                <!-- Tasks will appear here -->
+              </div>
+
+              <div
+                class="mt-6 p-4 bg-slate-900 rounded-lg border border-slate-700">
+                <h3
+                  class="text-sm font-bold text-slate-400 mb-2 uppercase tracking-wider">
+                  Logic Insight
+                </h3>
+                <p
+                  id="logic-description"
+                  class="text-slate-300 text-sm leading-relaxed">
+                  Select an operator to see how it handles incoming asynchronous
+                  tasks.
+                </p>
+              </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <h4 class="text-blue-400 font-bold text-sm mb-1">Best Use Case</h4>
-                    <p id="use-case" class="text-xs text-slate-400">N/A</p>
-                </div>
-                <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <h4 class="text-purple-400 font-bold text-sm mb-1">Complexity</h4>
-                    <p id="complexity" class="text-xs text-slate-400">N/A</p>
-                </div>
+              <div
+                class="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                <h4 class="text-blue-400 font-bold text-sm mb-1">
+                  Best Use Case
+                </h4>
+                <p id="use-case" class="text-xs text-slate-400">N/A</p>
+              </div>
+              <div
+                class="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                <h4 class="text-purple-400 font-bold text-sm mb-1">
+                  Complexity
+                </h4>
+                <p id="complexity" class="text-xs text-slate-400">N/A</p>
+              </div>
             </div>
-        </div>
-    </main>
+          </div>
+        </main>
 
-    <script>
-        let currentOperator = 'mergeMap';
-        let taskCounter = 0;
-        let activeTasks = []; // { id, element, timer, status }
-        let queue = []; // For concatMap
-        let isProcessingQueue = false;
+        <script>
+          let currentOperator = 'mergeMap';
+          let taskCounter = 0;
+          let activeTasks = []; // { id, element, timer, status }
+          let queue = []; // For concatMap
+          let isProcessingQueue = false;
 
-        const descriptions = {
+          const descriptions = {
             mergeMap: {
-                desc: "Every time a new value arrives, it creates a new inner observable and subscribes to it immediately. All tasks run in parallel.",
-                use: "When you want to fire off many requests at once and don't care about order or cancellation.",
-                complexity: "High concurrency, no order guarantee."
+              desc: 'Every time a new value arrives, it creates a new inner observable and subscribes to it immediately. All tasks run in parallel.',
+              use: "When you want to fire off many requests at once and don't care about order or cancellation.",
+              complexity: 'High concurrency, no order guarantee.',
             },
             switchMap: {
-                desc: "When a new value arrives, it immediately unsubscribes from the previous inner observable and starts the new one.",
-                use: "Search type-ahead/autocomplete. You only care about the result of the latest keystroke.",
-                complexity: "Low concurrency, only 1 active task."
+              desc: 'When a new value arrives, it immediately unsubscribes from the previous inner observable and starts the new one.',
+              use: 'Search type-ahead/autocomplete. You only care about the result of the latest keystroke.',
+              complexity: 'Low concurrency, only 1 active task.',
             },
             concatMap: {
-                desc: "It waits for the current inner observable to complete before subscribing to the next one in the queue.",
-                use: "When order is critical (e.g., database updates) and you must process items sequentially.",
-                complexity: "Sequential, preserves order, can cause bottlenecks."
+              desc: 'It waits for the current inner observable to complete before subscribing to the next one in the queue.',
+              use: 'When order is critical (e.g., database updates) and you must process items sequentially.',
+              complexity: 'Sequential, preserves order, can cause bottlenecks.',
             },
             exhaustMap: {
-                desc: "If an inner observable is currently running, it completely ignores any new incoming values until the current one finishes.",
-                use: "Login buttons or Refresh buttons. Prevents double-submissions while a request is pending.",
-                complexity: "Ignores input while busy."
-            }
-        };
+              desc: 'If an inner observable is currently running, it completely ignores any new incoming values until the current one finishes.',
+              use: 'Login buttons or Refresh buttons. Prevents double-submissions while a request is pending.',
+              complexity: 'Ignores input while busy.',
+            },
+          };
 
-        function setOperator(op) {
+          function setOperator(op) {
             currentOperator = op;
             // UI Updates
-            document.querySelectorAll('.operator-btn').forEach(btn => btn.classList.remove('active'));
+            document
+              .querySelectorAll('.operator-btn')
+              .forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${op}`).classList.add('active');
-            document.getElementById('logic-description').innerText = descriptions[op].desc;
-            document.getElementById('use-case').innerText = descriptions[op].use;
-            document.getElementById('complexity').innerText = descriptions[op].complexity;
-            
+            document.getElementById('logic-description').innerText =
+              descriptions[op].desc;
+            document.getElementById('use-case').innerText =
+              descriptions[op].use;
+            document.getElementById('complexity').innerText =
+              descriptions[op].complexity;
+
             // Clear everything for a fresh start
             resetSimulation();
-        }
+          }
 
-        function resetSimulation() {
+          function resetSimulation() {
             document.getElementById('visualizer').innerHTML = '';
             activeTasks = [];
             queue = [];
             isProcessingQueue = false;
             taskCounter = 0;
             updateStatus('IDLE', 'bg-slate-700');
-        }
+          }
 
-        function updateStatus(text, colorClass) {
+          function updateStatus(text, colorClass) {
             const badge = document.getElementById('status-badge');
             badge.innerText = text;
             badge.className = `px-3 py-1 rounded-full text-xs font-bold ${colorClass}`;
-        }
+          }
 
-        function triggerEvent() {
+          function triggerEvent() {
             taskCounter++;
             const id = taskCounter;
-            
+
             // Create Visual Element
             const el = document.createElement('div');
             el.className = 'task-bar bg-blue-500 text-white task-running';
@@ -205,97 +275,93 @@
             document.getElementById('visualizer').prepend(el);
 
             handleLogic(id, el);
-        }
+          }
 
-        function handleLogic(id, el) {
+          function handleLogic(id, el) {
             if (currentOperator === 'mergeMap') {
+              runTask(id, el);
+            } else if (currentOperator === 'switchMap') {
+              // Cancel previous
+              if (activeTasks.length > 0) {
+                const prev = activeTasks[0];
+                clearTimeout(prev.timer);
+                prev.el.remove();
+                prev.el.classList.remove('task-running');
+                prev.el.classList.replace('bg-blue-500', 'bg-red-500');
+                prev.el.innerHTML = `<span>Task #${prev.id}</span> <span class="ml-auto text-[10px]">CANCELLED</span>`;
+                activeTasks.shift();
+              }
+              runTask(id, el);
+            } else if (currentOperator === 'concatMap') {
+              queue.push({ id, el });
+              processQueue();
+            } else if (currentOperator === 'exhaustMap') {
+              if (activeTasks.length > 0) {
+                el.remove();
+                el.classList.replace('bg-blue-500', 'bg-slate-600');
+                el.innerHTML = `<span>Task #${id}</span> <span class="ml-auto text-[10px]">IGNORED</span>`;
+              } else {
                 runTask(id, el);
-            } 
-            else if (currentOperator === 'switchMap') {
-                // Cancel previous
-                if (activeTasks.length > 0) {
-                    const prev = activeTasks[0];
-                    clearTimeout(prev.timer);
-                    prev.el.remove();
-                    prev.el.classList.remove('task-running');
-                    prev.el.classList.replace('bg-blue-500', 'bg-red-500');
-                    prev.el.innerHTML = `<span>Task #${prev.id}</span> <span class="ml-auto text-[10px]">CANCELLED</span>`;
-                    activeTasks.shift();
-                }
-                runTask(id, el);
-            } 
-            else if (currentOperator === 'concatMap') {
-                queue.push({ id, el });
-                processQueue();
-            } 
-            else if (currentOperator === 'exhaustMap') {
-                if (activeTasks.length > 0) {
-                    el.remove();
-                    el.classList.replace('bg-blue-500', 'bg-slate-600');
-                    el.innerHTML = `<span>Task #${id}</span> <span class="ml-auto text-[10px]">IGNORED</span>`;
-                } else {
-                    runTask(id, el);
-                }
+              }
             }
-        }
+          }
 
-        function runTask(id, el) {
+          function runTask(id, el) {
             updateStatus('RUNNING', 'bg-emerald-500 text-white');
-            
-            const timer = setTimeout(() => {
-                el.classList.remove('task-running');
-                el.classList.replace('bg-blue-500', 'bg-emerald-500');
-                el.innerHTML = `<span>Task #${id}</span> <span class="ml-auto text-[10px]">COMPLETED</span>`;
-                
-                // Remove from active tasks
-                activeTasks = activeTasks.filter(t => t.id !== id);
-                
-                if (activeTasks.length === 0) {
-                    updateStatus('IDLE', 'bg-slate-700 text-slate-300');
-                }
 
-                // If concatMap, move to next
-                if (currentOperator === 'concatMap') {
-                    processQueue();
-                }
+            const timer = setTimeout(() => {
+              el.classList.remove('task-running');
+              el.classList.replace('bg-blue-500', 'bg-emerald-500');
+              el.innerHTML = `<span>Task #${id}</span> <span class="ml-auto text-[10px]">COMPLETED</span>`;
+
+              // Remove from active tasks
+              activeTasks = activeTasks.filter(t => t.id !== id);
+
+              if (activeTasks.length === 0) {
+                updateStatus('IDLE', 'bg-slate-700 text-slate-300');
+              }
+
+              // If concatMap, move to next
+              if (currentOperator === 'concatMap') {
+                processQueue();
+              }
             }, 3000); // 3 second "async" task
 
             activeTasks.push({ id, el, timer });
-        }
+          }
 
-        async function processQueue() {
+          async function processQueue() {
             if (isProcessingQueue || queue.length === 0) return;
-            
+
             isProcessingQueue = true;
             updateStatus('QUEUED', 'bg-amber-500 text-white');
 
             const nextTask = queue.shift();
-            
+
             // Small delay to show it's being pulled from queue
             await new Promise(r => setTimeout(r, 500));
-            
+
             runTask(nextTask.id, nextTask.el);
 
             // We need to wait for the task to finish before allowing next in queue
             const checkFinished = setInterval(() => {
-                const isStillRunning = activeTasks.some(t => t.id === nextTask.id);
-                if (!isStillRunning) {
-                    clearInterval(checkFinished);
-                    isProcessingQueue = false;
-                    processQueue();
-                }
+              const isStillRunning = activeTasks.some(
+                t => t.id === nextTask.id
+              );
+              if (!isStillRunning) {
+                clearInterval(checkFinished);
+                isProcessingQueue = false;
+                processQueue();
+              }
             }, 100);
-        }
+          }
 
-        // Initialize
-        setOperator('mergeMap');
-    </script>
-</body>
+          // Initialize
+          setOperator('mergeMap');
+        </script>
+      </body>
+    </html>
+
+    <script></script>
+  </body>
 </html>
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    

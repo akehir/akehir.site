@@ -1,5 +1,6 @@
 # Algovernmentality
-*Published: Nov 25, 2014*
+
+_Published: Nov 25, 2014_
 
 For a while now it has been quite a conundrum: How might I breach the subject of algovernmentality without becoming overly arcane and artificial?
 
@@ -17,12 +18,9 @@ What should we take away from the increasing presence of algorithms in our socie
 
 Fortunately, there are intellectuals like Evgeny Morozov, or rebels like Edward Snowden, who publicise the ‘dark side’ of the current computer and Internet technology. Still, it should be the task of each and every one of us to think hard about our collective usage and dependency on technology and how we as individuals should act when faced with this new form of governmentality.
 
-
-
 ### Definitions
 
 Algorithm is just a fancy way of saying ‘computer program’.
-
 
 ### Sources & Further Reading
 

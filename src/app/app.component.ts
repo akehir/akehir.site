@@ -1,8 +1,4 @@
-import {
-  Component,
-  inject,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
 
 @Component({

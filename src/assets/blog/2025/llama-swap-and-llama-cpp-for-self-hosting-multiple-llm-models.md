@@ -25,6 +25,7 @@ I've successfully run the following models so far:
 - Mistral Small 3.1 (various model sizes)
 
 I'd like to look into running Kimi k2 and GLM 4.6 in the future, but this selection of models is already a good start for local LLM-ing.
+
 ## Configuration
 
 ### docker-compose.yml
@@ -34,7 +35,7 @@ services:
   server:
     build: ..
     ports:
-      - "12345:12345"
+      - '12345:12345'
     volumes:
       - /models:/models
       - /app/llama-swap/config.yaml:/conf/config.yaml
@@ -47,7 +48,7 @@ services:
       - video
     cap_add:
       - SYS_PTRACE
-    ipc: "host"
+    ipc: 'host'
     command: /app/llama-swap/build/llama-swap-linux-amd64 --listen 0.0.0.0:12345 --config /conf/config.yaml
 ```
 
@@ -152,7 +153,7 @@ macros:
 # - below are examples of the all the settings a model can have
 models:
   # keys are the model names used in API requests
-  "gpt-oss-20b":
+  'gpt-oss-20b':
     # cmd: the command to run to start the inference server.
     # - required
     # - it is just a string, similar to what you would run on the CLI
@@ -165,13 +166,13 @@ models:
     # - optional, default: empty string
     # - if set, it will be used in the v1/models API response
     # - if not set, it will be omitted in the JSON model record
-    name: "gpt-4.1-mini"
+    name: 'gpt-4.1-mini'
 
     # description: a description for the model
     # - optional, default: empty string
     # - if set, it will be used in the v1/models API response
     # - if not set, it will be omitted in the JSON model record
-    description: "A small but capable model used for quick testing"
+    description: 'A small but capable model used for quick testing'
 
     # env: define an array of environment variables to inject into cmd's environment
     # - optional, default: empty array
@@ -184,8 +185,8 @@ models:
     # - aliases must be unique globally
     # - useful for impersonating a specific model
     aliases:
-      - "gpt-4.1-mini"
-      - "gpt-oss-20b"
+      - 'gpt-4.1-mini'
+      - 'gpt-oss-20b'
 
     # checkEndpoint: URL path to check if the server is ready
     # - optional, default: /health
@@ -204,7 +205,7 @@ models:
     # - optional, default: ""
     # - useful for when the upstream server expects a specific model name that
     #   is different from the model's ID
-    useModelName: "gpt-4.1-mini"
+    useModelName: 'gpt-4.1-mini'
 
     # filters: a dictionary of filter settings
     # - optional, default: empty dictionary
@@ -216,7 +217,7 @@ models:
       # - the `model` parameter can never be removed
       # - can be any JSON key in the request body
       # - recommended to stick to sampling parameters
-      strip_params: ""
+      strip_params: ''
 
     # concurrencyLimit: overrides the allowed number of active parallel requests to a model
     # - optional, default: 0
@@ -227,73 +228,73 @@ models:
     # - recommended to be omitted and the default used
     concurrencyLimit: 0
 
-  "gpt-oss-120b":
+  'gpt-oss-120b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gpt-oss-120b/gpt-oss-120B-F16.gguf --threads 16 --n-gpu-layers 11 --ctx-size 7777 --jinja --reasoning-format auto --alias gpt-oss-120b --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "gpt-oss-20b-big-context":
+  'gpt-oss-20b-big-context':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gpt-oss-20b/gpt-oss-20B-F16.gguf --threads 16 --cpu-moe --n-gpu-layers 777 --ctx-size 55555 --jinja --reasoning-format auto --alias gpt-oss-20b-big-context --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "qwen3-coder-30b":
+  'qwen3-coder-30b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/qwen3-coder-30b/qwen3-coder-30B-F16.gguf --threads 16 --cpu-moe --n-gpu-layers 77 --ctx-size 7777 --jinja --reasoning-format auto --alias qwen3-coder-30b --no-warmup
     concurrencyLimit: 1
 
-  "glm-4.5-air":
+  'glm-4.5-air':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/glm-4.5-air/Glm-4.5-Air-128x9.4B-F16.gguf --threads 16 --cpu-moe --n-gpu-layers 7 --ctx-size 7777 --jinja --reasoning-format auto --alias glm-4.5-air --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "mistral-small-3.1-24b-q2":
+  'mistral-small-3.1-24b-q2':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/Mistral-Small-3.1-24B-Instruct-2503-GGUF/Mistral-Small-3.1-24B-Instruct-2503-Q2_K_L.gguf --threads 16 --n-gpu-layers 777 --ctx-size 7777 --jinja --reasoning-format auto --alias mistral-small-3.1-24b-q2 --no-warmup
     ttl: 60
 
-  "mistral-small-3.1-24b-q2-big-context":
+  'mistral-small-3.1-24b-q2-big-context':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/Mistral-Small-3.1-24B-Instruct-2503-GGUF/Mistral-Small-3.1-24B-Instruct-2503-Q2_K_L.gguf --threads 16 --n-gpu-layers 777 --ctx-size 55555 --jinja --reasoning-format auto --alias mistral-small-3.1-24b-q2-big-context --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "mistral-small-3.1-24b-q6":
+  'mistral-small-3.1-24b-q6':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/Mistral-Small-3.1-24B-Instruct-2503-GGUF/Mistral-Small-3.1-24B-Instruct-2503-Q6_K.gguf --threads 16 --n-gpu-layers 777 --ctx-size 7777 --jinja --reasoning-format auto --alias mistral-small-3.1-24b-q2 --no-warmup
     ttl: 60
 
-  "mistral-small-3.1-24b-q8":
+  'mistral-small-3.1-24b-q8':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/Mistral-Small-3.1-24B-Instruct-2503-GGUF/Mistral-Small-3.1-24B-Instruct-2503-Q8_0.gguf  --threads 16 --n-gpu-layers 33 --ctx-size 7777 --jinja --reasoning-format auto --alias mistral-small-3.1-24b-q8 --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "smollm":
+  'smollm':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/smollm/SmolLM3-Q4_K_M.gguf  --threads 16 --n-gpu-layers 777 --ctx-size 7777 --jinja --reasoning-format auto --alias smollm --no-warmup
     ttl: 60
 
-  "gemma-3-1b":
+  'gemma-3-1b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gemma-3-1b-it/gemma-3-1B-it-F16.gguf --threads 16 --n-gpu-layers 777 --ctx-size 7777 --jinja --reasoning-format auto --alias gemma-3-1b --no-warmup
     ttl: 60
 
-  "gemma-3-4b":
+  'gemma-3-4b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gemma-3-4b-it/gemma-3-4B-it-F16.gguf --threads 16 --n-gpu-layers 777 --ctx-size 7777 --jinja --reasoning-format auto --alias gemma-3-1b --no-warmup
     ttl: 60
 
-  "gemma-3-12b":
+  'gemma-3-12b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gemma-3-12b-it/gemma-3-12B-it-F16.gguf --threads 16 --cpu-moe --n-gpu-layers 7 --ctx-size 7777 --jinja --reasoning-format auto --alias gemma-3-1b --no-warmup
     concurrencyLimit: 1
     ttl: 60
 
-  "gemma-3-27b":
+  'gemma-3-27b':
     cmd: |
       /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/gemma-3-27b-it/gemma-3-27B-it-F16.gguf --threads 16 --cpu-moe --n-gpu-layers 7 --ctx-size 7777 --jinja --reasoning-format auto --alias gemma-3-1b --no-warmup
     concurrencyLimit: 1
@@ -319,13 +320,11 @@ hooks:
   # - optional, default: empty dictionary
   # - the only supported action is preload
   on_startup:
-        # preload: a list of model ids to load on startup
-        # - optional, default: empty list
-        # - model names must match keys in the models sections
-        # - when preloading multiple models at once, define a group
-        #   otherwise models will be loaded and swapped out
+    # preload: a list of model ids to load on startup
+    # - optional, default: empty list
+    # - model names must match keys in the models sections
+    # - when preloading multiple models at once, define a group
+    #   otherwise models will be loaded and swapped out
     preload:
       # - "llama"
-
 ```
-

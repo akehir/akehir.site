@@ -1,23 +1,34 @@
 <nav class="navigation" [ngClass]="{ 'navigation--expanded': expanded }">
-  <button class="navigation__toggle" (click)="toggleNav()" aria-label="Toggle Navigation">
+  <button
+    class="navigation__toggle"
+    (click)="toggleNav()"
+    aria-label="Toggle Navigation">
     <rpg-awesome-icon name="scroll_unfurled"></rpg-awesome-icon>
   </button>
   <ul class="navigation__list" role="menu">
-    @if(!env.production) {
+    @if (!env.production) {
       <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
-        <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+      <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
       <li role="menuitem" class="navigation__item">About</li>
     }
 
-    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/blog">
+    <li
+      role="menuitem"
+      class="navigation__item"
+      (click)="hideNav()"
+      routerLink="/blog">
       Blog
     </li>
-    @if(!env.production) {
-    <!--  <li role="menuitem" class="navigation__item">Console</li>-->
-    <!--  <li role="menuitem" class="navigation__item">Contact</li>-->
-    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/curriculum">
-      Curriculum
-    </li>
+    @if (!env.production) {
+      <!--  <li role="menuitem" class="navigation__item">Console</li>-->
+      <!--  <li role="menuitem" class="navigation__item">Contact</li>-->
+      <li
+        role="menuitem"
+        class="navigation__item"
+        (click)="hideNav()"
+        routerLink="/curriculum">
+        Curriculum
+      </li>
     }
     <li
       role="menuitem"
@@ -26,26 +37,40 @@
       routerLink="/demos/colour/circle">
       Demos
     </li>
-    @if(!env.production) {
-    <li role="menuitem" class="navigation__item">Education</li>
-    <li role="menuitem" class="navigation__item">Food</li>
+    @if (!env.production) {
+      <li role="menuitem" class="navigation__item">Education</li>
+      <li role="menuitem" class="navigation__item">Food</li>
     }
-    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/machina">
+    <li
+      role="menuitem"
+      class="navigation__item"
+      (click)="hideNav()"
+      routerLink="/machina">
       Gadgets
     </li>
     <!-- K8s cluster, etc/ ... names: gear / gadgets / hardware / kit / artefacts / tools -->
-    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/">Home</li>
-    @if(!env.production) {
-    <li role="menuitem" class="navigation__item" (click)="hideNav()" routerLink="/projects">
-      Projects
+    <li
+      role="menuitem"
+      class="navigation__item"
+      (click)="hideNav()"
+      routerLink="/">
+      Home
     </li>
-    <!--  <li role="menuitem" class="navigation__item">Ramblings</li>-->
-    <!--  <li role="menuitem" class="navigation__item">Search</li>-->
-    <!--  <li role="menuitem" class="navigation__item">Services</li>-->
-    <li role="menuitem" class="navigation__item">Software</li>
-    <li role="menuitem" class="navigation__item">Testimonials</li>
-    <!-- eslint-enable @angular-eslint/template/click-events-have-key-events -->
-    <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
+    @if (!env.production) {
+      <li
+        role="menuitem"
+        class="navigation__item"
+        (click)="hideNav()"
+        routerLink="/projects">
+        Projects
+      </li>
+      <!--  <li role="menuitem" class="navigation__item">Ramblings</li>-->
+      <!--  <li role="menuitem" class="navigation__item">Search</li>-->
+      <!--  <li role="menuitem" class="navigation__item">Services</li>-->
+      <li role="menuitem" class="navigation__item">Software</li>
+      <li role="menuitem" class="navigation__item">Testimonials</li>
+      <!-- eslint-enable @angular-eslint/template/click-events-have-key-events -->
+      <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
     }
   </ul>
 </nav>

@@ -7,8 +7,8 @@
     "build": "ng build --configuration production --progress=false",
     "test": "ng test --no-watch",
     "test:docker": "ng test --no-watch --progress=false --code-coverage --browsers ChromeDocker",
-    "lint": "ng lint",
-    "lint:fix": "ng lint akehir --fix",
+    "lint": "prettier --check \"**/*.{ts,js,html,scss,json,md}\" && ng lint",
+    "lint:fix": "prettier --write \"**/*.{ts,js,html,scss,json,md}\" && ng lint akehir --fix",
     "e2e": "ng e2e"
   },
   "private": true,

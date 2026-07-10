@@ -1,8 +1,9 @@
 # How to fix filebeat CrashLoopBackoff (due to OOMKiller) by increasing resource limits
 
-I had an issue with my EKS stack running on Kubernetes, where 1 of the pods of filebeat was stuck in a `CrashLoopBackoff`-state. Luckily I discovered that the pod sometimes crashed because of the OOMKiller. 
+I had an issue with my EKS stack running on Kubernetes, where 1 of the pods of filebeat was stuck in a `CrashLoopBackoff`-state. Luckily I discovered that the pod sometimes crashed because of the OOMKiller.
 
 This led me to discover the following issues / questions:
+
 - https://stackoverflow.com/questions/71341773/filebeat-pod-getting-killed-due-to-oom-issue
 - https://github.com/elastic/beats/issues/26464
 
@@ -11,15 +12,16 @@ The gist of it is that apparently large log events (bigger than the default memo
 The resolution is to increase the memory limits (to whatever you're comfortable with). Important is that you allocate more memory than your log events are expected to trigger.
 
 ```yaml
-          resources:
-            limits:
-              memory: 4Gi
-            requests:
-              cpu: 100m
-              memory: 512Mi
+resources:
+  limits:
+    memory: 4Gi
+  requests:
+    cpu: 100m
+    memory: 512Mi
 ```
 
 ## DaemonSet
+
 Below is the full DaemonSet I use for filebeat.
 I should still migrate the password to a secret, but otherwise it's working and collecting logs.
 
@@ -48,15 +50,12 @@ spec:
       containers:
         - name: filebeat
           image: docker.elastic.co/beats/filebeat-wolfi:8.16.0
-          args: [
-            "-c", "/etc/filebeat.yml",
-            "-e",
-          ]
+          args: ['-c', '/etc/filebeat.yml', '-e']
           env:
             - name: ELASTICSEARCH_HOST
               value: quickstart-es-http.elastic-system.svc.cluster.local
             - name: ELASTICSEARCH_PORT
-              value: "9200"
+              value: '9200'
             - name: ELASTICSEARCH_USERNAME
               value: elastic
             - name: ELASTICSEARCH_PASSWORD
@@ -104,5 +103,4 @@ spec:
             path: /var/lib/filebeat-data
             type: DirectoryOrCreate
 ---
-
 ```

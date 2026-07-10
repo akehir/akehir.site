@@ -9,6 +9,7 @@ One small annoyance I've had is that Synology makes it much harder than necessar
 Now I've finally found an elegant enough, and more importantly, a working workaround for this.
 
 The prerequisites are the following 2 packages:
+
 - Web Station
 - Container Manager
 
@@ -33,7 +34,7 @@ http {
         server_name _;
         server_tokens off;
         client_max_body_size 999m;
-        
+
         location / {
             proxy_http_version 1.1;
             proxy_set_header   Upgrade $http_upgrade;
@@ -48,20 +49,20 @@ http {
 ```
 
 With the `nginx.conf` prepared, we can go to the container manager and create a new service. The `docker-compose.yml` should be similar to the following.
-Since we're using `network_mode: host`, theoretically the `ports` section would not be required; however for Web Station to pick up the port, we need to include it. In the wizard, we create a web station reverse proxy (http) that maps our DSM domain (here foo.example.com) from port 80 and 443 to our docker port (4444). The docker will then reverse proxy the whole thing to 5001. 
+Since we're using `network_mode: host`, theoretically the `ports` section would not be required; however for Web Station to pick up the port, we need to include it. In the wizard, we create a web station reverse proxy (http) that maps our DSM domain (here foo.example.com) from port 80 and 443 to our docker port (4444). The docker will then reverse proxy the whole thing to 5001.
 
 ```yaml
 services:
-    foo:
-         image: nginx:mainline-alpine-slim
-         ports:
-            - "4444:4444"
-         restart: unless-stopped
-         volumes:
-            - "/volume1/docker/foo/nginx.conf:/etc/nginx/nginx.conf"
-         extra_hosts:
-             - "foo.example.com:127.0.0.1"
-         network_mode: host
+  foo:
+    image: nginx:mainline-alpine-slim
+    ports:
+      - '4444:4444'
+    restart: unless-stopped
+    volumes:
+      - '/volume1/docker/foo/nginx.conf:/etc/nginx/nginx.conf'
+    extra_hosts:
+      - 'foo.example.com:127.0.0.1'
+    network_mode: host
 ```
 
 And voila, with our double reverse proxying, we can make DSM available on port 443.

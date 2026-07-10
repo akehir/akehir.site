@@ -28,9 +28,9 @@
     padding: 1.2rem;
     margin: 1.2rem 2.4rem;
     transition:
-    background 0.4s ease-out,
-    box-shadow 0.4s ease-out,
-    color 0.4s ease-out;
+      background 0.4s ease-out,
+      box-shadow 0.4s ease-out,
+      color 0.4s ease-out;
 
     .navigation--expanded & {
       box-shadow: 0 0 10rem 1rem $color-black;
@@ -78,9 +78,9 @@
     cursor: pointer;
     outline: 0;
     transition:
-    background 1s ease-out,
-    box-shadow 1s ease-out,
-    transform 0.4s ease-out;
+      background 1s ease-out,
+      box-shadow 1s ease-out,
+      transform 0.4s ease-out;
     font-family: SourceSerifPro, serif;
     font-size: 2rem;
     font-weight: 100;
@@ -120,9 +120,9 @@
       border-radius: 50% 0 50% 50%;
       z-index: -1;
       transition:
-      right 1s ease-out,
-      background 1s ease-out,
-      box-shadow 1s ease-out;
+        right 1s ease-out,
+        background 1s ease-out,
+        box-shadow 1s ease-out;
       box-shadow: 0.1rem 0.1rem 1rem $color-white;
     }
 

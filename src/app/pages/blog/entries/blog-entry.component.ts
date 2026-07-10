@@ -44,7 +44,7 @@ export class BlogEntryComponent {
       if (el instanceof HTMLElement) {
         el.addEventListener('click', ev => {
           if (ev.target === el) {
-            copyToClipboard(el.innerText);
+            copyToClipboard(el.innerText, this.document);
             if (!environment.production) {
               console.log('Copied to clipboard: ' + el.innerText);
             }

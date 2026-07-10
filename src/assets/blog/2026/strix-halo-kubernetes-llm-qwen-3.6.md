@@ -7,9 +7,10 @@ However, just as Gemma 4 26B established itself, Qwen released the new Qwen 3.6 
 
 I haven not yet done much in depth testing; and I find Qwen 3.6 to be worse at linguistic tasks than Gemma 4 for instance, the model promises to be a strong contender - especially for agentic coding tasks. From a performance perspective, it is in the same ballpark as Gemma 4 26B. So interestingly, both models released in April are very similar in size, active parameters, performance, and compute requirements.
 
-Since I have already established my llama.cpp server with GPT OSS 120B (read more  [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss)), and more recently, with Gemma 4 ([here](https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4)), adding Qwen 3.6 was quite straightforward as well. I did have to add the `spirv-headers` to the Dockerfile in order to rebuild `llama.cpp`, as they are now required.
+Since I have already established my llama.cpp server with GPT OSS 120B (read more [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss)), and more recently, with Gemma 4 ([here](https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4)), adding Qwen 3.6 was quite straightforward as well. I did have to add the `spirv-headers` to the Dockerfile in order to rebuild `llama.cpp`, as they are now required.
 
 ## Setup
+
 As usual, the first step is downloading the models from huggingface - I recommend using the Unsloth Quant at Q8, which can be found [here](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF/blob/main/Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf).
 
 Afterwards, updating / rebuilding `llama.cpp` is recommended; but otherwise we're ready to go.
@@ -22,7 +23,9 @@ Here's the command I use in `llama-swap`, which can also be used to run the `lla
 ```
 
 The command can probably still be optimized, but at least it works without issue / looping.
+
 ## Performance
+
 During the performance test, the models are incorrectly recognized as qwn35moe models; but that does not matter, as the loaded models are in fact the new qwen 3.6 models.
 
 Prompt processing seems to be a bit slower than expected, but text generation speed is quite good.
@@ -33,14 +36,13 @@ As for Qwen 27B dense at Q8, the raw performance is unfortunately a bit lacking 
 
 ### Qwen 3.6 27B Q8
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        263.53 ± 1.63 |
-| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        260.32 ± 1.31 |
-| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        229.73 ± 0.57 |
-| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        141.32 ± 1.47 |
-| qwen35 27B Q8_0                |  32.89 GiB |    26.90 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |          6.25 ± 0.00 |
-
+| model           |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| --------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| qwen35 27B Q8_0 | 32.89 GiB | 26.90 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 263.53 ± 1.63 |
+| qwen35 27B Q8_0 | 32.89 GiB | 26.90 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 260.32 ± 1.31 |
+| qwen35 27B Q8_0 | 32.89 GiB | 26.90 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 229.73 ± 0.57 |
+| qwen35 27B Q8_0 | 32.89 GiB | 26.90 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 | 141.32 ± 1.47 |
+| qwen35 27B Q8_0 | 32.89 GiB | 26.90 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |   6.25 ± 0.00 |
 
 ```
 llama-bench -m /models/chat/qwen-3.6-27b/Qwen3.6-27B-UD-Q8_K_XL.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
@@ -59,13 +61,13 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 
 ### Qwen 3.6 35B A3B Q8
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| qwen35moe 35B.A3B Q8_0         |  35.80 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |       777.48 ± 11.72 |
-| qwen35moe 35B.A3B Q8_0         |  35.80 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        794.97 ± 3.63 |
-| qwen35moe 35B.A3B Q8_0         |  35.80 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        735.51 ± 4.80 |
-| qwen35moe 35B.A3B Q8_0         |  35.80 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        660.42 ± 3.08 |
-| qwen35moe 35B.A3B Q8_0         |  35.80 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |         44.58 ± 0.08 |
+| model                  |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |            t/s |
+| ---------------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | -------------: |
+| qwen35moe 35B.A3B Q8_0 | 35.80 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 777.48 ± 11.72 |
+| qwen35moe 35B.A3B Q8_0 | 35.80 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 |  794.97 ± 3.63 |
+| qwen35moe 35B.A3B Q8_0 | 35.80 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 |  735.51 ± 4.80 |
+| qwen35moe 35B.A3B Q8_0 | 35.80 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 |  660.42 ± 3.08 |
+| qwen35moe 35B.A3B Q8_0 | 35.80 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |   44.58 ± 0.08 |
 
 ```
 ./llama-bench -m /models/chat/qwen-3.6-35b-a3b/Qwen3.6-35B-A3B-UD-Q8_K_XL.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
@@ -84,15 +86,15 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 build: 59accc886 (8837)
 ```
 
-
 ### Qwen 3.6 35B A3B BF16
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| qwen35moe 35B.A3B BF16         |  64.60 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        363.12 ± 2.70 |
-| qwen35moe 35B.A3B BF16         |  64.60 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        356.65 ± 3.86 |
-| qwen35moe 35B.A3B BF16         |  64.60 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        346.26 ± 3.68 |
-| qwen35moe 35B.A3B BF16         |  64.60 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        325.38 ± 1.87 |
-| qwen35moe 35B.A3B BF16         |  64.60 GiB |    34.66 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |         10.66 ± 0.01 |
+
+| model                  |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| ---------------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| qwen35moe 35B.A3B BF16 | 64.60 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 363.12 ± 2.70 |
+| qwen35moe 35B.A3B BF16 | 64.60 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 356.65 ± 3.86 |
+| qwen35moe 35B.A3B BF16 | 64.60 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 346.26 ± 3.68 |
+| qwen35moe 35B.A3B BF16 | 64.60 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 | 325.38 ± 1.87 |
+| qwen35moe 35B.A3B BF16 | 64.60 GiB | 34.66 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |  10.66 ± 0.01 |
 
 ```
 ./llama-bench -m /models/chat/qwen-3.6-35b-a3b/Qwen3.6-35B-A3B-BF16-00001-of-00002.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,3
@@ -113,10 +115,11 @@ build: 59accc886 (8837)
 ```
 
 ## Setup and Config
+
 As said previously, only the Dockerfile is updated with the added `spirv-headers`, otherwise everything stays the same as for Gemma 4. I'll just leave the link to the Gemma 4 setup [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4) for more details. Especially if you want to run the setup with docker-compose or on ROCm, please refer to the other blog.
 
-
 ### Dockerfile / Container for Vulkan Backend
+
 ```Dockerfile
 FROM debian:testing
 ARG NODE_VERSION=24
@@ -172,7 +175,7 @@ WORKDIR /app/llama.cpp
 RUN cmake -B build -DGGML_NATIVE=OFF -DGGML_VULKAN=ON -DLLAMA_BUILD_TESTS=OFF -DGGML_BACKEND_DL=ON -DGGML_CPU_ALL_VARIANTS=ON && \
     cmake --build build --config Release -j$(nproc)
 RUN pip install --break-system-packages --upgrade setuptools
-RUN pip install --break-system-packages -r requirements.txt 
+RUN pip install --break-system-packages -r requirements.txt
 WORKDIR /app/llama.cpp/build/bin
 
 ## Build llama-swap
@@ -185,8 +188,8 @@ CMD ["/bin/bash"]
 ```
 
 ### Kubernetes Manifest
-The following Kubernetes manifest sets up the whole llm magic on the kubernetes cluster. As a note, there are some flux specific configurations, so if you do not use flux in your cluster, remove those.
 
+The following Kubernetes manifest sets up the whole llm magic on the kubernetes cluster. As a note, there are some flux specific configurations, so if you do not use flux in your cluster, remove those.
 
 ```yaml
 ---
@@ -269,7 +272,7 @@ spec:
               add:
                 - SYS_PTRACE
           image: registry.akehir.com/infra/llama-swap-llama-cpp-vulkan/llama-release:master-ce8f1363-1776414432 # {"$imagepolicy": "llm:image-policy"}
-          command: ["/app/llama-swap/build/llama-swap-linux-amd64"]
+          command: ['/app/llama-swap/build/llama-swap-linux-amd64']
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -324,7 +327,7 @@ spec:
                     operator: In
                     values:
                       - llm
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: 'kubernetes.io/hostname'
 ---
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
@@ -449,6 +452,4 @@ data:
         preload:
           - "gemma-4-26b"
     ---
-
 ```
-

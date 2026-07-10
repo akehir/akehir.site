@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild,
+  ViewEncapsulation,
+  inject,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { timer } from 'rxjs';
@@ -20,25 +28,32 @@ import { projectList } from '@core/data';
   imports: [FormsModule, FontAwesomeIconsModule],
 })
 export class ConsoleComponent implements AfterViewInit {
+  private cdr = inject(ChangeDetectorRef);
   private focusTrap = inject(ConfigurableFocusTrapFactory);
   private router = inject(Router);
   console = inject(ConsoleService);
   private registry = inject(FontAwesomeIconsRegistry);
 
-  public command: string;
+  public command = '';
   private helpUsed = false;
 
-  @ViewChild('consoleForm') consoleForm: NgForm;
-  @ViewChild('inputArea') inputArea: ElementRef;
+  @ViewChild('consoleForm') consoleForm?: NgForm;
+  @ViewChild('inputArea') inputArea?: ElementRef;
 
   constructor() {
     this.registry.registerIcons([fontAwesomeIconTerminal]);
   }
 
   ngAfterViewInit() {
-    const focusTrap = this.focusTrap.create(this.inputArea.nativeElement);
-    timer(6000).subscribe(() => {
-      focusTrap.focusInitialElement();
+    if (this.inputArea?.nativeElement) {
+      const focusTrap = this.focusTrap.create(this.inputArea.nativeElement);
+      timer(6000).subscribe(() => {
+        focusTrap.focusInitialElement();
+      });
+    }
+
+    this.console.registerCallback(() => {
+      this.cdr.markForCheck();
     });
   }
 
@@ -57,8 +72,8 @@ export class ConsoleComponent implements AfterViewInit {
         const projects = Object.keys(projectList);
         this.console.clear();
         this.console.push(newOrder);
-        for (let i = 0; i < projects.length; i++) {
-          this.console.push(projects[i]);
+        for (const project of projects) {
+          this.console.push(project);
         }
       } /* ... todo */ else {
         this.console.clear();

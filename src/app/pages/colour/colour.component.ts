@@ -11,7 +11,7 @@ import {
 
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 
 import { switchMap, takeUntil, pairwise, delay, repeat } from 'rxjs/operators';
 import { ColourService } from '@core/services/colour.service';
@@ -32,25 +32,25 @@ export class ColourComponent implements AfterViewInit {
   private zone = inject(NgZone);
   private document = inject<Document>(DOCUMENT);
 
-  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('canvas') canvas!: ElementRef;
 
-  private context: CanvasRenderingContext2D;
+  private context!: CanvasRenderingContext2D;
 
   private colourMax = 255;
 
   private drawWidth = 1;
   private drawHeight = 1;
 
-  private redValueComponent: number;
-  private greenValueComponent: number;
-  private blueValueComponent: number;
+  private redValueComponent!: number;
+  private greenValueComponent!: number;
+  private blueValueComponent!: number;
 
-  public width: number;
-  public height: number;
+  public width!: number;
+  public height!: number;
 
-  private red: getColourValue;
-  private green: getColourValue;
-  private blue: getColourValue;
+  private red!: getColourValue;
+  private green!: getColourValue;
+  private blue!: getColourValue;
 
   private redValue = 255;
   private greenValue = 255;
@@ -67,31 +67,13 @@ export class ColourComponent implements AfterViewInit {
     // Get the color data of the canvas version of our element at that location
     const rgba = this.context.getImageData(position.x, position.y, 1, 1).data;
 
-    let r = rgba[0].toString(16);
-    let g = rgba[1].toString(16);
-    let b = rgba[2].toString(16);
-    let a = rgba[3].toString(16);
-
-    // todo: dry
-    if (r.length === 1) {
-      r = '0' + r;
-    }
-    // todo: dry
-    if (g.length === 1) {
-      g = '0' + g;
-    }
-    // todo: dry
-    if (b.length === 1) {
-      b = '0' + b;
-    }
-    // todo: dry
-    if (a.length === 1) {
-      a = '0' + a;
-    }
+    const r = rgba[0].toString(16).padStart(2, '0');
+    const g = rgba[1].toString(16).padStart(2, '0');
+    const b = rgba[2].toString(16).padStart(2, '0');
 
     const hex = '#' + r + g + b;
 
-    copyToClipboard(hex);
+    copyToClipboard(hex, this.document);
 
     this.console.push(`${hex} has been copied to the clipboard.`, {
       colour: hex,
@@ -103,7 +85,7 @@ export class ColourComponent implements AfterViewInit {
     };
   }
 
-  clickColour($event) {
+  clickColour($event: MouseEvent) {
     this.getColour({ x: $event.offsetX, y: $event.offsetY });
   }
 
@@ -176,7 +158,7 @@ export class ColourComponent implements AfterViewInit {
     b: number,
     w: number,
     h: number,
-    a: number = 1
+    a = 1
   ): void {
     this.context.fillStyle = `rgba(${r},${g},${b},${a})`;
     this.context.fillRect(x, y, w, h);
@@ -184,8 +166,8 @@ export class ColourComponent implements AfterViewInit {
 
   private getRedValueFactory(
     variant: string,
-    xoffset: number = 127.5,
-    yoffset: number = 0
+    xoffset = 127.5,
+    yoffset = 0
   ): getColourValue {
     return this.colours.pixelFactory(
       variant,
@@ -198,8 +180,8 @@ export class ColourComponent implements AfterViewInit {
 
   private getGreenValueFactory(
     variant: string,
-    xoffset: number = 0,
-    yoffset: number = 221
+    xoffset = 0,
+    yoffset = 221
   ): getColourValue {
     return this.colours.pixelFactory(
       variant,
@@ -213,7 +195,7 @@ export class ColourComponent implements AfterViewInit {
   private getBlueValueFactory(
     variant: string,
     xoffset: number = this.colourMax,
-    yoffset: number = 221
+    yoffset = 221
   ): getColourValue {
     return this.colours.pixelFactory(
       variant,
@@ -264,7 +246,12 @@ export class ColourComponent implements AfterViewInit {
         repeat(),
         switchMap(() => {
           // after a mouse down, we'll record all mouse moves
-          return fromEvent(this.canvas.nativeElement, 'mousemove').pipe(
+          return (
+            fromEvent(
+              this.canvas.nativeElement,
+              'mousemove'
+            ) as Observable<MouseEvent>
+          ).pipe(
             // we'll stop (and unsubscribe) once the user releases the mouse
             // this will trigger a 'mouseup' event
             takeUntil(fromEvent(this.canvas.nativeElement, 'mouseup')),

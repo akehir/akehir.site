@@ -2,8 +2,8 @@
 export function scaleX(
   x: number,
   width: number,
-  scale: number = 2.5,
-  offset: number = 2
+  scale = 2.5,
+  offset = 2
 ): number {
   return x / (width / scale) - offset;
 }

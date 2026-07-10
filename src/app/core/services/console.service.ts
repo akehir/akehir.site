@@ -4,9 +4,8 @@ import { Style } from '../types';
 
 @Injectable()
 export class ConsoleService {
-  public pastCommands: Array<{ message: string; style: Style }> = [];
-
-  constructor() {}
+  public pastCommands: { message: string; style: Style }[] = [];
+  private pushed = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 
   clear() {
     this.pastCommands.length = 0;
@@ -22,6 +21,12 @@ export class ConsoleService {
       message: message,
       style: style || { colour: '#777' },
     });
+
+    this.pushed();
+  }
+
+  registerCallback(callback: () => void) {
+    this.pushed = callback;
   }
 
   printHelp() {

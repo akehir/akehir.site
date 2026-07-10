@@ -3,13 +3,12 @@ import { checkFactory } from '../check/check-factory';
 
 export function triangle(
   variant: string,
-  xoffset: number = 0,
-  yoffset: number = 0
+  xoffset = 0,
+  yoffset = 0
 ): getColourValue {
   const colour = checkFactory(variant);
 
   return (p: number, q: number, offset: number): number => {
-    // eslint-disable-next-line no-bitwise
     return colour((p + xoffset) ^ (q + yoffset) ^ offset);
     // TODO: Implement
     // Private Sub Command1_Click()

@@ -1,5 +1,7 @@
 <div>
-  @for(entry of entries; track entry.routerLink) {
-    <a [routerLink]="entry.routerLink" class="ake-blog-entries--item">{{ entry.title }}</a>
+  @for (entry of entries; track entry.routerLink) {
+    <a [routerLink]="entry.routerLink" class="ake-blog-entries--item">{{
+      entry.title
+    }}</a>
   }
 </div>

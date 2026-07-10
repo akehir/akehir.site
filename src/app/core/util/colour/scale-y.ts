@@ -2,8 +2,8 @@
 export function scaleY(
   y: number,
   height: number,
-  scale: number = 2,
-  offset: number = 1
+  scale = 2,
+  offset = 1
 ): number {
   return y / (height / scale) - offset;
 }

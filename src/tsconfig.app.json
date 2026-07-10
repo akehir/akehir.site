@@ -3,10 +3,6 @@
   "compilerOptions": {
     "types": ["webgl2"]
   },
-  "include": [
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "./**/*.spec.ts"
-  ]
+  "include": ["./**/*.ts"],
+  "exclude": ["./**/*.spec.ts"]
 }

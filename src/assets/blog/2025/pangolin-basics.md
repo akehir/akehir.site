@@ -28,6 +28,7 @@ So far it seems pretty stable, with more than 15GB traffic in/out since the inst
 ## Addendum
 
 ### Crowdsec Banning Pangolin Users Due To Misconfiguration Issue
+
 In earlier versions of pangolin, the installer created a wrong health check for the crowdsec container, which was overloading crowdsec's infrastructure. See also the [pangolin discussion](https://github.com/orgs/fosrl/discussions/2119) and the [crowdsec issue](https://github.com/crowdsecurity/crowdsec/issues/4165) for more information.
 
 Crowdsec took the step to ban offending IPs, resulting in a 403 error.
@@ -48,13 +49,14 @@ healthcheck:
 ```
 
 ### Log Size Issue
+
 I recently encountered an issue where the space of my VPS (20GB) was getting full. I checked, and the reason was that my traefik log size hat grown to almost 10GB.
 
 To prevent that, I've setup logrotate as follows - and the 7G log file compressed down to 423MB:
 
 ```
 sudo apt install logrotate
-sudo nano /etc/logrotate.d/traefik 
+sudo nano /etc/logrotate.d/traefik
 ```
 
 With the following config for the traefik logs:
@@ -74,6 +76,7 @@ With the following config for the traefik logs:
 ```
 
 ### Updating pangolin
+
 I've updated pangolin to version 1.15.1. So far I haven't encountered any issues.
 
 ## Installation
@@ -95,6 +98,7 @@ sudo service pangolin start
 ```
 
 #### Crowdsec (optional)
+
 ```shell
 sudo docker exec crowdsec cscli bouncers add crowdsec-traefik-bouncer
 sudo docker exec crowdsec cscli console enroll -e context ___value___ # optional
@@ -108,17 +112,22 @@ sudo docker exec crowdsec cscli allowlist add allowlist1 9.9.9.9
 sudo docker exec crowdsec cscli allowlist inspect allowlist1
 
 ```
+
 ## Hints / Gotchas
- - In the docker-compose, some ports need to be quoted (ex: ssh) in order to work.
- - The `installer` can be run in an existing directory and it'll update / merge the config. This can be used to upgrade to a newer version of pangolin, or add additional features such as crowdsec.
+
+- In the docker-compose, some ports need to be quoted (ex: ssh) in order to work.
+- The `installer` can be run in an existing directory and it'll update / merge the config. This can be used to upgrade to a newer version of pangolin, or add additional features such as crowdsec.
 
 ## Debugging
+
 ### Systemd Service
+
 ```shell
  journalctl -xeu pangolin
 ```
 
 ### Docker
+
 ```shell
 sudo docker ps
 sudo docker logs $container
@@ -126,13 +135,16 @@ sudo docker exec -it $container $command
 ```
 
 ### Crowdsec
+
 ```shell
-sudo docker exec -it crowdsec cscli decisions list 
+sudo docker exec -it crowdsec cscli decisions list
 sudo docker exec crowdsec cscli allowlist inspect allowlist1
 ```
 
 ## Setup
+
 ### Systemd Service
+
 ```
 [Unit]
 Description=Pangolin via Docker compose
@@ -150,6 +162,7 @@ WantedBy=multi-user.target
 ```
 
 ### docker-compose.yml
+
 ```
 networks:
   default:
@@ -265,8 +278,8 @@ services:
 
 ```
 
-
 ### Pangolin config.yaml
+
 ```yaml
 app:
   dashboard_url: https://pangolin.example.com
@@ -334,9 +347,7 @@ flags:
   disable_user_create_org: false
   allow_raw_resources: true
   allow_base_domain_resources: true
-
 ```
-
 
 ### Traefik traefik_config.yaml
 
@@ -388,7 +399,7 @@ certificatesResolvers:
       email: foo@example.com
       storage: /letsencrypt/acme.json
       dnsChallenge:
-        provider: "infomaniak"
+        provider: 'infomaniak'
 entryPoints:
   tcp-22:
     address: :22/tcp
@@ -437,9 +448,7 @@ providers:
     pollInterval: 5s
 serversTransport:
   insecureSkipVerify: true
-
 ```
-
 
 ### Traefik dynamic_config.yaml
 
@@ -459,7 +468,7 @@ http:
           crowdsecAppsecHost: crowdsec:7422
           crowdsecAppsecUnreachableBlock: true
           crowdsecLapiHost: crowdsec:8080
-          crowdsecLapiKey: "foo123"
+          crowdsecLapiKey: 'foo123'
           crowdsecLapiScheme: http
           crowdsecMode: live
           defaultDecisionSeconds: 15
@@ -484,9 +493,9 @@ http:
         contentTypeNosniff: true
         customFrameOptionsValue: SAMEORIGIN
         customResponseHeaders:
-          Server: ""
+          Server: ''
           X-Forwarded-Proto: https
-          X-Powered-By: ""
+          X-Powered-By: ''
         forceSTSHeader: true
         hostsProxyHeaders:
           - X-Forwarded-Host
@@ -541,4 +550,3 @@ http:
         servers:
           - url: http://pangolin:3002
 ```
-

@@ -1,17 +1,19 @@
 # How to run DeepSeek R1 with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX
 
-*Published: 2025-02-28*
+_Published: 2025-02-28_
 
 Just like it is possible to run stable diffusion with docker / rocm easily on an AMD Radeon RX 7900 XTX, it is also possible to run llama.cpp and models such as DeepSeek R1 on the GPU. However, I do have to note that if the model doesn't fit into VRAM, the performance will not be great. Smaller models that completely fit into the VRAM will work perfectly though.
 
 ## Step 1: Install Docker
+
 ```bash
 # Install docker from the debian repository.
 # Note: sudo is optional and can be removed if not desired.
 apt install -y docker.io sudo
 ```
 
-## Step 2:  Setup Dockerfile
+## Step 2: Setup Dockerfile
+
 The easiest is to create a new folder (I like to use a git repository)
 
 ```Dockerfile
@@ -35,14 +37,17 @@ CMD ["/bin/bash"]
 ```
 
 ## Step 3: Build Docker
-In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need *some* patience).
+
+In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need _some_ patience).
+
 ```bash
 sudo docker build . --tag llama.cpp
 ```
 
-
 ## Step 4: Run Docker
+
 After building, run the docker container
+
 ```bash
 sudo docker run -it \
    --network=host \
@@ -58,6 +63,7 @@ sudo docker run -it \
 ```
 
 ## Step 5: Profit
+
 Now, you'll be inside the container. Inside, the container, you can use the command line to run commands on llama.cpp.
 
 You'll need to download a model for this first. I've tested some of the smaller DeepSeek R1 models provided by Unsloth, you can get it from [Huggingface](https://huggingface.co/unsloth/DeepSeek-R1-GGUF/tree/main/DeepSeek-R1-UD-IQ1_S), for example.

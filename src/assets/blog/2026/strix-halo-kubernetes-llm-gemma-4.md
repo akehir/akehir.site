@@ -4,7 +4,8 @@
 
 Thanks to my previously outlined setup for running `llama-swap` on a Minisforum MS-S1 and the unsloth GGUF files, it has been rather easy to get Gemma 4 running on my setup.
 
-The main steps were: 
+The main steps were:
+
 - downloading the model
 - updating my config
 
@@ -18,7 +19,7 @@ I also recommend referencing the announcement of Gemma 4 on huggingface [here](h
 
 ## Setup
 
-For the full detail of my setup, you can also read my previous blog entry on GPT-OSS  on kubernetes [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss). If you prefer to read about how to setup the same (or an equivalent) setup via docker (and docker-compose), I have two previous blog losts covering the topics [here](https://akehir.com/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models) and [here](https://akehir.com/blog/open-webui-llama-server).
+For the full detail of my setup, you can also read my previous blog entry on GPT-OSS on kubernetes [here](https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss). If you prefer to read about how to setup the same (or an equivalent) setup via docker (and docker-compose), I have two previous blog losts covering the topics [here](https://akehir.com/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models) and [here](https://akehir.com/blog/open-webui-llama-server).
 
 I've also included the full config further below, but first let me present the salient bits: I just updated my `llama-swap` config to include the new models for gemma 4 - that is all I needed to do (except downloading the models).
 
@@ -27,6 +28,7 @@ In my homelab, I am using Kubernetes to run the containers on the Strix Halo ser
 Furthermore, to keep the docker image size small (2GB) I am using the Vulkan backend. I have also included an example config to run it on a ROCm backend (but there, the docker image size reaches 30+ GB). It is definitely worth trying both bakends in order to review the performance and stability running the models.
 
 Speaking of the models, they can be downloaded from huggingface - I have been using the unsloth quants for my preliminary tests. I have used the following models / repositories (mostly the BF16 and Q8 files directly via wget):
+
 - [Gemma 4 31B](https://huggingface.co/unsloth/gemma-4-31B-it-GGUF)
 - [Gemma 4 26B A4B](https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF)
 - [Gemma 4 E4B](https://huggingface.co/unsloth/gemma-4-E4B-it-GGUF)
@@ -51,8 +53,6 @@ data:
 
       "gemma-4-26b--q8":
         cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
-
-
 ```
 
 ## Performance
@@ -70,6 +70,7 @@ As good as this model might be - and as well it might fit into the VRAM of the M
 While the performance of the 31B model was not overwhelming, the real surprise is the 26B model. It was basically as fast as the smaller E4B model, with full precision at ~500 - 600 tokens per second for prompt processing and just under 20 tokens / second for text generation. Using a Q8 instead of the full BF16 precision will yield even more impressive values such as 1000 - 1600 tokens/s prompt processing and up to 44 tokens/s text generation.
 
 ### Gemma 4 E4B Performance Summary
+
 At 700-1000 tokens/s prompt processing and 19 tokens/s text generation, this model tracks the performance of the 26B model. For that reason I didn't really follow up on more testing here, as it would appear that the 26B model will be the superior model as long as the hardware to run it is available.
 
 ### Gemma 4 31B Performance Benchmark Details
@@ -90,17 +91,17 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 build: 7992aa7c8 (8640)
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        148.33 ± 2.26 |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        134.44 ± 0.15 |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        106.70 ± 0.68 |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |          3.46 ± 0.00 |
+| model          |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| -------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 148.33 ± 2.26 |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 134.44 ± 0.15 |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 106.70 ± 0.68 |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |   3.46 ± 0.00 |
 
 With a quant (Q8), it is possible to improve the performance by around half:
 
 ```
-root@llm-v21-655d6f597-l9hc5:/app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf  -t 1 -fa 1 -b 2048 -ub 2048 -p 2048                 
+root@llm-v21-655d6f597-l9hc5:/app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf  -t 1 -fa 1 -b 2048 -ub 2048 -p 2048
 ggml_vulkan: Found 1 Vulkan devices:
 ggml_vulkan: 0 = Radeon 8060S Graphics (RADV STRIX_HALO) (radv) | uma: 1 | fp16: 1 | bf16: 0 | warp size: 64 | shared memory: 65536 | int dot: 1 | matrix cores: KHR_coopmat
 load_backend: loaded Vulkan backend from /app/llama.cpp/build/bin/libggml-vulkan.so
@@ -132,13 +133,14 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 radv/amdgpu: The CS has been cancelled because the context is lost. This context is innocent.
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        147.80 ± 2.45 |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        133.52 ± 0.42 |
-| gemma4 ?B BF16                 |  57.18 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        107.09 ± 0.45 |
+| model          |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| -------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 147.80 ± 2.45 |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 133.52 ± 0.42 |
+| gemma4 ?B BF16 | 57.18 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 107.09 ± 0.45 |
 
 And even with a q8 the bench still fails at 32k context:
+
 ```
 root@llm-v21-655d6f597-l9hc5:/app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf  -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
 ggml_vulkan: Found 1 Vulkan devices:
@@ -175,18 +177,17 @@ terminate called after throwing an instance of 'vk::DeviceLostError'
 Aborted                    (core dumped) ./llama-bench -m /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gemma4 ?B Q8_0                 |  32.60 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |        293.61 ± 0.98 |
-| gemma4 ?B Q8_0                 |  32.60 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |        244.65 ± 0.29 |
-| gemma4 ?B Q8_0                 |  32.60 GiB |    30.70 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |        165.48 ± 0.49 |
-
+| model          |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |           t/s |
+| -------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | ------------: |
+| gemma4 ?B Q8_0 | 32.60 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 293.61 ± 0.98 |
+| gemma4 ?B Q8_0 | 32.60 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 | 244.65 ± 0.29 |
+| gemma4 ?B Q8_0 | 32.60 GiB | 30.70 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 | 165.48 ± 0.49 |
 
 ### Gemma 4 26B Performance Benchmark Details
 
 ```
 /app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gemma-4-26B-A4B/ge -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16384,32768
-gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf  gemma-4-26B-A4B-it-BF16-00002-of-00002.gguf  generation_config.json                       
+gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf  gemma-4-26B-A4B-it-BF16-00002-of-00002.gguf  generation_config.json
 root@llm-v20-866684df54-8cc5v:/app/llama.cpp/build/bin# ./llama-bench -m /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf -t 1 -fa 1 -b 2048 -ub 2048 -p 2048,8192,16
 384,32768
 ggml_vulkan: Found 1 Vulkan devices:
@@ -229,13 +230,14 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 build: b8635075f (8665)
 ```
 
-| model                          |       size |     params | backend    | ngl | threads | n_ubatch | fa |            test |                  t/s |
-| ------------------------------ | ---------: | ---------: | ---------- | --: | ------: | -------: | -: | --------------: | -------------------: |
-| gemma4 ?B Q8_0                 |  25.94 GiB |    25.23 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp2048 |      1561.81 ± 36.24 |
-| gemma4 ?B Q8_0                 |  25.94 GiB |    25.23 B | Vulkan     |  99 |       1 |     2048 |  1 |          pp8192 |       1441.42 ± 3.66 |
-| gemma4 ?B Q8_0                 |  25.94 GiB |    25.23 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp16384 |       1255.60 ± 2.08 |
-| gemma4 ?B Q8_0                 |  25.94 GiB |    25.23 B | Vulkan     |  99 |       1 |     2048 |  1 |         pp32768 |        956.61 ± 4.69 |
-| gemma4 ?B Q8_0                 |  25.94 GiB |    25.23 B | Vulkan     |  99 |       1 |     2048 |  1 |           tg128 |         44.33 ± 0.11 |
+| model          |      size |  params | backend | ngl | threads | n_ubatch |  fa |    test |             t/s |
+| -------------- | --------: | ------: | ------- | --: | ------: | -------: | --: | ------: | --------------: |
+| gemma4 ?B Q8_0 | 25.94 GiB | 25.23 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp2048 | 1561.81 ± 36.24 |
+| gemma4 ?B Q8_0 | 25.94 GiB | 25.23 B | Vulkan  |  99 |       1 |     2048 |   1 |  pp8192 |  1441.42 ± 3.66 |
+| gemma4 ?B Q8_0 | 25.94 GiB | 25.23 B | Vulkan  |  99 |       1 |     2048 |   1 | pp16384 |  1255.60 ± 2.08 |
+| gemma4 ?B Q8_0 | 25.94 GiB | 25.23 B | Vulkan  |  99 |       1 |     2048 |   1 | pp32768 |   956.61 ± 4.69 |
+| gemma4 ?B Q8_0 | 25.94 GiB | 25.23 B | Vulkan  |  99 |       1 |     2048 |   1 |   tg128 |    44.33 ± 0.11 |
+
 ### Gemma 4 E4B Performance Benchmark Details
 
 ```
@@ -268,6 +270,7 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
 My repository for building the container can be found [here](https://git.akehir.com/infra/llama-swap-llama-cpp-vulkan). Actually the container is public and can be pulled directly via `docker pull registry.akehir.com/infra/llama-swap-llama-cpp-vulkan/llama-release:latest`.
 
 The image is based on debian testing, as seen in the Dockerfile in the repositroy.
+
 ```Dockerfile
 FROM debian:testing
 ARG NODE_VERSION=24
@@ -323,7 +326,7 @@ WORKDIR /app/llama.cpp
 RUN cmake -B build -DGGML_NATIVE=OFF -DGGML_VULKAN=ON -DLLAMA_BUILD_TESTS=OFF -DGGML_BACKEND_DL=ON -DGGML_CPU_ALL_VARIANTS=ON && \
     cmake --build build --config Release -j$(nproc)
 RUN pip install --break-system-packages --upgrade setuptools
-RUN pip install --break-system-packages -r requirements.txt 
+RUN pip install --break-system-packages -r requirements.txt
 WORKDIR /app/llama.cpp/build/bin
 
 ## Build llama-swap
@@ -335,6 +338,7 @@ CMD ["/bin/bash"]
 ```
 
 ### Dockerfile / Container for ROCm
+
 Just to note that I have only tested this docker image with my dedicated AMD RX7900XTX GPU (gfx1100). You might need to change the GPU reference when compiling llama.cpp. Otherwise it's essentially the same image as the Vulkan image, except for using an older ubuntu based base image, which forces the installation of `nodejs` via `nvm`.
 
 ```Dockerfile
@@ -422,18 +426,17 @@ CMD ["/bin/bash"]
 Here's a sample config.yaml I have used to run the `llama-swap` container via `docker-compose`. It can serve as a reference for your own setup. It needs to be stored next to the `docker-compose.yaml` in my example.
 
 ```yaml
-
 healthCheckTimeout: 600
 startPort: 14001
 
 models:
-  "gemma-4-31b--q8":
+  'gemma-4-31b--q8':
     cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-31B-it/gemma-4-31B-it-UD-Q8_K_XL.gguf --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
 
-  "gemma-4-26b--q8":
+  'gemma-4-26b--q8':
     cmd: /app/llama.cpp/build/bin/llama-server --port ${PORT} --host 0.0.0.0 --model /models/chat/gemma-4-26B-A4B/gemma-4-26B-A4B-it-UD-Q6_K_XL.gguf --mmproj /models/chat/gemma-4-26B-A4B/mmproj-BF16.gguf --chat-template-file /app/llama.cpp/models/templates/google-gemma-4-31B-it-interleaved.jinja --jinja --temp 1.0 --top-p 0.95 --top-k 64 -c 255555
-
 ```
+
 ### docker-compose
 
 Here is a sample `docker-compose` file to run the file use the `docker-compose` command, as follows: `docker-compose -f /path/to/docker-compose.yml up --detach`. To stop the container, you can run `docker-compose -f /path/to/docker-compose.yml stop`.
@@ -447,7 +450,7 @@ services:
   server:
     build: ..
     ports:
-      - "12345:12345"
+      - '12345:12345'
     volumes:
       - /models:/models
       - /host/path/to/config.yaml:/conf/config.yaml
@@ -460,11 +463,12 @@ services:
       - video
     cap_add:
       - SYS_PTRACE
-    ipc: "host"
+    ipc: 'host'
     command: /app/llama-swap/build/llama-swap-linux-amd64 --listen 0.0.0.0:12345 --config /conf/config.yaml
 ```
 
 ### Kubernetes Manifest
+
 The below 2 Kubernetes manifests are used to both host openwebui and the openapi compatible llm api via llama-swap and llama.cpp.
 
 ```yaml
@@ -548,7 +552,7 @@ spec:
               add:
                 - SYS_PTRACE
           image: registry.akehir.com/infra/llama-swap-llama-cpp-vulkan/llama-release:master-8e703497-1775343366 # {"$imagepolicy": "llm:image-policy"}
-          command: ["/app/llama-swap/build/llama-swap-linux-amd64"]
+          command: ['/app/llama-swap/build/llama-swap-linux-amd64']
           ports:
             - containerPort: 8080
           volumeMounts:
@@ -603,7 +607,7 @@ spec:
                     operator: In
                     values:
                       - llm
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: 'kubernetes.io/hostname'
 ---
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
@@ -803,7 +807,7 @@ spec:
           ports:
             - containerPort: 8080
           volumeMounts:
-            - mountPath: "/app/backend/data"
+            - mountPath: '/app/backend/data'
               name: openwebui
 ---
 apiVersion: image.toolkit.fluxcd.io/v1
@@ -883,4 +887,3 @@ spec:
     name: mr-robot
 ---
 ```
-

@@ -4,7 +4,7 @@ I mainly use ChromeOS/ARM on the go (as they are compact, portable and reasonabl
 
 On my phone, I mainly use the Firefox browser (in order to have vital browser extensions, such as uBlock Origin 😏).
 
-It recently happened that I needed to debug a browser tab on my phone. Consequently, I had to use my  ChromeOS device.
+It recently happened that I needed to debug a browser tab on my phone. Consequently, I had to use my ChromeOS device.
 
 Unfortunately I faced a few minor issues, until I got the debugging party started.
 
@@ -29,8 +29,6 @@ Finally, you're ready to debug, just connect your Phone via USB and mount it to 
 That's it.
 
 ---
-
-
 
 PS: The main issue I had, was that I had to install `adb`, the rest is quite straightforward with Firefox / Linux enabled.
 PPS: You can also check your connected devices under

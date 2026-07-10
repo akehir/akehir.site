@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Project } from '@core/types';
 import { BackgroundComponent } from '../background/background.component';
 import { RouterLink } from '@angular/router';
@@ -16,5 +12,5 @@ import { RouterLink } from '@angular/router';
 })
 export class HexComponent {
   // https://www.redblobgames.com/grids/hexagons/
-  @Input() project: Project;
+  @Input() project!: Project;
 }

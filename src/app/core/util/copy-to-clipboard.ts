@@ -1,16 +1,16 @@
-export function copyToClipboard(str: string) {
+export function copyToClipboard(str: string, document: Document) {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(str);
   } else {
-    const el = this.document.createElement('textarea');
+    const el = document.createElement('textarea');
     el.classList.add('hidden');
     el.value = str;
     el.setAttribute('readonly', '');
     el.style.position = 'absolute';
     el.style.left = '-9999px';
-    this.document.body.appendChild(el);
+    document.body.appendChild(el);
     el.select();
-    this.document.execCommand('copy');
-    this.document.body.removeChild(el);
+    document.execCommand('copy');
+    document.body.removeChild(el);
   }
 }

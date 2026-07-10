@@ -1,4 +1,5 @@
 # 2025 in Review
+
 One goal I set for myself for 2025 was to publish ~1 blog per week. I'm at ~20 blog posts, so I've achieved around half of my goal (if we're feeling generous).
 
 This is not due to ideas for blog entries - I have a huge list of entries I've started to write. They just haven not been published yet for various reasons. Mostly time, since the posts don't write itself (I have [committed](https://akehir.com/blog/no-ai-generated-blog-posts) to not using any GenAI for my blogs.).
@@ -14,4 +15,3 @@ You will find most of the things I'm pursuing and publicly sharing in my blog po
 There are a few things, like for example, my 3D printing experiences, I'm looking to share soon.
 
 In conclusion, I think it has been a challenging year due to many (external) factors, but personally it has also been a successful year during which I've achieved many things I'm proud of.
-

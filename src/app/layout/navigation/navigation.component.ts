@@ -1,8 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-  inject,
-} from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import {
   RpgAwesomeIconComponent,
   RpgAwesomeIconsRegistry,

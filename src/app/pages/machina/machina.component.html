@@ -24,9 +24,7 @@
               <div class="flex flex-row justify-between">
                 <div class="pl-0.5 pr-6">
                   {{ k8s.cluster.memory.used / 1000000000 | number: '1.1-1' }} /
-                  {{
-                    k8s.cluster.memory.total / 1000000000 | number: '1.0-0'
-                  }}
+                  {{ k8s.cluster.memory.total / 1000000000 | number: '1.0-0' }}
                   GiB
                 </div>
                 <rpg-awesome-icon name="book"></rpg-awesome-icon>

@@ -18,7 +18,7 @@ import {
 import { fontAwesomeIconCloudSun } from '@triangular/font-awesome-icons/icons';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 
-type ClusterInfo = {
+interface ClusterInfo {
   cluster: {
     cpu: {
       load: number;
@@ -49,7 +49,7 @@ type ClusterInfo = {
       };
     },
   ];
-};
+}
 
 @Component({
   selector: 'ake-machina',

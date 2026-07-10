@@ -28,7 +28,7 @@ Agents should follow these steps when making changes:
 
 1.  **Analyze**: Understand the existing code and its impact.
 2.  **Implement**: Apply changes following established patterns.
-3.  **Lint**: Run `npm run lint` to ensure code quality and style consistency.
+3.  **Lint & Format**: Run `npm run lint` to ensure code quality and style consistency. If formatting issues are found, use `npm run lint:fix` (Prettier). After completing a task, always run `npm run lint` to ensure no new issues were introduced.
 4.  **Test**: Run `npm test` to verify that changes do not break existing functionality.
 5.  **Verify**: For UI changes, consider the impact on responsiveness and accessibility.
 
@@ -46,13 +46,14 @@ Agents should follow these steps when making changes:
 
 ## Common Commands
 
-| Command | Description |
-| :--- | :--- |
-| `npm start` | Starts the development server |
-| `npm test` | Runs unit tests |
-| `npm run lint` | Runs linting (ESLint and Sass-lint) |
-| `npm run build` | Builds the project for production |
-| `npm run e2e` | Runs end-to-end tests |
+| Command            | Description                                         |
+| :----------------- | :-------------------------------------------------- |
+| `npm start`        | Starts the development server                       |
+| `npm test`         | Runs unit tests                                     |
+| `npm run lint`     | Runs linting (ESLint and Sass-lint)                 |
+| `npm run lint:fix` | Runs linting and applies automatic fixes (Prettier) |
+| `npm run build`    | Builds the project for production                   |
+| `npm run e2e`      | Runs end-to-end tests                               |
 
 ## Blog Post Workflow
 

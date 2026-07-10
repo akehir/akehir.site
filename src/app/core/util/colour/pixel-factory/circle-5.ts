@@ -5,10 +5,10 @@ import { checkFactory } from '../check/check-factory';
 
 export function circle5(
   variant: string,
-  xoffset: number = 0,
-  yoffset: number = 0,
-  width: number = 0,
-  height: number = 0
+  xoffset = 0,
+  yoffset = 0,
+  width = 0,
+  height = 0
 ): getColourValue {
   const colourMax = 255;
   const colour = checkFactory(variant);
@@ -22,7 +22,6 @@ export function circle5(
   const xo: number = width / locationFactor;
 
   return (p: number, q: number, offset: number): number => {
-    // eslint-disable-next-line max-len
     return colour(
       colourMax -
         (scaleY(q - xoffset, height, ys, yo) ** sq +

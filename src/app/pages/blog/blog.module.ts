@@ -25,7 +25,7 @@ export type EntryCategory =
   | 'Docker'
   | 'Self-Hosting';
 
-export type BlogData = {
+export interface BlogData {
   title: string;
   routerLink: string;
   content: string;
@@ -36,7 +36,7 @@ export type BlogData = {
   mainCategory: EntryCategory;
   categories: EntryCategory[];
   hidden?: true;
-};
+}
 
 type BlogRoute = Route & { data: BlogData };
 
@@ -44,27 +44,28 @@ export const blogEntries: BlogRoute[] = [
   {
     path: 'init-7',
     title: 'Internet Service Provider Recommendation: Init7 (Fiber7)',
-     data: {
+    data: {
       title: 'Internet Service Provider Recommendation: Init7 (Fiber7)',
-       author: 'Raphael Ochsenbein',
+      author: 'Raphael Ochsenbein',
       categories: ['Infrastructure'],
       mainCategory: 'Infrastructure',
       publishedDate: '2026-06-08',
       modifiedDate: '2026-06-08',
       routerLink: '/blog/init-7',
       content: '/assets/blog/2026/init-7.md',
-      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/init-7.md',
-     },
-     loadComponent: () =>
-      import('./entries/2026/init-7.component').then(
-        c => c.Init7Component
-       ),
-   },
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/init-7.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/init-7.component').then(c => c.Init7Component),
+  },
   {
     path: 'global-cyber-skills-benchmark-ctf-2026',
-    title: 'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
+    title:
+      'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
     data: {
-      title: 'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
+      title:
+        'Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)',
       author: 'Raphael Ochsenbein',
       categories: ['CyberSecurity'],
       mainCategory: 'CyberSecurity',
@@ -72,7 +73,8 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-06-08',
       routerLink: '/blog/global-cyber-skills-benchmark-ctf-2026',
       content: '/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
-      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
     },
     loadComponent: () =>
       import('./entries/2026/global-cyber-skills-benchmark-ctf-2026.component').then(
@@ -91,7 +93,8 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-06-08',
       routerLink: '/blog/gemma-4-qat',
       content: '/assets/blog/2026/gemma-4-qat.md',
-      source: 'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/gemma-4-qat.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/gemma-4-qat.md',
     },
     loadComponent: () =>
       import('./entries/2026/gemma-4-qat.component').then(

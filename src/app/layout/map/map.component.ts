@@ -19,7 +19,7 @@ export class MapComponent {
   map$ = this.projects.all(); // mocking async
 
   log = console.log;
-  trackCoordinate(index, item: Coordinate) {
+  trackCoordinate(index: number, item: Coordinate) {
     return `${item.x}-${item.y}`;
   }
 }

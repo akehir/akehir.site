@@ -1,4 +1,5 @@
 # Gaming: 2025 in Review
+
 Here's a summary of my gaming activity, as summarized by the Steam Replay. I have summarized the Steam Replay from 2022 to 2025 for my data. The biggest change to my gaming habits has probably been the Steam Deck.
 
 All of this gaming is 100% on Linux (either RHEL, SteamOS, or Debian). Currently, on Debian Testing, I'm using the Flatpak distribution of Steam.
@@ -26,7 +27,6 @@ It looks like I'm mostly playing Roguelikes (and variants thereof), RPG games, a
 
 ### Top Genres By Year
 
-
 | 2025                  | 2024                  | 2023                      | 2022                      |
 | --------------------- | --------------------- | ------------------------- | ------------------------- |
 | Action Roguelike      | Action Roguelike      | Action Roguelike          | Action Roguelike<br>      |
@@ -35,4 +35,3 @@ It looks like I'm mostly playing Roguelikes (and variants thereof), RPG games, a
 | Traditional Roguelike | Farming Sim           | Auto Battler<br>          | Cyberpunk<br>             |
 |                       | Bullet Hell           | Roguelike Deckbuilder<br> | Roguelike Deckbuilder<br> |
 |                       | Traditional Roguelike | Dungeons & Dragons        | Traditional Roguelike<br> |
-

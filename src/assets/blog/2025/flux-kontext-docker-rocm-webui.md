@@ -3,7 +3,9 @@
 I've been successfully able to get `flux kontext` or `flux krea` running on a local GPU with 24GB VRAM. The following documents my setup.
 
 The same steps also work to run `flux krea`.
+
 ## Setup
+
 First, I setup flux with docker and docker-compose.
 
 I created the following directories, and installed the following tools on my host system (running debian testing). You can change the directories (for instance, storing the models also under the `/app` path, you just need to change the mount points in the docker-compose file). I like this separation, as I have `/models` mounted on a separate NVME disk.
@@ -29,6 +31,7 @@ sudo mkdir -p /app/stable-diffusion-webui-forge/outputs
 cd /app/stable-diffusion-webui-forge/extensions
 git clone https://github.com/DenOfEquity/forge2_flux_kontext
 ```
+
 ### Get Models
 
 The next step is to download the models ans the required files for `flux kontext`. That can be done by following these steps:
@@ -43,6 +46,7 @@ The next step is to download the models ans the required files for `flux kontext
 See also the original instructions [here](https://github.com/lllyasviel/stable-diffusion-webui-forge/discussions/1050).
 
 ## Dockerfile
+
 I used the following `Dockerfile` to run stable diffusion:
 
 ```Dockerfile
@@ -76,6 +80,7 @@ CMD python launch.py --listen --disable-safe-unpickle --no-half-vae --no-half --
 ```
 
 ### docker compose
+
 The following docker-compose is used. You can choose any port instead of 12345 in order to access the files. If you changed the directories, you also have to change the volumes here.
 
 I used the following `docker-compose.yml`.
@@ -85,7 +90,7 @@ services:
   webui:
     build: ..
     ports:
-      - "12345:7860"
+      - '12345:7860'
     volumes:
       - /models/stable-diffusion-webui-forge:/sd/stable-diffusion-webui-forge/models/
       - /app/stable-diffusion-webui-forge/repositories:/sd/stable-diffusion-webui-forge/repositories/
@@ -100,11 +105,11 @@ services:
       - video
     cap_add:
       - SYS_PTRACE
-    ipc: "host"
-
+    ipc: 'host'
 ```
 
 ### Running the model
+
 Now, running the model is as simple as:
 
 `docker-compose -f /app/stable-diffusion/docker-compose.yml up --detach`
@@ -114,4 +119,3 @@ And now the webui can be accessed under `http://localhost:12345`. Pulling the RO
 The container can be stopped with `docker-compose -f /app/stable-diffusion/docker-compose.yml stop`
 
 That's all =)
-

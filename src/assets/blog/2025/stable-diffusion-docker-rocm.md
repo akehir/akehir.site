@@ -1,17 +1,19 @@
 # How to run Stable Diffusion WebUI or Forge on AMD Radeon RX 7900XTX via Docker on Linux on Debian with ROCm 6.2 and GPU Acceleration
 
-*Published: 2025-02-28*
+_Published: 2025-02-28_
 
 It's pretty easy to run Stable Diffusion on an AMD Radeon RX 7900 XTX on Linux. The only necessary dependency is docker. I've done this on Debian, but it should be possible on any Linux version.
 
 ## Step 1: Install Docker
+
 ```bash
 # Install docker from the debian repository.
 # Note: sudo is optional and can be removed if not desired.
 apt install -y docker.io sudo
 ```
 
-## Step 2:  Setup Dockerfile
+## Step 2: Setup Dockerfile
+
 The easiest is to create a new folder (I like to use a git repository)
 
 ```Dockerfile
@@ -44,14 +46,17 @@ CMD python launch.py --listen --disable-safe-unpickle --no-half-vae --no-half --
 ```
 
 ## Step 3: Build Docker
-In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need *some* patience).
+
+In the directory with the Dockerfile, run the following to build the container (depending on your computer / internet connection speed you might need _some_ patience).
+
 ```bash
 sudo docker build . --tag sd-webui-forge
 ```
 
-
 ## Step 4: Run Docker
+
 After building, run the docker container
+
 ```bash
 sudo docker run -it \
 	--network=host \
@@ -69,9 +74,10 @@ sudo docker run -it \
 ```
 
 ## Step 5: Profit
+
 Now, you'll be able to access the Stable Diffusion WebUI Forge under [http://localhost:7860](http://localhost:7860).
 
-However, to do something useful, you'll need to download a model and put it into the `./models` folder (which is mounted into the docker container). The optimal model is best chosen while taking your VRAM into consideration. 
+However, to do something useful, you'll need to download a model and put it into the `./models` folder (which is mounted into the docker container). The optimal model is best chosen while taking your VRAM into consideration.
 
 I can recommend flux1-dev with 24GB of VRAM (ie: for instance an RX 7900 XTX). You can download the model via [huggingface](https://huggingface.co/black-forest-labs/FLUX.1-dev/tree/main).
 
