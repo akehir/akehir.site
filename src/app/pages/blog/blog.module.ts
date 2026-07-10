@@ -42,6 +42,26 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'code-monkey-code-basher',
+    title: 'From Code Monkey to Code Basher',
+    data: {
+      title: 'From Code Monkey to Code Basher',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-07-07',
+      modifiedDate: '2026-07-07',
+      routerLink: '/blog/code-monkey-code-basher',
+      content: '/assets/blog/2026/code-monkey-code-basher.md',
+      source:
+        'https://git.akehir.com/akehir.site/-/blob/master/src/assets/blog/2026/code-monkey-code-basher.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/code-monkey-code-basher.component').then(
+        c => c.CodeMonkeyCodeBasherComponent
+      ),
+  },
+  {
     path: 'init-7',
     title: 'Internet Service Provider Recommendation: Init7 (Fiber7)',
     data: {
