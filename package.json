@@ -22,16 +22,19 @@
     "@angular/router": "^22.0.6",
     "@angular/service-worker": "^22.0.6",
     "@triangular/fluid-simulation": "^22.0.0",
-    "@triangular/font-awesome-icons": "^22.0.0",
-    "@triangular/noto-emoji-icons": "^22.0.0",
-    "@triangular/rpg-awesome-icons": "^22.0.0",
+    "@triangular/font-awesome-icons": "^22.0.1",
+    "@triangular/noto-emoji-icons": "^22.0.1",
+    "@triangular/rpg-awesome-icons": "^22.0.1",
+    "katex": "^0.16.47",
+    "marked": "^18.0.6",
+    "marked-katex-extension": "^5.1.10",
     "ngx-markdown": "^22.0.0",
     "postcss": "^8.5.16",
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@angular/build": "^22.0.5",
+    "@angular/build": "^22.0.6",
     "@angular/cli": "22.0.6",
     "@angular/compiler-cli": "22.0.6",
     "@eslint/eslintrc": "^3.3.5",
@@ -39,7 +42,7 @@
     "@tailwindcss/postcss": "^4.3.2",
     "@types/jasmine": "~6.0.0",
     "@types/jasminewd2": "~2.0.13",
-    "@types/node": "^25.9.2",
+    "@types/node": "^26.1.1",
     "@types/webgl2": "~0.0.11",
     "angular-eslint": "22.0.0",
     "eslint": "^10.6.0",
@@ -55,6 +58,6 @@
     "tailwindcss": "^4.3.2",
     "ts-node": "~10.9.2",
     "typescript": "~6.0.3",
-    "typescript-eslint": "8.60.1"
+    "typescript-eslint": "8.63.0"
   }
 }
