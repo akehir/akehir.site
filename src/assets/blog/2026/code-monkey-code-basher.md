@@ -1,5 +1,4 @@
-
-Working in Information Technology right now means that there is no way to avoid the topic of AI / LLM. Personally, I have been thinking about machine learning for a long time, and from before it was `cool`. For instance, I have an (unpublished, how typical) blog post about a [paper](https://arxiv.org/abs/1312.6199) of Ilya Sutskever *et al.* from 7 years ago.
+Working in Information Technology right now means that there is no way to avoid the topic of AI / LLM. Personally, I have been thinking about machine learning for a long time, and from before it was `cool`. For instance, I have an (unpublished, how typical) blog post about a [paper](https://arxiv.org/abs/1312.6199) of Ilya Sutskever _et al._ from 7 years ago.
 
 That is a lot of words to say that I have thoughts about machine learning, and I am now opting to opine them even in their raw form.
 
@@ -7,7 +6,7 @@ One observation about the job of a software engineer who uses a lot of AI in his
 
 But not to the degree as with `agentic development`. Here, you give the agent a task, and it spits out a solution for the developer to accept and **review**.
 
-A second observation to note is that I am *severely* lacking as a code reviewer (not that I would not be lacking as a coder). A code review requires a lot of focus and thinking to evaluate a given solution to a problem critically and to find shortcomings / improvements to the solution. Often it is only through the experience of having implemented similar programs or faced similar problems that one can accurately judge a piece of code.
+A second observation to note is that I am _severely_ lacking as a code reviewer (not that I would not be lacking as a coder). A code review requires a lot of focus and thinking to evaluate a given solution to a problem critically and to find shortcomings / improvements to the solution. Often it is only through the experience of having implemented similar programs or faced similar problems that one can accurately judge a piece of code.
 
 In any case, it is a very different skill set from writing code. One that needs to be practiced. And it is exhausting. It is no problem to code 8 hours straight (or 12 or more) for me (and others I know). But code reviews are another beast: the need to focus, and the degree of abstraction is on another dimension, and it is not something I am seriously capable of doing for any length of time.
 
@@ -24,4 +23,3 @@ In my role, I do a lot of code reviews, and I talk to many architects. For me, i
 In order to deal with this, the right tooling will be mandatory. Automated tests, formal verification systems (like compilers, or static code analysis), linting and styling rules, a strong code revision history will be key. Basically, good software engineering principles.
 
 But I remain worried that we do not find a suitable solution for the core problem. The problem that without experience and exposure, you are a bad judge of code. You cannot bash it where it hurts. And that will hurt the quality of your software.
-

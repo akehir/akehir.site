@@ -42,19 +42,39 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'the-photography-parable-and-programming',
+    title: 'The Photography Parable, and Programming LLMs',
+    data: {
+      title: 'The Photography Parable, and Programming LLMs',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', "Raphael's Random Rumblings"],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-07-11',
+      modifiedDate: '2026-07-11',
+      routerLink: '/blog/the-photography-parable-and-programming',
+      content: '/assets/blog/2026/the-photography-parable-and-programming.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/the-photography-parable-and-programming.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/the-photography-parable-and-programming.component').then(
+        c => c.ThePhotographyParableAndProgrammingComponent
+      ),
+  },
+  {
     path: 'code-monkey-code-basher',
     title: 'From Code Monkey to Code Basher',
     data: {
       title: 'From Code Monkey to Code Basher',
       author: 'Raphael Ochsenbein',
-      categories: ['Machine Learning'],
+      categories: ['Machine Learning', "Raphael's Random Rumblings"],
       mainCategory: 'Machine Learning',
       publishedDate: '2026-07-07',
       modifiedDate: '2026-07-07',
       routerLink: '/blog/code-monkey-code-basher',
       content: '/assets/blog/2026/code-monkey-code-basher.md',
       source:
-        'https://git.akehir.com/akehir.site/-/blob/master/src/assets/blog/2026/code-monkey-code-basher.md',
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/code-monkey-code-basher.md',
     },
     loadComponent: () =>
       import('./entries/2026/code-monkey-code-basher.component').then(
