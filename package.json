@@ -6,7 +6,7 @@
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build --configuration production --progress=false",
     "test": "ng test --no-watch",
-    "test:docker": "ng test --no-watch --progress=false --code-coverage --browsers ChromeDocker",
+    "test:docker": "ng test --no-watch --progress=false --browsers ChromeDocker",
     "lint": "prettier --check \"**/*.{ts,js,html,scss,json,md}\" && ng lint",
     "lint:fix": "prettier --write \"**/*.{ts,js,html,scss,json,md}\" && ng lint akehir --fix",
     "e2e": "ng e2e"
