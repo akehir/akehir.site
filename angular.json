@@ -32,6 +32,7 @@
             "assets": [
               "src/manifest.webmanifest",
               "src/favicon.ico",
+              "src/llms.txt",
               "src/robots.txt",
               "src/assets",
               "src/android-chrome-192x192.png",

@@ -1,0 +1,19 @@
+# Akehir.com
+
+> Personal website of akehir — "CyberShaman by the Graces of Electron". Built with Angular and Tailwind CSS, featuring an interactive WebGL fluid simulation background, an integrated in-application command console, and PWA support.
+
+## Sections
+
+- [Home](https://akehir.com/): Landing page with interactive WebGL fluid animation
+- [About](https://akehir.com/about): About the site owner
+- [Blog](https://akehir.com/blog): Blog posts about self-hosting, LLMs, homelabs, Kubernetes, ChromeOS and more
+- [Curriculum](https://akehir.com/curriculum): Curriculum vitae
+- [Machina](https://akehir.com/machina): Interactive machine
+- [Projects](https://akehir.com/projects): Overview of all projects
+- [Colour Demo](https://akehir.com/demos/colour): Interactive colour drawing demo
+- [Privacy](https://akehir.com/privacy): Privacy policy
+- [Imprint](https://akehir.com/imprint): Imprint / legal notice
+
+## Resources
+
+- [Sitemap](https://akehir.com/assets/sitemap.xml): XML sitemap listing all pages
