@@ -3,9 +3,11 @@ import {
   DOCUMENT,
   inject,
   input,
+  PLATFORM_ID,
   viewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MarkdownComponent } from 'ngx-markdown';
 import { copyToClipboard } from '@core/util';
 import { environment } from '../../../../environments/environment';
@@ -38,8 +40,13 @@ export class BlogEntryComponent {
   publishedDate = input<string>();
   markdown = viewChild(MarkdownComponent);
   document = inject(DOCUMENT);
+  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   onMarkdownReady() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.document.querySelectorAll('pre').forEach(el => {
       if (el instanceof HTMLElement) {
         el.addEventListener('click', ev => {
