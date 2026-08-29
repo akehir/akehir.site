@@ -15,7 +15,10 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'ake-blog-entry',
   template: `
-    <markdown (ready)="onMarkdownReady()" [src]="src()">
+    <markdown
+      (ready)="onMarkdownReady()"
+      [data]="markdown() || null"
+      [src]="markdown() ? null : src()">
       <h1>{{ title() }}</h1>
       @let _publishedDate = publishedDate();
       @if (_publishedDate) {
@@ -34,11 +37,12 @@ import { environment } from '../../../../environments/environment';
   imports: [MarkdownComponent],
 })
 export class BlogEntryComponent {
+  markdown = input<string>('');
   src = input.required<string>();
   title = input.required<string>();
   sourceLink = input.required<string>();
   publishedDate = input<string>();
-  markdown = viewChild(MarkdownComponent);
+  markdownComponent = viewChild(MarkdownComponent);
   document = inject(DOCUMENT);
   isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 

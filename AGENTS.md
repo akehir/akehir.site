@@ -59,7 +59,10 @@ Agents should follow these steps when making changes:
 
 To create a new blog post, follow these steps:
 
-1.  **Create Markdown Content**: Write the blog post in Markdown and save it to `src/assets/blog/<year>/<slug>.md`.
+1.  **Create Markdown Content**: Write the blog post in Markdown and save it to `src/assets/blog/<year>/<slug>.md`. The first line of the file is the `# Title` and is rendered into the entry (replacing the projected title in `BlogEntryComponent`), so keep it in sync with the `title` metadata.
 2.  **Generate Component**: Create a new Angular component for the blog entry in `src/app/pages/blog/entries/<year>/<slug>.component.ts`. Use the existing pattern (e.g., importing `BlogEntryContainerComponent`).
 3.  **Register Entry**: Add a new entry to the `blogEntries` array in `src/app/pages/blog/blog.module.ts`. Ensure all required metadata (title, author, categories, mainCategory, publishedDate, modifiedDate, routerLink, content, source) is provided.
-4.  **Update Sitemap**: Add the new blog post URL to `src/assets/sitemap.xml`.
+4.  **Add Prerender Route**: Add the new blog post route (e.g., `/blog/<slug>`) to `prerender-routes.txt`. This file feeds `@angular/ssg` (`prerender.routesFile` in `angular.json`), so a route that is missing here will not be prerendered and will lack static HTML for SEO.
+5.  **Update Sitemap**: Add the new blog post URL to `src/assets/sitemap.xml`.
+
+> **Prerendered blog content (build-time markdown):** Blog entries render their markdown via `ngx-markdown`'s `[data]` input, which is populated from a build-time raw import of the `.md` file (e.g. `import rawMarkdown from '../../../../../assets/blog/<year>/<slug>.md?raw'`, exposed to the template as a class member and passed through `[markdown]`). The `?raw`/`.md` imports are inlined at build time thanks to the `loader: { ".md": "text" }` option in `angular.json` — do not remove it. **Never** rely on `ngx-markdown`'s `[src]` for article content: it performs an HTTP fetch that never resolves during prerendering, so the article text would be missing from the static (SEO) HTML. `[src]` is only kept as a fallback for entries without a `content` path.
