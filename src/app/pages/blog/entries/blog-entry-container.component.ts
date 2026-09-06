@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { BlogEntryComponent } from './blog-entry.component';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -14,7 +8,6 @@ import { map } from 'rxjs';
 @Component({
   selector: 'ake-blog-entry-container',
   template: ` <ake-blog-entry
-    [markdown]="markdown()"
     [src]="src()"
     [title]="title()"
     [sourceLink]="sourceLink()"
@@ -26,7 +19,6 @@ import { map } from 'rxjs';
 export class BlogEntryContainerComponent {
   #route = inject(ActivatedRoute);
   #data = toSignal(this.#route.data.pipe(map(data => data as BlogData)));
-  markdown = input<string>('');
   src = computed(() => this.#data()?.content ?? '');
   publishedDate = computed(() => this.#data()?.publishedDate ?? '');
   title = computed(() => this.#data()?.title ?? '');
