@@ -15,7 +15,10 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'ake-blog-entry',
   template: `
-    <markdown (ready)="onMarkdownReady()" [src]="src()">
+    <markdown
+      (ready)="onMarkdownReady()"
+      [data]="contentRaw() || null"
+      [src]="contentRaw() ? null : src()">
       <h1>{{ title() }}</h1>
       @let _publishedDate = publishedDate();
       @if (_publishedDate) {
@@ -34,6 +37,7 @@ import { environment } from '../../../../environments/environment';
   imports: [MarkdownComponent],
 })
 export class BlogEntryComponent {
+  contentRaw = input<string>('');
   src = input.required<string>();
   title = input.required<string>();
   sourceLink = input.required<string>();
