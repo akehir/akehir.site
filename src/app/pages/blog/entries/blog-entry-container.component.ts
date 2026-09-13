@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 @Component({
   selector: 'ake-blog-entry-container',
   template: ` <ake-blog-entry
+    [contentRaw]="contentRaw()"
     [src]="src()"
     [title]="title()"
     [sourceLink]="sourceLink()"
@@ -19,6 +20,7 @@ import { map } from 'rxjs';
 export class BlogEntryContainerComponent {
   #route = inject(ActivatedRoute);
   #data = toSignal(this.#route.data.pipe(map(data => data as BlogData)));
+  contentRaw = computed(() => this.#data()?.contentRaw ?? '');
   src = computed(() => this.#data()?.content ?? '');
   publishedDate = computed(() => this.#data()?.publishedDate ?? '');
   title = computed(() => this.#data()?.title ?? '');

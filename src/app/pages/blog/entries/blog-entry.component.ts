@@ -3,9 +3,11 @@ import {
   DOCUMENT,
   inject,
   input,
+  PLATFORM_ID,
   viewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MarkdownComponent } from 'ngx-markdown';
 import { copyToClipboard } from '@core/util';
 import { environment } from '../../../../environments/environment';
@@ -13,7 +15,10 @@ import { environment } from '../../../../environments/environment';
 @Component({
   selector: 'ake-blog-entry',
   template: `
-    <markdown (ready)="onMarkdownReady()" [src]="src()">
+    <markdown
+      (ready)="onMarkdownReady()"
+      [data]="contentRaw() || null"
+      [src]="contentRaw() ? null : src()">
       <h1>{{ title() }}</h1>
       @let _publishedDate = publishedDate();
       @if (_publishedDate) {
@@ -32,14 +37,20 @@ import { environment } from '../../../../environments/environment';
   imports: [MarkdownComponent],
 })
 export class BlogEntryComponent {
+  contentRaw = input<string>('');
   src = input.required<string>();
   title = input.required<string>();
   sourceLink = input.required<string>();
   publishedDate = input<string>();
   markdown = viewChild(MarkdownComponent);
   document = inject(DOCUMENT);
+  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   onMarkdownReady() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.document.querySelectorAll('pre').forEach(el => {
       if (el instanceof HTMLElement) {
         el.addEventListener('click', ev => {

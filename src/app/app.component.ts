@@ -1,4 +1,10 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  PLATFORM_ID,
+  ViewEncapsulation,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BackgroundService } from '@core/services/background.service';
 
 @Component({
@@ -11,4 +17,5 @@ import { BackgroundService } from '@core/services/background.service';
 export class AppComponent {
   title = 'akehir.com | CyberShaman by the Graces of Electron';
   background = inject(BackgroundService);
+  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 }

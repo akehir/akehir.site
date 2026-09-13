@@ -2,12 +2,14 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  PLATFORM_ID,
   ViewChild,
   ViewEncapsulation,
   NgZone,
   DOCUMENT,
   inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -31,6 +33,7 @@ export class ColourComponent implements AfterViewInit {
   private console = inject(ConsoleService);
   private zone = inject(NgZone);
   private document = inject<Document>(DOCUMENT);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   @ViewChild('canvas') canvas!: ElementRef;
 
@@ -90,6 +93,10 @@ export class ColourComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.context = this.canvas.nativeElement.getContext('2d');
 
     this.height = window

@@ -23,11 +23,18 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "prerender": {
+              "routesFile": "prerender-routes.txt"
+            },
             "tsConfig": "src/tsconfig.app.json",
             "outputPath": {
               "base": "dist/akehir"
             },
             "index": "src/index.html",
+            "loader": {
+              ".md": "text"
+            },
             "polyfills": [],
             "assets": [
               "src/manifest.webmanifest",
@@ -53,8 +60,7 @@
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true,
-            "browser": "src/main.ts"
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -92,6 +98,13 @@
             }
           }
         },
+        "server": {
+          "builder": "@angular/build:server",
+          "options": {
+            "browserTarget": "akehir:build:production",
+            "outputPath": "dist/server"
+          }
+        },
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
@@ -112,6 +125,9 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
+            "loader": {
+              ".md": "text"
+            },
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": ["src/styles.scss"],

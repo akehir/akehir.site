@@ -4,6 +4,43 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_the_photography_parable_and_programming from '../../../assets/blog/2026/the-photography-parable-and-programming.md?raw';
+import rawMarkdown_code_monkey_code_basher from '../../../assets/blog/2026/code-monkey-code-basher.md?raw';
+import rawMarkdown_init_7 from '../../../assets/blog/2026/init-7.md?raw';
+import rawMarkdown_global_cyber_skills_benchmark_ctf_2026 from '../../../assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md?raw';
+import rawMarkdown_gemma_4_qat from '../../../assets/blog/2026/gemma-4-qat.md?raw';
+import rawMarkdown_strix_halo_kubernetes_llm_qwen_3_6 from '../../../assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.6.md?raw';
+import rawMarkdown_strix_halo_kubernetes_llm_gemma_4 from '../../../assets/blog/2026/strix-halo-kubernetes-llm-gemma-4.md?raw';
+import rawMarkdown_sealed_secrets from '../../../assets/blog/2026/sealed-secrets.md?raw';
+import rawMarkdown_2025_review from '../../../assets/blog/2025/2025-review.md?raw';
+import rawMarkdown_brutalist from '../../../assets/blog/2026/brutalist.md?raw';
+import rawMarkdown_2025_homelab from '../../../assets/blog/2025/2025-homelab.md?raw';
+import rawMarkdown_2025_gaming from '../../../assets/blog/2025/2025-gaming.md?raw';
+import rawMarkdown_no_ai_generated_blog_posts from '../../../assets/blog/2026/no-ai-generated-blog-posts.md?raw';
+import rawMarkdown_strix_halo_kubernetes_llm_gpt_oss from '../../../assets/blog/2026/strix-halo-kubernetes-llm-gpt-oss.md?raw';
+import rawMarkdown_flux_kontext_docker_rocm_webui from '../../../assets/blog/2025/flux-kontext-docker-rocm-webui.md?raw';
+import rawMarkdown_llama_swap_and_llama_cpp_for_self_hosting_multiple_llm_models from '../../../assets/blog/2025/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md?raw';
+import rawMarkdown_lenovo_chromebook_plus_14 from '../../../assets/blog/2025/lenovo-chromebook-plus-14.md?raw';
+import rawMarkdown_lenovo_ideapad_duet_5_chromebook from '../../../assets/blog/2025/lenovo-ideapad-duet-5-chromebook.md?raw';
+import rawMarkdown_chromeos_remote_debugging_firefox from '../../../assets/blog/2025/chromeos-remote-debugging-firefox.md?raw';
+import rawMarkdown_chromeos_wireguard from '../../../assets/blog/2025/chromeos-wireguard.md?raw';
+import rawMarkdown_git_reset from '../../../assets/blog/2025/git-reset.md?raw';
+import rawMarkdown_filebeat_crashloopbackoff from '../../../assets/blog/2025/filebeat-crashloopbackoff.md?raw';
+import rawMarkdown_how_to_make_your_homelab_accessible_via_pangolin from '../../../assets/blog/2025/pangolin-basics.md?raw';
+import rawMarkdown_https_redirect_traefik_with_automatic_certificats_from_cluster_issuer_with_infomaniak from '../../../assets/blog/2025/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.md?raw';
+import rawMarkdown_kubernetes_dashboard_no_kong_proxy from '../../../assets/blog/2025/kubernetes-dashboard-no-kong-proxy.md?raw';
+import rawMarkdown_llama_cpp_docker_rocm from '../../../assets/blog/2025/llama-cpp-docker-rocm.md?raw';
+import rawMarkdown_llama_cpp_docker_rocm_gpt_oss from '../../../assets/blog/2025/llama-cpp-docker-rocm-gpt-oss.md?raw';
+import rawMarkdown_mistral_3_1 from '../../../assets/blog/2025/mistral-3-1.md?raw';
+import rawMarkdown_open_webui_llama_server from '../../../assets/blog/2025/open-webui-llama-server.md?raw';
+import rawMarkdown_rid_google_ai_overview from '../../../assets/blog/2025/rid-google-ai-overview.md?raw';
+import rawMarkdown_stable_diffusion_docker_rocm from '../../../assets/blog/2025/stable-diffusion-docker-rocm.md?raw';
+import rawMarkdown_ssh_wireguard_mobile_hotspot_issue from '../../../assets/blog/2025/ssh-wireguard-mobile-hotspot-issue.md?raw';
+import rawMarkdown_synology_dsm_port_443 from '../../../assets/blog/2025/synology-dsm-port-443.md?raw';
+import rawMarkdown_traefik_ingress_logs from '../../../assets/blog/2025/traefik-ingress-logs.md?raw';
+import rawMarkdown_algovernmentality from '../../../assets/blog/2014/algovernmentality.md?raw';
+import rawMarkdown_hello_world from '../../../assets/blog/2007/hello-world.md?raw';
+
 export type EntryCategory =
   | 'Android'
   | 'ChromeOS'
@@ -29,6 +66,7 @@ export interface BlogData {
   title: string;
   routerLink: string;
   content: string;
+  contentRaw?: string;
   source: string;
   publishedDate: string;
   modifiedDate: string;
@@ -53,6 +91,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-07-11',
       routerLink: '/blog/the-photography-parable-and-programming',
       content: '/assets/blog/2026/the-photography-parable-and-programming.md',
+      contentRaw: rawMarkdown_the_photography_parable_and_programming,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/the-photography-parable-and-programming.md',
     },
@@ -73,6 +112,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-07-07',
       routerLink: '/blog/code-monkey-code-basher',
       content: '/assets/blog/2026/code-monkey-code-basher.md',
+      contentRaw: rawMarkdown_code_monkey_code_basher,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/code-monkey-code-basher.md',
     },
@@ -93,6 +133,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-06-08',
       routerLink: '/blog/init-7',
       content: '/assets/blog/2026/init-7.md',
+      contentRaw: rawMarkdown_init_7,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/init-7.md',
     },
@@ -113,6 +154,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-06-08',
       routerLink: '/blog/global-cyber-skills-benchmark-ctf-2026',
       content: '/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
+      contentRaw: rawMarkdown_global_cyber_skills_benchmark_ctf_2026,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/global-cyber-skills-benchmark-ctf-2026.md',
     },
@@ -133,6 +175,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-06-08',
       routerLink: '/blog/gemma-4-qat',
       content: '/assets/blog/2026/gemma-4-qat.md',
+      contentRaw: rawMarkdown_gemma_4_qat,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/gemma-4-qat.md',
     },
@@ -155,6 +198,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-04-19',
       routerLink: '/blog/strix-halo-kubernetes-llm-qwen-3.6',
       content: '/assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.6.md',
+      contentRaw: rawMarkdown_strix_halo_kubernetes_llm_qwen_3_6,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.6.md',
     },
@@ -177,6 +221,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-04-19',
       routerLink: '/blog/strix-halo-kubernetes-llm-gemma-4',
       content: '/assets/blog/2026/strix-halo-kubernetes-llm-gemma-4.md',
+      contentRaw: rawMarkdown_strix_halo_kubernetes_llm_gemma_4,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/strix-halo-kubernetes-llm-gemma-4.md',
     },
@@ -204,6 +249,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-02-22',
       routerLink: '/blog/sealed-secrets',
       content: '/assets/blog/2026/sealed-secrets.md',
+      contentRaw: rawMarkdown_sealed_secrets,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/sealed-secrets.md',
     },
@@ -224,6 +270,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-02-22',
       routerLink: '/blog/2025-review',
       content: '/assets/blog/2025/2025-review.md',
+      contentRaw: rawMarkdown_2025_review,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/2025-review.md',
     },
@@ -244,6 +291,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-01-17',
       routerLink: '/blog/brutalist',
       content: '/assets/blog/2026/brutalist.md',
+      contentRaw: rawMarkdown_brutalist,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/brutalist.md',
     },
@@ -271,6 +319,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-01-08',
       routerLink: '/blog/2025-homelab',
       content: '/assets/blog/2025/2025-homelab.md',
+      contentRaw: rawMarkdown_2025_homelab,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/2025-homelab.md',
     },
@@ -291,6 +340,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-01-08',
       routerLink: '/blog/2025-gaming',
       content: '/assets/blog/2025/2025-gaming.md',
+      contentRaw: rawMarkdown_2025_gaming,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/2025-gaming.md',
     },
@@ -311,6 +361,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-01-08',
       routerLink: '/blog/no-ai-generated-blog-posts',
       content: '/assets/blog/2026/no-ai-generated-blog-posts.md',
+      contentRaw: rawMarkdown_no_ai_generated_blog_posts,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/no-ai-generated-blog-posts.md',
     },
@@ -333,6 +384,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2026-04-19',
       routerLink: '/blog/strix-halo-kubernetes-llm-gpt-oss',
       content: '/assets/blog/2026/strix-halo-kubernetes-llm-gpt-oss.md',
+      contentRaw: rawMarkdown_strix_halo_kubernetes_llm_gpt_oss,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/strix-halo-kubernetes-llm-gpt-oss.md',
     },
@@ -355,6 +407,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2025-12-25',
       routerLink: '/blog/flux-kontext-docker-rocm-webui',
       content: '/assets/blog/2025/flux-kontext-docker-rocm-webui.md',
+      contentRaw: rawMarkdown_flux_kontext_docker_rocm_webui,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/flux-kontext-docker-rocm-webui.md',
     },
@@ -379,6 +432,8 @@ export const blogEntries: BlogRoute[] = [
         '/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models',
       content:
         '/assets/blog/2025/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
+      contentRaw:
+        rawMarkdown_llama_swap_and_llama_cpp_for_self_hosting_multiple_llm_models,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models.md',
     },
@@ -401,6 +456,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2025-09-29',
       routerLink: '/blog/lenovo-chromebook-plus-14',
       content: '/assets/blog/2025/lenovo-chromebook-plus-14.md',
+      contentRaw: rawMarkdown_lenovo_chromebook_plus_14,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/lenovo-chromebook-plus-14.md',
     },
@@ -421,6 +477,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2025-09-29',
       routerLink: '/blog/lenovo-ideapad-duet-5-chromebook',
       content: '/assets/blog/2025/lenovo-ideapad-duet-5-chromebook.md',
+      contentRaw: rawMarkdown_lenovo_ideapad_duet_5_chromebook,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/lenovo-ideapad-duet-5-chromebook.md',
     },
@@ -443,6 +500,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2025-09-19',
       routerLink: '/blog/chromeos-remote-debugging-firefox',
       content: '/assets/blog/2025/chromeos-remote-debugging-firefox.md',
+      contentRaw: rawMarkdown_chromeos_remote_debugging_firefox,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/chromeos-remote-debugging-firefox.md',
     },
@@ -458,6 +516,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to Setup the Built-In WireGuard VPN in ChromeOS',
       routerLink: '/blog/chromeos-wireguard',
       content: '/assets/blog/2025/chromeos-wireguard.md',
+      contentRaw: rawMarkdown_chromeos_wireguard,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/chromeos-wireguard.md',
       publishedDate: '2025-04-13',
@@ -498,6 +557,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'git reset',
       routerLink: '/blog/git-reset',
       content: '/assets/blog/2025/git-reset.md',
+      contentRaw: rawMarkdown_git_reset,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/git-reset.md',
       publishedDate: '2025-03-20',
@@ -520,6 +580,7 @@ export const blogEntries: BlogRoute[] = [
         'How to fix filebeat CrashLoopBackoff (due to OOMKiller) by increasing resource limits',
       routerLink: '/blog/filebeat-crashloopbackoff',
       content: '/assets/blog/2025/filebeat-crashloopbackoff.md',
+      contentRaw: rawMarkdown_filebeat_crashloopbackoff,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/filebeat-crashloopbackoff.md',
       publishedDate: '2025-04-25',
@@ -540,6 +601,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to make your Homelab Accessible via Pangolin',
       routerLink: '/blog/how-to-make-your-homelab-accessible-via-pangolin',
       content: '/assets/blog/2025/pangolin-basics.md',
+      contentRaw: rawMarkdown_how_to_make_your_homelab_accessible_via_pangolin,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/pangolin-basics.md',
       publishedDate: '2025-07-17',
@@ -564,6 +626,8 @@ export const blogEntries: BlogRoute[] = [
         '/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak',
       content:
         '/assets/blog/2025/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.md',
+      contentRaw:
+        rawMarkdown_https_redirect_traefik_with_automatic_certificats_from_cluster_issuer_with_infomaniak,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak.md',
       publishedDate: '2025-04-25',
@@ -587,6 +651,7 @@ export const blogEntries: BlogRoute[] = [
         'Kubernetes Dashboard without Kong Proxy (nginx bind to port 8444 failed)',
       routerLink: '/blog/kubernetes-dashboard-no-kong-proxy',
       content: '/assets/blog/2025/kubernetes-dashboard-no-kong-proxy.md',
+      contentRaw: rawMarkdown_kubernetes_dashboard_no_kong_proxy,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/kubernetes-dashboard-no-kong-proxy.md',
       publishedDate: '2025-04-15',
@@ -609,6 +674,7 @@ export const blogEntries: BlogRoute[] = [
         'How to run DeepSeek R1 with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX',
       routerLink: '/blog/llama-cpp-docker-rocm',
       content: '/assets/blog/2025/llama-cpp-docker-rocm.md',
+      contentRaw: rawMarkdown_llama_cpp_docker_rocm,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/llama-cpp-docker-rocm.md',
       publishedDate: '2025-02-28',
@@ -631,6 +697,7 @@ export const blogEntries: BlogRoute[] = [
         'How to run GPT-OSS (20B and 120B) with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900 XTX and AMD Ryzen 9 7950X',
       routerLink: '/blog/llama-cpp-docker-rocm-gpt-oss',
       content: '/assets/blog/2025/llama-cpp-docker-rocm-gpt-oss.md',
+      contentRaw: rawMarkdown_llama_cpp_docker_rocm_gpt_oss,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/llama-cpp-docker-rocm-gpt-oss.md',
       publishedDate: '2025-08-28',
@@ -653,6 +720,7 @@ export const blogEntries: BlogRoute[] = [
         'How to run Mistral-Small-3.1-24B with llama.cpp via Docker and ROCm on an AMD Radeon RX 7900XTX',
       routerLink: '/blog/mistral-3-1',
       content: '/assets/blog/2025/mistral-3-1.md',
+      contentRaw: rawMarkdown_mistral_3_1,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/2025/blog/mistral-3-1.md',
       publishedDate: '2025-03-23',
@@ -675,6 +743,7 @@ export const blogEntries: BlogRoute[] = [
         'How to Self-Host your own private ChatGPT: Open WebUI with a GPU Accelerated llama.cpp Backend and the OpenAI GPT-20B Model',
       routerLink: '/blog/open-webui-llama-server',
       content: '/assets/blog/2025/open-webui-llama-server.md',
+      contentRaw: rawMarkdown_open_webui_llama_server,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/open-webui-llama-server.md',
       publishedDate: '2025-09-09',
@@ -695,6 +764,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to get rid of AI Overviews in Google search',
       routerLink: '/blog/rid-google-ai-overview',
       content: '/assets/blog/2025/rid-google-ai-overview.md',
+      contentRaw: rawMarkdown_rid_google_ai_overview,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/rid-google-ai-overview.md',
       publishedDate: '2025-03-28',
@@ -717,6 +787,7 @@ export const blogEntries: BlogRoute[] = [
         'How to run Stable Diffusion WebUI or Forge on AMD Radeon RX 7900XTX via Docker on Linux on Debian with ROCm 6.2 and GPU Acceleration',
       routerLink: '/blog/stable-diffusion-docker-rocm',
       content: '/assets/blog/2025/stable-diffusion-docker-rocm.md',
+      contentRaw: rawMarkdown_stable_diffusion_docker_rocm,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/stable-diffusion-docker-rocm.md',
       publishedDate: '2025-02-28',
@@ -739,6 +810,7 @@ export const blogEntries: BlogRoute[] = [
         'How to Fix SSH (and git) Not Working Over Wireguard on Mobile Hotspot',
       routerLink: '/blog/ssh-wireguard-mobile-hotspot-issue',
       content: '/assets/blog/2025/ssh-wireguard-mobile-hotspot-issue.md',
+      contentRaw: rawMarkdown_ssh_wireguard_mobile_hotspot_issue,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/ssh-wireguard-mobile-hotspot-issue.md',
       publishedDate: '2025-03-06',
@@ -759,6 +831,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'How to Map Port 443 to DSM on Synology NAS',
       routerLink: '/blog/synology-dsm-port-443',
       content: '/assets/blog/2025/synology-dsm-port-443.md',
+      contentRaw: rawMarkdown_synology_dsm_port_443,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/synology-dsm-port-443.md',
       publishedDate: '2025-05-09',
@@ -781,6 +854,7 @@ export const blogEntries: BlogRoute[] = [
         'Debugging Kubernetes Traefik Ingress Issues by Reading the Traefik Logs',
       routerLink: '/blog/traefik-ingress-logs',
       content: '/assets/blog/2025/traefik-ingress-logs.md',
+      contentRaw: rawMarkdown_traefik_ingress_logs,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2025/traefik-ingress-logs.md',
       publishedDate: '2025-04-13',
@@ -806,6 +880,7 @@ export const blogEntries: BlogRoute[] = [
       modifiedDate: '2014-11-25',
       routerLink: '/blog/algovernmentality',
       content: '/assets/blog/2014/algovernmentality.md',
+      contentRaw: rawMarkdown_algovernmentality,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/2014/blog/algovernmentality.md',
     },
@@ -821,6 +896,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'Hello World!',
       routerLink: '/blog/hello-world',
       content: '/assets/blog/2007/hello-world.md',
+      contentRaw: rawMarkdown_hello_world,
       source:
         'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/2007/blog/hello-world.md',
       publishedDate: '2007-01-08',
