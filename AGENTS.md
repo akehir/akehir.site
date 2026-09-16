@@ -60,7 +60,7 @@ Agents should follow these steps when making changes:
 
 To create a new blog post, follow these steps:
 
-1.  **Create Markdown Content**: Write the blog post in Markdown and save it to `src/assets/blog/<year>/<slug>.md`.
+1.  **Create Markdown Content**: Write the blog post in Markdown and save it to `src/assets/blog/<year>/<slug>.md`. The first line of the file is the `# Title` and is rendered into the entry (replacing the projected title in `BlogEntryComponent`), so keep it in sync with the `title` metadata.
 2.  **Generate Component**: Create a new Angular component for the blog entry in `src/app/pages/blog/entries/<year>/<slug>.component.ts`. Use the existing pattern (e.g., importing `BlogEntryContainerComponent`).
 3.  **Register Entry**: Add a new entry to the `blogEntries` array in `src/app/pages/blog/blog.module.ts`. Ensure all required metadata (title, author, categories, mainCategory, publishedDate, modifiedDate, routerLink, content, source) is provided.
 4.  **Update RSS Feed**: Regenerate the RSS feed by running `node tools/generate-rss-feed.mjs` (see [RSS Feed & Sitemap](#rss-feed--sitemap)).
