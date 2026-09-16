@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://akehir.com/</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/index</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/about</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/the-photography-parable-and-programming</loc>
+		<lastmod>2026-07-11T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/code-monkey-code-basher</loc>
+		<lastmod>2026-07-07T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
@@ -36,11 +42,6 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-qwen-3.6</loc>
-		<lastmod>2026-04-19T09:09:09+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
 		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4</loc>
 		<lastmod>2026-04-19T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
@@ -51,12 +52,17 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/blog/sealed-secrets</loc>
-		<lastmod>2026-02-22T09:09:09+01:00</lastmod>
+		<loc>https://akehir.com/blog/strix-halo-kubernetes-llm-qwen-3.6</loc>
+		<lastmod>2026-04-19T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/2025-review</loc>
+		<lastmod>2026-02-22T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/sealed-secrets</loc>
 		<lastmod>2026-02-22T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
@@ -86,6 +92,11 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
+		<loc>https://akehir.com/blog/how-to-make-your-homelab-accessible-via-pangolin</loc>
+		<lastmod>2025-12-25T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
 		<loc>https://akehir.com/blog/llama-swap-and-llama-cpp-for-self-hosting-multiple-llm-models</loc>
 		<lastmod>2025-10-23T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
@@ -106,8 +117,8 @@
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/blog/algovernmentality</loc>
-		<lastmod>2014-11-25T09:09:09+01:00</lastmod>
+		<loc>https://akehir.com/blog/hello-world</loc>
+		<lastmod>2025-09-19T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
@@ -117,123 +128,244 @@
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/llama-cpp-docker-rocm-gpt-oss</loc>
-		<lastmod>2025-08-28T17:00:00+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/how-to-make-your-homelab-accessible-via-pangolin</loc>
-		<lastmod>2025-12-25T17:00:00+01:00</lastmod>
+		<lastmod>2025-08-28T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/synology-dsm-port-443</loc>
-		<lastmod>2025-05-09T12:00:00+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-05-09T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/filebeat-crashloopbackoff</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-04-25T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/https-redirect-traefik-with-automatic-certificats-from-cluster-issuer-with-infomaniak</loc>
+		<lastmod>2025-04-25T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/kubernetes-dashboard-no-kong-proxy</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/traefik-ingress-logs</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-04-15T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/chromeos-wireguard</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-04-13T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/traefik-ingress-logs</loc>
+		<lastmod>2025-04-13T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/rid-google-ai-overview</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-03-28T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/mistral-3-1</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
+		<lastmod>2025-03-23T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/git-reset</loc>
-		<lastmod>2025-04-14T12:00:00+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-
-	<url>
-		<loc>https://akehir.com/blog/llama-cpp-docker-rocm</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/stable-diffusion-docker-rocm</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
+		<lastmod>2025-03-20T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/blog/ssh-wireguard-mobile-hotspot-issue</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
+		<lastmod>2025-03-06T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/llama-cpp-docker-rocm</loc>
+		<lastmod>2025-02-28T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/stable-diffusion-docker-rocm</loc>
+		<lastmod>2025-02-28T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/algovernmentality</loc>
+		<lastmod>2014-11-25T09:09:09+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/curriculum</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/machina</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/projects</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/demos/colour</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
+		<loc>https://akehir.com/projects/acp</loc>
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://akehir.com/error</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
-		<priority>1.0</priority>
+		<loc>https://akehir.com/projects/alpcarver</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/atc</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/colour-picker</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/efa</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/elipsoloft</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/emoji-wars</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/evzh</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/ig-rw</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/paxw</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/pfch</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/raspi-computer</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/raspi-entertainment-system</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/tfc</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-bootstrap-icons</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-fluid-simulation</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-font-awesome-icons</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-material-icons</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-noto-emoji</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-password-checker</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-rpg-awesome-icons</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/triangular-shader</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/web-marble-marcher</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/projects/wedding-website</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle-simple-algorithm</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle2</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle3</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle4</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle5</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/circle6</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/generic</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/legacy-mandelbrot</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/mandelbrot</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/ochsenbrot</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/square-square</loc>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/demos/colour/triangle</loc>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/privacy</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>0.1</priority>
 	</url>
 	<url>
 		<loc>https://akehir.com/imprint</loc>
-		<lastmod>2025-03-06T23:19:32+01:00</lastmod>
 		<priority>0.1</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/code-monkey-code-basher</loc>
-		<lastmod>2026-07-07T09:09:09+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/the-photography-parable-and-programming</loc>
-		<lastmod>2026-07-11T09:09:09+01:00</lastmod>
-		<priority>1.0</priority>
-	</url>
-	<url>
-		<loc>https://akehir.com/blog/hello-world</loc>
-		<lastmod>2025-09-19T09:09:09+01:00</lastmod>
-		<priority>1.0</priority>
 	</url>
 </urlset>

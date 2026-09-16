@@ -295,7 +295,6 @@ const staticPages = [
   'machina',
   'projects',
   'demos/colour',
-  'error',
   'privacy',
   'imprint',
 ];
