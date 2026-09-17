@@ -17,3 +17,4 @@
 ## Resources
 
 - [Sitemap](https://akehir.com/assets/sitemap.xml): XML sitemap listing all pages
+- [RSS Feed](https://akehir.com/assets/rss.xml): RSS feed of all blog entries

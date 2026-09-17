@@ -43,6 +43,21 @@ ake-blog {
   }
 
   & div {
+    & .ake-blog-entries--rss {
+      font-size: 2rem;
+      display: block;
+      margin-top: 2rem;
+      background: linear-gradient(
+        to bottom right,
+        $color-akehir-cyan,
+        $color-akehir-blue,
+        $color-akehir-red,
+        $color-akehir-yellow
+      );
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     & .ake-blog-entries--item {
       font-size: 5rem;
       display: block;
