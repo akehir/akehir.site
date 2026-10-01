@@ -916,7 +916,17 @@ const routes: Routes = [
   {
     path: '',
     component: BlogComponent,
-    children: [{ path: '', component: EntriesComponent }, ...blogEntries],
+    children: [
+      { path: '', component: EntriesComponent },
+      {
+        path: 'search',
+        loadComponent: () =>
+          import('./search/search-page.component').then(
+            c => c.BlogSearchPageComponent
+          ),
+      },
+      ...blogEntries,
+    ],
   },
 ];
 

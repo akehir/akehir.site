@@ -1,13 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlogData, blogEntries } from './blog.module';
+import { BlogSearchComponent } from './search/search.component';
 
 @Component({
   selector: 'ake-blog-entries',
   templateUrl: './entries.component.html',
   styleUrls: [],
   encapsulation: ViewEncapsulation.None,
-  imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink, BlogSearchComponent],
 })
 export class EntriesComponent {
   entries: BlogData[] = blogEntries

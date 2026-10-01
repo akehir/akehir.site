@@ -142,6 +142,34 @@ blogEntries.sort(
   (a, b) => b.lastmod.localeCompare(a.lastmod) || a.path.localeCompare(b.path)
 );
 
+// --- Static child pages of the blog module (e.g. /blog/search) ---
+// The blog module declares child routes next to the blog entries (the entry
+// list at /blog itself and the search page). Collect the child paths, skip
+// the empty path (it is /blog itself) and the blog entry paths (already
+// listed), leaving pages such as /blog/search.
+const blogEntryPaths = new Set(blogEntries.map(entry => entry.path));
+const blogChildrenOpen = blogModule.indexOf('children: [');
+const blogChildrenSource =
+  blogChildrenOpen === -1
+    ? ''
+    : blogModule.slice(
+        blogChildrenOpen,
+        findClosingBracket(
+          blogModule,
+          blogChildrenOpen + 'children: ['.length - 1
+        )
+      );
+const blogChildPaths = [];
+const blogChildRegex = /path: '([^']*)'/g;
+let childMatch;
+while ((childMatch = blogChildRegex.exec(blogChildrenSource)) !== null) {
+  const childPath = childMatch[1];
+  if (childPath === '' || blogEntryPaths.has(childPath)) {
+    continue;
+  }
+  blogChildPaths.push(`/blog/${childPath}`);
+}
+
 // --- Project IDs from ProjectList.ts ---
 const projectList = read(projectListPath);
 const projectIdsSource = projectList.slice(
@@ -213,6 +241,12 @@ const entries = [{ url: `${SITE_ORIGIN}/`, priority: '1.0' }];
 for (const route of staticRoutes) {
   entries.push({ url: `${SITE_ORIGIN}${route}`, priority: priorityFor(route) });
   if (route === '/blog') {
+    blogChildPaths.forEach(childPath =>
+      entries.push({
+        url: `${SITE_ORIGIN}${childPath}`,
+        priority: '1.0',
+      })
+    );
     blogEntries.forEach(entry =>
       entries.push({
         url: `${SITE_ORIGIN}/blog/${entry.path}`,

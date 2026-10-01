@@ -110,12 +110,41 @@ const entriesSource = blogModule
 const blogEntryRegex =
   /\{\s*path:\s*'([^']+)',\s*title:[\s\S]*?data:\s*\{([\s\S]*?)\}\s*,\s*loadComponent:/g;
 const blogRoutes = [];
+const blogEntryPaths = new Set();
 while ((match = blogEntryRegex.exec(entriesSource)) !== null) {
   const [, entryPath, dataBlock] = match;
+  blogEntryPaths.add(entryPath);
   if (/hidden *: *true/.test(dataBlock)) {
     continue;
   }
   blogRoutes.push(`/blog/${entryPath}`);
+}
+
+// --- Static child pages of the blog module (e.g. /blog/search) ---
+// The blog module declares child routes next to the blog entries (the entry
+// list at /blog itself and the search page). Collect the child paths, skip
+// the empty path (it is /blog itself) and the blog entry paths (already
+// listed), leaving pages such as /blog/search.
+const blogChildrenOpen = blogModule.indexOf('children: [');
+const blogChildrenSource =
+  blogChildrenOpen === -1
+    ? ''
+    : blogModule.slice(
+        blogChildrenOpen,
+        findClosingBracket(
+          blogModule,
+          blogChildrenOpen + 'children: ['.length - 1
+        )
+      );
+const blogChildRoutes = [];
+const blogChildRegex = /path: '([^']*)'/g;
+let childMatch;
+while ((childMatch = blogChildRegex.exec(blogChildrenSource)) !== null) {
+  const childPath = childMatch[1];
+  if (childPath === '' || blogEntryPaths.has(childPath)) {
+    continue;
+  }
+  blogChildRoutes.push(`/blog/${childPath}`);
 }
 
 // --- Project IDs from ProjectList.ts ---
@@ -168,7 +197,7 @@ if (
   process.exit(1);
 }
 
-const allRoutes = [...routes, ...blogRoutes, ...projectRoutes];
+const allRoutes = [...routes, ...blogRoutes, ...blogChildRoutes, ...projectRoutes];
 colourVariants.forEach(variant => allRoutes.push(`/demos/colour/${variant}`));
 
 const output = [...new Set(allRoutes)].sort().join('\n') + '\n';
@@ -187,6 +216,7 @@ if (checkOnly) {
   console.log(
     `Wrote ${allRoutes.length} routes to src/prerender-routes.txt ` +
       `(${routes.length} static, ${blogRoutes.length} blog, ` +
-      `${projectRoutes.length} projects, ${colourVariants.length} colour demos).`
+      `${blogChildRoutes.length} blog pages, ${projectRoutes.length} projects, ` +
+      `${colourVariants.length} colour demos).`
   );
 }

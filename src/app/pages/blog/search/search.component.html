@@ -1,0 +1,175 @@
+<section class="ake-blog-search">
+  <div class="ake-blog-search--query">
+    <label for="ake-blog-search-input" class="ake-blog-search--label"
+      >Search the blog</label
+    >
+    <input
+      id="ake-blog-search-input"
+      type="search"
+      class="ake-blog-search--input"
+      placeholder="Try &quot;git reset&quot; or &quot;llama&quot;…"
+      autocomplete="off"
+      [value]="query()"
+      (input)="onQueryChange($any($event.target).value)"
+    />
+  </div>
+
+  @if (!service.loading() && !service.error()) {
+    <div class="ake-blog-search--facets">
+      @let available = facets();
+      @if (available.categories.length > 0) {
+        <div class="ake-blog-search--facet-group">
+          <span class="ake-blog-search--facet-title">Category</span>
+          <div class="ake-blog-search--chips">
+            @for (category of available.categories; track category) {
+              <button
+                type="button"
+                class="ake-blog-search--chip"
+                [class.ake-blog-search--chip-active]="isCategorySelected(category)"
+                (click)="toggleCategory(category)"
+              >
+                {{ category }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+      @if (available.mainCategories.length > 0) {
+        <div class="ake-blog-search--facet-group">
+          <span class="ake-blog-search--facet-title">Group</span>
+          <div class="ake-blog-search--chips">
+            @for (mainCategory of available.mainCategories; track mainCategory) {
+              <button
+                type="button"
+                class="ake-blog-search--chip"
+                [class.ake-blog-search--chip-active]="isMainCategorySelected(mainCategory)"
+                (click)="toggleMainCategory(mainCategory)"
+              >
+                {{ mainCategory }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+      @if (available.authors.length > 0) {
+        <div class="ake-blog-search--facet-group">
+          <span class="ake-blog-search--facet-title">Author</span>
+          <div class="ake-blog-search--chips">
+            @for (author of available.authors; track author) {
+              <button
+                type="button"
+                class="ake-blog-search--chip"
+                [class.ake-blog-search--chip-active]="isAuthorSelected(author)"
+                (click)="toggleAuthor(author)"
+              >
+                {{ author }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="ake-blog-search--facet-group ake-blog-search--range">
+        <label class="ake-blog-search--range-label" for="ake-blog-search-from"
+          >From</label
+        >
+        <input
+          id="ake-blog-search-from"
+          type="date"
+          class="ake-blog-search--date"
+          [value]="from()"
+          (input)="onFromChange($any($event.target).value)"
+        />
+        <label class="ake-blog-search--range-label" for="ake-blog-search-to"
+          >To</label
+        >
+        <input
+          id="ake-blog-search-to"
+          type="date"
+          class="ake-blog-search--date"
+          [value]="to()"
+          (input)="onToChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="ake-blog-search--facet-group ake-blog-search--sort">
+        <label class="ake-blog-search--range-label" for="ake-blog-search-sort"
+          >Sort</label
+        >
+        <select
+          id="ake-blog-search-sort"
+          class="ake-blog-search--select"
+          [value]="sortModel()"
+          (change)="onSortChange($any($event.target).value)"
+        >
+          @if (query().trim() !== '') {
+            <option value="relevance">Relevance</option>
+          }
+          @for (option of sortOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="ake-blog-search--meta">
+      <span class="ake-blog-search--count">
+        {{ results().length }} {{ results().length === 1 ? 'result' : 'results' }}
+      </span>
+      @if (active()) {
+        <button
+          type="button"
+          class="ake-blog-search--clear"
+          (click)="clearFilters()"
+        >
+          Clear filters
+        </button>
+      }
+    </div>
+
+    @if (results().length === 0) {
+      <div class="ake-blog-search--empty">
+        <p>No blog posts match your search.</p>
+        @if (active()) {
+          <button
+            type="button"
+            class="ake-blog-search--clear"
+            (click)="clearFilters()"
+          >
+            Clear filters
+          </button>
+        }
+      </div>
+    } @else {
+      <ul class="ake-blog-search--results">
+        @for (result of results(); track result.entry.routerLink) {
+          <li class="ake-blog-search--result">
+            <a
+              [routerLink]="result.entry.routerLink"
+              class="ake-blog-search--result-link"
+              >{{ result.entry.title }}</a
+            >
+            <div class="ake-blog-search--result-meta">
+              <time>{{ result.entry.publishedDate }}</time>
+              @if (result.entry.modifiedDate !== result.entry.publishedDate) {
+                <span>· updated {{ result.entry.modifiedDate }}</span>
+              }
+              <span>· {{ result.entry.mainCategory }}</span>
+            </div>
+            @if (result.snippet) {
+              <p class="ake-blog-search--snippet">
+                {{ result.snippet }}
+              </p>
+            }
+          </li>
+        }
+      </ul>
+    }
+  } @else if (service.error()) {
+    <div class="ake-blog-search--error">
+      <p>Search is unavailable right now. Please try again later.</p>
+    </div>
+  } @else {
+    <div class="ake-blog-search--loading">Loading search…</div>
+  }
+</section>

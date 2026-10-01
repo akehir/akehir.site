@@ -255,6 +255,49 @@ const blogUrls = new Set(
   visibleEntries.map(({ data }) => `${SITE_ORIGIN}${data.routerLink}`)
 );
 
+// Static child pages of the blog module (e.g. /blog/search) that are not
+// blog entries but are part of the sitemap. The child route paths come from
+// the blog module's children list; the empty path is /blog itself and the
+// blog entry paths are already covered by blogUrls.
+const blogEntryPaths = new Set(entries.map(({ routePath }) => routePath));
+const blogChildrenOpen = source.indexOf('children: [');
+const blogChildrenSource =
+  blogChildrenOpen === -1
+    ? ''
+    : source.slice(
+        blogChildrenOpen,
+        findClosingBracket(
+          source,
+          blogChildrenOpen + 'children: ['.length - 1
+        )
+      );
+const blogChildUrls = new Set();
+const blogChildRegex = /path: '([^']*)'/g;
+let childMatch;
+while ((childMatch = blogChildRegex.exec(blogChildrenSource)) !== null) {
+  const childPath = childMatch[1];
+  if (childPath === '' || blogEntryPaths.has(childPath)) {
+    continue;
+  }
+  blogChildUrls.add(`${SITE_ORIGIN}/blog/${childPath}`);
+}
+
+// Finds the index of the ']' matching the '[' at openIndex.
+function findClosingBracket(sourceText, openIndex) {
+  let depth = 0;
+  for (let i = openIndex; i < sourceText.length; i += 1) {
+    if (sourceText[i] === '[') {
+      depth += 1;
+    } else if (sourceText[i] === ']') {
+      depth -= 1;
+      if (depth === 0) {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
 const fail = (msg, lines) => {
   console.error(`\nSitemap issue - ${msg}:\n${lines.join('\n')}`);
   process.exit(1);
@@ -262,7 +305,10 @@ const fail = (msg, lines) => {
 
 const missingInSitemap = [...blogUrls].filter(url => !sitemapUrls.includes(url));
 const unknownBlogUrls = sitemapUrls.filter(
-  url => url.includes('/blog/') && !blogUrls.has(url)
+  url =>
+    url.includes('/blog/') &&
+    !blogUrls.has(url) &&
+    !blogChildUrls.has(url)
 );
 const duplicateUrls = sitemapUrls.filter(
   (url, index) => sitemapUrls.indexOf(url) !== index

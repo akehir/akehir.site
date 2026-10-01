@@ -6,7 +6,8 @@
 
 - [Home](https://akehir.com/): Landing page with interactive WebGL fluid animation
 - [About](https://akehir.com/about): About the site owner
-- [Blog](https://akehir.com/blog): Blog posts about self-hosting, LLMs, homelabs, Kubernetes, ChromeOS and more
+- [Blog](https://akehir.com/blog): Blog posts about self-hosting, LLMs, homelabs, Kubernetes, ChromeOS and more (with inline search and filtering)
+- [Blog Search](https://akehir.com/blog/search): Search and filter blog posts by full-text query, category, group, author and date range
 - [Curriculum](https://akehir.com/curriculum): Curriculum vitae
 - [Machina](https://akehir.com/machina): Interactive machine
 - [Projects](https://akehir.com/projects): Overview of all projects

@@ -29,6 +29,7 @@
 /blog/open-webui-llama-server
 /blog/rid-google-ai-overview
 /blog/sealed-secrets
+/blog/search
 /blog/ssh-wireguard-mobile-hotspot-issue
 /blog/stable-diffusion-docker-rocm
 /blog/strix-halo-kubernetes-llm-gemma-4
