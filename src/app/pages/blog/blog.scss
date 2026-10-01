@@ -84,6 +84,8 @@ ake-blog {
     & a {
       display: inline-block;
       position: relative;
+      text-decoration: none;
+      color: $color-tempest-elements-blue-sky;
 
       &:focus,
       &:active,

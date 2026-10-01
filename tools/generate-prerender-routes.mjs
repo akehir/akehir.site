@@ -24,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const checkOnly = process.argv.includes('--check');
 
-const routesPath = path.join(root, 'src/prerender-routes.txt');
+const routesPath = path.join(root, 'prerender-routes.txt');
 const appRoutingPath = path.join(root, 'src/app/app-routing.module.ts');
 const blogModulePath = path.join(root, 'src/app/pages/blog/blog.module.ts');
 const projectListPath = path.join(root, 'src/app/core/data/ProjectList.ts');

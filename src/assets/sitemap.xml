@@ -368,4 +368,19 @@
 		<loc>https://akehir.com/imprint</loc>
 		<priority>0.1</priority>
 	</url>
+	<url>
+		<loc>https://akehir.com/blog/code-monkey-code-basher</loc>
+		<lastmod>2026-07-07T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/the-photography-parable-and-programming</loc>
+		<lastmod>2026-07-11T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://akehir.com/blog/some-random-package-recommendations</loc>
+		<lastmod>2026-07-11T09:09:09+01:00</lastmod>
+		<priority>1.0</priority>
+	</url>
 </urlset>

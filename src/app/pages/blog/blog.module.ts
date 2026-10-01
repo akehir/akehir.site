@@ -79,6 +79,26 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+    {
+    path: 'some-random-package-recommendations',
+    title: 'Random Linux Package Recommendations (RLPR)',
+    data: {
+      title: 'Some Random Package Recommendations',
+      author: 'Raphael Ochsenbein',
+      categories: ['Linux', 'Docker', "Raphael's Random Rumblings"],
+      mainCategory: 'Linux',
+      publishedDate: '2026-07-11',
+      modifiedDate: '2026-07-11',
+      routerLink: '/blog/some-random-package-recommendations',
+      content: '/assets/blog/2026/some-random-package-recommendations.md',
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/some-random-package-recommendations.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/some-random-package-recommendations.component').then(
+        c => c.SomeRandomPackageRecommendationsComponent
+      ),
+  },
   {
     path: 'the-photography-parable-and-programming',
     title: 'The Photography Parable, and Programming LLMs',
