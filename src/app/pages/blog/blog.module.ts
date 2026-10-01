@@ -79,7 +79,7 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
-    {
+  {
     path: 'some-random-package-recommendations',
     title: 'Random Linux Package Recommendations (RLPR)',
     data: {

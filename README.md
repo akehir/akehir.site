@@ -3,9 +3,10 @@
 The personal website for [akehir.com](https://akehir.com).
 
 ## Todos:
- - add blog entries
- - add llms.txt (https://developer.chrome.com/docs/lighthouse/agentic-browsing/llms-txt?utm_source=lighthouse&utm_medium=lr)
- - ...
+
+- add blog entries
+- add llms.txt (https://developer.chrome.com/docs/lighthouse/agentic-browsing/llms-txt?utm_source=lighthouse&utm_medium=lr)
+- ...
 
 ## Features
 
