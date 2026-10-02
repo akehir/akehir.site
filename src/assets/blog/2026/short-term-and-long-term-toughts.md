@@ -13,6 +13,7 @@ However, many of these gains are mainly short-term gains, and I envision problem
 From a practical perspective, I believe, LLMs are here to stay in some way or another (since they have proven their usefulness; since there are open source models available that anyone can host for themselves - as I do). Therefore I think it is important to address these longer-term issues.
 
 The issues are:
+
 - less senior programmes, because the path to becoming a senior is more difficult
 - reviewing code is not the same as writing code (and less fun)
 - less documentation to learn from (stackoverflow, wikipedia are in peril)
@@ -28,4 +29,3 @@ This brings me to the first point on my bullet list. The path to become a senior
 In an ideal world, you can read and review the LLM generated code and come to similar understanding about the code as if you had written it yourself. I say in an ideal world, because understanding code written by someone else is more difficult than writing that code in the first place. And even just having written the code does not imply that the programmer has actually understood what was just written. In any case, understanding code takes a lot of mental focus, because it is a very abstract process. Basically one has to simulate all possible states of the program and evaluate how it would behave under these conditions. In the mind.
 
 So while we have writing code on one hand, which is the process of formulating a specific behaviour that the computer will always follow - it is inherently a creative process. Reviewing code is the opposite, it is figuring out what the behaviour of the computer would be when it executes a program: it is inherently an abstract process. Now, programming has an element of abstraction to it as well, as we have established, modern computer languages are highly abstracted. But I speak from my own experience, I can easily enter the flow and program for any number of hours; and reviewing any non-trivial piece of code is much more tolling. Even staying focused for an 1 hour code review is difficult.
-
