@@ -1,5 +1,7 @@
 # No AI Generated Blog Posts
 
+_Published: 2026-01-08_
+
 I just wanted to put out a quick commitment from my side out there.
 
 > On this site, you will not find any AI generated content.

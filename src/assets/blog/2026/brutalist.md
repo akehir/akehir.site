@@ -1,5 +1,8 @@
 # Why is My Website a Brutalist Mess?
 
+_Published: 2026-10-01_
+
+
 Since you're visiting my website right now, reading these words, you might have wondered, why my site is such a brutalist mess in terms of styling and layout.
 
 The main reason is that this website is a playground for putting ideas out, and I have a chaotic amalgam of ideas that need to be tested. Those ideas extend to styling (CSS), so the styles are just me messing around with random ideas until I'm happy - which then combine into a brutalist whole.

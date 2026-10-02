@@ -4,6 +4,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_short_term_and_long_term_toughts from '../../../assets/blog/2026/short-term-and-long-term-toughts.md?raw';
 import rawMarkdown_the_photography_parable_and_programming from '../../../assets/blog/2026/the-photography-parable-and-programming.md?raw';
 import rawMarkdown_code_monkey_code_basher from '../../../assets/blog/2026/code-monkey-code-basher.md?raw';
 import rawMarkdown_init_7 from '../../../assets/blog/2026/init-7.md?raw';
@@ -80,6 +81,27 @@ type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
   {
+    path: 'short-term-and-long-term-toughts',
+    title: 'Short Term and Long Term Toughts on AI and LLMs',
+    data: {
+      title: 'Short Term and Long Term Toughts',
+      author: 'Raphael Ochsenbein',
+      categories: ["Raphael's Random Rumblings", 'Machine Learning'],
+      mainCategory: "Raphael's Random Rumblings",
+      publishedDate: '2026-10-02',
+      modifiedDate: '2026-10-02',
+      routerLink: '/blog/short-term-and-long-term-toughts',
+      content: '/assets/blog/2026/short-term-and-long-term-toughts.md',
+      contentRaw: rawMarkdown_short_term_and_long_term_toughts,
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/short-term-and-long-term-toughts.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/short-term-and-long-term-toughts.component').then(
+        c => c.ShortTermAndLongTermToughtsComponent
+      ),
+  },
+  {
     path: 'some-random-package-recommendations',
     title: 'Random Linux Package Recommendations (RLPR)',
     data: {
@@ -87,8 +109,8 @@ export const blogEntries: BlogRoute[] = [
       author: 'Raphael Ochsenbein',
       categories: ['Linux', 'Docker', "Raphael's Random Rumblings"],
       mainCategory: 'Linux',
-      publishedDate: '2026-07-11',
-      modifiedDate: '2026-07-11',
+      publishedDate: '2026-10-01',
+      modifiedDate: '2026-10-01',
       routerLink: '/blog/some-random-package-recommendations',
       content: '/assets/blog/2026/some-random-package-recommendations.md',
       source:
@@ -127,7 +149,7 @@ export const blogEntries: BlogRoute[] = [
       title: 'From Code Monkey to Code Basher',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', "Raphael's Random Rumblings"],
-      mainCategory: 'Machine Learning',
+      mainCategory: "Raphael's Random Rumblings",
       publishedDate: '2026-07-07',
       modifiedDate: '2026-07-07',
       routerLink: '/blog/code-monkey-code-basher',

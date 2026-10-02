@@ -1,5 +1,7 @@
 # Using Bitnami Sealed Secrets with Flux on Kubernetes
 
+_Published: 2026-02-22_
+
 I have long planned to setup sealed secrets in order to store the secrets of my apps together with their manifests in order to be able to manage the whole state of my cluster via code repositories.
 
 Until now I've manually added the secrets (or avoided their use). The end goal would be that my flux repository could be public as it shouldn't contain any secret data.

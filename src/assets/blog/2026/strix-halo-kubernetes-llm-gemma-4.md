@@ -1,5 +1,8 @@
 # Gemma 4 31B, 26B, and E4B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker)
 
+_Published: 2026-04-04_
+_Modified: 2026-04-19_
+
 ## Summary
 
 Thanks to my previously outlined setup for running `llama-swap` on a Minisforum MS-S1 and the unsloth GGUF files, it has been rather easy to get Gemma 4 running on my setup.

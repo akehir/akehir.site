@@ -1,5 +1,8 @@
 # GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
 
+_Published: 2025-12-25_
+_Modified: 2026-04-19_
+
 In order to run bigger Machine Learning / LLM Models, I've wanted to upgrade the RAM of my computer. Unfortunately the rising DDR5 prices made that prohibitively expensive.
 
 Therefore I've pivoted to using a _Minisforum MS-S1_ which I could get for a reasonable price. I have to say, I'm positively surprised of the capabilities of this device, especially seen as compared to it's power consumption.

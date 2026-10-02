@@ -1,3 +1,7 @@
+# From Code Monkey to Code Basher
+
+_Published: 2025-03-23_
+
 Working in Information Technology right now means that there is no way to avoid the topic of AI / LLM. Personally, I have been thinking about machine learning for a long time, and from before it was `cool`. For instance, I have an (unpublished, how typical) blog post about a [paper](https://arxiv.org/abs/1312.6199) of Ilya Sutskever _et al._ from 7 years ago.
 
 That is a lot of words to say that I have thoughts about machine learning, and I am now opting to opine them even in their raw form.

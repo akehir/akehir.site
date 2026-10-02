@@ -1,5 +1,7 @@
 # Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
 
+_Published: 2026-04-19_
+
 ## Summary
 
 April has been quite a month for local LLMs! Shortly after Gemma 4 26B was released, it quickly became my favorite model to use.

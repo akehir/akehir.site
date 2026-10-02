@@ -1,5 +1,7 @@
 # The Photography Parable, and Programming LLMs
 
+_Published: 2025-03-23_
+
 I have recently (in the last half year) read the beautiful comparison of the invention of industrial microwaves to agentic coding - or, as the original title states: _In the Future All Food will be Cooked in a Microwave and if you cant deal with that then you need to get out of the kitchen_. I really recommend you read that blog [here](https://www.colincornaby.me/2025/08/in-the-future-all-food-will-be-cooked-in-a-microwave-and-if-you-cant-deal-with-that-then-you-need-to-get-out-of-the-kitchen/).
 
 I have been thinking about this, and I would like to propose another comparison that may help us envision how `agentic coding`, or how `LLM`s might change the world of software development. And the world of software development is the world, as I have argued before (see for instance, [here](https://akehir.com/blog/algovernmentality)).

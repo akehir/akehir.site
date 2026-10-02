@@ -1,5 +1,7 @@
 # Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)
 
+_Published: 2026-06-08_
+
 I had the honor of participating the Global Cyber Skills Benchmark CTF 2026 thanks to the security team spontaneously inviting me.
 
 It was a good learning experience, but since the challenges were absolutely not trivial, and since I was already busy during the scheduled time of the capture the flag event, I only solved one challenge. I did vibe code a solution to another challenge (a secure coding one), but I don't really count that as a success.

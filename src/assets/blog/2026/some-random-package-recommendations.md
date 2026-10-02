@@ -1,5 +1,7 @@
 # Random Linux Package Recommendations (RLPR)
 
+_Published: 2026-10-01_
+
 This is what I like to take as a basis for my systems. The recommendations are specific to _debian_ and _very_ opinionated. Take it with a grain of salt.
 
 The list is neither complete nor ideal, but it is a starting point of packages I usually install on my linux systems.

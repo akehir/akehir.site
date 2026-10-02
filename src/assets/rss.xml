@@ -9,14 +9,57 @@
     <description>RSS feed with all blog entries of the Akehir blog.</description>
     <language>en</language>
     <copyright>Copyright (c) 2026, Raphael Ochsenbein</copyright>
-    <lastBuildDate>Sat, 11 Jul 2026 11:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 11:00:00 GMT</lastBuildDate>
     <generator>akehir.site (tools/generate-rss-feed.mjs)</generator>
+    <item>
+      <title>Short Term and Long Term Toughts</title>
+      <link>https://akehir.com/blog/short-term-and-long-term-toughts</link>
+      <guid isPermaLink="true">https://akehir.com/blog/short-term-and-long-term-toughts</guid>
+      <description><![CDATA[# Short Term and Long Term Toughts on AI and LLMs
+
+_Published: 2026-10-02_
+
+I wanted to pen some more thoughts about LLM usage, especially in coding.
+
+Today, I wanted to think (and write) about one major problem area I see. I am specifically excluding ethical issues, and copyright issues, as these are separate topics warranting their own space. I am also not talking about the economics.
+
+Especially over the course of the first half of 2026, it has become clear that LLMs do in fact have a place in coding, and that they enable productivity gains.
+
+However, many of these gains are mainly short-term gains, and I envision problems that arise specifically when LLMs are used long-term. I have not seen these problems discussed as much as the obvious issues (ethical, economic, copyright), and the short-term benefits of LLM-assisted coding.
+
+From a practical perspective, I believe, LLMs are here to stay in some way or another (since they have proven their usefulness; since there are open source models available that anyone can host for themselves - as I do). Therefore I think it is important to address these longer-term issues.
+
+The issues are:
+- less senior programmes, because the path to becoming a senior is more difficult
+- reviewing code is not the same as writing code (and less fun)
+- less documentation to learn from (stackoverflow, wikipedia are in peril)
+- it becomes more difficult to maintain and understand software
+- training on synthetically generated data stifles innvoation
+
+I will get into each of the issues in detail later. As a preamble, I wanted to mention that these are not new processes. For instance, we have been creating computer programs on higher levels of abstraction already. From assembly to c to python, the higher the levels of abstraction, the less a programmer in these languages needs to understand the underlying system. One could argue, that LLM generated code is just another layer of abstraction, especially if a functioning program is the only artefact we care about.
+
+However, while each level of abstraction enables a higher productivity because the developer does not need to be concerned with things that are beneath the abstraction, this increased productivity comes at a cost of deeper understanding of the system. A frontend developer writing JavaScript does not need to think about memory management, for instance. The flip side of this is, that it is not possible to be very memory efficient in JavaScript. Usually, it is a trade-off that one could be willing to make; however since LLMs use `natural` language input so far removed from programming languages, there is almost no reasoning about the deeper state of the computer anymore.
+
+This brings me to the first point on my bullet list. The path to become a senior becomes much more difficult, since in creating a program, instead of reasoning about the goal of the task and how the system must be evolved to meet that goal, you just throw a prompt at a slot machine / slop machine, and get a result. I think becoming a senior involves wrestling with unknown errors, foguring out how the system works beneath them and finding a solution. It also involves designing yourself into a corner and writing some spaghetti code. All of these experiences accummulate and one becomes senior along the way. If an error just means pushing the buttons to generate a solution, I believe the path to seniority becomes more difficult.
+
+In an ideal world, you can read and review the LLM generated code and come to similar understanding about the code as if you had written it yourself. I say in an ideal world, because understanding code written by someone else is more difficult than writing that code in the first place. And even just having written the code does not imply that the programmer has actually understood what was just written. In any case, understanding code takes a lot of mental focus, because it is a very abstract process. Basically one has to simulate all possible states of the program and evaluate how it would behave under these conditions. In the mind.
+
+So while we have writing code on one hand, which is the process of formulating a specific behaviour that the computer will always follow - it is inherently a creative process. Reviewing code is the opposite, it is figuring out what the behaviour of the computer would be when it executes a program: it is inherently an abstract process. Now, programming has an element of abstraction to it as well, as we have established, modern computer languages are highly abstracted. But I speak from my own experience, I can easily enter the flow and program for any number of hours; and reviewing any non-trivial piece of code is much more tolling. Even staying focused for an 1 hour code review is difficult.]]></description>
+      <category>Raphael&apos;s Random Rumblings</category>
+      <category>Raphael&apos;s Random Rumblings, Machine Learning</category>
+      <dc:creator>Raphael Ochsenbein</dc:creator>
+      <pubDate>Fri, 02 Oct 2026 11:00:00 GMT</pubDate>
+      <lastBuildDate>Fri, 02 Oct 2026 11:00:00 GMT</lastBuildDate>
+    </item>
     <item>
       <title>Some Random Package Recommendations</title>
       <link>https://akehir.com/blog/some-random-package-recommendations</link>
       <guid isPermaLink="true">https://akehir.com/blog/some-random-package-recommendations</guid>
       <description><![CDATA[# Random Linux Package Recommendations (RLPR)
-This is what I like to take as a basis for my systems. The recommendations are specific to *debian* and *very* opinionated. Take it with a grain of salt.
+
+_Published: 2026-10-01_
+
+This is what I like to take as a basis for my systems. The recommendations are specific to _debian_ and _very_ opinionated. Take it with a grain of salt.
 
 The list is neither complete nor ideal, but it is a starting point of packages I usually install on my linux systems.
 
@@ -26,7 +69,7 @@ The list works best in Debian (and probably most debian derived distributions)
 
 ## Base System
 
-I usually install the base packages on most systems I plan to use regularly via SSH or GUI. The tools make my life easier and 
+I usually install the base packages on most systems I plan to use regularly via SSH or GUI. The tools make my life easier and
 
 ```shell
 apt install -y sudo docker.io docker-compose docker-buildx htop rsync nfs-common curl wget lynx open-iscsi earlyoom git git-lfs smartmontools lm-sensors imagemagick restic
@@ -46,16 +89,19 @@ apt install -y sudo docker.io docker-compose docker-buildx htop rsync nfs-common
 | lynx           | Command line browser. If you need to access a website from the command line, a great tool to have.                                                                                                                                                                                                                                                                                                                                                                                               |
 | open-iscsi     | For mounting iscsi shares. Can be useful if you need to access such a share. Not required otherwise.                                                                                                                                                                                                                                                                                                                                                                                             |
 | earlyoom       | In my opinion, which is very opinionated on this matter, earlyoom makes the Linux experience much more bearable (unless you have a lot of fast swap). Earlyoom triggers out of memory kills faster than the kernel, so instead of a linux machine becoming unresponsive when running out of RAM, it'll be a program crashing.                                                                                                                                                                    |
-| git            | Git is the de facto standard for source code and change history management. If there is any one tool *every* developer should use, then it is git. I think, due to LLMs ("AI") coding, it has become an even more important tool to manage and review the deluge of code produced nowadays.                                                                                                                                                                                                      |
+| git            | Git is the de facto standard for source code and change history management. If there is any one tool _every_ developer should use, then it is git. I think, due to LLMs ("AI") coding, it has become an even more important tool to manage and review the deluge of code produced nowadays.                                                                                                                                                                                                      |
 | git-lfs        | git-lfs is an extension to git in order to manage large files in the source code, as git works best with plain text files.                                                                                                                                                                                                                                                                                                                                                                       |
 | smartmontools  | These tools are useful to check the health of your hard disk drives (HDD) and solid disk drives (SSD) via `sudo smartctl -a /dev/nvme0`.                                                                                                                                                                                                                                                                                                                                                         |
 | lm-sensors     | This package provides a way to nicely display CPU / PCIe sensor values. In other words, you can easily and quickly see your CPU and GPU temperatures via `sudo sensors`.                                                                                                                                                                                                                                                                                                                         |
 | imagemagick    | Imagemagick is a great tool to convert files between different formats. For instance, the following command will take a bunch of scanned `.png` files (at 600 dpi) and embed them in a multi-page pdf, while reducing the file-size by decreasing the dpi to 300 and converting the images to jpg files within the pdf: `convert /home/user/Documents/scan/important-document-page-*.png -density 300 -resize 5000x5000 -quality 70 -compress jpeg /home/user/Documents/important-document.pdf`. |
-| restic         | I have tried many different backup solutions, but restic is by far the best one I found so far. It is very efficient at creating incremental backups even for large datasets, and it can easily back up to  a S3 storage provider or to it's own restic rest server.                                                                                                                                                                                                                             |
+| restic         | I have tried many different backup solutions, but restic is by far the best one I found so far. It is very efficient at creating incremental backups even for large datasets, and it can easily back up to a S3 storage provider or to it's own restic rest server.                                                                                                                                                                                                                              |
 
 ### Base / ARM
+
 There are no additional packages I specifically recommend for ARM devices.
+
 ### Base / x86
+
 In addition to the base packages above, I also install the below package for x86 devices - mainly because they're not available on ARM.
 
 ```shell
@@ -68,7 +114,8 @@ apt install rear
 |         |                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## Additional Optional Packages
-The following are strictly optional (and opinionated) packages. They're not suitable for every use case,  and I definitely do not recommend blindly installing them. On the other hand, if you're trying to accomplish a specific goal they might be useful to know and install.
+
+The following are strictly optional (and opinionated) packages. They're not suitable for every use case, and I definitely do not recommend blindly installing them. On the other hand, if you're trying to accomplish a specific goal they might be useful to know and install.
 
 ## Server
 
@@ -79,7 +126,9 @@ apt install netdata
 | Package | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | netdata | Netdata used to be a very lightweight way to host a headless website detailing the most important statistics of any linux server. Unfortunately with time it has become quite bloated; and is focused on cloud / ai capabilities, which are quite irrelevant to me. For that reason I have all but removed netdata from my machines. It can still be an easy way to diagnose performance issues on a server if you prefer to browse a website instead of using CLI tools or giving an LLM model access to the server. |
+
 ### Server, Security
+
 The below packages can be installed on a server in order improve the security and block malicious clients. However, just installing them is not enough - the applications need to be configured properly in order to have the desired effect. Therefore, if installing them, the time needs to be taken to investigate and setup proper configuration.
 
 ```shell
@@ -104,8 +153,8 @@ apt install radeontop
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | radeontop | Is a small CLI tool to see the status of your AMD GPU. Great to quickly check on the GPU utilization and VRAM usage.                                                                                                                                                                                                                                                 |
 | LACT      | Unfortunately, LACT has to be installed from [github](https://github.com/ilya-zlobintsev/LACT). But it provides both a GUI and a CLI to configure and manage a GPU on Linux. From the perspective of functionality, it is a better radeontop - however, radeontop can be quickly and easily installed from the official sources, and therefore wins on availability. |
-## Workstation
 
+## Workstation
 
 ```shell
 apt install kubernetes-cli evolution-ews waydroid wireguard
@@ -119,17 +168,19 @@ apt install kubernetes-cli evolution-ews waydroid wireguard
 | wireguard      | Wireguard is a VPN program, and it is my VPN of choice, since I usually do not have to deal with any DPI firewalls that block VPN clients.         |
 
 Some further tools to investigate / add to the list in the future.
+
 - VM (virt manager, and deps)
 - Development (linux-dev, cargo, cmake, gcc...)
 
 ## Capture The Flags & Cybersecurity
+
 The below tools are some recommendations to install if you plan to participate in a capture the flag contest or if you want to educate yourself in cybersecurity.
 I do not have a lot of experience in this area, so it is currently a rather basic list, to be expanded in the future.
 If you want all the relevant tools installed, it is probably easy to just use a specialized Linux distribution such as [Kali](https://www.kali.org/) or [ParrotOS](https://www.parrotsec.org/). The drawback of these Linux distributions is that they are not as useful as other distributions for general computing / development. Therefore I prefer to install any tools I need onto a base Linux (or in a container).
 
 | Package        | Description                                                                                                                                                                                                                                                                                                                                        |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| nmap           | Create a *map* of *networks*. `nmap` can be used to enumerate                                                                                                                                                                                                                                                                                      |
+| nmap           | Create a _map_ of _networks_. `nmap` can be used to enumerate                                                                                                                                                                                                                                                                                      |
 | john           | Used to crack hashes. Sorry, it is a tool for password recovery. It has quite a few configuration options and it is not trivial to use. Therefore it is worth a dedicated article to have an in-depth look at it. I have to note, that in my experience it is necessary to compile john from the source code in order to get the best performance. |
 | hashcat        | Similar to `john`, or an alternative to john. Focused on brute force.                                                                                                                                                                                                                                                                              |
 | wireshark      | Capture and analyze network traffic.                                                                                                                                                                                                                                                                                                               |
@@ -138,14 +189,16 @@ If you want all the relevant tools installed, it is probably easy to just use a 
       <category>Linux</category>
       <category>Linux, Docker, Raphael&apos;s Random Rumblings</category>
       <dc:creator>Raphael Ochsenbein</dc:creator>
-      <pubDate>Sat, 11 Jul 2026 11:00:00 GMT</pubDate>
-      <lastBuildDate>Sat, 11 Jul 2026 11:00:00 GMT</lastBuildDate>
+      <pubDate>Thu, 01 Oct 2026 11:00:00 GMT</pubDate>
+      <lastBuildDate>Thu, 01 Oct 2026 11:00:00 GMT</lastBuildDate>
     </item>
     <item>
       <title>The Photography Parable, and Programming LLMs</title>
       <link>https://akehir.com/blog/the-photography-parable-and-programming</link>
       <guid isPermaLink="true">https://akehir.com/blog/the-photography-parable-and-programming</guid>
       <description><![CDATA[# The Photography Parable, and Programming LLMs
+
+_Published: 2025-03-23_
 
 I have recently (in the last half year) read the beautiful comparison of the invention of industrial microwaves to agentic coding - or, as the original title states: _In the Future All Food will be Cooked in a Microwave and if you cant deal with that then you need to get out of the kitchen_. I really recommend you read that blog [here](https://www.colincornaby.me/2025/08/in-the-future-all-food-will-be-cooked-in-a-microwave-and-if-you-cant-deal-with-that-then-you-need-to-get-out-of-the-kitchen/).
 
@@ -186,7 +239,11 @@ Of course there are signs right now, but they won't remain there forever.]]></de
       <title>From Code Monkey to Code Basher</title>
       <link>https://akehir.com/blog/code-monkey-code-basher</link>
       <guid isPermaLink="true">https://akehir.com/blog/code-monkey-code-basher</guid>
-      <description><![CDATA[Working in Information Technology right now means that there is no way to avoid the topic of AI / LLM. Personally, I have been thinking about machine learning for a long time, and from before it was `cool`. For instance, I have an (unpublished, how typical) blog post about a [paper](https://arxiv.org/abs/1312.6199) of Ilya Sutskever _et al._ from 7 years ago.
+      <description><![CDATA[# From Code Monkey to Code Basher
+
+_Published: 2025-03-23_
+
+Working in Information Technology right now means that there is no way to avoid the topic of AI / LLM. Personally, I have been thinking about machine learning for a long time, and from before it was `cool`. For instance, I have an (unpublished, how typical) blog post about a [paper](https://arxiv.org/abs/1312.6199) of Ilya Sutskever _et al._ from 7 years ago.
 
 That is a lot of words to say that I have thoughts about machine learning, and I am now opting to opine them even in their raw form.
 
@@ -211,7 +268,7 @@ In my role, I do a lot of code reviews, and I talk to many architects. For me, i
 In order to deal with this, the right tooling will be mandatory. Automated tests, formal verification systems (like compilers, or static code analysis), linting and styling rules, a strong code revision history will be key. Basically, good software engineering principles.
 
 But I remain worried that we do not find a suitable solution for the core problem. The problem that without experience and exposure, you are a bad judge of code. You cannot bash it where it hurts. And that will hurt the quality of your software.]]></description>
-      <category>Machine Learning</category>
+      <category>Raphael&apos;s Random Rumblings</category>
       <category>Machine Learning, Raphael&apos;s Random Rumblings</category>
       <dc:creator>Raphael Ochsenbein</dc:creator>
       <pubDate>Tue, 07 Jul 2026 11:00:00 GMT</pubDate>
@@ -222,6 +279,8 @@ But I remain worried that we do not find a suitable solution for the core proble
       <link>https://akehir.com/blog/init-7</link>
       <guid isPermaLink="true">https://akehir.com/blog/init-7</guid>
       <description><![CDATA[# Internet Service Provider Recommendation: Init7 (Fiber7)
+
+_Published: 2026-06-08_
 
 I've been wanting to write a review (or rather, a recommendation) of Fiber7 as an internet service provider for a while. So this is I; and I outline my reasons in the following text.
 
@@ -421,6 +480,8 @@ Idle Latency:     0.93 ms   (jitter: 0.19ms, low: 0.79ms, high: 1.09ms)
       <link>https://akehir.com/blog/global-cyber-skills-benchmark-ctf-2026</link>
       <guid isPermaLink="true">https://akehir.com/blog/global-cyber-skills-benchmark-ctf-2026</guid>
       <description><![CDATA[# Global Cyber Skills Benchmark CTF 2026 - Solving the Hard AI Challenge (Espionage Intelligence)
+
+_Published: 2026-06-08_
 
 I had the honor of participating the Global Cyber Skills Benchmark CTF 2026 thanks to the security team spontaneously inviting me.
 
@@ -658,6 +719,8 @@ load_backend: loaded CPU backend from /app/llama.cpp/build/bin/libggml-cpu-zen4.
       <link>https://akehir.com/blog/strix-halo-kubernetes-llm-qwen-3.6</link>
       <guid isPermaLink="true">https://akehir.com/blog/strix-halo-kubernetes-llm-qwen-3.6</guid>
       <description><![CDATA[# Qwen 3.6 35B A3B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
+
+_Published: 2026-04-19_
 
 ## Summary
 
@@ -1123,6 +1186,9 @@ data:
       <link>https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4</link>
       <guid isPermaLink="true">https://akehir.com/blog/strix-halo-kubernetes-llm-gemma-4</guid>
       <description><![CDATA[# Gemma 4 31B, 26B, and E4B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan (or ROCm) with Kubernetes (or Docker)
+
+_Published: 2026-04-04_
+_Modified: 2026-04-19_
 
 ## Summary
 
@@ -2023,6 +2089,8 @@ spec:
       <guid isPermaLink="true">https://akehir.com/blog/sealed-secrets</guid>
       <description><![CDATA[# Using Bitnami Sealed Secrets with Flux on Kubernetes
 
+_Published: 2026-02-22_
+
 I have long planned to setup sealed secrets in order to store the secrets of my apps together with their manifests in order to be able to manage the whole state of my cluster via code repositories.
 
 Until now I've manually added the secrets (or avoided their use). The end goal would be that my flux repository could be public as it shouldn't contain any secret data.
@@ -2221,6 +2289,9 @@ In conclusion, I think it has been a challenging year due to many (external) fac
       <link>https://akehir.com/blog/brutalist</link>
       <guid isPermaLink="true">https://akehir.com/blog/brutalist</guid>
       <description><![CDATA[# Why is My Website a Brutalist Mess?
+
+_Published: 2026-10-01_
+
 
 Since you're visiting my website right now, reading these words, you might have wondered, why my site is such a brutalist mess in terms of styling and layout.
 
@@ -2428,6 +2499,8 @@ It looks like I'm mostly playing Roguelikes (and variants thereof), RPG games, a
       <guid isPermaLink="true">https://akehir.com/blog/no-ai-generated-blog-posts</guid>
       <description><![CDATA[# No AI Generated Blog Posts
 
+_Published: 2026-01-08_
+
 I just wanted to put out a quick commitment from my side out there.
 
 > On this site, you will not find any AI generated content.
@@ -2454,6 +2527,9 @@ As such, I can make the commitment to not publish any AI generated content here.
       <link>https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss</link>
       <guid isPermaLink="true">https://akehir.com/blog/strix-halo-kubernetes-llm-gpt-oss</guid>
       <description><![CDATA[# GPT-OSS 120B & 20B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes
+
+_Published: 2025-12-25_
+_Modified: 2026-04-19_
 
 In order to run bigger Machine Learning / LLM Models, I've wanted to upgrade the RAM of my computer. Unfortunately the rising DDR5 prices made that prohibitively expensive.
 

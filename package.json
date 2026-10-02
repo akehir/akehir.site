@@ -11,6 +11,10 @@
     "test:docker": "ng test --no-watch --progress=false --browsers ChromeDocker",
     "lint": "prettier --check \"**/*.{ts,js,html,scss,json,md}\" && ng lint",
     "lint:fix": "prettier --write \"**/*.{ts,js,html,scss,json,md}\" && ng lint akehir --fix",
+    "prerender": "node ./tools/generate-prerender-routes.mjs",
+    "rss": "node ./tools/generate-rss-feed.mjs",
+    "sitemap": "node ./tools/generate-sitemap.mjs",
+    "publish": "npm run sitemap && npm run rss && npm run prerender",
     "e2e": "ng e2e"
   },
   "private": true,

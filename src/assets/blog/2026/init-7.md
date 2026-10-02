@@ -1,5 +1,7 @@
 # Internet Service Provider Recommendation: Init7 (Fiber7)
 
+_Published: 2026-06-08_
+
 I've been wanting to write a review (or rather, a recommendation) of Fiber7 as an internet service provider for a while. So this is I; and I outline my reasons in the following text.
 
 If - after reading this article - you want to subscribe to Init7 and save a bit on their hardware - use this referral code:
