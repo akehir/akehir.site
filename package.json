@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
+    "ake": "npm run lint:fix && npm run publish",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build --configuration production --progress=false",
     "build:ssg": "ng build --configuration production --progress=false",

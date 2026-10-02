@@ -36,6 +36,7 @@
 /blog/strix-halo-kubernetes-llm-gemma-4
 /blog/strix-halo-kubernetes-llm-gpt-oss
 /blog/strix-halo-kubernetes-llm-qwen-3.6
+/blog/strix-halo-kubernetes-llm-qwen-3.8
 /blog/synology-dsm-port-443
 /blog/the-photography-parable-and-programming
 /blog/traefik-ingress-logs

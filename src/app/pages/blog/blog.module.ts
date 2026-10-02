@@ -4,6 +4,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_strix_halo_kubernetes_llm_qwen_3_8 from '../../../assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.8.md?raw';
 import rawMarkdown_short_term_and_long_term_toughts from '../../../assets/blog/2026/short-term-and-long-term-toughts.md?raw';
 import rawMarkdown_the_photography_parable_and_programming from '../../../assets/blog/2026/the-photography-parable-and-programming.md?raw';
 import rawMarkdown_code_monkey_code_basher from '../../../assets/blog/2026/code-monkey-code-basher.md?raw';
@@ -80,6 +81,29 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'strix-halo-kubernetes-llm-qwen-3.8',
+    title:
+      'Qwen 3.8 27B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes',
+    data: {
+      title:
+        'Qwen 3.8 27B on AMD Ryzen AI Max+ 395 (Strix Halo) via Vulkan with Kubernetes',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker', 'Kubernetes'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-10-03',
+      modifiedDate: '2026-10-03',
+      routerLink: '/blog/strix-halo-kubernetes-llm-qwen-3.8',
+      content: '/assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.8.md',
+      contentRaw: rawMarkdown_strix_halo_kubernetes_llm_qwen_3_8,
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.8.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/strix-halo-kubernetes-llm-qwen-3.8.component').then(
+        c => c.StrixHaloKubernetesLlmQwen3_8Component
+      ),
+  },
   {
     path: 'short-term-and-long-term-toughts',
     title: 'Short Term and Long Term Toughts on AI and LLMs',
