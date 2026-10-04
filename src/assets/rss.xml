@@ -667,6 +667,14 @@ The conclusion is that this is my favourite local coding model on Strix Halo so 
 
 In the benchmarks below you can see more detail, but at Q8, prompt processing / prefill is around 300 - 400 tokens per second and text generation is at 7 t/s. At full precision both values drop by around 50%. And 7 t/s is painfully slow for any kind of coding tasks. Luckily, a single parameter can double that performance: `--spec-type draft-mtp` yields up to ~20 t/s. On average I get around 10 - 12 t/s generation with this setting, which around double of the benchmarked performance. I am keeping the baseline benchmark without `mtp`, in order to afford comparability with my earlier evaluations of other LLM models - just keep in mind that either `draft-mtp` or `draft-dflash` can double your performance.
 
+In practice, this means that for realistic agentic coding, in a sample over 24 hours, I have processed cached 19.6M tokens, processed 1.042M prompt tokens, and generated 0.585M output tokens. Since the 24h are split between processing and generating tokens, and since there are downtimes where the agent is waiting for input; the hardware is not fully used to the maximum potential. Yet I think this is a representative sample for what can be achieved locally with Qwen 3.8 27B on Strix Halo.
+
+Electricity consumption varies mostly between 60W and 120W, but it can go as low as 20W or as high as 160W. Calculating with an average of 100W consumption, my effective costs for running the model are ~1 USD per day.
+
+Comparing to prices on OpenRouter, in the best case, the model is ~ $1.5 cheaper to run locally per day, in many cases it is just as expensive (in electricity costs) for me to run the model locally. Since I've paid ~ $2500 for the Strix Halo, in the best case a break even is reached after 5 years. Currently the same hardware costs more than $ 4k.
+
+So unfortunately, running models locally is not significantly cheaper than running them in the cloud. What we gain are stability (no one can take away the model / nerf the model / ban the model), and privacy (I would be rather reluctant to send any confidential data to the model providers).
+
 So overall, I prefer Qwen 3.8 for better coding quality, and fall back to Gemma 4 26B in case I need better performance. I notice a similar picture for tool calling where I prefer Qwen 3.8. Luckily, the Strix Halo has enough RAM to keep both models loaded at full context.
 
 ## Setup
