@@ -4,6 +4,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_strix_halo_kubernetes_full_openai_compatible_api from '../../../assets/blog/2026/strix-halo-kubernetes-full-openai-compatible-api.md?raw';
 import rawMarkdown_strix_halo_kubernetes_llm_qwen_3_8 from '../../../assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.8.md?raw';
 import rawMarkdown_short_term_and_long_term_toughts from '../../../assets/blog/2026/short-term-and-long-term-toughts.md?raw';
 import rawMarkdown_the_photography_parable_and_programming from '../../../assets/blog/2026/the-photography-parable-and-programming.md?raw';
@@ -81,6 +82,30 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'strix-halo-kubernetes-full-openai-compatible-api',
+    title:
+      'Full OpenAPI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
+    data: {
+      title:
+        'Full OpenAPI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
+      author: 'Raphael Ochsenbein',
+      categories: ['Machine Learning', 'Docker', 'Kubernetes'],
+      mainCategory: 'Machine Learning',
+      publishedDate: '2026-10-04',
+      modifiedDate: '2026-10-04',
+      routerLink: '/blog/strix-halo-kubernetes-full-openai-compatible-api',
+      content:
+        '/assets/blog/2026/strix-halo-kubernetes-full-openai-compatible-api.md',
+      contentRaw: rawMarkdown_strix_halo_kubernetes_full_openai_compatible_api,
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/strix-halo-kubernetes-full-openai-compatible-api.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/strix-halo-kubernetes-full-openai-compatible-api.component').then(
+        c => c.StrixHaloKubernetesFullOpenAiCompatibleApiComponent
+      ),
+  },
   {
     path: 'strix-halo-kubernetes-llm-qwen-3.8',
     title:

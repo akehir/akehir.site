@@ -33,6 +33,7 @@
 /blog/some-random-package-recommendations
 /blog/ssh-wireguard-mobile-hotspot-issue
 /blog/stable-diffusion-docker-rocm
+/blog/strix-halo-kubernetes-full-openai-compatible-api
 /blog/strix-halo-kubernetes-llm-gemma-4
 /blog/strix-halo-kubernetes-llm-gpt-oss
 /blog/strix-halo-kubernetes-llm-qwen-3.6
