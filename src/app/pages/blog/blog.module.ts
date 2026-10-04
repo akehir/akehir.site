@@ -85,10 +85,10 @@ export const blogEntries: BlogRoute[] = [
   {
     path: 'strix-halo-kubernetes-full-openai-compatible-api',
     title:
-      'Full OpenAPI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
+      'Full OpenAI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
     data: {
       title:
-        'Full OpenAPI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
+        'Full OpenAI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI',
       author: 'Raphael Ochsenbein',
       categories: ['Machine Learning', 'Docker', 'Kubernetes'],
       mainCategory: 'Machine Learning',

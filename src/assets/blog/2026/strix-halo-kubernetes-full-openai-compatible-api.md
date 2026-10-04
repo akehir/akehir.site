@@ -1,4 +1,4 @@
-# Full OpenAPI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI
+# Full OpenAI Compatible API including multimodal text generation, text to speech, speech to text, and image generation with cutting edge open source models and llama-swap on Kubernetes on a Strix Halo (AMD Ryzen AI Max+ 395) and Vulkan with llama.cpp, whisper.cpp, stablediffusion.cpp, Kokoro-FastAPI, and Qwen3 TTS OpenAI FastAPI
 
 _Published: 2026-10-04_
 
