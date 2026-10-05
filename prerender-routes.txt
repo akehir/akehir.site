@@ -30,6 +30,7 @@
 /blog/rid-google-ai-overview
 /blog/sealed-secrets
 /blog/short-term-and-long-term-toughts
+/blog/slay-the-spire-2-game-review
 /blog/some-random-package-recommendations
 /blog/ssh-wireguard-mobile-hotspot-issue
 /blog/stable-diffusion-docker-rocm
