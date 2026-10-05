@@ -41,6 +41,7 @@
 /blog/synology-dsm-port-443
 /blog/the-photography-parable-and-programming
 /blog/traefik-ingress-logs
+/blog/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng
 /curriculum
 /demos/colour
 /demos/colour/circle

@@ -4,6 +4,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_vibing_from_the_comfort_of_your_mobile_phone_with_open_webui_conduit_open_terminal_and_searxng from '../../../assets/blog/2026/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng.md?raw';
 import rawMarkdown_strix_halo_kubernetes_full_openai_compatible_api from '../../../assets/blog/2026/strix-halo-kubernetes-full-openai-compatible-api.md?raw';
 import rawMarkdown_strix_halo_kubernetes_llm_qwen_3_8 from '../../../assets/blog/2026/strix-halo-kubernetes-llm-qwen-3.8.md?raw';
 import rawMarkdown_short_term_and_long_term_toughts from '../../../assets/blog/2026/short-term-and-long-term-toughts.md?raw';
@@ -82,6 +83,33 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng',
+    title:
+      'Vibing from the Comfort of your Mobile Phone with OpenWebUI, Conduit, Open-Terminal, and SearxNG',
+    data: {
+      title:
+        'Vibing from the Comfort of your Mobile Phone with OpenWebUI, Conduit, Open-Terminal, and SearxNG',
+      author: 'Raphael Ochsenbein',
+      categories: ['Self-Hosting', 'Machine Learning', 'Docker'],
+      mainCategory: 'Self-Hosting',
+      publishedDate: '2026-10-05',
+      modifiedDate: '2026-10-05',
+      routerLink:
+        '/blog/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng',
+      content:
+        '/assets/blog/2026/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng.md',
+      contentRaw:
+        rawMarkdown_vibing_from_the_comfort_of_your_mobile_phone_with_open_webui_conduit_open_terminal_and_searxng,
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng.component').then(
+        c =>
+          c.VibingFromTheComfortOfYourMobilePhoneWithOpenWebuiConduitOpenTerminalAndSearxngComponent
+      ),
+  },
   {
     path: 'strix-halo-kubernetes-full-openai-compatible-api',
     title:
