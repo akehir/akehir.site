@@ -9,6 +9,8 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { BackgroundService } from '@core/services/background.service';
 import { provideRouter } from '@angular/router';
 import { FluidSimulationModule } from '@triangular/fluid-simulation';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppUpdateService } from '@core/services/app-update.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -20,11 +22,13 @@ describe('AppComponent', () => {
         FontAwesomeIconsModule,
         FluidSimulationModule.forRoot(),
         AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
       ],
       declarations: [AppComponent],
       providers: [
         provideZonelessChangeDetection(),
         BackgroundService,
+        AppUpdateService,
         provideRouter([]),
       ],
     }).compileComponents();

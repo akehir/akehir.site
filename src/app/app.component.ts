@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { BackgroundService } from '@core/services/background.service';
+import { AppUpdateService } from '@core/services/app-update.service';
 
 @Component({
   selector: 'ake-root',
@@ -17,5 +18,10 @@ import { BackgroundService } from '@core/services/background.service';
 export class AppComponent {
   title = 'akehir.com | CyberShaman by the Graces of Electron';
   background = inject(BackgroundService);
+  appUpdate = inject(AppUpdateService);
   isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+  constructor() {
+    this.appUpdate.start();
+  }
 }

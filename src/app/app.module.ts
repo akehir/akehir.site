@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, provideZonelessChangeDetection } from '@angular/core';
+import {
+  isDevMode,
+  NgModule,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import {
   provideHttpClient,
   withInterceptorsFromDi,
@@ -18,7 +22,9 @@ import { ConsoleComponent } from './layout/console';
 import { ColourComponent } from './pages/colour';
 import { ConsoleService } from '@core/services/console.service';
 import { ColourService } from '@core/services/colour.service';
+import { AppUpdateService } from '@core/services/app-update.service';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,12 +50,12 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     FontAwesomeIconsModule,
     ConsoleComponent,
     ColourComponent,
-    // ServiceWorkerModule.register('ngsw-worker.js', {
-    //   enabled: !isDevMode(),
-    //   // Register the ServiceWorker as soon as the application is stable
-    //   // or after 30 seconds (whichever comes first).
-    //   registrationStrategy: 'registerWhenStable:30000'
-    // }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     provideZonelessChangeDetection(),
@@ -58,6 +64,7 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     BackgroundService,
     ConsoleService,
     ColourService,
+    AppUpdateService,
   ],
   bootstrap: [AppComponent],
 })
