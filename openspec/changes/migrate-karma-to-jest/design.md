@@ -38,6 +38,7 @@ Constraint from `@angular/build` v22: the in-tree `@angular/build:unit-test` bui
 ### D1: Standalone Jest + jest-preset-angular (not `@angular/build:unit-test`)
 
 The Angular 22 `unit-test` builder's `runner` option is an enum of `karma | vitest` (verified in `node_modules/@angular/build/src/builders/unit-test/schema.json`). Jest support requires the community-maintained `jest-preset-angular` stack.
+
 - **Choice**: `jest@^30`, `jest-preset-angular@^17` (peer deps verified compatible: `@angular/core >=20 <23`, `jest ^30`, `typescript >=5.8`, `jsdom >=26`), `@types/jest@^30`, `jest-environment-jsdom@^30`, `jsdom@^30`.
 - **Alternative considered**: keep `@angular/build:unit-test` with `runner: "karma"` — rejected, that is still Karma; `runner: "vitest"` — rejected, user explicitly requested Jest.
 - Consequence: tests run outside `ng test`; the `angular.json` `test` target is removed. `npm test` becomes a plain `jest` invocation.
@@ -45,6 +46,7 @@ The Angular 22 `unit-test` builder's `runner` option is an enum of `karma | vite
 ### D2: Zoneless preset setup — `setupZonelessTestEnv()`
 
 The app is zoneless (no `zone.js` installed). The zone-based setup (`jest-preset-angular/setup-env/zone`) pulls in Zone.js expectations the app does not use.
+
 - **Choice**: `setup-jest.ts` calls `setupZonelessTestEnv()` from `jest-preset-angular/setup-env/zoneless`. Verified in the shipped v17 package: it initializes `getTestBed().initTestEnvironment([BrowserTestingModule, provideZonelessConfig()], platformBrowserTesting([COMPILER_OPTIONS]), ...)` with a strict `ErrorHandler`, replacing the hand-rolled `src/test.ts` bootstrap (which also used `{ teardown: { destroyAfterEach: false } }` — acceptable default difference since no spec relies on cross-test state).
 - `src/test.ts` is deleted; it was only a Karma bootstrap. (The jest-preset-angular docs note that Karma's `src/test.ts` is otherwise picked up by Jest discovery — deletion is the cleanest removal; `testMatch: ['**/*.spec.ts']` already excludes it.)
 
@@ -76,6 +78,7 @@ The app is zoneless (no `zone.js` installed). The zone-based setup (`jest-preset
 ### D6: Dependency removal
 
 Remove from `devDependencies` after green run: `karma`, `karma-chrome-launcher`, `karma-coverage`, `karma-jasmine`, `karma-jasmine-html-reporter`, `jasmine-core`, `jasmine-spec-reporter`, `istanbul-lib-instrument`, `@types/jasmine`.
+
 - `@types/jasminewd2`: referenced only by `e2e/tsconfig.e2e.json` (`types: ["jasmine", "jasminewd2", "node"]`). The e2e Protractor suite is already dead weight (Protractor is unmaintained, `e2e/` has no `ng e2e` target wired in `angular.json`), but this change does not delete it. **Choice**: drop `@types/jasminewd2` **and** patch `e2e/tsconfig.e2e.json` to `types: ["node"]` (jasmine types no longer exist). `npm run e2e` (`ng e2e`) was non-functional in `angular.json` (no `e2e` architect target), so this changes nothing executable. If the e2e dir is ever revived, Protractor types get re-added then.
 - `ts-node` retained (no current consumer found, but harmless; removing is a separate cleanup — flagged in tasks as optional).
 - `npm prune`/`npm install` regenerates `package-lock.json`.
@@ -88,11 +91,13 @@ Remove from `devDependencies` after green run: `karma`, `karma-chrome-launcher`,
 ### D8: jsdom gaps (WebGL)
 
 `BackgroundComponent` specs and others don't touch WebGL; the only template that would instantiate a WebGL canvas (`app.component.html` `<webgl-fluid-simulation>`) is guarded by `@if (background.active && isBrowser)` with `BackgroundService.active = false` by default, so the fluid simulation component is never created in tests.
+
 - **Fallback (only if a test hits a missing DOM API)**: add a `jest-global-mocks.ts` (per jest-preset-angular "Customizing → Global mocks") imported from `setup-jest.ts`. Not added preemptively.
 
 ### D9: Verification-first sequencing
 
 All 13 specs already pass under Karma (assumed green baseline). The plan runs the Jest suite **before** deleting any Karma files (overlap phase) so a regression can be attributed unambiguously:
+
 1. Add Jest tooling + config → run `npm test` (Jest) alongside working `ng test` (Karma) → green baseline.
 2. Switch scripts/CI + delete Karma files in the same change, re-run everything.
 
