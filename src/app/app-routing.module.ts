@@ -12,6 +12,13 @@ function enableBackground() {
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    resolve: { background: disableBackground },
+    loadComponent: () =>
+      import('./pages/home/home.component').then(c => c.HomeComponent),
+  },
+  {
     path: 'index',
     resolve: { background: disableBackground },
     loadComponent: () =>
@@ -103,7 +110,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/imprint/imprint.module').then(m => m.ImprintModule),
   },
-  { path: '', redirectTo: 'index', pathMatch: 'full' },
   {
     path: '**',
     redirectTo: 'error/404',
