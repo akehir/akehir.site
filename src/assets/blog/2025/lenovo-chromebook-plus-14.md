@@ -111,6 +111,11 @@ I do also like the screen, it seems to be calibrated to be close to SRGB (which 
 
 However, I've found one major limitation: I connected my USB hub and my USB-C Screen, and the video output to the screen was good. Unfortunately, my USB hub (and thus my keyboard) didn't work, due to "too many USB devices connected". That was really a shame and meant I couldn't use the Chromebook in the way I wanted. I'll have to find a setup that works and doesn't use too many USB devices...
 
+## Spare Parts
+One important fact to note is that Lenovo offers spare parts directly on their online store. This [here](https://pcsupport.lenovo.com/ch/en/products/chromebook-laptops/lenovo-chromebooks-series/lenovo-chrome-14m9610/83my/83my000rse/pf5rxhfn/parts/display/buy-now) is the spare part link printed on my device.
+
+This is a big advantage, as the device can live longer by replacing broken or degraded parts (such as the plastic / screen / battery). I think the repairability is a huge advantage as well.
+
 ## Pros and Cons
 
 ### Pros
@@ -120,7 +125,8 @@ However, I've found one major limitation: I connected my USB hub and my USB-C Sc
 - Keyboard
 - Screen
 - Battery life
-- easy to use
+- Ease of use
+- Spare part availability
 
 ### Cons
 
