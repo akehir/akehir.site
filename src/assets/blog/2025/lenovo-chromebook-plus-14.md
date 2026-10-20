@@ -112,6 +112,7 @@ I do also like the screen, it seems to be calibrated to be close to SRGB (which 
 However, I've found one major limitation: I connected my USB hub and my USB-C Screen, and the video output to the screen was good. Unfortunately, my USB hub (and thus my keyboard) didn't work, due to "too many USB devices connected". That was really a shame and meant I couldn't use the Chromebook in the way I wanted. I'll have to find a setup that works and doesn't use too many USB devices...
 
 ## Spare Parts
+
 One important fact to note is that Lenovo offers spare parts directly on their online store. This [here](https://pcsupport.lenovo.com/ch/en/products/chromebook-laptops/lenovo-chromebooks-series/lenovo-chrome-14m9610/83my/83my000rse/pf5rxhfn/parts/display/buy-now) is the spare part link printed on my device.
 
 This is a big advantage, as the device can live longer by replacing broken or degraded parts (such as the plastic / screen / battery). I think the repairability is a huge advantage as well.
@@ -127,6 +128,7 @@ This is a big advantage, as the device can live longer by replacing broken or de
 - Battery life
 - Ease of use
 - Spare part availability
+- Has been my primary laptop for more than one year
 
 ### Cons
 
@@ -144,4 +146,10 @@ The hardware is also quite solid, especially with respect to the screen, keyboar
 
 We don't know where Google is heading with ChromeOS and the planned Android convergence, which I'm relatively pessimistic about. ChromeOS strikes a great balance in simplicity that just let's you log in and use the device - and Android is much more encumbered and complicated to use. The mobile apps have also never reached parity with desktop apps (just look at mobile Chrome lacking extensions as one example). However, as long as the Linux VM remains well integrated and functioning, I'll be able to deal with it.
 
+Now that Googlebook OS has been released, at least initially it seems that the Linux VM is not as powerful on the Googlebook OS (as I feared, the priorities lie elsewhere). In the end, I will be holding off upgrading for as long as possible and stay with my trusty and proven ChromeOS version.
+
 In any case, as of now, I can recommend this Chromebook as it definitely punches above it's price class and covers everything I expect from a portable laptop. If my needs or ChromeOS change, I'm ready to switch to another device, but for now I'll see how far I can go with this setup.
+
+Even now, a year after initially penning this blog post, my conclusion has not changed. In fact, this laptop has been my primary mobile device that I use whenever I travel around. I am using the device for all kinds of coding tasks and it is holding up well. Battery life is not an issue either, even though I have limited charging to 80%.
+
+In the end, I still recommend the device as an affordable and low maintenance mobile computing endpoint.

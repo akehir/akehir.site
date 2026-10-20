@@ -650,7 +650,7 @@ export const blogEntries: BlogRoute[] = [
       categories: ['ChromeOS', 'Hardware'],
       mainCategory: 'Hardware',
       publishedDate: '2025-09-29',
-      modifiedDate: '2025-09-29',
+      modifiedDate: '2026-10-20',
       routerLink: '/blog/lenovo-chromebook-plus-14',
       content: '/assets/blog/2025/lenovo-chromebook-plus-14.md',
       contentRaw: rawMarkdown_lenovo_chromebook_plus_14,
