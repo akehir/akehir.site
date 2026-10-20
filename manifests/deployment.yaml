@@ -34,7 +34,7 @@ spec:
             privileged: false
             seccompProfile:
               type: RuntimeDefault
-          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-649e9e1b-1792531600 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
+          image: registry.akehir.com:443/akehir/akehir.site/akehir-site:master-8b129901-1792532331 # {"$imagepolicy": "akehir:akehir-www-image-policy"}
           ports:
             - containerPort: 8811
           volumeMounts:
