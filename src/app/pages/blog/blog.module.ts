@@ -4,6 +4,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
 import { EntriesComponent } from './entries.component';
 
+import rawMarkdown_how_to_get_a_shell_and_execute_dynamic_linux_commands_in_a_docker_container_during_a_docker_build from '../../../assets/blog/2026/how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build.md?raw';
 import rawMarkdown_slay_the_spire_2_game_review from '../../../assets/blog/2026/slay-the-spire-2-game-review.md?raw';
 import rawMarkdown_vibing_from_the_comfort_of_your_mobile_phone_with_open_webui_conduit_open_terminal_and_searxng from '../../../assets/blog/2026/vibing-from-the-comfort-of-your-mobile-phone-with-open-webui-conduit-open-terminal-and-searxng.md?raw';
 import rawMarkdown_strix_halo_kubernetes_full_openai_compatible_api from '../../../assets/blog/2026/strix-halo-kubernetes-full-openai-compatible-api.md?raw';
@@ -84,6 +85,33 @@ export interface BlogData {
 type BlogRoute = Route & { data: BlogData };
 
 export const blogEntries: BlogRoute[] = [
+  {
+    path: 'how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build',
+    title:
+      'How to get a Shell and Execute Dynamic Linux Commands in a Docker Container During a Docker Build',
+    data: {
+      title:
+        'How to get a Shell and Execute Dynamic Linux Commands in a Docker Container During a Docker Build',
+      author: 'Raphael Ochsenbein',
+      categories: ['Docker', 'Linux'],
+      mainCategory: 'Docker',
+      publishedDate: '2026-10-20',
+      modifiedDate: '2026-10-20',
+      routerLink:
+        '/blog/how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build',
+      content:
+        '/assets/blog/2026/how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build.md',
+      contentRaw:
+        rawMarkdown_how_to_get_a_shell_and_execute_dynamic_linux_commands_in_a_docker_container_during_a_docker_build,
+      source:
+        'https://git.akehir.com/akehir/akehir.site/-/blob/master/src/assets/blog/2026/how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build.md',
+    },
+    loadComponent: () =>
+      import('./entries/2026/how-to-get-a-shell-and-execute-dynamic-linux-commands-in-a-docker-container-during-a-docker-build.component').then(
+        c =>
+          c.HowToGetAShellAndExecuteDynamicLinuxCommandsInADockerContainerDuringADockerBuildComponent
+      ),
+  },
   {
     path: 'slay-the-spire-2-game-review',
     title: 'Game Review: Slay the Spire 2',
