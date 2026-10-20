@@ -10,6 +10,7 @@
 /blog/chromeos-wireguard
 /blog/code-monkey-code-basher
 /blog/filebeat-crashloopbackoff
+/blog/fixing-docker-connection-problems-to-github-composer-git-clone-pip-install-during-docker-build-in-gitlab-cicd-with-docker-dind
 /blog/flux-kontext-docker-rocm-webui
 /blog/gemma-4-qat
 /blog/git-reset
