@@ -117,7 +117,8 @@ upload-trivy-repository:
     - name: scan-trivy-repository
       artifacts: true
   script:
-    - curl -X POST \
+    - |
+      curl -X POST \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-repository.json" \
@@ -128,14 +129,15 @@ upload-trivy-repository:
       -F "triggered_by=$GITLAB_USER_LOGIN" \
       https://trivyhub.akehir.com/api/v1/report
 
-upload-trivy-repository:
+upload-trivy-image:
   image: registry.akehir.com/infra/debian/trixie
   stage: scan
   needs:
     - name: scan-trivy-image
       artifacts: true
   script:
-    - curl -X POST \
+    - |
+      curl -X POST \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-image.json" \
