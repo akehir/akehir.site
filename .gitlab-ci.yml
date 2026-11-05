@@ -103,7 +103,7 @@ scan-trivy-repository:
 
 scan-trivy-image:
   stage: scan
-  image:  registry.akehir.com/infra/docker/dind
+  image: registry.akehir.com/infra/docker/dind
   services:
     - name: docker:dind
       command: ["--mtu=1450"]
