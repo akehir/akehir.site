@@ -113,7 +113,10 @@ scan-trivy-image:
   artifacts:
     paths:
       - report-image.json
+  before_script:
+    - until docker info; do sleep 1; done
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - apk add --no-cache curl
     - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.76.2
     - trivy image --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress --format json --output report-image.json $CI_REGISTRY_IMAGE/akehir-site:$CI_COMMIT_SHORT_SHA
