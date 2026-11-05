@@ -113,7 +113,8 @@ scan-trivy-image:
     paths:
       - report-image.json
   script:
-    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | doas sh -s -- -b /usr/local/bin v0.76.2
+    - apk install curl
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.76.2
     - trivy image --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress --format json --output report-image.json $CI_REGISTRY_IMAGE/akehir-site:$CI_COMMIT_SHORT_SHA
 
 upload-trivy-repository:
