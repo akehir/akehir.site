@@ -118,15 +118,15 @@ upload-trivy-repository:
       artifacts: true
   script:
     - curl -X POST \
-        -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
-        -F "project=$CI_PROJECT_NAME" \
-        -F "file=@report-repository.json" \
-        -F "environment=production" \
-        -F "branch=$CI_COMMIT_REF_NAME" \
-        -F "commit=$CI_COMMIT_SHA" \
-        -F "pipeline_url=$CI_JOB_URL" \
-        -F "triggered_by=$GITLAB_USER_LOGIN" \
-        https://trivyhub.akehir.com/api/v1/report
+      -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+      -F "project=$CI_PROJECT_NAME" \
+      -F "file=@report-repository.json" \
+      -F "environment=production" \
+      -F "branch=$CI_COMMIT_REF_NAME" \
+      -F "commit=$CI_COMMIT_SHA" \
+      -F "pipeline_url=$CI_JOB_URL" \
+      -F "triggered_by=$GITLAB_USER_LOGIN" \
+      https://trivyhub.akehir.com/api/v1/report
 
 upload-trivy-repository:
   image: registry.akehir.com/infra/debian/trixie
@@ -136,15 +136,15 @@ upload-trivy-repository:
       artifacts: true
   script:
     - curl -X POST \
-        -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
-        -F "project=$CI_PROJECT_NAME" \
-        -F "file=@report-image.json" \
-        -F "environment=production" \
-        -F "branch=$CI_COMMIT_REF_NAME" \
-        -F "commit=$CI_COMMIT_SHA" \
-        -F "pipeline_url=$CI_JOB_URL" \
-        -F "triggered_by=$GITLAB_USER_LOGIN" \
-        https://trivyhub.akehir.com/api/v1/report
+      -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+      -F "project=$CI_PROJECT_NAME" \
+      -F "file=@report-image.json" \
+      -F "environment=production" \
+      -F "branch=$CI_COMMIT_REF_NAME" \
+      -F "commit=$CI_COMMIT_SHA" \
+      -F "pipeline_url=$CI_JOB_URL" \
+      -F "triggered_by=$GITLAB_USER_LOGIN" \
+      https://trivyhub.akehir.com/api/v1/report
 
 
 scan-npm:
