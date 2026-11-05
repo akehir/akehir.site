@@ -103,11 +103,17 @@ scan-trivy-repository:
 
 scan-trivy-image:
   stage: scan
-  image: registry.akehir.com/infra/trivy/trivy
+  image:  registry.akehir.com/infra/docker/dind
+  services:
+    - name: docker:dind
+      command: ["--mtu=1450"]
+  needs:
+    - job: deploy
   artifacts:
     paths:
       - report-image.json
   script:
+    - curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | doas sh -s -- -b /usr/local/bin v0.76.2
     - trivy image --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress --format json --output report-image.json $CI_REGISTRY_IMAGE/akehir-site:$CI_COMMIT_SHORT_SHA
 
 upload-trivy-repository:
@@ -136,6 +142,7 @@ upload-trivy-image:
     - job: scan-trivy-image
       artifacts: true
   script:
+    - apt-get install curl -y
     - |
       curl -X POST \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
