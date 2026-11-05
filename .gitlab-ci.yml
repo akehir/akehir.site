@@ -103,12 +103,13 @@ scan-trivy-repository:
 
 scan-trivy-image:
   stage: scan
-  image: registry.akehir.com/infra/docker/dind
+  image: registry.akehir.com/infra/docker/dind-root
   services:
     - name: docker:dind
       command: ["--mtu=1450"]
   needs:
     - job: deploy
+      optional: true
   artifacts:
     paths:
       - report-image.json
@@ -124,7 +125,7 @@ upload-trivy-repository:
     - job: scan-trivy-repository
       artifacts: true
   script:
-    - apt-get install curl -y
+    - apt-get update && apt-get install curl -y
     - |
       curl -X POST \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
@@ -144,7 +145,7 @@ upload-trivy-image:
     - job: scan-trivy-image
       artifacts: true
   script:
-    - apt-get install curl -y
+    - apt-get update && apt-get install curl -y
     - |
       curl -X POST \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
