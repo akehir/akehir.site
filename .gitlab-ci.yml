@@ -114,7 +114,7 @@ upload-trivy-repository:
   image: registry.akehir.com/infra/debian/trixie
   stage: scan
   needs:
-    - name: scan-trivy-repository
+    - job: scan-trivy-repository
       artifacts: true
   script:
     - |
@@ -133,7 +133,7 @@ upload-trivy-image:
   image: registry.akehir.com/infra/debian/trixie
   stage: scan
   needs:
-    - name: scan-trivy-image
+    - job: scan-trivy-image
       artifacts: true
   script:
     - |
