@@ -92,11 +92,60 @@ deploy:
     - docker build -t $IMAGE_TAG:latest -t $IMAGE_TAG:$CI_COMMIT_REF_SLUG -t $IMAGE_TAG:$CI_COMMIT_SHORT_SHA -t $IMAGE_TAG:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}-$(date +%s) .
     - docker push $IMAGE_TAG -a --quiet
 
-scan-trivy:
+scan-trivy-repository:
   stage: scan
   image: registry.akehir.com/infra/trivy/trivy
+  artifacts:
+    paths:
+      - report-repository.json
   script:
-    - trivy fs --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress .
+    - trivy fs --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress --format json --output report-repository.json .
+
+scan-trivy-image:
+  stage: scan
+  image: registry.akehir.com/infra/trivy/trivy
+  artifacts:
+    paths:
+      - report-image.json
+  script:
+    - trivy image --severity HIGH,CRITICAL --scanners vuln,secret,misconfig --no-progress --format json --output report-image.json $CI_REGISTRY_IMAGE/akehir-site:$CI_COMMIT_SHORT_SHA
+
+upload-trivy-repository:
+  image: registry.akehir.com/infra/debian/trixie
+  stage: scan
+  needs:
+    - name: scan-trivy-repository
+      artifacts: true
+  script:
+    - curl -X POST \
+        -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+        -F "project=$CI_PROJECT_NAME" \
+        -F "file=@report-repository.json" \
+        -F "environment=production" \
+        -F "branch=$CI_COMMIT_REF_NAME" \
+        -F "commit=$CI_COMMIT_SHA" \
+        -F "pipeline_url=$CI_JOB_URL" \
+        -F "triggered_by=$GITLAB_USER_LOGIN" \
+        https://trivyhub.akehir.com/api/v1/report
+
+upload-trivy-repository:
+  image: registry.akehir.com/infra/debian/trixie
+  stage: scan
+  needs:
+    - name: scan-trivy-image
+      artifacts: true
+  script:
+    - curl -X POST \
+        -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+        -F "project=$CI_PROJECT_NAME" \
+        -F "file=@report-image.json" \
+        -F "environment=production" \
+        -F "branch=$CI_COMMIT_REF_NAME" \
+        -F "commit=$CI_COMMIT_SHA" \
+        -F "pipeline_url=$CI_JOB_URL" \
+        -F "triggered_by=$GITLAB_USER_LOGIN" \
+        https://trivyhub.akehir.com/api/v1/report
+
 
 scan-npm:
   stage: scan
