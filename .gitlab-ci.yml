@@ -111,6 +111,8 @@ scan-trivy-image:
     paths:
       - report-image.json
   before_script:
+    - ls -la /run
+    - netstat -tulpn
     - /usr/local/bin/dockerd-entrypoint.sh
     - until docker info; do sleep 1; done
   script:
