@@ -132,8 +132,9 @@ upload-trivy-repository:
       artifacts: true
   script:
     - apt-get update && apt-get install curl -y
+    - echo $TRIVYHUB_TOKEN
     - |
-      curl -X POST \
+      curl -X POST -v \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-repository.json" \
@@ -153,7 +154,7 @@ upload-trivy-image:
   script:
     - apt-get update && apt-get install curl -y
     - |
-      curl -X POST \
+      curl -X POST -v \
       -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-image.json" \
