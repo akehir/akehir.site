@@ -103,7 +103,6 @@ scan-trivy-repository:
 
 scan-trivy-image:
   stage: scan
-  image: registry.akehir.com/infra/docker/dind-root
   services:
     - name: docker:dind
       command: ["--mtu=1450"]
@@ -114,7 +113,6 @@ scan-trivy-image:
     paths:
       - report-image.json
   before_script:
-    - nohup /usr/local/bin/dockerd-entrypoint.sh >/tmp/dockerd.log 2>&1 &
     - until docker info; do sleep 1; done
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
@@ -132,10 +130,9 @@ upload-trivy-repository:
       artifacts: true
   script:
     - apt-get update && apt-get install curl -y
-    - echo $TRIVYHUB_TOKEN
     - |
-      curl -X POST -v \
-      -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+      curl \
+      -H "Authorization: ApiKey $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-repository.json" \
       -F "environment=production" \
@@ -154,8 +151,8 @@ upload-trivy-image:
   script:
     - apt-get update && apt-get install curl -y
     - |
-      curl -X POST -v \
-      -H "Authorization: Bearer $TRIVYHUB_TOKEN" \
+      curl \
+      -H "Authorization: ApiKey $TRIVYHUB_TOKEN" \
       -F "project=$CI_PROJECT_NAME" \
       -F "file=@report-image.json" \
       -F "environment=production" \
