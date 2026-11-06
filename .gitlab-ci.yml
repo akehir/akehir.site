@@ -105,6 +105,27 @@ scan-trivy-repository:
 scan-trivy-image:
   stage: scan
   image: registry.akehir.com/infra/docker/dind-root
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_REF_SLUG == "master"'
+      changes:
+        - src/**/*
+        - package.json
+        - angular.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
+      when: on_success
+    - if: '$CI_COMMIT_REF_SLUG == "develop"'
+      changes:
+        - src/**/*
+        - package.json
+        - angular.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
+      when: on_success
   needs:
     - job: deploy
       optional: true
