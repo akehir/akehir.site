@@ -156,7 +156,7 @@ upload-trivy-repository:
     - |
       curl \
       -H "Authorization: ApiKey $TRIVYHUB_TOKEN" \
-      -F "project=$CI_PROJECT_NAME" \
+      -F "project=$CI_PROJECT_NAME/repository" \
       -F "file=@report-repository.json" \
       -F "environment=production" \
       -F "branch=$CI_COMMIT_REF_NAME" \
@@ -168,6 +168,27 @@ upload-trivy-repository:
 upload-trivy-image:
   image: registry.akehir.com/infra/alpine-curl/alpine-curl
   stage: scan
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_REF_SLUG == "master"'
+      changes:
+        - src/**/*
+        - package.json
+        - angular.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
+      when: on_success
+    - if: '$CI_COMMIT_REF_SLUG == "develop"'
+      changes:
+        - src/**/*
+        - package.json
+        - angular.json
+        - nginx.conf
+        - Dockerfile
+        - .gitlab-ci.yml
+      when: on_success
   needs:
     - job: scan-trivy-image
       artifacts: true
@@ -175,7 +196,7 @@ upload-trivy-image:
     - |
       curl \
       -H "Authorization: ApiKey $TRIVYHUB_TOKEN" \
-      -F "project=$CI_PROJECT_NAME" \
+      -F "project=$CI_PROJECT_NAME/image" \
       -F "file=@report-image.json" \
       -F "environment=production" \
       -F "branch=$CI_COMMIT_REF_NAME" \
