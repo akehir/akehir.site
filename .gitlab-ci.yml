@@ -104,9 +104,6 @@ scan-trivy-repository:
 scan-trivy-image:
   stage: scan
   image: registry.akehir.com/infra/docker/dind-root
-  services:
-    - name: docker:dind
-      command: ["--mtu=1450"]
   needs:
     - job: deploy
       optional: true
