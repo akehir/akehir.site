@@ -27,8 +27,8 @@ lintngnx:
     - nginx -t -c /etc/nginx/nginx.conf
 
 scan-gitleaks:
-  stage: lint
-  image: zricethezav/gitleaks:v8.30.1
+  stage: scan
+  image: registry.akehir.com/infra/gitleaks/gitleaks
   variables:
     GIT_DEPTH: "0"
   artifacts:
