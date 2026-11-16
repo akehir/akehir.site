@@ -29,7 +29,6 @@ lintngnx:
 scan-gitleaks:
   stage: lint
   image: zricethezav/gitleaks:v8.30.1
-  entrypoint: ['sh']
   variables:
     GIT_DEPTH: "0"
   artifacts:
