@@ -58,7 +58,6 @@ build:
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   before_script:
     - npm i
   script:
