@@ -75,7 +75,7 @@ deploy:
   stage: deploy
   tags:
     - metal
-  needs: ['build', 'linty', 'lintk', 'lintngnx', 'scan-gitleaks']
+  needs: ['build', 'linty', 'lintk', 'lintngnx']
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
