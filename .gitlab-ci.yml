@@ -26,6 +26,18 @@ lintngnx:
     - cp $CI_PROJECT_DIR/nginx.conf /etc/nginx/nginx.conf
     - nginx -t -c /etc/nginx/nginx.conf
 
+scan-gitleaks:
+  stage: scan
+  image: registry.akehir.com/infra/gitleaks/gitleaks
+  variables:
+    GIT_DEPTH: "0"
+  artifacts:
+    when: always
+    paths:
+      - report-gitleaks.json
+  script:
+    - gitleaks git -v --no-banner --redact --exit-code 1 --report-format json --report-path report-gitleaks.json .
+
 build:
   stage: build
   image: registry.akehir.com:443/infra/node-with-chrome/node-with-chrome
