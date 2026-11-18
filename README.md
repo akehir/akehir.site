@@ -56,8 +56,14 @@ npm start
 ### Testing & Quality
 
 ```bash
-# Run unit tests
+# Run unit tests (Jest, one-shot; no browser required)
 npm test
+
+# Run unit tests in interactive watch mode
+npm run test:watch
+
+# Run unit tests with a coverage report (html + text-summary into coverage/)
+npm run test:coverage
 
 # Run linting
 npm run lint

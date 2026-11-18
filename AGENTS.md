@@ -50,7 +50,7 @@ Agents should follow these steps when making changes:
 | Command            | Description                                         |
 | :----------------- | :-------------------------------------------------- |
 | `npm start`        | Starts the development server                       |
-| `npm test`         | Runs unit tests                                     |
+| `npm test`         | Runs unit tests (Jest + jsdom, one-shot)            |
 | `npm run lint`     | Runs linting (ESLint and Sass-lint)                 |
 | `npm run lint:fix` | Runs linting and applies automatic fixes (Prettier) |
 | `npm run build`    | Builds the project for production                   |

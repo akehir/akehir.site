@@ -46,7 +46,10 @@ build:
       changes:
         - src/**/*
         - package.json
+        - package-lock.json
         - angular.json
+        - jest.config.cjs
+        - setup-jest.ts
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
@@ -54,7 +57,10 @@ build:
       changes:
         - src/**/*
         - package.json
+        - package-lock.json
         - angular.json
+        - jest.config.cjs
+        - setup-jest.ts
         - nginx.conf
         - Dockerfile
         - .gitlab-ci.yml
@@ -62,7 +68,7 @@ build:
     - npm i
   script:
     - npm run lint
-    - npm run test:docker
+    - npm test
     - npm run build
     - gzip -9 -k -r dist/
   artifacts:
